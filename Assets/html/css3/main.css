@@ -5,6 +5,10 @@ header{
 nav{
     background: burlywood;
 }
-footer{
+
+h5{
     background: crimson;
+}
+.cosa{
+    background: cornflowerblue;
 }
