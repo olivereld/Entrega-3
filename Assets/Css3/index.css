@@ -1,0 +1,54 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+body{
+    width: 100%;
+    height:100%;
+}
+
+
+header{
+    background: black;
+    width: 100%;
+    height: 80px;
+}
+    .menu ul{
+        display: flex;
+    }
+    .menu li{
+        list-style: none;
+    }
+
+#buscador{
+    background: purple;
+    width:  100%;
+    height: 50px;
+}
+#centro{
+    background: gray;
+    width:  100%;
+    height: 525px;
+    display: flex;
+}
+    #contenedorIzquierdo{
+        background: green;
+        width:  50%;
+        height: 100%;
+        margin-left: fill;
+
+    }
+    #contenedorDerecho{
+        background: blue;
+        width:  50%;
+        height: 100%;
+        margin-right: fill;
+
+    }
+footer{
+    background: black;
+    width:  100%;
+    height: 100%;
+}
