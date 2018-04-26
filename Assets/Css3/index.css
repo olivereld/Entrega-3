@@ -10,12 +10,14 @@ body{
     background: #333333;
 }
 
+/*Cabecera de la pagina*/
 
 header{
-    background: black;
+    background: #141414;
     width: 100%;
     height: 80px;
 }
+/*
     .menu ul{
         display: flex;
     }
@@ -40,41 +42,151 @@ header{
         width:  75px;
         height: 75px;
     }
+*/
 #buscador{
     background: #333333;
-    width:  100%;
+    position: absolute;
+    margin-left: 50%;
+    width:  50%;
     height: 50px;
     display: flex;
 }
-    #buscador ul{
-        display: flex;
-    }
-    #buscador li{
-        list-style: none;
-        position: relative;
-    }
-    .check{
-        position: relative;
-        width:  50px;
-        height: 50px;
-    }
-#centro{
-    background: background: #333333;
-    width:  100%;
-    height: 520px;
+
+#filtros{
+    background:#333333;
+    position: absolute;
+    margin-left: 5%;
+    width:  47%;
+    height: 50px;
     display: inline-block;
+}
+    /*Filtros*/
+    /*
+    input[type=checkbox] {
+        display: none;
+    }
+     input[type=checkbox] + label {
+        width: 8%;
+        height: 100%;
+        background-color: transparent;
+        display: inline-block;
+    }
+    #checkbox1 + label{
+        background: url("../image/videoCheckOff.png") no-repeat ;
+        background-size: 50px 50px;
+    }
+    #checkbox1:checked + label{
+        background: url("../image/videoCheck.png") no-repeat ;
+        background-size: 50px 50px;
     }
 
-#contenedorDerecho{
-        width:  90%;
-        height: 90%;
-        position: center;
-        margin-left: auto;
-        margin-right: auto;
-        background: #b3b3b3;
+    #checkbox2 + label{
+        background: url("../image/fotoCheckOff.png") no-repeat ;
+        background-size: 50px 50px;
     }
-footer{
-    background: black;
+    #checkbox2:checked + label{
+        background: url("../image/fotoCheck.png") no-repeat ;
+        background-size: 50px 50px;
+    }
+
+    #checkbox3 + label{
+        background: url("../image/musicaCheckOff.png") no-repeat ;
+        background-size: 50px 50px;
+    }
+    #checkbox3:checked + label{
+        background: url("../image/musicaCheck.png") no-repeat ;
+        background-size: 50px 50px;
+    }
+
+    #checkbox4 + label{
+        background: url("../image/youtubeCheckOff.png") no-repeat ;
+        background-size: 50px 50px;
+    }
+    #checkbox4:checked + label{
+        background: url("../image/youtubeCheck.png") no-repeat ;
+        background-size: 50px 50px;
+    }
+
+    #checkbox5 + label{
+        background: url("../image/instaCheckOff.png") no-repeat ;
+        background-size: 50px 50px;
+    }
+    #checkbox5:checked + label{
+        background: url("../image/instaCheck.png") no-repeat ;
+        background-size: 50px 50px;
+    }
+
+    #checkbox6 + label{
+        background: url("../image/cloudCheckOff.png") no-repeat ;
+        background-size: 50px 50px;
+    }
+    #checkbox6:checked + label{
+        background: url("../image/cloudCheck.png") no-repeat ;
+        background-size: 50px 50px;
+    }
+    */
+/*Fondo del centro*/
+#centro{
+    background: #333333;
     width:  100%;
-    height: 50px;
+    height: 730px;
+    display: inline-block;
+}
+
+/*Vizualisador multimedia*/
+#vizualisador{
+    width:  50%;
+    height: 55%;
+    position: center;
+    display:block;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    background: #DDDDDD;
+    opacity: 1.0;
+}
+#vizualisador img{
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+}
+
+/*Busquedas multimedias*/
+#resultados{
+    width:  95%;
+    height: 25%;
+    position: center;
+    margin-top: 1%;
+    margin-left: auto;
+    margin-right: auto;
+    background: #DDDDDD;
+    border-radius: 15px;
+}
+.visor{
+    display: flex;
+}
+.visor li{
+    list-style: none;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+}
+
+.visor img{
+    height: 124px;
+    width: 126px;
+}
+
+.visor img:hover{
+    height: 134px;
+    width: 136px;
+}
+
+footer{
+    position: absolute;
+    background: #141414;
+    width:  100%;
+    height: 100px;
 }
