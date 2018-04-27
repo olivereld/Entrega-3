@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="login.css"/>
+
+<head>
+  <style>
+    body { background: #101010; color: white; }
+    .content {
+      max-width: 400px;
+      margin: auto;
+      background: #202020;
+      padding: 10px;
+    }
+    .colores {
+      color: #ff4d4d;
+    }
+  </style>
+</head>
+<body>
+
+</body>
+
+<form action="action_page.php">
+
+  <div class="content" style="background-color:#202020; border: 2px solid #202020; border-radius: 5px">
+
+  <div class="imgcontainer">
+    <img src="logo.png" alt="logo" class="logo">
+  </div>
+
+  <div class="container">
+    <label for="uname"><b>Nombre de Usuario:  </b></label>
+    <input type="text" placeholder="Ingrese Nombre de Usuario" name="uname" required>
+
+    <label for="psw"><b>Contrase&ntilde;a:  </b></label>
+    <input type="password" placeholder="Ingrese Contrase&ntilde;a" name="psw" required>
+
+    <button type="submit">Entrar</button>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Recuerdame
+    </label>
+  </div>
+
+  <div class="colores" >
+    <button type="button" class="cancelbtn">Cancelar</button>
+    <span class="psw">Olvido su <a href="#" style="color:#ff4d4d">Contrase&ntilde;a?</a></span>
+  </div>
+
+  </div>
+
+</form>
