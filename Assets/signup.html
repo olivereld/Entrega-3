@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="Css3/signup.css"/>
+
+<head>
+  <style>
+    body { background: #101010; color: white; }
+    .content {
+      max-width: 500px;
+      margin: auto;
+      background: #202020;
+      padding: 10px;
+    }
+
+  </style>
+</head>
+
+<form action="action_page.php">
+
+  <div class="content" style="background-color: #202020; border: 2px solid #202020; border-radius: 5px">
+  <div class="imgcontainer">
+    <img src="image/logo.png" alt="logo" class="logo">
+  </div>
+  <div class="container">
+    <hl>Crear Cuenta</hl>
+    <hr>
+
+    <label for="email"><b>Ingrese el Email: </b></label>
+    <input type="text" placeholder="Ingrese el Email: " name="email" required>
+
+    <label for="psw"><b>Contrase&ntilde;a: </b></label>
+    <input type="password" placeholder="Ingrese la Contrase&ntilde;a: " name="psw" required>
+
+    <label for="psw-repeat"><b>Repita la Contrase&ntilde;a: </b></label>
+    <input type="password" placeholder="Repita la Contrase&ntilde;a: " name="psw-repeat" required>
+
+    <label>
+      <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Recuerdame
+    </label>
+
+    <div style="color: #ff4d4d">
+    <h>Creando esta cuenta usted esta de acuerdo con nuestros <a href="#" style="color:#ff4d4d">Terminos y Condiciones</a>.</h>
+    </div>
+
+    <div class="clearfix">
+      <button type="submit" class="signupbtn">Crear Cuenta</button>
+      <button type="button" class="cancelbtn">Cancelar</button>
+    </div>
+  </div>
+  </div>
+</form>
