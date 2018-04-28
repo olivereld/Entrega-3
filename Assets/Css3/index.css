@@ -6,7 +6,7 @@
 }
 body{
     width: 100%;
-    height:100%;
+    height:50%;
     background: #333333;
 }
 
@@ -17,7 +17,7 @@ header{
     width: 100%;
     height: 80px;
 }
-/*
+
     .menu ul{
         display: flex;
     }
@@ -42,26 +42,69 @@ header{
         width:  75px;
         height: 75px;
     }
-*/
+
 #buscador{
-    background: #333333;
+    background: #333232;
     position: absolute;
-    margin-left: 50%;
+    margin-left: 60%;
     width:  50%;
     height: 50px;
     display: flex;
 }
+/*Barra*/
+#searchform {
+    width: 280px;
+    height:30px;
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+    padding: 3px;
+    margin: 10px auto;    
+    background: #333232;
+    border-radius: 4px;
+   
+}
+#barraBusqueda {
+  width: 300px;
+  height: 30px;
+  background: #ebebeb;
+  border: none;
+  font-size: 10pt;
+  float: left;
+  color: #181818;
+  padding-left: 40px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+input[type=submit]{
+    display: none ;
+}
+input[type = submit] + label {    
+  position: absolute;
+  margin-left: -293px; 
+  margin-top: 3px;   
+  height:25px;
+  width:25px;  
+  background-color: transparent;
+}   
+#botonBusqueda + label{
+    background: url("../image/iconSearch.png") no-repeat ;
+    background-size: 25px 25px;
+}
+/*Fin de barra*/
 
+/*Filtros*/
 #filtros{
-    background:#333333;
+    background:#333232 ;
     position: absolute;
     margin-left: 5%;
     width:  47%;
     height: 50px;
     display: inline-block;
 }
-    /*Filtros*/
-    /*
+    
+    
     input[type=checkbox] {
         display: none;
     }
@@ -70,24 +113,25 @@ header{
         height: 100%;
         background-color: transparent;
         display: inline-block;
+        margin-top: 5px;
     }
     #checkbox1 + label{
-        background: url("../image/videoCheckOff.png") no-repeat ;
-        background-size: 50px 50px;
-    }
-    #checkbox1:checked + label{
-        background: url("../image/videoCheck.png") no-repeat ;
-        background-size: 50px 50px;
-    }
-
-    #checkbox2 + label{
         background: url("../image/fotoCheckOff.png") no-repeat ;
         background-size: 50px 50px;
     }
-    #checkbox2:checked + label{
+    #checkbox1:checked + label{
         background: url("../image/fotoCheck.png") no-repeat ;
         background-size: 50px 50px;
+    }   
+
+    #checkbox2 + label{
+        background: url("../image/videoCheckOff.png") no-repeat ;
+        background-size: 50px 50px;
     }
+    #checkbox2:checked + label{
+        background: url("../image/videoCheck.png") no-repeat ;
+        background-size: 50px 50px;
+    }   
 
     #checkbox3 + label{
         background: url("../image/musicaCheckOff.png") no-repeat ;
@@ -96,16 +140,16 @@ header{
     #checkbox3:checked + label{
         background: url("../image/musicaCheck.png") no-repeat ;
         background-size: 50px 50px;
-    }
+    }   
 
     #checkbox4 + label{
-        background: url("../image/youtubeCheckOff.png") no-repeat ;
+        background: url("../image/cloudCheckOff.png") no-repeat ;
         background-size: 50px 50px;
     }
     #checkbox4:checked + label{
-        background: url("../image/youtubeCheck.png") no-repeat ;
+        background: url("../image/cloudCheck.png") no-repeat ;
         background-size: 50px 50px;
-    }
+    }   
 
     #checkbox5 + label{
         background: url("../image/instaCheckOff.png") no-repeat ;
@@ -114,74 +158,53 @@ header{
     #checkbox5:checked + label{
         background: url("../image/instaCheck.png") no-repeat ;
         background-size: 50px 50px;
-    }
+    }   
 
     #checkbox6 + label{
-        background: url("../image/cloudCheckOff.png") no-repeat ;
+        background: url("../image/youtubeCheckOff.png") no-repeat ;
         background-size: 50px 50px;
     }
     #checkbox6:checked + label{
-        background: url("../image/cloudCheck.png") no-repeat ;
+        background: url("../image/youtubeCheck.png") no-repeat ;
         background-size: 50px 50px;
-    }
-    */
+    }   
+   
+   
 /*Fondo del centro*/
 #centro{
-    background: #333333;
+    background:#333232 ;
     width:  100%;
     height: 730px;
     display: inline-block;
+    background: url("../image/fondo.png") no-repeat;
+    
+    background-position-y: 19%; 
+    background-position-x: 70%; 
 }
 
 /*Vizualisador multimedia*/
 #vizualisador{
-    width:  50%;
+    width:  30%;
     height: 55%;
     position: center;
     display:block;
     margin-top: 5%;
-    margin-left: auto;
+    margin-left: 5%;
     margin-right: auto;
-    background: #DDDDDD;
+    background: #232222;
     opacity: 1.0;
-}
-#vizualisador img{
-    position: relative;
-
-    width: 100%;
-    height: 100%;
 }
 
 /*Busquedas multimedias*/
 #resultados{
-    width:  95%;
+    width:  90%;
     height: 25%;
     position: center;
     margin-top: 1%;
     margin-left: auto;
     margin-right: auto;
-    background: #DDDDDD;
+    background: #232222;
     border-radius: 15px;
-}
-.visor{
-    display: flex;
-}
-.visor li{
-    list-style: none;
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 2%;
-}
-
-.visor img{
-    height: 124px;
-    width: 126px;
-}
-
-.visor img:hover{
-    height: 134px;
-    width: 136px;
 }
 
 footer{
