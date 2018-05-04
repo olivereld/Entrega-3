@@ -1,70 +1,225 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device‐width, initial‐scale=1.0">
+    <link rel="stylesheet" href="Css3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="Css3/index.css"/>
     <title>Title</title>
 </head>
-<body>
+<body>       
 
-    <header><!--Cabecer   a-->
-        <nav class="menu">
-            <ul>
+    <header class="container-fluid "><!--Cabecera-->
+        
+            <section class="row">
+
+                <div class="col-xm-4 col-sm-6 col-md-8"> <!-- Logo-->
+                    <img src="image/logo.png" class="image-rounded logo"/> 
+                    <img src="image/titulo.png" class="image-rounded titulo"/>                                      
+                </div>                
+
+                 <!--Opciones de la cabecera-->
+                <div class="col-xm-12 col-md-2  opciones"> <!-- Registrarse-->
+                    <a href="#" data-toggle="modal" data-target="#myModal2" > 
+                                              
+                            <h5> <small>
+                                    Registrarse                           
+                            </h5></small>                      
+                    </a>                  
+                </div>
+                <div class="col-xm-12 col-md-2 opciones"> <!-- Entrar-->
+                    <a href="#" data-toggle="modal" data-target="#myModal"> 
+                                                 
+                            <h5> <small>
+                                    Entrar                           
+                            </h5></small>                         
+                    </a>                  
+                </div>
+                <!--Opciones de la cabecera-->
+
+            </section>              
+    </header><!--Cabecera--> 
+   
+    <!--Navegador buscador-->
+    <nav class="container">       
+        <section class="row">
+
+            <!-- Filtros de busqueda -->
+            <form class="col-md-2" id="searchform">  
+                    <div class="float-md-left"> 
+
+                        <input class="check" type="checkbox" id="fotoCheck"><!--Imagen-->
+                        <label for="fotoCheck">                                                         
+                        </label> 
+
+                        <input class="check" type="checkbox" id="musicCheck"><!--musica-->
+                        <label for="musicCheck">                                                         
+                        </label> 
+
+                        <input class="check" type="checkbox" id="videoCheck"><!--video-->
+                        <label for="videoCheck">                                                         
+                        </label> 
+
+                   </div>                             
+            </form>      
+            <!-- Filtros de busqueda Fin-->
+
+            <!--Barra de busqueda-->
+           <form class="col-xm-9 col-sm-8 col-md-8 " id="searchform">  
+                <div class="float-md-right">
+                        <input id = "barraBusqueda" type="text" placeholder="Buscar aqu&iacute;..." required>       
+                        <input type="submit" value = "" id ="botonBusqueda">
+                        <label for="botonBusqueda"></label> 
+                </div>                             
+            </form>
+            <!--Barra de busqueda-->
+
+         </section>                 
+    </nav>
+    <!--Navegador buscador fin-->
+
+
+    <!--contenido principal-->
+    
+   
+    <section class="container"><!-- Contenedor del cuerpo-->        
+        <div class="row">
+            <div class="col-sm-12"> <small> <h5></h5> </small> </div>
+
+            <div class="col-sm-8 main">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
+           
+            </div>
+            
+            <div class="col-sm-4 sub">
+                <div class="CajaVideo">
+                        <div class="imagenPrueba">
+                            <img  src="image/Reproducir.png" alt="video">
+                            <span class="tituloImagenPrueba">  El video mas divertido del mundo   </span></br>
+                            <span class="infoImagenPrueba">  informacion nula y fea duracion etc   </span>
+                        <hr>
+                        </div>                       
+                </div>
                 
-                <img src="image/logo.png" class="logo"/>
-                <li> <a href="signup.html">Registrarse</a> </li>
-                <li> <a href="login.html">Entrar</a> </li>    
-            </ul>
-        </nav>
-    </header><!--Cabecera-->
+                <div class="CajaVideo">
+                        <div class="imagenPrueba">
+                            <img  src="image/Reproducir.png" alt="video">
+                            <span class="tituloImagenPrueba">  El video mas divertido del mundo   </span></br>
+                            <span class="infoImagenPrueba">  informacion nula y fea duracion etc   </span>
+                            <hr>
+                        </div>                       
+                </div>
 
-    <section id="filtros"><!--Filtros checkers-->
-        
-        <input id="checkbox1" type="checkbox"/>
-        <label for="checkbox1"></label>    
-        
-        <input id="checkbox2" type="checkbox"/>
-        <label for="checkbox2"></label>   
+                <div class="CajaVideo">
+                        <div class="imagenPrueba">
+                            <img  src="image/Reproducir.png" alt="video">
+                            <span class="tituloImagenPrueba">  El video mas divertido del mundo   </span></br>
+                            <span class="infoImagenPrueba">  informacion nula y fea duracion etc   </span>
+                            <hr>
+                        </div>                       
+                </div>
 
-        <input id="checkbox3" type="checkbox"/>
-        <label for="checkbox3"></label> 
-
-        <input id="checkbox4" type="checkbox"/>
-        <label for="checkbox4"></label> 
-
-        <input id="checkbox5" type="checkbox"/>
-        <label for="checkbox5"></label> 
-
-        <input id="checkbox6" type="checkbox"/>
-        <label for="checkbox6"></label> 
-        
-    </section>
-    <section id="buscador">
-        <form id="searchform">            
-                    <input id = "barraBusqueda"type="text" placeholder="Buscar aqu&iacute;..." required>       
+                <div class="CajaVideo">
+                        <div class="imagenPrueba">
+                            <img  src="image/Reproducir.png" alt="video">
+                            <span class="tituloImagenPrueba">  El video mas divertido del mundo   </span></br>
+                            <span class="infoImagenPrueba">  informacion nula y fea duracion etc   </span>
+                            <hr>
+                        </div>                       
+                </div>
+                <div class="CajaVideo">
+                        <div class="imagenPrueba">
+                            <img  src="image/Reproducir.png" alt="video">
+                            <span class="tituloImagenPrueba">  El video mas divertido del mundo   </span></br>
+                            <span class="infoImagenPrueba">  informacion nula y fea duracion etc   </span>
+                            <hr>
+                        </div>                       
+                </div>
+                
                     
-                    <input type="submit" value = "" id ="botonBusqueda">
-                    <label for="botonBusqueda"></label>         
-        </form>            
-    </section>
-
-    <section id = "centro"><!-- Contenedor del cuerpo-->
-           
-            <section id = "vizualisador"> <!--Derecho-->
-                <article>
-                    Busqueda multimedia, creacion de albumes dinamicos y mas!
-                </article>
-            </section>
-           
-            <section id = "resultados"> <!--Derecho-->
-                
-            </section>
+            </div>
 
 
-    </section>
+        </div>
+    </section> <!--Fin de contenido principal-->
+    
+   
 
-    <footer>
-
-    </footer>
+    <script src="js/Jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
+
+<!-- -------------------------------------------------LOGIN MODAL------------------------------------------------- -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" role ="document">        
+            <div class="modal-content">
+
+                <div class="container modal-header">
+                        <img src="image/logo.png" alt="logo" class="modal-logo">
+                </div>
+        
+                <div class="modal-form">
+                    <!--label class="modal-letters" for="uname"><b>Nombre de Usuario:</b></label-->
+                    <input class="modal-input"   type="text" placeholder="Ingrese Nombre de Usuario" name="uname" required>
+                        
+                    <!--label class="modal-letters" for="psw"><b>Contrase&ntilde;a:  </b></label-->
+                    <input class="modal-input"   type="password" placeholder="Ingrese Contrase&ntilde;a" name="psw" required>
+                    
+                    <label>
+                        <input class="modal-checkbox" type="checkbox" checked="checked" name="remember"> Recuerdame
+                    </label>
+                    
+                </div>
+        
+                <div class="modal-footer">             
+                    <button type="button" class="cancelbtnModal modal-button btn btn-default" data-dismiss="modal">  Cancelar </button> 
+                    
+                    <button class="modal-button" type="submit">Entrar</button>  
+
+                </div>
+            </div>        
+    </div>
+</div> 
+<!-- -------------------------------------------------LOGIN MODAL------------------------------------------------- -->
+
+<!-- -------------------------------------------------Registro MODAL------------------------------------------------- -->
+<div id="myModal2" class="modal fade" role="dialog">
+        <div class="modal-dialog" role ="document">        
+                <div class="modal-content">
+    
+                    <div class="container modal-header">
+                            <img src="image/logo.png" alt="logo" class="modal-logo">
+                    </div>
+            
+                    <div class="modal-form">
+                        <!--label class="modal-letters" for="uname"><b>Nombre de Usuario:</b></label-->
+                        <input class="modal-input-registro"   type="text" placeholder="Nombre" name="uname" required>
+                        <input class="modal-input-registro"   type="text" placeholder="Apellido" name="uname" required>                        
+                        <input class="modal-input-registro"   type="email" placeholder="Email" name="uname" required> 
+                        <input class="modal-input-registro"   type="text" placeholder="Nombre de Usuario" name="uname" required>
+                        <!--label class="modal-letters" for="psw"><b>Contrase&ntilde;a:  </b></label-->
+                        <input class="modal-input-registro"   type="password" placeholder="Contrase&ntilde;a" name="psw" required>
+                                                
+                        
+                    </div>
+            
+                    <div class="modal-footer">             
+                        <button type="button" class="cancelbtnModal modal-button btn btn-default" data-dismiss="modal">  Cancelar </button> 
+                        
+                        <button class="modal-button" type="submit">Enviar</button>  
+    
+                    </div>
+                </div>        
+        </div>
+    </div> 
+<!-- -------------------------------------------------Registro MODAL------------------------------------------------- -->  
+
+
+
 </html>
+

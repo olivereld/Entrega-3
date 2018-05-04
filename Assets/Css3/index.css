@@ -1,56 +1,65 @@
 *{
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    padding: 0;    
     font-family: Arial;
 }
-body{
-    width: 100%;
-    height:50%;
-    background: #333333;
-}
-
 /*Cabecera de la pagina*/
 
 header{
-    background: #141414;
+    
     width: 100%;
-    height: 80px;
-}
-
-    .menu ul{
-        display: flex;
-    }
-    .menu li{
-        list-style: none;
-        position: relative;
-        left: 75%;
-    }
-    a{
-        margin: 2em 2em;
-        position: relative;
-        display: block;
-        text-decoration: none;
-        color: white;
-    }
-    a:hover{
-        color: gray;
-    }
+    height: auto;
+    background: #0c0c0c;
+    color:white;   
+}    
     .logo{
         position: relative;
-        left: 5%;
-        width:  75px;
-        height: 75px;
+        left: 10%;       
+        max-width: 50px;
+        height: auto;
+    }
+    .titulo{      
+        position: relative;  
+        left: 10%;       
+        max-width: 220px;
+        height: auto;
+    }
+    .opciones a{ 
+             
+        text-decoration: none;        
+        color: white;        
+        display: inline-block;        
+        margin: 0px;       
+        padding: 10px 0px;
+        text-align: center;
+        max-width:  220px;        
+        width: 100%;
+        height: auto;
+        box-shadow: 0px 3px 0px  #85271c00;
+        
     }
 
-#buscador{
-    background: #333232;
-    position: absolute;
-    margin-left: 60%;
-    width:  50%;
-    height: 50px;
-    display: flex;
+    .opciones a:hover{
+        color: #d85656;
+        background: #050505;
+        box-shadow: 0px 2px 0px  #cf5346;
+    }
+    .opciones a:active{
+        color: #863636;
+        box-shadow: 0px 2px 0px  #863636;
+    }
+
+    
+
+/*Cuerpo de la pagina*/
+nav{
+    background: #131313; 
 }
+
+body{      
+    background: #242424;   
+}
+
 /*Barra*/
 #searchform {
     width: 280px;
@@ -58,14 +67,14 @@ header{
     vertical-align: middle;
     white-space: nowrap;
     position: relative;
-    padding: 3px;
-    margin: 10px auto;    
-    background: #333232;
+    padding: 1px;
+    margin: 5px auto;    
+    background: #ffffff00;
     border-radius: 4px;
    
 }
-#barraBusqueda {
-  width: 300px;
+#barraBusqueda {  
+  width:300px;
   height: 30px;
   background: #ebebeb;
   border: none;
@@ -83,133 +92,202 @@ input[type=submit]{
 input[type = submit] + label {    
   position: absolute;
   margin-left: -293px; 
-  margin-top: 3px;   
+  margin-top: 2px;   
   height:25px;
   width:25px;  
   background-color: transparent;
 }   
 #botonBusqueda + label{
-    background: url("../image/iconSearch.png") no-repeat ;
+    background: url("../image/iconSearch.png") no-repeat ;    
     background-size: 25px 25px;
 }
+#botonBusqueda + label:hover{
+    background: url("../image/iconSearchHover.png") no-repeat ;
+    background-size: 25px 25px;
+}
+#botonBusqueda + label:active{
+    background: url("../image/iconSearchAction.png") no-repeat ;
+    background-size: 25px 25px;
+}
+
 /*Fin de barra*/
 
 /*Filtros*/
-#filtros{
-    background:#333232 ;
-    position: absolute;
-    margin-left: 5%;
-    width:  47%;
-    height: 50px;
-    display: inline-block;
-}
-    
-    
-    input[type=checkbox] {
-        display: none;
+    .check{
+        display: none;            
     }
-     input[type=checkbox] + label {
-        width: 8%;
-        height: 100%;
-        background-color: transparent;
-        display: inline-block;
-        margin-top: 5px;
+    input[type=checkbox] + label{ 
+        margin: -5px 10px 10px 10px;
+        height: 35px;
+        width: 35px;
+        padding: 0 0 0 0px;
+        display:inline-block;
     }
-    #checkbox1 + label{
-        background: url("../image/fotoCheckOff.png") no-repeat ;
-        background-size: 50px 50px;
+                                    /*imagen filtro*/
+    input[id=fotoCheck] + label {
+        background: url("../image/fotoCheckOff.png") no-repeat;        
+        background-size: 100%;
     }
-    #checkbox1:checked + label{
-        background: url("../image/fotoCheck.png") no-repeat ;
-        background-size: 50px 50px;
-    }   
+    input[id=fotoCheck]:checked + label  {
+        background: url("../image/fotoCheck.png") no-repeat;        
+        background-size: 100%;   
+    }
+    /*Fin de imagen filtro*/
 
-    #checkbox2 + label{
-        background: url("../image/videoCheckOff.png") no-repeat ;
-        background-size: 50px 50px;
+                                    /*MUSICA FILTRO*/
+    input[id=musicCheck] + label {
+        background: url("../image/musicaCheckOff.png") no-repeat;        
+        background-size: 100%;
     }
-    #checkbox2:checked + label{
-        background: url("../image/videoCheck.png") no-repeat ;
-        background-size: 50px 50px;
-    }   
+    input[id=musicCheck]:checked + label  {
+        background: url("../image/musicaCheck.png") no-repeat;        
+        background-size: 100%;    
+    }
+    /*Fin de musica filtro*/
+                                    /*Videos filtro*/
+    input[id=videoCheck] + label {
+        background: url("../image/videoCheckOff.png") no-repeat;        
+        background-size: 100%;
+    }
+    input[id=videoCheck]:checked + label  {
+        background: url("../image/videoCheck.png") no-repeat;        
+        background-size: 100%;    
+    }
+    /*Fin videos filtro*/
 
-    #checkbox3 + label{
-        background: url("../image/musicaCheckOff.png") no-repeat ;
-        background-size: 50px 50px;
-    }
-    #checkbox3:checked + label{
-        background: url("../image/musicaCheck.png") no-repeat ;
-        background-size: 50px 50px;
-    }   
+/*Fin de filtros*/
 
-    #checkbox4 + label{
-        background: url("../image/cloudCheckOff.png") no-repeat ;
-        background-size: 50px 50px;
-    }
-    #checkbox4:checked + label{
-        background: url("../image/cloudCheck.png") no-repeat ;
-        background-size: 50px 50px;
-    }   
 
-    #checkbox5 + label{
-        background: url("../image/instaCheckOff.png") no-repeat ;
-        background-size: 50px 50px;
-    }
-    #checkbox5:checked + label{
-        background: url("../image/instaCheck.png") no-repeat ;
-        background-size: 50px 50px;
-    }   
-
-    #checkbox6 + label{
-        background: url("../image/youtubeCheckOff.png") no-repeat ;
-        background-size: 50px 50px;
-    }
-    #checkbox6:checked + label{
-        background: url("../image/youtubeCheck.png") no-repeat ;
-        background-size: 50px 50px;
-    }   
-   
-   
+  
 /*Fondo del centro*/
-#centro{
-    background:#333232 ;
-    width:  100%;
-    height: 730px;
-    display: inline-block;
-    background: url("../image/fondo.png") no-repeat;
+.main{
+    color:white;
+    background: #131313;
+}
+
+.sub{
+    color:white;
+    background: #131313;
+}
+.imagenPrueba img{
+    width: 45%;   
+    float: left; 
+}
+.imagenPrueba{    
+    color:white;    
     
-    background-position-y: 19%; 
-    background-position-x: 70%; 
+}
+.tituloImagenPrueba{
+    vertical-align: text-top;
+    font-size: 15px;
+}
+.infoImagenPrueba{
+    vertical-align: middle;
+    font-size: 12px;
 }
 
-/*Vizualisador multimedia*/
-#vizualisador{
-    width:  30%;
-    height: 55%;
-    position: center;
-    display:block;
-    margin-top: 5%;
-    margin-left: 5%;
-    margin-right: auto;
-    background: #232222;
-    opacity: 1.0;
+/*------------------------Estilo del login modal----------------------------------------------*/
+.modal{
+    display: none;
 }
-
-/*Busquedas multimedias*/
-#resultados{
-    width:  90%;
-    height: 25%;
-    position: center;
-    margin-top: 1%;
-    margin-left: auto;
-    margin-right: auto;
-    background: #232222;
+.modal-content{
+    max-width: 400px;
+    height: auto;
+    margin: auto;
+    top:25px;
+    background: #202020;
+    padding: 10px;
+    color: white;
     border-radius: 15px;
 }
-
-footer{
-    position: absolute;
-    background: #141414;
-    width:  100%;
-    height: 100px;
+.modal:target{
+    position: fixed;
+    background: #00000049;    
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
+.modal-header {
+    color: white;
+    text-align: center;
+    margin: 30px 0 10px 0;
+}
+.modal-letters{
+    font-size: 12px;
+}
+.modal-logo{
+    display: inline-block; 
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    top:-50%;
+    padding-bottom: 20px;
+        
+}
+.modal-form{
+    padding: 16px;
+}
+ input[type=text].modal-input, input[type=password].modal-input {
+    background-color: #101010;
+    color: white;
+    width: 100%;
+    padding: 5px 10px;
+    margin: 20px 0;
+    display: inline-block;
+    border: 2px solid #101010;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
+input[type=email].modal-input-registro,input[type=text].modal-input-registro, input[type=password].modal-input-registro {
+    background-color: #101010;
+    color: white;
+    width: 100%;
+    padding: 5px 10px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 2px solid #101010;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
+button.modal-button {
+    background-color: #ff4d4d;
+    color: white;
+    padding: 10px 18px;
+    margin: 20px 0;
+    border: 2px #ff4d4d;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 50%;
+}
+button.cancelbtnModal {
+    width: 50%;
+    padding: 10px 18px;
+    border: 2px #ff4d4d;
+    border-radius: 5px;
+    background-color: #ff4d4d;
+}
+
+button.modal-button:hover {
+    opacity: 0.8;
+}
+
+button.modal-button:active {
+    color: #4b0a0a;
+    background: #d82727;
+}
+
+.modal-footer a{
+    vertical-align: text-top;
+    color:#f76c6c;
+}
+
+span.modal-forgotPass {
+    float: right;
+    padding-top: 30px;
+   }
+/*------------------------Estilo del login modal----------------------------------------------*/
