@@ -254,6 +254,8 @@ input[type=email].modal-input-registro,input[type=text].modal-input-registro, in
     font-size: 12px;
 }
 
+
+
 button.modal-button {
     background-color: #ff4d4d;
     color: white;

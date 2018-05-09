@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
+<html ng-app lang="es">
+<head>    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device‐width, initial‐scale=1.0">
     <link rel="stylesheet" href="Css3/css/bootstrap.min.css"/>
@@ -88,7 +88,7 @@
 
             <div class="col-sm-8 main">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. {{2*6}}, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
@@ -149,9 +149,12 @@
     </section> <!--Fin de contenido principal-->
     
    
-
+    
+    <script src="libs/angular.min.js"></script>
     <script src="js/Jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/Clases/Campos.js"></script>    
+    
 </body>
 
 <!-- -------------------------------------------------LOGIN MODAL------------------------------------------------- -->
@@ -188,7 +191,9 @@
 <!-- -------------------------------------------------LOGIN MODAL------------------------------------------------- -->
 
 <!-- -------------------------------------------------Registro MODAL------------------------------------------------- -->
-<div id="myModal2" class="modal fade" role="dialog">
+
+<div id="myModal2" class="modal fade" role="dialog">    
+
         <div class="modal-dialog" role ="document">        
                 <div class="modal-content">
     
@@ -198,25 +203,57 @@
             
                     <div class="modal-form">
                         <!--label class="modal-letters" for="uname"><b>Nombre de Usuario:</b></label-->
-                        <input class="modal-input-registro"   type="text" placeholder="Nombre" name="uname" required>
-                        <input class="modal-input-registro"   type="text" placeholder="Apellido" name="uname" required>                        
-                        <input class="modal-input-registro"   type="email" placeholder="Email" name="uname" required> 
-                        <input class="modal-input-registro"   type="text" placeholder="Nombre de Usuario" name="uname" required>
+                        <input class="modal-input-registro"   type="text" placeholder="Nombre"     id="nombreRegistro"   name="firstName" required>
+                        <input class="modal-input-registro"   type="text" placeholder="Apellido"   id="apellidoRegistro" name="lastName"  required>                        
+                        <input class="modal-input-registro"   type="email" placeholder="Email"     id="emailRegistro"    name="email"     required> 
+                       
                         <!--label class="modal-letters" for="psw"><b>Contrase&ntilde;a:  </b></label-->
-                        <input class="modal-input-registro"   type="password" placeholder="Contrase&ntilde;a" name="psw" required>
+                        <input class="modal-input-registro"   type="password" placeholder="Contrase&ntilde;a"           name="password"             required  id="pass1">
+                        <input class="modal-input-registro"   type="password" placeholder="Repita la Contrase&ntilde;a" name="confirmationPassword" required  id="pass2">
                                                 
                         
                     </div>
-            
-                    <div class="modal-footer">             
+
+                    <div class="modal-footer" >             
                         <button type="button" class="cancelbtnModal modal-button btn btn-default" data-dismiss="modal">  Cancelar </button> 
                         
-                        <button class="modal-button" type="submit">Enviar</button>  
+                        <button  id="registrar" class="modal-button" type="submit"  onclick="formalizar()">Enviar</button>  
     
                     </div>
                 </div>        
         </div>
     </div> 
+    <!-- ----------Validaciones en tiempo real------------  -->
+    <script>
+         $( "#pass1" ).on('keyup',function() {
+             var valor = $(pass1).val().length;             
+            if (valor < 7 ){
+                $(pass1).css("border","solid #ec6464");                            
+            } else
+                $(pass1).css("border","solid #87ee8c");
+
+             if ($(pass1).val() != $(pass2).val() )
+                $(pass2).css("border","solid #ec6464");
+
+        }).keyup();
+
+        $( "#pass2" ).on('keyup',function() {           
+            
+            if ($(pass1).val() != $(pass2).val() ){
+                $(pass2).css("border","solid #ec6464");                            
+            }else if($(pass1).val().length > 0)
+                $(pass2).css("border","solid #87ee8c");
+
+        }).keyup();
+        $( "#emailRegistro" ).on('keyup',function() {
+             
+            if ($(emailRegistro).val().indexOf("@") > -1 && $(emailRegistro).val().indexOf(".com") > -1){
+                $(emailRegistro).css("border","solid #87ee8c");                           
+            } else              
+                $(emailRegistro).css("border","solid #ec6464");
+
+        }).keyup();
+    </script>
 <!-- -------------------------------------------------Registro MODAL------------------------------------------------- -->  
 
 
