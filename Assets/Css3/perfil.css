@@ -1,0 +1,41 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+body{
+    width: 100%;
+    height:50%;
+    background: #333333;
+}
+
+/*Cabecera de la pagina*/
+
+header{
+    background: #141414;
+    width: 100%;
+    height: 80px;
+}
+
+.menu ul{
+    display: flex;
+}
+.menu li{
+    list-style: none;
+    position: relative;
+    left: 75%;
+}
+a{
+    margin: 2em 2em;
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: white;
+}
+.logo{
+    position: relative;
+    left: 5%;
+    width:  75px;
+    height: 75px;
+}

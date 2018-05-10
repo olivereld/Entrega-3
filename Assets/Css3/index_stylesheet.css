@@ -1,0 +1,140 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+body{
+	background: #242424;
+}
+
+header{
+	width: 100%;
+	background: black;
+	height: 70px;
+	
+}
+
+.ancho{
+	width: 80%;
+	height: 70px;
+	margin: auto;
+}
+
+.logo{
+	width: 70%;
+	height: 70px;
+	float: left;
+	padding-top: 5px;
+	box-sizing: border-box;
+	letter-spacing: 1px;
+}
+
+.logo p a{
+	color: #fff;
+	font-size: 40px;
+	text-decoration: none;
+	font-family: rale;
+	
+
+}
+
+nav{
+	width: 30%;
+	height: 70px;
+	float: left;
+	text-align: right;
+	padding-top: 24px;
+	box-sizing: border-box;
+	
+}
+
+body{
+	background: #242424;
+}
+
+nav ul li{
+	display: inline;
+}
+
+nav ul li a {
+	color: #fff;
+	font-size: 13px;
+	text-decoration: none;
+	text-transform: uppercase;
+	padding-left: 15px;
+	font-weight: bold; 
+	letter-spacing: 1px;
+	font-family: rale; 
+}
+nav ul li a:hover{
+	color: #444;
+}
+
+@font-face{ 
+	font-family: rale;
+	src: url(../fonts/Raleway-Regular.ttf);
+}
+
+.head{
+	width: 10%;
+	color: #fff;
+	font-family: rale;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 25px;
+	margin:15px 0 0 0;
+}
+
+.box{
+	top: 15px;
+	margin: auto;
+	bottom: 10px;
+}
+
+.cuerpo{
+	width: 90%;
+	margin: auto;
+}
+
+.columnas{
+	width: 40%;
+	height: auto;
+	margin: auto;
+	float: left;
+}
+
+.head2{
+	width: 10%;
+	color: #fff;
+	font-family: rale;
+	font-weight: bold;
+	text-transform: uppercase;
+	font-size: 15px;
+	margin:40px 0 0 0;
+}
+
+.friendBox{
+	padding-top: 10px;
+}
+
+#izquierdo{
+	float: left;
+}
+
+#derecho{
+	float: left;
+}
+
+#derecho1{
+	padding-top: 10px;
+	margin-top: 30px;
+}
+
+
+
+
+
+
+
+
+
