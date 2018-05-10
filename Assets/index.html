@@ -18,7 +18,8 @@
                     <img src="image/titulo.png" class="image-rounded titulo"/>                                      
                 </div>                
 
-                 <!--Opciones de la cabecera-->
+                 <!--Opciones de la cabecera-->               
+
                 <div class="col-xm-12 col-md-2  opciones"> <!-- Registrarse-->
                     <a href="#" data-toggle="modal" data-target="#myModal2" > 
                                               
@@ -153,7 +154,8 @@
     <script src="libs/angular.min.js"></script>
     <script src="js/Jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/Clases/Campos.js"></script>    
+    <script src="js/Clases/Registro.js"></script> 
+    <script src="js/Clases/Login.js"></script>   
     
 </body>
 
@@ -167,11 +169,10 @@
                 </div>
         
                 <div class="modal-form">
-                    <!--label class="modal-letters" for="uname"><b>Nombre de Usuario:</b></label-->
-                    <input class="modal-input"   type="text" placeholder="Ingrese Nombre de Usuario" name="uname" required>
-                        
-                    <!--label class="modal-letters" for="psw"><b>Contrase&ntilde;a:  </b></label-->
-                    <input class="modal-input"   type="password" placeholder="Ingrese Contrase&ntilde;a" name="psw" required>
+                    
+                    <input class="modal-input"   type="text" placeholder="Correo electronico"    name="uname" id="correoLog" required>                      
+                    
+                    <input class="modal-input"   type="password" placeholder="Contrase&ntilde;a" name="psw"   id="claveLog" required>
                                       
                     
                 </div>
@@ -179,7 +180,7 @@
                 <div class="modal-footer">             
                     <button type="button" class="cancelbtnModal modal-button btn btn-default" data-dismiss="modal">  Cancelar </button> 
                     
-                    <button class="modal-button" type="submit">Entrar</button>  
+                    <button class="modal-button" type="submit" onclick="enviarLog()">Entrar</button>  
 
                 </div>
             </div>        

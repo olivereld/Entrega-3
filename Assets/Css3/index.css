@@ -12,6 +12,7 @@ header{
     background: #0c0c0c;
     color:white;   
 }    
+   
     .logo{
         position: relative;
         left: 10%;       
@@ -48,6 +49,7 @@ header{
         color: #863636;
         box-shadow: 0px 2px 0px  #863636;
     }
+    
 
     
 

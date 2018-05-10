@@ -1,19 +1,4 @@
-
-    
-
-function formalizar(){    
-
-    if( campoVacio() && //Comprueba si esta algun campo sin completar
-        longitud()   && //Comprueba si las contraseñas tienen la longitud correcto
-        comparar()   && //comprueba si las contraseñas son iguales
-        correoValido()){//comprueba que el correo tiene @ y termina en .com
-            //Si se cumplen los campos anteriores
-            console.log("Creando JSON");  
-            //enviar(); //Ejecuta la funcion enviar que esta de ultima
-              
-        } else
-            console.error("No se puede crear JSON"); //Si no se cumplen los requisitos
-}
+  
 
 function campoVacio(){//Comprobara que los campos se llenen
     var validar = true;
@@ -79,7 +64,21 @@ function correoValido(){//Verifica si un correo es valido
     }
 }
 
-//Comunicacion con el servidor  
+//Comunicacion con el servidor -------------------------------------------------------------------------------
+function formalizar(){    
+
+    if( campoVacio() && //Comprueba si esta algun campo sin completar
+        longitud()   && //Comprueba si las contraseñas tienen la longitud correcto
+        comparar()   && //comprueba si las contraseñas son iguales
+        correoValido()){//comprueba que el correo tiene @ y termina en .com
+            //Si se cumplen los campos anteriores
+        console.log("Creando JSON");  
+        enviar(); //Ejecuta la funcion enviar que esta de ultima
+              
+        } else
+            console.error("No se puede crear JSON"); //Si no se cumplen los requisitos
+}
+
 function crearJson (){ //Crea el archivo json para enviar
     var myJson = { //Creando JSON Con el formato
 
@@ -87,7 +86,8 @@ function crearJson (){ //Crea el archivo json para enviar
         "lastName"              : $(apellidoRegistro).val(),
         "email"                 : $(emailRegistro).val(),
         "password"              : $(pass1).val(),
-        "confirmationPassword"  : $(pass2).val()
+        "confirmationPassword"  : $(pass2).val(),
+        "dateOfBirth"  : "22/05/94"
 
     }    
     return myJson; //Devuelve el archivo tipo json
@@ -95,6 +95,7 @@ function crearJson (){ //Crea el archivo json para enviar
 
 function enviar(){ //Con JQuery Forma 1
     var data = crearJson(); //Almacena en una variable el json para luego enviarlo por http
+        
     console.log("Echo");
     $.ajax({ //Envia los datos
             url : 'https://ignsw201825-snproject.herokuapp.com/user/register', //Url
@@ -105,6 +106,16 @@ function enviar(){ //Con JQuery Forma 1
 
             success : function(response){ //Si funciona
                    console.log("listo");
+                    $(nombreRegistro).val("");
+                    $(apellidoRegistro).val("");
+                    $(emailRegistro).val("");
+                    $(pass1).val("");
+                    $(pass2).val("");
+
+                    $(pass1).css("border","solid #101010");
+                    $(pass2).css("border","solid #101010");
+                    $(emailRegistro).css("border","solid #101010");
+                    $(emailRegistro).css("background-color","#101010");
             },
             error: function(error){ //Si falla
                 console.log("fallo");
