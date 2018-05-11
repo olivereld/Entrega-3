@@ -87,7 +87,7 @@ function crearJson (){ //Crea el archivo json para enviar
         "email"                 : $(emailRegistro).val(),
         "password"              : $(pass1).val(),
         "confirmationPassword"  : $(pass2).val(),
-        "dateOfBirth"  : "22/05/94"
+        "dateOfBirth"           : "22/05/94"
 
     }    
     return myJson; //Devuelve el archivo tipo json

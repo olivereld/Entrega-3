@@ -5,47 +5,56 @@
     <meta name="viewport" content="width=device‐width, initial‐scale=1.0">
     <link rel="stylesheet" href="Css3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="Css3/index.css"/>
+    <script src="js/Clases/Login.js"></script> 
     <title>Title</title>
+
     
-    <script type="text/javascript">
-        function mandarDato(){
-            window.location="index_User.html?num=28400";
-            console.log("dato enviado");
-        }
-    </script>
 
 </head>
 <body>       
-
+           
     <header class="container-fluid "><!--Cabecera-->
         
             <section class="row">
 
                 <div class="col-xm-4 col-sm-6 col-md-8"> <!-- Logo-->
                     <img src="image/logo.png" class="image-rounded logo"/> 
-                    <img src="image/titulo.png" class="image-rounded titulo"/>                                      
+                    <img src="image/titulo.png" class="image-rounded titulo"/>                                                          
                 </div>                
 
-                 <!--Opciones de la cabecera-->               
+                 <!--Opciones de la cabecera-->           
+                
+                <div class="col-xm-12 col-md-3  opciones_Perfil" > <!-- Usuario-->
+                    <img src="image/avatar5.png" class="image-responsive perfil_Mini"/>
 
-                <div class="col-xm-12 col-md-2  opciones"> <!-- Registrarse-->
-                    <a href="#" data-toggle="modal" data-target="#myModal2" > 
-                                              
-                            <h5> <small>
-                                    Registrarse                           
-                            </h5></small>                      
-                    </a>                  
-                </div>
-                <div class="col-xm-12 col-md-2 opciones"> <!-- Entrar-->
-                    <a href="#" data-toggle="modal" data-target="#myModal"> 
-                                                 
-                            <h5> <small>
-                                    Entrar                           
-                            </h5></small>                         
-                    </a>                  
-                </div>
+                    <span href="#" data-toggle="modal" data-target="#"  id="userBoton" >                       
+                         hola                   
+                    </span>
+                    <script>
+                            var paramstr = window.location.search.substr(1);                           
+                            var paramarr = paramstr.split ("&");                           
+                            var auxiliar = [];
+
+                            for(var i = 0; i < paramarr.length; i++ ){
+                                 auxiliar[i]= (paramarr[i].split("="))[1];
+                                console.log(auxiliar);
+                            }
+                            document.getElementById("userBoton").innerHTML = auxiliar[0];                                    
+                    </script>
+                </div> 
+
+                <div class="col-xm-12 col-md-1  opciones_Perfil"> <!-- Salir-->
+                    <span onclick="salir()" data-toggle="modal">                                                 
+                        Salir                                       
+                    </span>
+                    <script>
+                        function salir(){
+                            window.location="index.html";
+                        }
+                    </script>                  
+                </div> 
                 <!--Opciones de la cabecera-->
-
+                
             </section>              
     </header><!--Cabecera--> 
    
@@ -162,107 +171,10 @@
     <script src="libs/angular.min.js"></script>
     <script src="js/Jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/Clases/Registro.js"></script> 
-    <script src="js/Clases/Login.js"></script>   
+   
+   
     
 </body>
-
-<!-- -------------------------------------------------LOGIN MODAL------------------------------------------------- -->
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog" role ="document">        
-            <div class="modal-content">
-
-                <div class="container modal-header">
-                        <img src="image/logo.png" alt="logo" class="modal-logo">
-                </div>
-        
-                <div class="modal-form">
-                    
-                    <input class="modal-input"   type="text" placeholder="Correo electronico"    name="uname" id="correoLog" required>                      
-                    
-                    <input class="modal-input"   type="password" placeholder="Contrase&ntilde;a" name="psw"   id="claveLog" required>
-                                      
-                    
-                </div>
-        
-                <div class="modal-footer">             
-                    <button type="button" class="cancelbtnModal modal-button btn btn-default" data-dismiss="modal">  Cancelar </button> 
-                    
-                    <button class="modal-button" type="submit" onclick="enviarLog()">Entrar</button>  
-
-                </div>
-            </div>        
-    </div>
-</div> 
-<!-- -------------------------------------------------LOGIN MODAL------------------------------------------------- -->
-
-<!-- -------------------------------------------------Registro MODAL------------------------------------------------- -->
-
-<div id="myModal2" class="modal fade" role="dialog">    
-
-        <div class="modal-dialog" role ="document">        
-                <div class="modal-content">
-    
-                    <div class="container modal-header">
-                            <img src="image/logo.png" alt="logo" class="modal-logo">
-                    </div>
-            
-                    <div class="modal-form">
-                        <!--label class="modal-letters" for="uname"><b>Nombre de Usuario:</b></label-->
-                        <input class="modal-input-registro"   type="text" placeholder="Nombre"     id="nombreRegistro"   name="firstName" required>
-                        <input class="modal-input-registro"   type="text" placeholder="Apellido"   id="apellidoRegistro" name="lastName"  required>                        
-                        <input class="modal-input-registro"   type="email" placeholder="Email"     id="emailRegistro"    name="email"     required> 
-                       
-                        <!--label class="modal-letters" for="psw"><b>Contrase&ntilde;a:  </b></label-->
-                        <input class="modal-input-registro"   type="password" placeholder="Contrase&ntilde;a"           name="password"             required  id="pass1">
-                        <input class="modal-input-registro"   type="password" placeholder="Repita la Contrase&ntilde;a" name="confirmationPassword" required  id="pass2">
-                                                
-                        
-                    </div>
-
-                    <div class="modal-footer" >             
-                        <button type="button" class="cancelbtnModal modal-button btn btn-default" data-dismiss="modal">  Cancelar </button> 
-                        
-                        <button  id="registrar" class="modal-button" type="submit"  onclick="formalizar()">Enviar</button>  
-    
-                    </div>
-                </div>        
-        </div>
-    </div> 
-    <!-- ----------Validaciones en tiempo real------------  -->
-    <script>
-         $( "#pass1" ).on('keyup',function() {
-             var valor = $(pass1).val().length;             
-            if (valor < 7 ){
-                $(pass1).css("border","solid #ec6464");                            
-            } else
-                $(pass1).css("border","solid #87ee8c");
-
-             if ($(pass1).val() != $(pass2).val() )
-                $(pass2).css("border","solid #ec6464");
-
-        }).keyup();
-
-        $( "#pass2" ).on('keyup',function() {           
-            
-            if ($(pass1).val() != $(pass2).val() ){
-                $(pass2).css("border","solid #ec6464");                            
-            }else if($(pass1).val().length > 0)
-                $(pass2).css("border","solid #87ee8c");
-
-        }).keyup();
-        $( "#emailRegistro" ).on('keyup',function() {
-             
-            if ($(emailRegistro).val().indexOf("@") > -1 && $(emailRegistro).val().indexOf(".com") > -1){
-                $(emailRegistro).css("border","solid #87ee8c");                           
-            } else              
-                $(emailRegistro).css("border","solid #ec6464");
-
-        }).keyup();
-    </script>
-<!-- -------------------------------------------------Registro MODAL------------------------------------------------- -->  
-
-
 
 </html>
 
