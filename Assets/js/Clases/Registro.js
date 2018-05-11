@@ -73,6 +73,7 @@ function formalizar(){
         correoValido()){//comprueba que el correo tiene @ y termina en .com
             //Si se cumplen los campos anteriores
         console.log("Creando JSON");  
+        
         enviar(); //Ejecuta la funcion enviar que esta de ultima
               
         } else
@@ -81,22 +82,21 @@ function formalizar(){
 
 function crearJson (){ //Crea el archivo json para enviar
     var myJson = { //Creando JSON Con el formato
-
+      
         "firstName"             : $(nombreRegistro).val(),
         "lastName"              : $(apellidoRegistro).val(),
         "email"                 : $(emailRegistro).val(),
         "password"              : $(pass1).val(),
         "confirmationPassword"  : $(pass2).val(),
-        "dateOfBirth"           : "22/05/94"
-
-    }    
+        "dateOfBirth"           : "22/05/94"        
+    }
+    
     return myJson; //Devuelve el archivo tipo json
 }
 
 function enviar(){ //Con JQuery Forma 1
-    var data = crearJson(); //Almacena en una variable el json para luego enviarlo por http
+    var data = crearJson(); //Almacena en una variable el json para luego enviarlo por http        
         
-    console.log("Echo");
     $.ajax({ //Envia los datos
             url : 'https://ignsw201825-snproject.herokuapp.com/user/register', //Url
             data : JSON.stringify(data), //El formato Json

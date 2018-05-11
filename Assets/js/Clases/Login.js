@@ -7,7 +7,7 @@ function getNombre(){
     alert("id: " + this.usuario.id + "\nnombre: " + this.usuario.nombre + "\napellido: " + this.usuario.apellido + "\ncorreo: " + this.usuario.correo);
 }*/
 
-function crearJson (){ //Crea el archivo json para enviar
+function crearJson2 (){ //Crea el archivo json para enviar
     var myJson = 
     { //Creando JSON Con el formato
         "email"       : $(correoLog).val(),
@@ -17,7 +17,7 @@ function crearJson (){ //Crea el archivo json para enviar
 }
 
 function enviarLog(){ //Con JQuery Forma 1
-    var data = crearJson(); //Almacena en una variable el json para luego enviarlo por http   
+    var data = crearJson2(); //Almacena en una variable el json para luego enviarlo por http   
     console.log("Listo"); 
     $.ajax({ //Envia los datos
             url : 'https://ignsw201825-snproject.herokuapp.com/user/login', //Url
