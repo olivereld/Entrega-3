@@ -5,17 +5,17 @@
 	<title>Document</title>
 	
 	  <!-- Bootstrap 3.3.7 -->
-	  <script src="js/bootstrap.js"></script>
-	  <script src="js/jquery.js"></script>
 	<link rel="stylesheet" href="Css3/css/bootstrap.min.css">
-
+	<script src="js/jquery.js"></script>  
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	  <!-- Theme style -->
-	<link rel="stylesheet" href="dist/css/AdminLTE.min.css"> 
+	<link rel="stylesheet" href="Css3/css/AdminLTE.min.css"> 
 
 	  <!-- Google Font -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 	
-	<link rel="stylesheet" href="Css3/index_stylesheet.css">
+	<link rel="stylesheet" href="Css3/perfil.css">
 </head>
 <body>
 <header>
@@ -38,11 +38,11 @@
 	<div class="box box-widget widget-user">
 	<!-- Add the bg color to the header using any of the bg-* classes -->
 		<div class="widget-user-header bg-aqua-active">
-	  <h3 class="widget-user-username">Armando Martinez</h3>
-	  <h5 class="widget-user-desc">Desde 5-2018</h5>
+	  <h3 class="widget-user-username" id="name">Armando Martinez</h3>
+	  <h5 class="widget-user-desc" id="since">Desde 5-2018</h5>
 		</div>
 		<div class="widget-user-image">
-	  		<img class="img-circle" alt="User Avatar"> <!--Poner aqui el src de la imagen-->
+	  		<img class="img-circle" src="image/user8-128x128.jpg" alt="User Avatar"> <!--Poner aqui el src de la imagen-->
 		</div>
 		<div class="box-footer">
 		  <div class="row">
@@ -115,53 +115,105 @@
   </div>
 	</div>
 	</div>
-	<div class="col-sm-7" id="derecho">
-		<div class="nav-tabs-custom" id="derecho1">
-			<ul class="nav nav-tabs" id="myTab" role="tablist">
-				<li class="nav-item">
-
-					<a class="nav-link" id="albumes" data-toggle="tab" href="#albumes" role="tab" aria-controls="albumes" aria-selected="true">Albumes</a>
-
-				</li>
-
-				<li class="nav-item">
-
-					<a class="nav-link" id="cuenta" data-toggle="tab" href="#cuenta" role="tab" aria-controls="cuenta" aria-selected="false">Cuenta</a>
-
-				</li>
+	<div class="col-sm-7 container" id="derecho">
+	<br>
+		<div class="nav-tabs-custom bg-white">
+  
+			  <!-- Nav tabs -->
+			<ul class="nav nav-tabs" role="tablist">
+			    <li class="nav-item active show">
+			    	<a class="nav-link active" data-toggle="tab" href="#home">Albumes</a>
+			    </li>
+			    <li class="nav-item">
+			      	<a class="nav-link" data-toggle="tab" href="#menu1">Editar Cuenta</a>
+			    </li>
 			</ul>
-				<div class="tab-content">
-					<div class="tab-pane fade show active" id="albumes" role="tabpanel" aria-labelledby="albumes"> 
-						<div class="card-columns">
-							
-							<div class="cards">
-								<img src="img/1.jpg" alt="">
-							</div>
 
-							<div class="cards">
-								<img src="img/2.jpg" alt="">
-							</div>
+			  <!-- Tab panes -->
+			<div class="tab-content">
+			    <div id="home" class="container tab-pane active"><br>
+			      	<div class="card-columns">
+			              
+			            <div class="card">
+			            	<img src="image/1.jpg" class="card-img-top"  alt="">
+			            </div>
 
-							<div class="cards">
-								<img src="img/3.jpg" alt="">
-							</div>
+			            <div class="card">
+			                <img src="image/2.jpg" class="card-img-top" alt="">
+			            </div>
 
-							<div class="cards">
-								<img src="img/4.jpg" alt="">
-							</div>
-								
-								
-						</div>
-						
-					</div>
-					<div class="tab-pane fade" id="cuenta" role="tabpanel" aria-labelledby="cuenta">
-						
-						<p>Hola2</p>
-					</div>
+			            <div class="card">
+			                <img src="image/3.jpg" class="card-img-top" alt="">
+			            </div>
+
+			            <div class="card">
+			                <img src="image/4.jpg" class="card-img-top" alt="">
+			            </div>
+
+			            <div class="card">
+			                <img src="image/5.jpg" class="card-img-top" alt="">
+			            </div>
+
+			            <div class="card">
+			                <img src="image/6.jpg" class="card-img-top" alt="">
+			            </div>
+
+			            <div class="card">
+			                <img src="image/7.jpg" class="card-img-top" alt="">
+			            </div>
+
+			            <div class="card">
+			                <img src="image/8.jpg" class="card-img-top" alt="">
+			            </div>
+			                 
 				</div>
+			</div>
+		    <div id="menu1" class="container tab-pane fade"><br>
+		      	<form class="form-horizontal">
+		                <div class="form-group">
+		                    <label for="inputName" class="col-sm-2 control-label">Nombre</label>
 
-		</div>
+		                    <div class="col-sm-10">
+		                      	<input type="email" class="form-control" id="inputName" placeholder="Nombre">
+		                    </div>
+		                </div>
+
+		                <div class="form-group">
+		                    <label for="inputEmail" class="col-sm-2 control-label">Correo</label>
+
+		                    <div class="col-sm-10">
+		                      	<input type="email" class="form-control" id="inputEmail" placeholder="Correo">
+		                    </div>
+		                </div>
+
+		                <div class="form-group">
+		                    <label for="inputName" class="col-sm-2 control-label">Clave</label>
+
+		                    <div class="col-sm-10">
+		                      	<input type="text" class="form-control" id="inputName" placeholder="Clave">
+		                    </div>
+		                </div>
+		                  
+		                  <div class="form-group">
+		                    <div class="col-sm-offset-2 col-sm-10">
+		                      <div class="checkbox">
+		                        <label>
+		                          <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+		                        </label>
+		                      </div>
+		                    </div>
+		                  </div>
+		                  <div class="form-group">
+		                    <div class="col-sm-offset-2 col-sm-10">
+		                      <button type="submit" class="btn btn-danger">Submit</button>
+		                    </div>
+		                  </div>
+		                  <br>
+		                </form>
+		    </div>
+  </div>
 	</div>
+</div>
 </div>
 </body>
 </html>
