@@ -12,15 +12,27 @@ header{
     background: #0c0c0c;
     color:white;   
 }  
-    
+        
     .titulo{
         width: 70%;
-        height: 70px;
+        height: auto;
         float: left;
         padding-top: 5px;
         box-sizing: border-box;
-        letter-spacing: 1px;
-        color:white;
+        letter-spacing: 1px;   
+              
+    }
+
+    .titulo p{
+        color: #d85656;
+        font-size: 30px;
+        text-decoration: none;
+        font-family: rale;
+        margin-left: 20%;
+    }
+    .logo{
+        float: left;
+        margin-right: 10%;
     }
     .logo,.perfil_Mini{
         position: relative;
@@ -32,24 +44,24 @@ header{
     border-radius:150px;
     border:1px solid #666;
     }
-    .titulo{      
-        position: relative;  
-        left: 10%;       
-        max-width: 220px;
-        height: auto;
-    }
+    
+    
     .opciones a{             
         text-decoration: none;        
         color: white;        
         display: inline-block;        
-        margin: 0px;       
-        padding: 10px 0px;
+        margin: 5%;       
+        padding: 15px 10px;
         text-align: center;
         max-width:  220px;        
         width: 100%;
         height: auto;
         box-shadow: 0px 3px 0px  #85271c00;
         
+        
+    }
+    .opciones_Perfil{
+        margin-left: -4%;
     }
     .opciones_Perfil span{             
         text-decoration: none;        
@@ -327,3 +339,33 @@ span.modal-forgotPass {
     padding-top: 30px;
    }
 /*------------------------Estilo del login modal----------------------------------------------*/
+/*Media*/
+@media (max-width: 20em) {
+    .logo {
+        margin-left: 55%;       
+        margin-right: auto;
+    }
+    .titulo {
+        display: block;
+        margin-left:auto;
+        margin-right: auto; 
+       text-align: center;        
+    }
+    
+    .opciones a{ 
+                   
+        text-decoration: none;        
+        color: white;        
+        display: inline-block;        
+        margin: 0%;       
+        padding: 0px 0px;
+        text-align: center;
+        max-width:  220px;        
+        width: 50%;
+        height: auto;
+        box-shadow: 0px 3px 0px  #85271c00;
+        
+        
+    }
+    
+}

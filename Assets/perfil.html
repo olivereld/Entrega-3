@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+	<script src="js/Clases/Variable.js"></script>
+	<script src="js/Clases/Enviar.js"></script>
+
 	<meta charset="UTF-8">
 	<title>Document</title>
-	
+	<script src="js/Clases/Usuario.js">  </script> <!--Este Script es el encargado de enviar la peticion para los datos del perfil-->
 	  <!-- Bootstrap 3.3.7 -->
 	<link rel="stylesheet" href="Css3/css/bootstrap.min.css">
 	<script src="js/jquery.js"></script>  
+	
 	<!--script src="js/popper.min.js"></script--> <!--No esta el archivo popper-->
 	<script src="js/bootstrap.min.js"></script>
 	  <!-- Theme style -->
@@ -18,15 +23,27 @@
 	<link rel="stylesheet" href="Css3/perfil.css">
 </head>
 <body>
+	<script>
+		cargarDato('https://ignsw201825-snproject.herokuapp.com/user/get/');	
+	</script>
 <header>
 	<div class="ancho">
 		<div class="logo">
-			<p><a href="index.html">WebMedia</a></p>
+			<p><a href="#" onclick="volverInicio()">WebMedia</a></p>
 		</div>
 		<nav>
 			<ul>
-				<li><a href="index.html">Inicio</a> </li>
-				<li><a href="#">Salir</a> </li>
+				<li><a href="#" onclick="volverInicio()">Inicio</a> </li>
+				<script>
+					function volverInicio(){
+						var enlace = "https://ignsw201825-snproject.herokuapp.com/user/get/";
+						var id = variablesHeader();
+						enlace = enlace;
+						var causa = 1;
+						getDat(enlace,id[0],causa);
+					}
+				</script>
+				<li><a href="index.html">Salir</a> </li>
 			</ul>
 		</nav>
 	</div>
@@ -215,5 +232,7 @@
 	</div>
 </div>
 </div>
+
+
 </body>
 </html>

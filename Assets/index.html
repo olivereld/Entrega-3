@@ -5,14 +5,7 @@
     <meta name="viewport" content="width=device‐width, initial‐scale=1.0">
     <link rel="stylesheet" href="Css3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="Css3/index.css"/>
-    <title>Title</title>
-    
-    <script type="text/javascript">
-        function mandarDato(){
-            window.location="index_User.html?num=28400";
-            console.log("dato enviado");
-        }
-    </script>
+    <title>Title</title>   
 
 </head>
 <body>       
@@ -20,16 +13,17 @@
     <header class="container-fluid "><!--Cabecera-->
         
             <section class="row">
-
-                <div class="col-xm-4 col-sm-6 col-md-8"> <!-- Logo-->
-                    <!--img src="image/logo.png" class="image-rounded logo"/--> 
-                    <p><a href="index.html" class="titulo">WebMedia</a></p>
-                    <!--img src="image/titulo.png" class="image-rounded titulo"/-->                                      
+                   
+                
+                <div class="col-1 col-sm-4 col-md-8 titulo"> <!-- Logo-->
+                    <img src="image/logo.png" class="image-rounded logo"/>                   
+                    <p>WebMedia</p>
+                                                        
                 </div>                
 
                  <!--Opciones de la cabecera-->               
 
-                <div class="col-xm-12 col-md-2  opciones"> <!-- Registrarse-->
+                <div class="col-0 col-sm-2 col-md-2 opciones"> <!-- Registrarse-->
                     <a href="#" data-toggle="modal" data-target="#myModal2" > 
                                               
                             <h5> <small>
@@ -37,7 +31,7 @@
                             </h5></small>                      
                     </a>                  
                 </div>
-                <div class="col-xm-12 col-md-2 opciones"> <!-- Entrar-->
+                <div class="col-0 col-sm-2 col-md-2 opciones"> <!-- Entrar-->
                     <a href="#" data-toggle="modal" data-target="#myModal"> 
                                                  
                             <h5> <small>
@@ -163,6 +157,7 @@
     <script src="libs/angular.min.js"></script>
     <script src="js/Jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/Clases/Enviar.js"></script> 
     <script src="js/Clases/Registro.js"></script> 
     <script src="js/Clases/Login.js"></script>   
     
@@ -189,7 +184,7 @@
                 <div class="modal-footer">             
                     <button type="button" class="cancelbtnModal modal-button btn btn-default" data-dismiss="modal">  Cancelar </button> 
                     
-                    <button class="modal-button" type="submit" onclick="enviarLog()">Entrar</button>  
+                    <button class="modal-button" type="submit" onclick="enviarLog('https://ignsw201825-snproject.herokuapp.com/user/login')">Entrar</button>  
 
                 </div>
             </div>        
@@ -224,7 +219,7 @@
                     <div class="modal-footer" >             
                         <button type="button" class="cancelbtnModal modal-button btn btn-default" data-dismiss="modal">  Cancelar </button> 
                         
-                        <button  id="registrar" class="modal-button" type="submit"  onclick="formalizar()">Enviar</button>  
+                        <button  id="registrar" class="modal-button" type="submit"  onclick="formalizar('https://ignsw201825-snproject.herokuapp.com/user/register')">Enviar</button>  
     
                     </div>
                 </div>        
