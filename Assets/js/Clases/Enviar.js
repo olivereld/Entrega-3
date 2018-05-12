@@ -27,6 +27,7 @@ function enviarDat(enlace,data,causa){ //Con JQuery Forma Registrar Usuario
 }
 
 function getDat(enlace,id,causa){ //Con JQuery Forma Registrar Usuario
+    console.log(enlace+id);
     $.ajax({ //Envia los datos
             url : enlace + id, //Url            
             method :'GET', //en este caso
@@ -37,11 +38,15 @@ function getDat(enlace,id,causa){ //Con JQuery Forma Registrar Usuario
                     if(causa == 0) 
                         document.getElementById("name").innerHTML = response.firstName +" "+ response.lastName;
                     if(causa == 1)
-                    window.location="index_User.html?var_="+response.firstName+"&var_="+response.lastName+"&var_="+id;
+                        window.location="index_User.html?var_="+response.firstName+"&var_="+response.lastName+"&var_="+id;
+                    /*if(causa == 2)
+                        document.getElementById("inputNombre").setAttribute(value,response.firstName);
+                        console.log(response);
+                        return response;*/
                     
             },
             error: function(error){ //Si falla
-                    errorCargado(error);                    
+                    errorCargado(error);                 
             }
     });
     

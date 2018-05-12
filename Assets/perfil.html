@@ -56,7 +56,6 @@
 	<!-- Add the bg color to the header using any of the bg-* classes -->
 		<div class="widget-user-header bg-aqua-active">
 	  <h3 class="widget-user-username" id="name">Armando Martinez</h3>
-	  <h5 class="widget-user-desc" id="since">Desde 5-2018</h5>
 		</div>
 		<div class="widget-user-image">
 	  		<img class="img-circle" src="image/user8-128x128.jpg" alt="User Avatar"> <!--Poner aqui el src de la imagen-->
@@ -186,47 +185,30 @@
 				</div>
 			</div>
 		    <div id="menu1" class="container tab-pane fade"><br>
-		      	<form class="form-horizontal">
-		                <div class="form-group">
-		                    <label for="inputName" class="col-sm-2 control-label">Nombre</label>
-
-		                    <div class="col-sm-10">
-		                      	<input type="email" class="form-control" id="inputName" placeholder="Nombre">
-		                    </div>
-		                </div>
-
-		                <div class="form-group">
-		                    <label for="inputEmail" class="col-sm-2 control-label">Correo</label>
-
-		                    <div class="col-sm-10">
-		                      	<input type="email" class="form-control" id="inputEmail" placeholder="Correo">
-		                    </div>
-		                </div>
-
-		                <div class="form-group">
-		                    <label for="inputName" class="col-sm-2 control-label">Clave</label>
-
-		                    <div class="col-sm-10">
-		                      	<input type="text" class="form-control" id="inputName" placeholder="Clave">
-		                    </div>
-		                </div>
-		                  
-		                  <div class="form-group">
-		                    <div class="col-sm-offset-2 col-sm-10">
-		                      <div class="checkbox">
-		                        <label>
-		                          <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-		                        </label>
-		                      </div>
-		                    </div>
-		                  </div>
-		                  <div class="form-group">
-		                    <div class="col-sm-offset-2 col-sm-10">
-		                      <button type="submit" class="btn btn-danger">Submit</button>
-		                    </div>
-		                  </div>
-		                  <br>
-		                </form>
+		      	<form>
+					<div class="form-row">
+					    <div class="form-group col-md-6">
+					      	<label for="">Nombre</label>
+					      	<input type="text" class="form-control" id="inputNombre" placeholder="Nombre">
+					    </div>
+					    <div class="form-group col-md-6">
+					      	<label for="">Apellido</label>
+					      	<input type="text" class="form-control" id="inputApellido" placeholder="Apellido">
+					    </div>
+					</div>
+					<div class="form-row">
+					    <div class="form-group col-md-6">
+					      	<label for="inputEmail4">Email</label>
+					      	<input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+					    </div>
+					    <div class="form-group col-md-6">
+					      	<label for="inputPassword4">Contrase&ntilde;a</label>
+					      	<input type="password" class="form-control" id="inputPassword4" placeholder="Contrase&ntilde;a">
+					    </div>
+						</div>
+						
+					  <button class="btn btn-primary" onclick="actualizar()">Guardar</button>
+				</form>
 		    </div>
   </div>
 	</div>
