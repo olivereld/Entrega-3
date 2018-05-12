@@ -37,8 +37,7 @@
 				<script>
 					function volverInicio(){
 						var enlace = "https://ignsw201825-snproject.herokuapp.com/user/get/";
-						var id = variablesHeader();
-						enlace = enlace;
+						var id = variablesHeader();						
 						var causa = 1;
 						getDat(enlace,id[0],causa);
 					}
@@ -205,9 +204,8 @@
 					      	<label for="inputPassword4">Contrase&ntilde;a</label>
 					      	<input type="password" class="form-control" id="inputPassword4" placeholder="Contrase&ntilde;a">
 					    </div>
-						</div>
-						
-					  <button class="btn btn-primary" onclick="actualizar()">Guardar</button>
+						</div>						
+					  <span class="btn btn-primary" onclick="actualizar('https://ignsw201825-snproject.herokuapp.com/user/get/')">Guardar</span>
 				</form>
 		    </div>
   </div>

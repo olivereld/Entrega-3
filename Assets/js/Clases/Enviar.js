@@ -13,7 +13,9 @@ function enviarDat(enlace,data,causa){ //Con JQuery Forma Registrar Usuario
                         registroExitoso();
                     } else if(causa == 1){
                         iniciarSesion(response);
-                    } 
+                    }else if (causa == 2){
+                        cargarDato('https://ignsw201825-snproject.herokuapp.com/user/get/');
+                    }
                     
             },
             error: function(error){ //Si falla
@@ -27,11 +29,11 @@ function enviarDat(enlace,data,causa){ //Con JQuery Forma Registrar Usuario
 }
 
 function getDat(enlace,id,causa){ //Con JQuery Forma Registrar Usuario
-    console.log(enlace+id);
+    console.log("Usando el ajax para enviar " +enlace + id);
     $.ajax({ //Envia los datos
-            url : enlace + id, //Url            
+            url :enlace+id, //Url            
             method :'GET', //en este caso
-            contentType: 'application/json; charset=utf-8',               
+            contentType: 'application/json; charset=utf-8',            
 
             success : function (response){ //Si funciona
                    console.log("listo");
@@ -39,11 +41,10 @@ function getDat(enlace,id,causa){ //Con JQuery Forma Registrar Usuario
                         document.getElementById("name").innerHTML = response.firstName +" "+ response.lastName;
                     if(causa == 1)
                         window.location="index_User.html?var_="+response.firstName+"&var_="+response.lastName+"&var_="+id;
-                    /*if(causa == 2)
-                        document.getElementById("inputNombre").setAttribute(value,response.firstName);
-                        console.log(response);
-                        return response;*/
-                    
+                    if(causa == 2) {                       
+                        var array =[response.firstName,response.lastName,response.email,response.password];
+                        modificarCampos(array,id);                        
+                    }                                
             },
             error: function(error){ //Si falla
                     errorCargado(error);                 
@@ -51,7 +52,23 @@ function getDat(enlace,id,causa){ //Con JQuery Forma Registrar Usuario
     });
     
 }
+function modificarDat(enlace,data,causa){ //Con JQuery Forma Registrar Usuario
+    $.ajax({ //Envia los datos
+            url : enlace, //Url
+            data : JSON.stringify(data), //El formato Json
+            method :'PUT', //en este caso
+            contentType: 'application/json; charset=utf-8',
+            dataType : 'json', //El tipo de archivo            
 
+            success : function (response){ //Si funciona  
+                    console.log("campos modificados");                 
+                     cargarDato('https://ignsw201825-snproject.herokuapp.com/user/get/');                       
+            },
+            error: function(error){ //Si falla               
+            }
+    });
+}
+//Condiciones de datos
 function registroExitoso(){ //Si funciona
     console.log("listo");
      $(nombreRegistro).val("");
@@ -86,7 +103,32 @@ function inicioDeSesionFallida(error){
 
 }
 
-
 function errorCargado(error){ //respuesta al cargar los datos
-    alert("no pudieron cargar los datos");    
+    alert("no pudieron cargar los datos:" + error);    
+}
+
+function modificarCampos(antiguosDatos,id){
+   
+    if($(inputNombre).val().length > 0){
+        antiguosDatos[0] = $(inputNombre).val();    
+    }
+    if($(inputApellido).val().length > 0){
+        antiguosDatos[1] = $(inputApellido).val();    
+    }
+    if($(inputEmail4).val().length > 0){
+        antiguosDatos[2] = $(inputEmail4).val();    
+    }    
+    if($(inputPassword4).val().length > 0){
+        antiguosDatos[3] = $(inputPassword4).val();    
+    }  
+    var url = "https://ignsw201825-snproject.herokuapp.com/user/update/"+id;
+    var myJson = { //Creando JSON Con el formato      
+        "firstName"             : antiguosDatos[0],
+        "lastName"              : antiguosDatos[1],
+        "email"                 : antiguosDatos[2],
+        "password"              : antiguosDatos[3],       
+        "dateOfBirth"           : "22/05/94"        
+    } 
+    modificarDat(url,myJson,2);
+
 }

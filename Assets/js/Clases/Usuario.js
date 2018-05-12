@@ -6,12 +6,10 @@ function cargarDato(urlServidor){
     var respuesta = getDat(enlace,id[0],causa);   
 }
 
-function actualizar() {
-	var id = variablesHeader();
-	var enlace="https://ignsw201825-snproject.herokuapp.com/user/get/"
-	enlace=enlace;
-	var causa = 0;
+function actualizar(urlServidor) {
+	var id = variablesHeader();	
+	var causa = 2;
 	console.log("Enviando datos");
-	var respuesta = getDat(enlace,id[0],causa);
+	var respuesta = getDat(urlServidor,id[0],causa);
 	
 }
