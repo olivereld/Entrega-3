@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
 
 	<script src="js/Clases/Variable.js"></script>
 	<script src="js/Clases/Enviar.js"></script>
 
-	<meta charset="UTF-8">
-	<title>Document</title>
 	<script src="js/Clases/Usuario.js">  </script> <!--Este Script es el encargado de enviar la peticion para los datos del perfil-->
-	  <!-- Bootstrap 3.3.7 -->
 	<link rel="stylesheet" href="Css3/css/bootstrap.min.css">
 	<script src="js/jquery.js"></script>  
-	
-	<!--script src="js/popper.min.js"></script--> <!--No esta el archivo popper-->
 	<script src="js/bootstrap.min.js"></script>
-	  <!-- Theme style -->
-	<link rel="stylesheet" href="Css3/css/AdminLTE.min.css"> 
-
-	  <!-- Google Font -->
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-	
+	<link rel="stylesheet" href="Css3/css/AdminLTE.min.css"> 	
 	<link rel="stylesheet" href="Css3/perfil.css">
 </head>
 <body>
 	<script>
 		cargarDato('https://ignsw201825-snproject.herokuapp.com/user/get/');	
 	</script>
-<header>
+
+<!-- Comienza la cabecera -->
+<header class="fixed-top">
+
 	<div class="ancho">
 		<div class="logo">
 			<p><a href="#" onclick="volverInicio()">WebMedia</a></p>
@@ -46,7 +42,11 @@
 			</ul>
 		</nav>
 	</div>
+
 </header>
+
+				<!-- Fin Cabecera -->
+
 <div class="cuerpo" >
 	<div class="col-sm-5" id="izquierdo">>
 	<h2 class="head">Perfil</h2>
@@ -146,42 +146,34 @@
 
 			  <!-- Tab panes -->
 			<div class="tab-content">
-			    <div id="home" class="container tab-pane active"><br>
-			      	<div class="card-columns">
+			    <div id="home" class="container tab-pane active" ><br>
+			      	<div class="card-columns" id="galeria">
 			              
 			            <div class="card">
 			            	<img src="image/1.jpg" class="card-img-top"  alt="">
-			            </div>
-
-			            <div class="card">
-			                <img src="image/2.jpg" class="card-img-top" alt="">
-			            </div>
-
-			            <div class="card">
-			                <img src="image/3.jpg" class="card-img-top" alt="">
-			            </div>
-
-			            <div class="card">
-			                <img src="image/4.jpg" class="card-img-top" alt="">
-			            </div>
-
-			            <div class="card">
-			                <img src="image/5.jpg" class="card-img-top" alt="">
-			            </div>
-
-			            <div class="card">
-			                <img src="image/6.jpg" class="card-img-top" alt="">
-			            </div>
-
-			            <div class="card">
-			                <img src="image/7.jpg" class="card-img-top" alt="">
-			            </div>
-
-			            <div class="card">
-			                <img src="image/8.jpg" class="card-img-top" alt="">
-			            </div>
-			                 
-				</div>
+									</div>
+									<div class="card">
+			            	<img src="image/2.jpg" class="card-img-top"  alt="">
+									</div>
+									<div class="card">
+			            	<img src="image/3.jpg" class="card-img-top"  alt="">
+									</div>
+									<div class="card">
+										<img src="image/4.jpg" class="card-img-top"  alt="">
+									</div>
+									<div class="card">
+										<img src="image/5.jpg" class="card-img-top"  alt="">
+									</div>
+									<div class="card">
+										<img src="image/6.jpg" class="card-img-top"  alt="">
+									</div>
+									<div class="card">
+										<img src="image/7.jpg" class="card-img-top"  alt="">
+									</div>
+									<div class="card">
+										<img src="image/8.jpg" class="card-img-top"  alt="">
+									</div>             
+								</div>
 			</div>
 		    <div id="menu1" class="container tab-pane fade"><br>
 		      	<form>

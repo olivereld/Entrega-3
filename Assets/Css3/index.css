@@ -1,34 +1,38 @@
 *{
     margin: 0;
     padding: 0;    
-    font-family: Arial;
+    font-family: rale;
 }
 /*Cabecera de la pagina*/
 
 header{
     
     width: 100%;
-    height: auto;
+    height: 70px;
     background: #0c0c0c;
-    color:white;   
+    color:fff;   
 }  
         
     .titulo{
         width: 70%;
-        height: auto;
+        height: 70px;
         float: left;
         padding-top: 5px;
         box-sizing: border-box;
         letter-spacing: 1px;   
               
     }
+    @font-face{ 
+        font-family: rale;
+        src: url(../fonts/Raleway-Regular.ttf);
+    }
 
     .titulo p{
-        color: #d85656;
-        font-size: 30px;
+        color: #ffffff;
+        font-size: 40px;
         text-decoration: none;
         font-family: rale;
-        margin-left: 20%;
+        margin-left: 14%;
     }
     .logo{
         float: left;
@@ -39,36 +43,47 @@ header{
         left: 10%;       
         max-width: 50px;
         height: auto;
+
     }
     .perfil_Mini{    
     border-radius:150px;
     border:1px solid #666;
+    
     }
     
     
-    .opciones a{             
+    .opciones a p{             
         text-decoration: none;        
-        color: white;        
+        color: rgb(204, 203, 203);
+        font-family: rale;  
+        font-size: 15px;
+        font-weight: bold;
+        text-transform: uppercase;         
         display: inline-block;        
-        margin: 5%;       
+        margin-top: 5%;       
         padding: 15px 10px;
         text-align: center;
         max-width:  220px;        
         width: 100%;
         height: auto;
-        box-shadow: 0px 3px 0px  #85271c00;
-        
+        box-shadow: 0px 3px 0px  #85271c00; 
         
     }
+
+    
     .opciones_Perfil{
         margin-left: -4%;
     }
     .opciones_Perfil span{             
         text-decoration: none;        
-        color: white;        
+        color: rgb(204, 203, 203);  
+        font-family: rale;  
+        font-size: 15px;
+        font-weight: bold;
+        text-transform: uppercase;    
         display: inline-block;        
         margin: 0px;       
-        padding: 10px 0px;
+        padding: 22px 0px;
         text-align: center;
         max-width:  150px;        
         width: 100%;
@@ -77,27 +92,32 @@ header{
         
     }
     .opciones_Perfil span:hover{
-        color: #d85656;
+        color: #ffffff;
         background: #050505;
     }
-    .opciones_Perfil span:active{
+    /*.opciones_Perfil span:active{
         color: #863636;
+    }*/
+
+    .opciones p:hover{
+        color: white;
+        background: #050505;
+        /* box-shadow: 0px 2px 0px  #cf5346; */
     }
 
-    .opciones a:hover{
-        color: #d85656;
-        background: #050505;
-        box-shadow: 0px 2px 0px  #cf5346;
-    }
     .opciones a:active{
-        color: #863636;
-        box-shadow: 0px 2px 0px  #863636;
+        color: white;
+        /* box-shadow: 0px 2px 0px  #863636; */
     }
     
 
     
 
 /*Cuerpo de la pagina*/
+#cuerpo{
+    padding-top: 70px;
+}
+
 nav{
     background: #131313; 
 }
@@ -121,7 +141,7 @@ body{
 }
 #barraBusqueda {  
   width:300px;
-  height: 30px;
+  height: 26px;
   background: #ebebeb;
   border: none;
   font-size: 10pt;
@@ -213,6 +233,7 @@ input[type = submit] + label {
 
 .sub{
     color:white;
+    font-family: rale;
     background: #131313;
 }
 .imagenPrueba img{
@@ -244,6 +265,7 @@ input[type = submit] + label {
     background: #202020;
     padding: 10px;
     color: white;
+    font-family: rale;
     border-radius: 15px;
 }
 .modal:target{
@@ -254,10 +276,13 @@ input[type = submit] + label {
     width: 100%;
     height: 100%;
 }
-.modal-header {
+.modal-header1 {
     color: white;
-    text-align: center;
-    margin: 30px 0 10px 0;
+    font-size: 50px;
+    margin-top: 30px;
+    font-weight: bold;
+    font-family: rale;
+    
 }
 .modal-letters{
     font-size: 12px;

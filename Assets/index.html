@@ -10,13 +10,13 @@
 </head>
 <body>       
 
-    <header class="container-fluid "><!--Cabecera-->
+
+    <header class="container-fluid fixed-top "><!--Cabecera-->
         
             <section class="row">
                    
                 
-                <div class="col-1 col-sm-4 col-md-8 titulo"> <!-- Logo-->
-                    <img src="image/logo.png" class="image-rounded logo"/>                   
+                <div class="col-1 col-sm-4 col-md-8 titulo"> <!-- Logo-->                   
                     <p>WebMedia</p>
                                                         
                 </div>                
@@ -26,17 +26,17 @@
                 <div class="col-0 col-sm-2 col-md-2 opciones"> <!-- Registrarse-->
                     <a href="#" data-toggle="modal" data-target="#myModal2" > 
                                               
-                            <h5> <small>
+                            <p> 
                                     Registrarse                           
-                            </h5></small>                      
+                            </p>                     
                     </a>                  
                 </div>
                 <div class="col-0 col-sm-2 col-md-2 opciones"> <!-- Entrar-->
                     <a href="#" data-toggle="modal" data-target="#myModal"> 
                                                  
-                            <h5> <small>
+                            <p> 
                                     Entrar                           
-                            </h5></small>                         
+                            </p>                       
                     </a>                  
                 </div>
                 <!--Opciones de la cabecera-->
@@ -45,7 +45,7 @@
     </header><!--Cabecera--> 
    
     <!--Navegador buscador-->
-    <nav class="container">       
+    <nav class="container" id="cuerpo">       
         <section class="row">
 
             <!-- Filtros de busqueda -->
@@ -91,10 +91,8 @@
             <div class="col-sm-12"> <small> <h5></h5> </small> </div>
 
             <div class="col-sm-8 main">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. {{2*6}}, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
+                <div class=" col-6 repro">
+                </div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
            
@@ -168,9 +166,9 @@
     <div class="modal-dialog" role ="document">        
             <div class="modal-content">
 
-                <div class="container modal-header">
-                        <img src="image/logo.png" alt="logo" class="modal-logo">
-                </div>
+                    <div class="container modal-header1">
+                            <p class="text-center">WebMedia</p>
+                        </div>
         
                 <div class="modal-form">
                     
@@ -199,8 +197,8 @@
         <div class="modal-dialog" role ="document">        
                 <div class="modal-content">
     
-                    <div class="container modal-header">
-                            <img src="image/logo.png" alt="logo" class="modal-logo">
+                    <div class="container modal-header1">
+                        <p class="text-center">WebMedia</p>
                     </div>
             
                     <div class="modal-form">

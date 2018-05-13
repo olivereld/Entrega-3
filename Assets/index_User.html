@@ -5,30 +5,47 @@
     <meta name="viewport" content="width=device‐width, initial‐scale=1.0">
     <link rel="stylesheet" href="Css3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="Css3/index.css"/>
-    <script src="js/Clases/Login.js"></script> 
-    <title>Title</title>
+    <script src="js/Clases/Login.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"> 
+    <title>Web</title>
 
     
 
 </head>
 <body>       
            
-    <header class="container-fluid "><!--Cabecera-->
+    <header class="container-fluid fixed-top "><!--Cabecera-->
+
+            <!-- <header>
+
+                <div class="ancho">
+                    <div class="logo">
+                        <p><a href="#" onclick="volverInicio()">WebMedia</a></p>
+                    </div> 
+                    <nav>
+                        <ul>
+                            <li><a href="#" onclick="volverInicio()">Inicio</a> </li>
+                            
+                            <li><a href="index.html">Salir</a> </li>
+                        </ul>
+                    </nav>
+                </div>
+            
+            </header> -->
         
             <section class="row">
 
-                    <div class="col-1 col-sm-4 col-md-8 titulo"> <!-- Logo-->
-                        <img src="image/logo.png" class="image-rounded logo"/>                   
+                    <div class="col-1 col-sm-4 col-md-8 titulo"> <!-- Logo-->                  
                         <p>WebMedia</p>                                                            
                     </div>                  
 
                  <!--Opciones de la cabecera-->           
                 
                 <div class="col-xm-12 col-md-3  opciones_Perfil" > <!-- Usuario-->
-                    <img src="image/avatar5.png" class="image-responsive perfil_Mini"/>
+                    <img src="image/user8-128x128.jpg" class="image-responsive perfil_Mini"/>
 
                     <span onclick="perfil()" data-toggle="modal" data-target="perfil.html"  id="userBoton" >                       
-                         hola                   
+                                           
                     </span>
                     <script> //Script para mostrar nombre de usuario
                             var paramstr = window.location.search.substr(1);                           
@@ -74,7 +91,7 @@
     </header><!--Cabecera--> 
    
     <!--Navegador buscador-->
-    <nav class="container">       
+    <nav class="container " id="cuerpo">       
         <section class="row">
 
             <!-- Filtros de busqueda -->

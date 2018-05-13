@@ -58,10 +58,10 @@ nav ul li{
 
 nav ul li a {
 	color: #fff;
-	font-size: 13px;
+	font-size: 15px;
 	text-decoration: none;
 	text-transform: uppercase;
-	padding-left: 15px;
+	padding-left: 30px;
 	font-weight: bold; 
 	letter-spacing: 1px;
 	font-family: rale; 
@@ -94,6 +94,12 @@ nav ul li a:hover{
 .cuerpo{
 	width: 95%;
 	margin: auto;
+	padding-top: 70px;
+}
+
+.repro{
+	height: 100px;
+	background: black;
 }
 
 .columnas{
