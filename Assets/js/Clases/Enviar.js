@@ -62,7 +62,9 @@ function modificarDat(enlace,data,causa){ //Con JQuery Forma Registrar Usuario
 
             success : function (response){ //Si funciona  
                     console.log("campos modificados");                 
-                     cargarDato('https://ignsw201825-snproject.herokuapp.com/user/get/');                       
+                     cargarDato('https://ignsw201825-snproject.herokuapp.com/user/get/');
+                     alert("Datos Modificados Exitosamente!");
+                     modificacionExitosa();                     
             },
             error: function(error){ //Si falla               
             }
@@ -81,6 +83,14 @@ function registroExitoso(){ //Si funciona
      $(pass2).css("border","solid #101010");
      $(emailRegistro).css("border","solid #101010");
      $(emailRegistro).css("background-color","#101010");
+}
+
+function modificacionExitosa() {
+     $(inputNombre).val("");
+     $(inputApellido).val("");
+     $(inputEmail4).val("");
+     $(inputPassword4).val("");
+    
 }
 
 function iniciarSesion(response){
@@ -104,7 +114,7 @@ function inicioDeSesionFallida(error){
 }
 
 function errorCargado(error){ //respuesta al cargar los datos
-    alert("no pudieron cargar los datos:" + error);    
+    alert("No se logro cargar los datos:" + error);    
 }
 
 function modificarCampos(antiguosDatos,id){
