@@ -21,13 +21,62 @@ header{
 }
 
 .logo{
-	width: 70%;
+	width: 40%;
 	height: 70px;
 	float: left;
 	padding-top: 5px;
 	box-sizing: border-box;
 	letter-spacing: 1px;
 }
+
+
+
+@media (max-width: 50em) {
+    .logo {
+		width: 40%;
+		
+	}
+	.inicioPerfil {
+		width: auto;
+		
+	}
+	.salirPerfil {
+		width: auto;
+		
+	}
+	.ancho{
+		width: 90%;
+	}
+}
+
+@media (max-width: 43em) {
+    .logo {
+		width: 40%;
+		
+	}
+	.nav{
+		width: 40%;
+	}
+	 
+	.nav ul{
+
+	}
+	.inicioPerfil {
+		
+		margin-left: 1px;
+		
+	}
+	.salirPerfil {
+		
+		margin-left: 1px;
+		
+	}
+	.ancho{
+		width: 95%;
+	}
+}
+
+
 
 .logo p a{
 	color: #fff;
@@ -38,15 +87,19 @@ header{
 
 }
 
+
+
 nav{
-	width: 30%;
+	width: 60%;
 	height: 70px;
-	float: left;
+	float: right;
 	text-align: right;
 	padding-top: 24px;
 	box-sizing: border-box;
 	
 }
+
+
 
 body{
 	background: #242424;

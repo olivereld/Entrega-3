@@ -29,7 +29,7 @@
 		</div>
 		<nav>
 			<ul>
-				<li><a href="#" onclick="volverInicio()">Inicio</a> </li>
+				<li class="inicioPerfil"><a href="#" onclick="volverInicio()">Inicio</a> </li>
 				<script>
 					function volverInicio(){
 						var enlace = "https://ignsw201825-snproject.herokuapp.com/user/get/";
@@ -38,7 +38,7 @@
 						getDat(enlace,id[0],causa);
 					}
 				</script>
-				<li><a href="index.html">Salir</a> </li>
+				<li class="salirPerfil"><a href="index.html">Salir</a> </li>
 			</ul>
 		</nav>
 	</div>
@@ -54,7 +54,7 @@
 	<div class="box box-widget widget-user">
 	<!-- Add the bg color to the header using any of the bg-* classes -->
 		<div class="widget-user-header bg-aqua-active">
-	  <h3 class="widget-user-username" id="name">Armando Martinez</h3>
+	  <h3 class="widget-user-username" id="name"></h3>
 		</div>
 		<div class="widget-user-image">
 	  		<img class="img-circle" src="image/user8-128x128.jpg" alt="User Avatar"> <!--Poner aqui el src de la imagen-->
