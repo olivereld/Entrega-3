@@ -123,6 +123,10 @@ nav ul li a:hover{
 	padding-top: 10px;
 }
 
+#friends{
+	float: left;
+}
+
 #izquierdo{
 	float: left;
 }
