@@ -104,10 +104,10 @@ function registroFallido(error){ //Si funciona
 function inicioDeSesionFallida(error){
     respuesta = JSON.stringify(error.responseJSON.message);
     console.log(respuesta);
-    if(respuesta == '"' + "Contrasena Incorrecta." + '"'){
+    if(respuesta == '"' + "invalid_pass" + '"'){
         alert("Debe repetir la clave");
     }
-    if(respuesta == '"'+"Email no encontrado."+'"'){
+    if(respuesta == '"'+"invalid_mail"+'"'){
         alert("El correo no esta registrado");
     }
 
