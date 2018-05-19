@@ -4,14 +4,13 @@
     font-family: rale;
 }
 /*Cabecera de la pagina*/
-
-header{
-    
+/*#marca*/
+header{    
     width: 100%;
     height: 70px;
     background: #0c0c0c;
     color:fff;   
-}  
+} 
         
     .titulo{
         width: auto;
@@ -19,16 +18,20 @@ header{
         float: left;
         padding-top: 5px;
         box-sizing: border-box;
-        letter-spacing: 1px;   
-              
+        letter-spacing: 1px; 
     }
     @font-face{ 
         font-family: rale;
         src: url(../fonts/Raleway-Regular.ttf);
     }
+    .titulo{/*Bloque del titulo*/
+        
+        width: 50%;
+    }
 
     .titulo p{
         color: #ffffff;
+        
         font-size: 40px;
         text-decoration: none;
         font-family: rale;
@@ -48,28 +51,31 @@ header{
     }
     .perfil_Mini{    
     border-radius:150px;
-    border:1px solid #666;
-    
+    border:1px solid #666;    
+    }    
+
+    .opciones{ /*Contenedor de opciones*/        
+        width: 50%;
+        height:auto;
+        display: -webkit-inline-flex;
+        float: left; 
     }
-    
-    .separado{
-        margin-right: auto;
-        margin-left: auto;
-    }
-    .opciones a p{             
+    .opciones a p{       
+        float: right;      
         text-decoration: none;        
         color: rgb(204, 203, 203);
         font-family: rale;
         margin: 25px;
+      
         font-size: 15px;
         font-weight: bold;
         text-transform: uppercase;         
-        display: inline-block;        
+              
         margin-top: 5%;       
         padding: 15px 10px;
         text-align: center;
-        max-width: 100px;
-        width: 100%;
+        max-width: 100%;
+        width: 50%;
         height: auto;
         box-shadow: 0px 3px 0px  #85271c00; 
         
@@ -100,9 +106,7 @@ header{
     .opciones_Perfil span:hover{
         color: #ffffff;
     }
-    /*.opciones_Perfil span:active{
-        color: #863636;
-    }*/
+    
 
     .opciones p:hover{
         color: white;
@@ -114,7 +118,7 @@ header{
         /* box-shadow: 0px 2px 0px  #863636; */
     }
     
-
+/*#fin*/
     
 
 /*Cuerpo de la pagina*/
@@ -368,19 +372,22 @@ span.modal-forgotPass {
     padding-top: 30px;
    }
 /*------------------------Estilo del login modal----------------------------------------------*/
-/*Media*/
+/*Media Index --------------------------------------------------------------------------------*/
 @media (max-width: 20em) {
     .logo {
         margin-left: 55%;       
         margin-right: auto;
     }
     .titulo {
+        background: cadetblue;
         display: block;
         margin-left:auto;
         margin-right: auto; 
        text-align: center;        
     }
-    
+    .opciones{
+        background: #d82727;
+    }
     .opciones a{ 
                    
         text-decoration: none;        
@@ -397,4 +404,42 @@ span.modal-forgotPass {
         
     }
     
+}
+
+@media (max-width: 36em) {
+    
+    .titulo {       
+        width: 40%;          
+    }
+    .titulo p{
+        font-size: 35px;
+    }
+    .opciones{
+                
+    }
+    .opciones a{        
+        top: 10%;       
+        margin: -3%;
+        padding: 4%;        
+    }
+
+}
+@media (max-width: 30em) {
+    
+    .titulo {       
+        width: 40%; 
+               
+    }
+    .titulo p{
+        font-size: 35px;
+    }
+    .opciones{
+                
+    }
+    .opciones a{        
+        top: 10%;        
+        margin: -3%;
+        padding: 4%;        
+    }
+
 }
