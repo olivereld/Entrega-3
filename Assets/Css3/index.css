@@ -2,45 +2,48 @@
     margin: 0;
     padding: 0;    
     font-family: rale;
+    
 }
 /*Cabecera de la pagina*/
 /*#marca*/
 header{    
+    background: #2e2e2e;
     width: 100%;
-    height: 70px;
-    background: #0c0c0c;
-    color:fff;   
-} 
-        
+    height: 50px;    
+    color:fff;    
+}         
+
+    .responsiveMenu,
+    .buscadorInferior,
+    .buscadorInferior #searchform,
+    .buscadorInferior #barra-Navegacion,
+    .buscadorInferior #botonBusqueda,
+    .opcionesInferior,
+    .opcionesInferior li 
+    
+    {
+        display:none;
+    }
+    
     .titulo{
-        width: auto;
-        height: 70px;
+        width: 150px;
+        height: 50px;
         float: left;
-        padding-top: 5px;
+        padding-top: 6px;
         box-sizing: border-box;
-        letter-spacing: 1px; 
+        letter-spacing: 1px;    
     }
     @font-face{ 
         font-family: rale;
         src: url(../fonts/Raleway-Regular.ttf);
-    }
-    .titulo{/*Bloque del titulo*/
-        
-        width: 50%;
-    }
-
+    } 
     .titulo p{
-        color: #ffffff;
-        
-        font-size: 40px;
+        color: #f0f0f0;    /*COLOR DEL TITULO*/    
+        font-size: 25px;
         text-decoration: none;
-        font-family: rale;
-        margin-left: 14%;
-    }
-    .logo{
-        float: left;
-        margin-right: 10%;
-    }
+        font-family: rale;        
+    } 
+
     .logo,.perfil_Mini{
         position: relative;
         left: 10%;       
@@ -54,33 +57,21 @@ header{
     border:1px solid #666;    
     }    
 
-    .opciones{ /*Contenedor de opciones*/        
-        width: 50%;
-        height:auto;
-        display: -webkit-inline-flex;
-        float: left; 
+    .opciones{ /*Contenedor de opciones*/
+       overflow: hidden;
+       list-style: none;        
+       width: 30%;    
+       height: 50px;              
     }
-    .opciones a p{       
-        float: right;      
-        text-decoration: none;        
-        color: rgb(204, 203, 203);
-        font-family: rale;
-        margin: 25px;
-      
-        font-size: 15px;
-        font-weight: bold;
-        text-transform: uppercase;         
-              
-        margin-top: 5%;       
-        padding: 15px 10px;
-        text-align: center;
-        max-width: 100%;
-        width: 50%;
-        height: auto;
-        box-shadow: 0px 3px 0px  #85271c00; 
-        
+    .opciones li{
+        margin: 15px;
+        float: right;              
     }
-
+    .opciones li a{
+        color: #f2f2f2; /*COLOR DE LAS OPCIONES*/ 
+       text-decoration: none;
+       
+    }    
     
     .opciones_Perfil{
         margin-right: 30px;
@@ -105,20 +96,46 @@ header{
     }
     .opciones_Perfil span:hover{
         color: #ffffff;
+    }    
+    .opciones li a:hover{
+        color: rgb(187, 187, 187);        
+    }
+    .opciones li a:active{
+        color: white;       
     }
     
+/*Barra*/
+.buscador{
+    width: 50%;
+    height: 50px;          
+}
+#searchform{    
+    display: flex;    
+    width: 100%;
+    height: 50px;
+}
+#barra-Navegacion{
+    margin-top: 4px;
+    height: 80%;    
+    width: 85%;
+}
+#botonBusqueda{
+    position: fixed;
+    color: #939393;      /*COLOR DEL BOTON DE BUSCAR*/  
+    outline:none;
+    background: #ff4d4d00;
+    border:none;        
+    font-size: 25px; 
+    margin-left: 38%;
+    margin-top: 10px;  
+    width: 5%; 
+    height: auto;
+}
+#botonBusqueda:active{    
+    color: #5c5c5c;     /*COLOR AL PRESIONAR EL BOTON DE BUSCAR*/   
+}
+/*Fin barra*/
 
-    .opciones p:hover{
-        color: white;
-        /* box-shadow: 0px 2px 0px  #cf5346; */
-    }
-
-    .opciones a:active{
-        color: white;
-        /* box-shadow: 0px 2px 0px  #863636; */
-    }
-    
-/*#fin*/
     
 
 /*Cuerpo de la pagina*/
@@ -126,140 +143,32 @@ header{
     padding-top: 70px;
 }
 
-nav{
-    background: #131313; 
+body{    
+    background: #dadada;  /*cOLOR DE FONDO DE LA PAGINA*/ 
 }
-
-body{      
-    background: #242424;   
+#titulo-Seccion{
+    font-size: 20px;
 }
-
-/*Barra*/
-#searchform {
-    width: 280px;
-    height:30px;
-    vertical-align: middle;
-    white-space: nowrap;
+#particles-js{
     position: relative;
-    padding: 1px;
-    margin: 5px auto;    
-    background: #ffffff00;
-    border-radius: 4px;
-   
+    margin-top: 50px;
+    color: white;
+    background: #271d2e;
+    width: 100%;
+    height: 150px;
 }
-#barraBusqueda {  
-  width:300px;
-  height: 26px;
-  background: #ebebeb;
-  border: none;
-  font-size: 10pt;
-  float: left;
-  color: #181818;
-  padding-left: 40px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+#particles-js p{
+    position: absolute;
+    font-size: 30px;
+    color: #dadada;
+    margin-top: 10px; 
 }
-input[type=submit]{
-    display: none ;
-}
-input[type = submit] + label {    
-  position: absolute;
-  margin-left: -293px; 
-  margin-top: 2px;   
-  height:25px;
-  width:25px;  
-  background-color: transparent;
-}   
-#botonBusqueda + label{
-    background: url("../image/iconSearch.png") no-repeat ;    
-    background-size: 25px 25px;
-}
-#botonBusqueda + label:hover{
-    background: url("../image/iconSearchHover.png") no-repeat ;
-    background-size: 25px 25px;
-}
-#botonBusqueda + label:active{
-    background: url("../image/iconSearchAction.png") no-repeat ;
-    background-size: 25px 25px;
-}
-
-/*Fin de barra*/
-
-/*Filtros*/
-    .check{
-        display: none;            
-    }
-    input[type=checkbox] + label{ 
-        margin: -5px 10px 10px 10px;
-        height: 35px;
-        width: 35px;
-        padding: 0 0 0 0px;
-        display:inline-block;
-    }
-                                    /*imagen filtro*/
-    input[id=fotoCheck] + label {
-        background: url("../image/fotoCheckOff.png") no-repeat;        
-        background-size: 100%;
-    }
-    input[id=fotoCheck]:checked + label  {
-        background: url("../image/fotoCheck.png") no-repeat;        
-        background-size: 100%;   
-    }
-    /*Fin de imagen filtro*/
-
-                                    /*MUSICA FILTRO*/
-    input[id=musicCheck] + label {
-        background: url("../image/musicaCheckOff.png") no-repeat;        
-        background-size: 100%;
-    }
-    input[id=musicCheck]:checked + label  {
-        background: url("../image/musicaCheck.png") no-repeat;        
-        background-size: 100%;    
-    }
-    /*Fin de musica filtro*/
-                                    /*Videos filtro*/
-    input[id=videoCheck] + label {
-        background: url("../image/videoCheckOff.png") no-repeat;        
-        background-size: 100%;
-    }
-    input[id=videoCheck]:checked + label  {
-        background: url("../image/videoCheck.png") no-repeat;        
-        background-size: 100%;    
-    }
-    /*Fin videos filtro*/
-
-/*Fin de filtros*/
 
 
   
 /*Fondo del centro*/
-.main{
-    color:white;
-    background: #131313;
-}
 
-.sub{
-    color:white;
-    font-family: rale;
-    background: #131313;
-}
-.imagenPrueba img{
-    width: 45%;   
-    float: left; 
-}
-.imagenPrueba{    
-    color:white;    
-    
-}
-.tituloImagenPrueba{
-    vertical-align: text-top;
-    font-size: 15px;
-}
-.infoImagenPrueba{
-    vertical-align: middle;
-    font-size: 12px;
-}
+
 
 /*------------------------Estilo del login modal----------------------------------------------*/
 .modal{
@@ -319,7 +228,6 @@ input[type = submit] + label {
     box-sizing: border-box;
     font-size: 12px;
 }
-
 input[type=email].modal-input-registro,input[type=text].modal-input-registro, input[type=password].modal-input-registro {
     background-color: #101010;
     color: white;
@@ -332,9 +240,6 @@ input[type=email].modal-input-registro,input[type=text].modal-input-registro, in
     box-sizing: border-box;
     font-size: 12px;
 }
-
-
-
 button.modal-button {
     background-color: #ff4d4d;
     color: white;
@@ -372,74 +277,138 @@ span.modal-forgotPass {
     padding-top: 30px;
    }
 /*------------------------Estilo del login modal----------------------------------------------*/
+
 /*Media Index --------------------------------------------------------------------------------*/
-@media (max-width: 20em) {
-    .logo {
-        margin-left: 55%;       
-        margin-right: auto;
+@media (max-width: 48em) { 
+    
+    .opciones{ /*Contenedor de opciones*/       
+       display: none; 
+     }      
+     .buscador{
+         display: none;
+     }
+     #cabeceraTitulo{        
+         height:100%;
+         width: 105%;       
+     }
+     .titulo p{
+        font-size: 25px;
+     }
+     .titulo {  
+       width: 180px;
+       height: auto;      
     }
-    .titulo {
-        background: cadetblue;
-        display: block;
-        margin-left:auto;
-        margin-right: auto; 
-       text-align: center;        
+    /*Menu Responsive*/
+    .responsiveMenu{
+        display:inline-flex;
+        width: 50%;        
+        margin-right: 0;
     }
-    .opciones{
-        background: #d82727;
+
+    .navegacion1{   
+        padding: 5px ;    
+        position: relative;
+        margin-left: 50%;
+        width: 25%;         
     }
-    .opciones a{ 
-                   
-        text-decoration: none;        
-        color: white;        
-        display: inline-block;        
-        margin: 0%;       
-        padding: 0px 0px;
-        text-align: center;
-        max-width:  220px;        
-        width: 50%;
-        height: auto;
-        box-shadow: 0px 3px 0px  #85271c00;
+    .navegacion1 li{
+        list-style: none;
+    }
+    .navegacion1 span:active{
+        color: rgb(169, 169, 169);
+    }
+
+    .navegacion2{  
+        padding: 5px ;       
+        position:relative;        
+        width: 25%;        
+    }    
+    .navegacion2 span:active{       
+        color: rgb(169, 169, 169);        
+    }
+    
+    
+    .navegacion1 span,.navegacion2 span{
+        margin-top: -15px;
+        color: white;
+        font-size: 40px; 
+    }
+   
+    /*Menu Responsive*/
+
+    /*Opciones de la barra desplegable*/
+    .opcionesInferior{         
+        list-style: none;          
+    }
+    .opcionesInferior li{ 
+        display:flex;
+        background: #2e2e2e;       
+    }
+    .opcionesInferior li a{       
+        width: 100%;
+        color: rgb(221, 221, 221);
+        text-decoration: none;
+        font-size: 20px;
+    }  
+    .opcionesInferior li a:hover{       
+        color: #5c5c5c;
+    }  
+    /*Opciones de la barra desplegable*/
+
+    /*Buscador de la barra desplegable*/
+    .buscadorInferior{       
+        background: #2e2e2e;
+        width: 100%;
+        height: 60px;
+    }
+    
+    .buscadorInferior #searchform{ 
+        display:flex; 
+        margin-left: 10px;       
+    }
+    .buscadorInferior #barra-Navegacion{
+        display:flex;  
+       margin-top: 10px;      
+       width: 95%;
+       
+    }
+    .buscadorInferior #botonBusqueda{
+        display:flex; 
+        margin-top: 15px;        
+        margin-left: 85%;
         
-        
     }
+    /*Buscador de la barra desplegable*/
     
 }
-
-@media (max-width: 36em) {
-    
-    .titulo {       
-        width: 40%;          
+@media (max-width: 35em) {
+    .buscadorInferior #botonBusqueda{        
+        margin-left: 80%;
+    } 
+    .navegacion1{        
+        margin-left: 40%;
+        padding-right: 50px ; 
     }
-    .titulo p{
-        font-size: 35px;
-    }
-    .opciones{
-                
-    }
-    .opciones a{        
-        top: 10%;       
-        margin: -3%;
-        padding: 4%;        
-    }
-
 }
-@media (max-width: 30em) {
-    
-    .titulo {       
-        width: 40%; 
-               
+@media (max-width: 24em) {
+    .responsiveMenu{      
+       width: 35%;
     }
-    .titulo p{
-        font-size: 35px;
+    .titulo { 
+        width: 150px;
+     }
+     .navegacion2{ 
+         margin-top: 5px;          
+        margin-left:-10%;      
     }
-    .opciones{
-                
+    .navegacion1{   
+        margin-top: 5px; 
+        margin-left:-5%; 
     }
-    .opciones a{        
-        top: 10%;        
-        margin: -3%;
-        padding: 4%;        
+     .navegacion1 span,.navegacion2 span{ 
+        font-size: 30px; 
     }
-
+    .buscadorInferior #botonBusqueda{        
+        margin-left: 70%;
+    }  
 }

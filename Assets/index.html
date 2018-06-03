@@ -2,149 +2,151 @@
 <html ng-app lang="es">
 <head>    
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device‐width, initial‐scale=1.0">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0, width=device-width">
+    <!--meta name="viewport" content="width=device‐width, initial‐scale=1.0"-->
     <link rel="stylesheet" href="Css3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="Css3/index.css"/>
+    <link rel="stylesheet" href="fonts/iconStyle.css"/>
+    <script type="text/javaScript">
+    var ventanaBarraVisible = false;
+    var ventanaMenuVisible  = false;
+    function mostrarBarraInferiorDeBuesqueda(){        
+        if(!ventanaBarraVisible){
+            if(ventanaMenuVisible){
+                $(".opcionesInferior").slideUp("fast");
+                ventanaMenuVisible = false;
+            }
+            $(".buscadorInferior").slideDown("fast");
+            ventanaBarraVisible = true;
+        }else{
+            $(".buscadorInferior").slideUp("fast");
+            ventanaBarraVisible = false;
+        }        
+    }
+    function mostrarBarraInferiorDeOpciones(){ 
+        if(!ventanaMenuVisible){            
+            if(ventanaBarraVisible){
+                $(".buscadorInferior").slideUp("fast");
+                ventanaBarraVisible = false;
+            }
+            $(".opcionesInferior").slideDown("fast");
+            ventanaMenuVisible = true;
+        }else{
+            $(".opcionesInferior").slideUp("fast");
+            ventanaMenuVisible = false;
+        }       
+    }    
+    </script>
     <title>Title</title>   
 
 </head>
 <body>  
     <header class="container-fluid fixed-top "><!--Cabecera-->
-        
-            <section class="row">                   
-                
-                <div class="titulo"> <!-- Logo-->
+        <section class="row" id="cabeceraTitulo">           
+                <div class="titulo "> <!-- Logo-->
                     <p>WebMedia</p>                                             
-                </div>      
+                </div>  
 
-                 <!--Opciones de la cabecera-->               
-                <div class="opciones"> <!-- Registrarse-->
-                    <a href="#" data-toggle="modal" data-target="#myModal2" >                    
-                            <p> 
+                <!--Barra de busqueda-->
+                <div class="buscador">
+                    <form class="navbar-form navbar-left" role="search">
+                        <div id="searchform"  class="form-group">
+                            <input id="barra-Navegacion" type="text" class="form-control" placeholder="Buscar">
+                            <button id="botonBusqueda" type="submit" > <span class="icon-search"></span> </button> 
+                        </div>                                                                          
+                    </form>
+                </div>   
+                 <!--Barra de busqueda-->  
+
+                 <!--Opciones de la cabecera desplegables-->
+                 <div class="container-fluid responsiveMenu">
+                        <div class="navegacion1">
+                             <span class="icon-search" onclick="mostrarBarraInferiorDeBuesqueda()">
+                             </span>   
+                                                   
+                        </div>
+                        <div class="navegacion2" onclick="mostrarBarraInferiorDeOpciones()">
+                             <span class="icon-menu">
+                             </span>
+                        </div>                        
+                 </div>
+
+                                 
+                  <!--Menu de opciones normal-->
+                <ul class="opciones"> <!-- Registrarse-->
+                    <li>
+                           
+                        <a href="#" data-toggle="modal" data-target="#myModal2" > 
+                             <span class="icon-user-plus">
+                             </span>                   
+                            <span> 
                                 Registrarse                           
-                            </p>                     
-                    </a>                  
+                            </span>                                             
+                        </a>          
+                    </li>
+                            
                  <!-- Entrar-->
+                 <li>
+                         
                     <a href="#" data-toggle="modal" data-target="#myModal"> 
-                                                 
-                            <p> 
-                                Entrar                           
-                            </p>                       
-                    </a>                  
-                </div>
+                         <span class="icon-enter">
+                         </span>                        
+                        <span> 
+                            Entrar                           
+                        </span>                       
+                    </a>            
+                 </li>                      
+                </ul>
                 <!--Opciones de la cabecera-->
-
-            </section>              
-    </header><!--Cabecera--> 
-   
-    <!--Navegador buscador-->
-    <nav class="container" id="cuerpo">       
-        <section class="row">
-
-            <!-- Filtros de busqueda -->
-            <form class="col-md-2" id="searchform">  
-                    <div class="float-md-left"> 
-
-                        <input class="check" type="checkbox" id="fotoCheck"><!--Imagen-->
-                        <label for="fotoCheck">                                                         
-                        </label> 
-
-                        <input class="check" type="checkbox" id="musicCheck"><!--musica-->
-                        <label for="musicCheck">                                                         
-                        </label> 
-
-                        <input class="check" type="checkbox" id="videoCheck"><!--video-->
-                        <label for="videoCheck">                                                         
-                        </label> 
-
-                   </div>                             
-            </form>      
-            <!-- Filtros de busqueda Fin-->
-
-            <!--Barra de busqueda-->
-           <form class="col-xm-9 col-sm-8 col-md-8 " id="searchform">  
-                <div class="float-md-right">
-                        <input id = "barraBusqueda" type="text" placeholder="Buscar aqu&iacute;..." required>       
-                        <input type="submit" value = "" id ="botonBusqueda">
-                        <label for="botonBusqueda"></label> 
-                </div>                             
+        </section>
+         
+        <!--Barra de navegacion inferior-->
+         <div class="buscadorInferior">
+            <form class="navbar-form navbar-left" role="search">
+                <div id="searchform"  class="form-group">
+                    <input id="barra-Navegacion" type="text" class="form-control" placeholder="Buscar">
+                    <button id="botonBusqueda" type="submit" > <span class="icon-search"></span> </button> 
+                </div>                                                                          
             </form>
-            <!--Barra de busqueda-->
+         </div>     
 
-         </section>                 
-    </nav>
-    <!--Navegador buscador fin-->
-
-
-    <!--contenido principal-->
-    
-   
-    <section class="container"><!-- Contenedor del cuerpo-->        
-        <div class="row">
-            <div class="col-sm-12"> <small> <h5></h5> </small> </div>
-
-            <div class="col-sm-8 main">
-                <div class=" col-6 repro">
-                </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
-           
-            </div>
-            
-            <div class="col-sm-4 sub">
-                <div class="CajaVideo">
-                        <div class="imagenPrueba">
-                            <img  src="image/Reproducir.png" alt="video">
-                            <span class="tituloImagenPrueba">  El video mas divertido del mundo   </span></br>
-                            <span class="infoImagenPrueba">  informacion nula y fea duracion etc   </span>
-                        <hr>
-                        </div>                       
-                </div>
-                
-                <div class="CajaVideo">
-                        <div class="imagenPrueba">
-                            <img  src="image/Reproducir.png" alt="video">
-                            <span class="tituloImagenPrueba">  El video mas divertido del mundo   </span></br>
-                            <span class="infoImagenPrueba">  informacion nula y fea duracion etc   </span>
-                            <hr>
-                        </div>                       
-                </div>
-
-                <div class="CajaVideo">
-                        <div class="imagenPrueba">
-                            <img  src="image/Reproducir.png" alt="video">
-                            <span class="tituloImagenPrueba">  El video mas divertido del mundo   </span></br>
-                            <span class="infoImagenPrueba">  informacion nula y fea duracion etc   </span>
-                            <hr>
-                        </div>                       
-                </div>
-
-                <div class="CajaVideo">
-                        <div class="imagenPrueba">
-                            <img  src="image/Reproducir.png" alt="video">
-                            <span class="tituloImagenPrueba">  El video mas divertido del mundo   </span></br>
-                            <span class="infoImagenPrueba">  informacion nula y fea duracion etc   </span>
-                            <hr>
-                        </div>                       
-                </div>
-                <div class="CajaVideo">
-                        <div class="imagenPrueba">
-                            <img  src="image/Reproducir.png" alt="video">
-                            <span class="tituloImagenPrueba">  El video mas divertido del mundo   </span></br>
-                            <span class="infoImagenPrueba">  informacion nula y fea duracion etc   </span>
-                            <hr>
-                        </div>                       
-                </div>
-                
+         <div class="menuInferior">
+                <ul class="opcionesInferior"> <!-- Registrarse-->
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#myModal2" >                    
+                            <span class="icon-user-plus"> 
+                                Registrarse                           
+                            </span>                     
+                        </a>          
+                    </li>
                     
-            </div>
+                 <!-- Entrar-->
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#myModal">                         
+                             <span class="icon-enter"> 
+                              Entrar                           
+                             </span>                       
+                         </a>            
+                     </li>                      
+                </ul>
+         </div>  
+                      
+    </header><!--Cabecera-->              
+    <div  id="particles-js">
+        <p>
+            Crea un album multimedia a tu gusto
+        </p>
+            
+    </div>
+    <div>
+        
+        <div id="titulo-Seccion"> <p>Resultado de busqueda</p> </div>
+        <hr size="15px">
+        
+    </div>
 
-
-        </div>
-    </section> <!--Fin de contenido principal-->
-    
-   
-    
+    <script src="js/Particles/particles.js"></script>
+    <script src="js/Particles/app.js"></script>    
     <script src="libs/angular.min.js"></script>
     <script src="js/Jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>

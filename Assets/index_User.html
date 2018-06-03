@@ -21,17 +21,24 @@
 
                     <div class="titulo"> <!-- Logo-->
                         <p>WebMedia</p>                                                            
-                    </div>                  
-
-                <div class="separado">
-                    <label> </label>
-                </div>
+                    </div>  
+                    
+                     <!--Barra de busqueda-->
+                     <div class="buscador">
+                        <form class="navbar-form navbar-left" role="search">
+                            <div id="searchform"  class="form-group">
+                                <input id="barra-Navegacion" type="text" class="form-control" placeholder="Buscar">
+                                <button id="botonBusqueda" type="submit" > <span class="icon-search"></span> </button> 
+                            </div>                                                                          
+                        </form>
+                     </div>   
+                     
+                     <!--Barra de busqueda-->  
 
                  <!--Opciones de la cabecera-->           
                 
                 <div class="opciones_Perfil" > <!-- Usuario-->
                     <img src="image/user8-128x128.jpg" class="image-responsive perfil_Mini"/>
-
                     <span onclick="perfil()" data-toggle="modal" data-target="perfil.html"  id="userBoton" >                       
                                            
                     </span>
@@ -46,7 +53,6 @@
                             }
                             document.getElementById("userBoton").innerHTML = auxiliar[0];                                    
                     </script>
-
                     <script> //Script para boton accion
                            function perfil(){
                             var paramstr = window.location.search.substr(1);                           
@@ -60,7 +66,6 @@
                             window.location="perfil.html?var_="+auxiliar[2];
                         }                                 
                     </script>
-
                 </div> 
 
                 <div class="col-xm-12 col-md-1  opciones_Perfil"> <!-- Salir-->
@@ -76,45 +81,8 @@
                 <!--Opciones de la cabecera-->
                 
             </section>              
-    </header><!--Cabecera--> 
-   
-    <!--Navegador buscador-->
-    <nav class="container " id="cuerpo">       
-        <section class="row">
-
-            <!-- Filtros de busqueda -->
-            <form class="col-md-2" id="searchform">  
-                    <div class="float-md-left"> 
-
-                        <input class="check" type="checkbox" id="fotoCheck"><!--Imagen-->
-                        <label for="fotoCheck">                                                         
-                        </label> 
-
-                        <input class="check" type="checkbox" id="musicCheck"><!--musica-->
-                        <label for="musicCheck">                                                         
-                        </label> 
-
-                        <input class="check" type="checkbox" id="videoCheck"><!--video-->
-                        <label for="videoCheck">                                                         
-                        </label> 
-
-                   </div>                             
-            </form>      
-            <!-- Filtros de busqueda Fin-->
-
-            <!--Barra de busqueda-->
-           <form class="col-xm-9 col-sm-8 col-md-8 " id="searchform">  
-                <div class="float-md-right">
-                        <input id = "barraBusqueda" type="text" placeholder="Buscar aqu&iacute;..." required>       
-                        <input type="submit" value = "" id ="botonBusqueda">
-                        <label for="botonBusqueda"></label> 
-                </div>                             
-            </form>
-            <!--Barra de busqueda-->
-
-         </section>                 
-    </nav>
-    <!--Navegador buscador fin-->
+    </header><!--Cabecera-->  
+    
 
 
     <!--contenido principal-->
