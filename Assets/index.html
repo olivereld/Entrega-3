@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html ng-app lang="es">
 <head>    
+
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <title>Simple Tigra Calendar</title>
+    
+    <!-- link calendar resources -->
+    <link rel="stylesheet" type="text/css" href="Css3/tcal.css" />
+    <script type="text/javascript" src="js/tcal.js"></script> 
+
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0, width=device-width">
     <!--meta name="viewport" content="width=device‐width, initial‐scale=1.0"-->
@@ -212,7 +220,8 @@
                         <!--label class="modal-letters" for="psw"><b>Contrase&ntilde;a:  </b></label-->
                         <input class="modal-input-registro"   type="password" placeholder="Contrase&ntilde;a"           name="password"             required  id="pass1">
                         <input class="modal-input-registro"   type="password" placeholder="Repita la Contrase&ntilde;a" name="confirmationPassword" required  id="pass2">
-                                                
+                         
+                        <input type="text"      placeholder="Fecha de Nacimiento"     name="date"    class="tcal"   required id="fechaRegistro" />
                         
                     </div>
 
