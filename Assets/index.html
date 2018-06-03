@@ -6,6 +6,8 @@
     <!--meta name="viewport" content="width=device‐width, initial‐scale=1.0"-->
     <link rel="stylesheet" href="Css3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="Css3/index.css"/>
+    <link rel="stylesheet" href="Css3/responsiveIndex.css"/>
+    <link rel="stylesheet" href="Css3/modalLogin.css"/>
     <link rel="stylesheet" href="fonts/iconStyle.css"/>
     <script type="text/javaScript">
     var ventanaBarraVisible = false;
@@ -52,7 +54,7 @@
                     <form class="navbar-form navbar-left" role="search">
                         <div id="searchform"  class="form-group">
                             <input id="barra-Navegacion" type="text" class="form-control" placeholder="Buscar">
-                            <button id="botonBusqueda" type="submit" > <span class="icon-search"></span> </button> 
+                            <button id="botonBusqueda" type="submit" onclick="mostrarResultados()"> <span class="icon-search"></span> </button> 
                         </div>                                                                          
                     </form>
                 </div>   
@@ -61,12 +63,12 @@
                  <!--Opciones de la cabecera desplegables-->
                  <div class="container-fluid responsiveMenu">
                         <div class="navegacion1">
-                             <span class="icon-search" onclick="mostrarBarraInferiorDeBuesqueda()">
+                             <span class="icon-search" onclick="mostrarBarraInferiorDeBuesqueda()">                                 
                              </span>   
                                                    
                         </div>
                         <div class="navegacion2" onclick="mostrarBarraInferiorDeOpciones()">
-                             <span class="icon-menu">
+                             <span class="icon-menu">                                 
                              </span>
                         </div>                        
                  </div>
@@ -105,7 +107,7 @@
             <form class="navbar-form navbar-left" role="search">
                 <div id="searchform"  class="form-group">
                     <input id="barra-Navegacion" type="text" class="form-control" placeholder="Buscar">
-                    <button id="botonBusqueda" type="submit" > <span class="icon-search"></span> </button> 
+                    <button id="botonBusqueda" type="submit"  > <span class="icon-search"></span> </button> 
                 </div>                                                                          
             </form>
          </div>     
@@ -138,13 +140,18 @@
         </p>
             
     </div>
-    <div>
-        
+    <div>        
         <div id="titulo-Seccion"> <p>Resultado de busqueda</p> </div>
-        <hr size="15px">
-        
+        <hr size="15px">    
+        <section class="Resultados container-fluid">
+            <div class="row BusquedaOrdenada">                    
+                    
+            </div>            
+        </section>       
     </div>
+   
 
+    <script src="js/Clases/Busqueda.js"></script>
     <script src="js/Particles/particles.js"></script>
     <script src="js/Particles/app.js"></script>    
     <script src="libs/angular.min.js"></script>
@@ -250,8 +257,5 @@
         }).keyup();
     </script>
 <!-- -------------------------------------------------Registro MODAL------------------------------------------------- -->  
-
-
-
 </html>
 

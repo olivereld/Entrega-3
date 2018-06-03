@@ -147,7 +147,8 @@ body{
     background: #dadada;  /*cOLOR DE FONDO DE LA PAGINA*/ 
 }
 #titulo-Seccion{
-    font-size: 20px;
+    font-size:   20px;
+    font-weight: bold; 
 }
 #particles-js{
     position: relative;
@@ -163,252 +164,35 @@ body{
     color: #dadada;
     margin-top: 10px; 
 }
-
-
-  
-/*Fondo del centro*/
-
-
-
-/*------------------------Estilo del login modal----------------------------------------------*/
-.modal{
-    display: none;
+.Resultados{
+    display: inline-block;
 }
-.modal-content{
-    max-width: 400px;
-    height: auto;
-    margin: auto;
-    top:25px;
-    background: #202020;
-    padding: 10px;
-    color: white;
-    font-family: rale;
-    border-radius: 15px;
-}
-.modal:target{
-    position: fixed;
-    background: #00000049;    
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-.modal-header1 {
-    color: white;
-    font-size: 50px;
-    margin-top: 30px;
-    font-weight: bold;
-    font-family: rale;
-    
-}
-.modal-letters{
-    font-size: 12px;
-}
-.modal-logo{
-    display: inline-block; 
+#cuadro-Busqueda{
+    background: #f2f2f2;
     width: 25%;
+    height: 250px;
+}
+#cuadro-Contenido{
+    background: #878787;
     margin-left: auto;
     margin-right: auto;
-    top:-50%;
-    padding-bottom: 20px;
-        
+    margin-top: 2%;    
+    width: 95%;
+    height: 95%;  
+    transition: width 2s;   
 }
-.modal-form{
-    padding: 16px;
-}
- input[type=text].modal-input, input[type=password].modal-input {
-    background-color: #101010;
-    color: white;
-    width: 100%;
-    padding: 5px 10px;
-    margin: 20px 0;
-    display: inline-block;
-    border: 2px solid #101010;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 12px;
-}
-input[type=email].modal-input-registro,input[type=text].modal-input-registro, input[type=password].modal-input-registro {
-    background-color: #101010;
-    color: white;
-    width: 100%;
-    padding: 5px 10px;
-    margin: 10px 0;
-    display: inline-block;
-    border: 2px solid #101010;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 12px;
-}
-button.modal-button {
-    background-color: #ff4d4d;
-    color: white;
-    padding: 10px 18px;
-    margin: 20px 0;
-    border: 2px #ff4d4d;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 50%;
-}
-button.cancelbtnModal {
-    width: 50%;
-    padding: 10px 18px;
-    border: 2px #ff4d4d;
-    border-radius: 5px;
-    background-color: #ff4d4d;
-}
+#cuadro-Contenido:hover{
+    width: 100% ;
+    height: 100% ;
+    margin-top: 0;
+    background: rgb(159, 117, 197);
 
-button.modal-button:hover {
-    opacity: 0.8;
 }
+#cuadro-Contenido:active{
+    width: 95% ;
+    height: 95% ;
+    margin-top: 2%;    
+    background: rgb(109, 70, 143);
+    transition: width 1s;    
 
-button.modal-button:active {
-    color: #4b0a0a;
-    background: #d82727;
-}
-
-.modal-footer a{
-    vertical-align: text-top;
-    color:#f76c6c;
-}
-
-span.modal-forgotPass {
-    float: right;
-    padding-top: 30px;
-   }
-/*------------------------Estilo del login modal----------------------------------------------*/
-
-/*Media Index --------------------------------------------------------------------------------*/
-@media (max-width: 48em) { 
-    
-    .opciones{ /*Contenedor de opciones*/       
-       display: none; 
-     }      
-     .buscador{
-         display: none;
-     }
-     #cabeceraTitulo{        
-         height:100%;
-         width: 105%;       
-     }
-     .titulo p{
-        font-size: 25px;
-     }
-     .titulo {  
-       width: 180px;
-       height: auto;      
-    }
-    /*Menu Responsive*/
-    .responsiveMenu{
-        display:inline-flex;
-        width: 50%;        
-        margin-right: 0;
-    }
-
-    .navegacion1{   
-        padding: 5px ;    
-        position: relative;
-        margin-left: 50%;
-        width: 25%;         
-    }
-    .navegacion1 li{
-        list-style: none;
-    }
-    .navegacion1 span:active{
-        color: rgb(169, 169, 169);
-    }
-
-    .navegacion2{  
-        padding: 5px ;       
-        position:relative;        
-        width: 25%;        
-    }    
-    .navegacion2 span:active{       
-        color: rgb(169, 169, 169);        
-    }
-    
-    
-    .navegacion1 span,.navegacion2 span{
-        margin-top: -15px;
-        color: white;
-        font-size: 40px; 
-    }
-   
-    /*Menu Responsive*/
-
-    /*Opciones de la barra desplegable*/
-    .opcionesInferior{         
-        list-style: none;          
-    }
-    .opcionesInferior li{ 
-        display:flex;
-        background: #2e2e2e;       
-    }
-    .opcionesInferior li a{       
-        width: 100%;
-        color: rgb(221, 221, 221);
-        text-decoration: none;
-        font-size: 20px;
-    }  
-    .opcionesInferior li a:hover{       
-        color: #5c5c5c;
-    }  
-    /*Opciones de la barra desplegable*/
-
-    /*Buscador de la barra desplegable*/
-    .buscadorInferior{       
-        background: #2e2e2e;
-        width: 100%;
-        height: 60px;
-    }
-    
-    .buscadorInferior #searchform{ 
-        display:flex; 
-        margin-left: 10px;       
-    }
-    .buscadorInferior #barra-Navegacion{
-        display:flex;  
-       margin-top: 10px;      
-       width: 95%;
-       
-    }
-    .buscadorInferior #botonBusqueda{
-        display:flex; 
-        margin-top: 15px;        
-        margin-left: 85%;
-        
-    }
-    /*Buscador de la barra desplegable*/
-    
-}
-@media (max-width: 35em) {
-    .buscadorInferior #botonBusqueda{        
-        margin-left: 80%;
-    } 
-    .navegacion1{        
-        margin-left: 40%;
-        padding-right: 50px ; 
-    }
-}
-@media (max-width: 24em) {
-    .responsiveMenu{      
-       width: 35%;
-    }
-    .titulo { 
-        width: 150px;
-     }
-     .navegacion2{ 
-         margin-top: 5px;          
-        margin-left:-10%;      
-    }
-    .navegacion1{   
-        margin-top: 5px; 
-        margin-left:-5%; 
-    }
-     .navegacion1 span,.navegacion2 span{ 
-        font-size: 30px; 
-    }
-    .buscadorInferior #botonBusqueda{        
-        margin-left: 70%;
-    }  
 }

@@ -78,7 +78,7 @@ function formalizar(urlServidor){
             "email"                 : $(emailRegistro).val(),
             "password"              : $(pass1).val(),
             "confirmationPassword"  : $(pass2).val(),
-            "dateOfBirth"           : "22/05/94"        
+            "dateOfBirth"           : "1992/08/16"        
         }
         causa = 0;
         enviarDat(urlServidor,myJson,causa); //Ejecuta la funcion enviar que esta de ultima

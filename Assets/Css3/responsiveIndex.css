@@ -1,0 +1,134 @@
+/*Media Index --------------------------------------------------------------------------------*/
+@media (max-width: 48em) { 
+    
+    .opciones{ /*Contenedor de opciones*/       
+       display: none; 
+     }      
+     .buscador{
+         display: none;
+     }
+     #cabeceraTitulo{        
+         height:100%;
+         width: 105%;       
+     }
+     .titulo p{
+        font-size: 25px;
+     }
+     .titulo {  
+       width: 180px;
+       height: auto;      
+    }
+    /*Menu Responsive*/
+    .responsiveMenu{
+        display:inline-flex;
+        width: 50%;        
+        margin-right: 0;
+    }
+
+    .navegacion1{   
+        padding: 5px ;    
+        position: relative;
+        margin-left: 50%;
+        width: 25%;         
+    }
+    .navegacion1 li{
+        list-style: none;
+    }
+    .navegacion1 span:active{
+        color: rgb(169, 169, 169);
+    }
+
+    .navegacion2{  
+        padding: 5px ;       
+        position:relative;        
+        width: 25%;        
+    }    
+    .navegacion2 span:active{       
+        color: rgb(169, 169, 169);        
+    }
+    
+    
+    .navegacion1 span,.navegacion2 span{
+        margin-top: -15px;
+        color: white;
+        font-size: 40px; 
+    }
+   
+    /*Menu Responsive*/
+
+    /*Opciones de la barra desplegable*/
+    .opcionesInferior{         
+        list-style: none;          
+    }
+    .opcionesInferior li{ 
+        display:flex;
+        background: #2e2e2e;       
+    }
+    .opcionesInferior li a{       
+        width: 100%;
+        color: rgb(221, 221, 221);
+        text-decoration: none;
+        font-size: 20px;
+    }  
+    .opcionesInferior li a:hover{       
+        color: #5c5c5c;
+    }  
+    /*Opciones de la barra desplegable*/
+
+    /*Buscador de la barra desplegable*/
+    .buscadorInferior{       
+        background: #2e2e2e;
+        width: 100%;
+        height: 60px;
+    }
+    
+    .buscadorInferior #searchform{ 
+        display:flex; 
+        margin-left: 10px;       
+    }
+    .buscadorInferior #barra-Navegacion{
+        display:flex;  
+       margin-top: 10px;      
+       width: 95%;
+       
+    }
+    .buscadorInferior #botonBusqueda{
+        display:flex; 
+        margin-top: 15px;        
+        margin-left: 85%;
+        
+    }
+    /*Buscador de la barra desplegable*/
+    
+}
+@media (max-width: 35em) {
+    .buscadorInferior #botonBusqueda{        
+        margin-left: 80%;
+    } 
+    .navegacion1{        
+        margin-left: 40%;
+        padding-right: 50px ; 
+    }
+}
+@media (max-width: 24em) {
+    .responsiveMenu{      
+       width: 35%;
+    }
+    .titulo { 
+        width: 150px;
+     }
+     .navegacion2{ 
+         margin-top: 5px;          
+        margin-left:-10%;      
+    }
+    .navegacion1{   
+        margin-top: 5px; 
+        margin-left:-5%; 
+    }
+     .navegacion1 span,.navegacion2 span{ 
+        font-size: 30px; 
+    }
+    .buscadorInferior #botonBusqueda{        
+        margin-left: 70%;
+    }  
+}
