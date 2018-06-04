@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device‐width, initial‐scale=1.0">
     <link rel="stylesheet" href="Css3/css/bootstrap.min.css"/>
+    <script src="js/Clases/Enviar.js"></script>
     <link rel="stylesheet" href="Css3/index.css"/>
     <script src="js/Clases/Login.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"> 
@@ -43,15 +44,8 @@
                                            
                     </span>
                     <script> //Script para mostrar nombre de usuario
-                            var paramstr = window.location.search.substr(1);                           
-                            var paramarr = paramstr.split ("&");                           
-                            var auxiliar = [];
-
-                            for(var i = 0; i < paramarr.length; i++ ){
-                                 auxiliar[i]= (paramarr[i].split("="))[1];
-                                console.log(auxiliar);
-                            }
-                            document.getElementById("userBoton").innerHTML = auxiliar[0];                                    
+                            var nombre = ""+localStorage.getItem("nombre");
+                            document.getElementById("userBoton").innerHTML = nombre;                                    
                     </script>
                     <script> //Script para boton accion
                            function perfil(){
@@ -74,7 +68,8 @@
                     </span>
                     <script>
                         function salir(){
-                            window.location="index.html";
+                            logOut("https://ignsw201825-snproject.herokuapp.com/user/logout");
+                            //window.location="index.html";
                         }
                     </script>                  
                 </div> 

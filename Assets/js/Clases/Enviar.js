@@ -15,6 +15,8 @@ function enviarDat(enlace,data,causa){ //Con JQuery Forma Registrar Usuario
                         iniciarSesion(response);
                     }else if (causa == 2){
                         cargarDato('https://ignsw201825-snproject.herokuapp.com/user/get/');
+                    }else if(causa == 3){
+                        window.location="index.html";
                     }
                     
             },
@@ -93,6 +95,14 @@ function modificacionExitosa() {
 }
 
 function iniciarSesion(response){
+    var nombre = ""+response.firstName;
+    var apellido = ""+response.lastName;
+    var id = ""+response.id;
+    var token = ""+response.authToken;
+    localStorage.setItem("nombre",nombre);
+    localStorage.setItem("apellido",apellido);
+    localStorage.setItem("id",id);
+    localStorage.setItem("token",token);   
     window.location="index_User.html?var_="+response.firstName+"&var_="+response.lastName+"&var_="+response.id+"&var_="+response.authToken;
 }
 
