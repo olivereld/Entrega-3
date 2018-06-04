@@ -1,3 +1,4 @@
+<<<<<<< HEAD
   
 
 function campoVacio(){//Comprobara que los campos se llenen
