@@ -66,8 +66,8 @@ function correoValido(){//Verifica si un correo es valido
 
 //Comunicacion con el servidor -------------------------------------------------------------------------------
 function formalizar(urlServidor){
-    var date =""+$(fechaRegistro).val();
-    var password = ""+btoa($(pass1).val());
+    var date      =""+$(fechaRegistro).val();
+    var password  = ""+btoa($(pass1).val());
     var password2 = ""+btoa($(pass2).val());    
     if( campoVacio() && //Comprueba si esta algun campo sin completar
         longitud()   && //Comprueba si las contraseñas tienen la longitud correcto

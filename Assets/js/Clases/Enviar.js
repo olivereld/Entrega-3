@@ -99,10 +99,10 @@ function iniciarSesion(response){
     var apellido = ""+response.lastName;
     var id = ""+response.id;
     var token = ""+response.authToken;
-    localStorage.setItem("nombre",nombre);
-    localStorage.setItem("apellido",apellido);
-    localStorage.setItem("id",id);
-    localStorage.setItem("token",token);   
+    sessionStorage.setItem("nombre",nombre);
+    sessionStorage.setItem("apellido",apellido);
+    sessionStorage.setItem("id",id);
+    sessionStorage.setItem("token",token);   
     window.location="index_User.html?var_="+response.firstName+"&var_="+response.lastName+"&var_="+response.id+"&var_="+response.authToken;
 }
 

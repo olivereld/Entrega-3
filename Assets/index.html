@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="Css3/index.css"/>
     <link rel="stylesheet" href="Css3/responsiveIndex.css"/>
     <link rel="stylesheet" href="Css3/modalLogin.css"/>
-    <link rel="stylesheet" href="fonts/iconStyle.css"/>
+    <link rel="stylesheet" href="fonts/iconStyle.css"/>    
+    
     <script type="text/javaScript">
     var ventanaBarraVisible = false;
     var ventanaMenuVisible  = false;
@@ -55,8 +56,7 @@
         <section class="row" id="cabeceraTitulo">           
                 <div class="titulo "> <!-- Logo-->
                     <p>WebMedia</p>                                             
-                </div>  
-
+                </div> 
                 <!--Barra de busqueda-->
                 <div class="buscador">
                     <form class="navbar-form navbar-left" role="search">
@@ -80,12 +80,10 @@
                              </span>
                         </div>                        
                  </div>
-
-                                 
+              
                   <!--Menu de opciones normal-->
                 <ul class="opciones"> <!-- Registrarse-->
-                    <li>
-                           
+                    <li>                           
                         <a href="#" data-toggle="modal" data-target="#myModal2" > 
                              <span class="icon-user-plus">
                              </span>                   
@@ -148,15 +146,18 @@
         </p>
             
     </div>
+    <section id="fondo-Imagen"> </section> 
     <div>        
         <div id="titulo-Seccion"> <p>Resultado de busqueda</p> </div>
-        <hr size="15px">    
+        <hr size="15px" id="separador-Busqueda"> 
+          
         <section class="Resultados container-fluid">
             <div class="row BusquedaOrdenada">                    
                     
             </div>            
         </section>       
     </div>
+   
    
 
     <script src="js/Clases/Busqueda.js"></script>
@@ -168,7 +169,6 @@
     <script src="js/Clases/Enviar.js"></script> 
     <script src="js/Clases/Registro.js"></script> 
     <script src="js/Clases/Login.js"></script>   
-    
 </body>
 
 <!-- -------------------------------------------------LOGIN MODAL------------------------------------------------- -->
