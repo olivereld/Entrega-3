@@ -1,0 +1,98 @@
+/* input box in default state */ 
+.tcalInput {
+
+	background-color: #101010;
+    color: white;
+    width: 100%;
+    padding: 5px 20px;
+    margin: 20px 0;
+    display: inline-block;
+    border: 2px solid #101010;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 12px;
+		
+	background: url('../image/cal.gif') 100% 50% no-repeat;
+
+	cursor: pointer;
+}
+
+/* additional properties for input boxe in activated state, above still applies unless in conflict */
+.tcalActive {
+	background-image: url('../image/no_cal.gif');
+}
+/* container of calendar's pop-up */
+#tcal {
+	position: absolute;
+	visibility: hidden;
+	z-index: 2000000000000000;
+	width: 170px;
+	background-color: silver;
+	margin-top: 2px;
+	padding: 0 2px 2px 2px;
+	border: 2px solid #101010;
+    border-radius: 5px;
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='silver');
+}
+
+/* table containing navigation and current month */
+#tcalControls {
+	border-collapse: collapse;
+	border: 0;
+	width: 100%;
+}
+#tcalControls td {
+	border-collapse: collapse;
+	border: 0;
+	padding: 0;
+	width: 16px;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+#tcalControls th {
+	border-collapse: collapse;
+	border: 0;
+	padding: 0;
+	line-height: 25px;
+	font-size: 10px;
+	text-align: center;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-weight: bold;
+	white-space: nowrap;
+}
+#tcalPrevYear { background-image: url('../image/prev_year.png'); }
+#tcalPrevMonth { background-image: url('../image/prev_mon.png'); }
+#tcalNextMonth { background-image: url('../image/next_mon.png'); }
+#tcalNextYear { background-image: url('../image/next_year.png'); }
+
+/* table containing week days header and calendar grid */
+#tcalGrid {
+	border-collapse: collapse;
+	border: 1px solid silver;
+	width: 100%;
+}
+#tcalGrid th {
+	border: 1px solid silver;
+	border-collapse: collapse;
+	padding: 3px 0;
+	text-align: center;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 10px;
+	background-color: gray;
+	color: white;
+}
+#tcalGrid td {
+	border: 0;
+	border-collapse: collapse;
+	padding: 2px 0;
+	text-align: center;
+	font-family: Tahoma, Geneva, sans-serif;
+	width: 14%;
+	font-size: 11px;
+	cursor: pointer;
+}		
+#tcalGrid td.tcalOtherMonth { color: #333333; }
+#tcalGrid td.tcalWeekend { background-color: #666666; }
+#tcalGrid td.tcalToday { border: 1px solid black; }
+#tcalGrid td.tcalSelected { background-color: silver; }		
