@@ -31,6 +31,7 @@ function campoVacio(){//Comprobara que los campos se llenen
 
     return validar;        
 }
+
 function longitud(){//Las contraseñas deben tener 7 o mas caracteres
 
     if($(pass1).val().length < 7){
@@ -78,7 +79,7 @@ function formalizar(urlServidor){
             "email"                 : $(emailRegistro).val(),
             "password"              : $(pass1).val(),
             "confirmationPassword"  : $(pass2).val(),
-            "dateOfBirth"           : "1992/08/16"        
+            "dateOfBirth"           : $(fechaRegistro).val(),     
         }
         causa = 0;
         enviarDat(urlServidor,myJson,causa); //Ejecuta la funcion enviar que esta de ultima
