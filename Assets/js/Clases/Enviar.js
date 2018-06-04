@@ -89,12 +89,11 @@ function modificacionExitosa() {
      $(inputNombre).val("");
      $(inputApellido).val("");
      $(inputEmail4).val("");
-     $(inputPassword4).val("");
-    
+     $(inputPassword4).val("");    
 }
 
 function iniciarSesion(response){
-    window.location="index_User.html?var_="+response.firstName+"&var_="+response.lastName+"&var_="+response.id;
+    window.location="index_User.html?var_="+response.firstName+"&var_="+response.lastName+"&var_="+response.id+"&var_="+response.authToken;
 }
 
 function registroFallido(error){ //Si funciona

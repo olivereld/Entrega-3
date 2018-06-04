@@ -1,4 +1,3 @@
-<<<<<<< HEAD
   
 
 function campoVacio(){//Comprobara que los campos se llenen
@@ -29,9 +28,9 @@ function campoVacio(){//Comprobara que los campos se llenen
         console.log("Campos llenos");
     }else
         alert("Debe llenar todos los");
-
     return validar;        
 }
+
 function longitud(){//Las contraseñas deben tener 7 o mas caracteres
 
     if($(pass1).val().length < 7){
@@ -67,6 +66,9 @@ function correoValido(){//Verifica si un correo es valido
 
 //Comunicacion con el servidor -------------------------------------------------------------------------------
 function formalizar(urlServidor){
+    var date =""+$(fechaRegistro).val();
+    var password = ""+btoa($(pass1).val());
+    var password2 = ""+btoa($(pass2).val());    
     if( campoVacio() && //Comprueba si esta algun campo sin completar
         longitud()   && //Comprueba si las contraseñas tienen la longitud correcto
         comparar()   && //comprueba si las contraseñas son iguales
@@ -77,9 +79,9 @@ function formalizar(urlServidor){
             "firstName"             : $(nombreRegistro).val(),
             "lastName"              : $(apellidoRegistro).val(),
             "email"                 : $(emailRegistro).val(),
-            "password"              : btoa($(pass1).val()),
-            "confirmationPassword"  : btoa($(pass2).val()),
-            "dateOfBirth"           : "1992/08/16"        
+            "password"              : password,
+            "confirmationPassword"  : password2,
+            "dateOfBirth"           : date     
         }
         causa = 0;
         enviarDat(urlServidor,myJson,causa); //Ejecuta la funcion enviar que esta de ultima
