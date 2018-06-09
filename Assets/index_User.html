@@ -56,7 +56,7 @@
                         <form class="navbar-form navbar-left" role="search">
                             <div id="searchform"  class="form-group">
                                 <input id="barra-Navegacion" type="text" class="form-control" placeholder="Buscar">
-                                <button id="botonBusqueda" type="submit" > <span class="icon-search"></span> </button> 
+                                <button id="botonBusqueda" type="submit" onclick="mostrarResultados()" > <span class="icon-search"></span> </button> 
                             </div>                                                                          
                         </form>
                      </div>
@@ -98,7 +98,7 @@
                             <form class="navbar-form navbar-left" role="search">
                                     <div id="searchform"  class="form-group">
                                         <input id="barra-Navegacion" type="text" class="form-control" placeholder="Buscar">
-                                        <button id="botonBusqueda" type="submit"  > <span class="icon-search"></span> </button> 
+                                        <button id="botonBusqueda" type="submit" onclick="mostrarResultados()" > <span class="icon-search"></span> </button> 
                                     </div>                                                                          
                                 </form>
                      </div>           
@@ -157,22 +157,22 @@
                          
     </header><!--Cabecera-->  
     <div  id="particles-js">
-            <p>
-                Crea un album multimedia a tu gusto
-            </p>
-                
-        </div>
-        <section id="fondo-Imagen"> </section> 
-        <div>        
-            <div id="titulo-Seccion"> <p>Resultado de busqueda</p> </div>
-            <hr size="15px" id="separador-Busqueda"> 
-              
-            <section class="Resultados container-fluid">
-                <div class="row BusquedaOrdenada">                    
-                        
-                </div>            
-            </section>       
-     </div>
+        <p>
+            Crea un album multimedia a tu gusto
+        </p>            
+    </div>  
+     <div id="fondo-Imagen"></div>   
+    <div>        
+        <div id="titulo-Seccion"> <p>Resultado de busqueda</p> </div>
+        <hr size="15px" id="separador-Busqueda">              
+    </div>
+
+   
+   <section class="Resultados container-fluid">
+            <div class="row BusquedaOrdenada">                    
+                    
+            </div>            
+    </section>
    
     
     <script src="libs/angular.min.js"></script>

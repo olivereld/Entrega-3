@@ -11,6 +11,7 @@ header{
     width: 100%;
     height: 50px;    
     color:fff;    
+    z-index: 100;
 }         
 
     .responsiveMenu,
@@ -126,14 +127,18 @@ header{
 }
 
 body{
-   background: #dadada; 
+   background: rgba(0,0,0,0); 
+   position: cover;
+   z-index: -100;
 }
 #titulo-Seccion{
+    display: none;
     color: white;
     font-size:   20px;
     font-weight: bold; 
 }
 #separador-Busqueda{
+    display: none;
     background: #d3d3d3;
 }
 #particles-js{
@@ -153,14 +158,15 @@ body{
 #fondo-Imagen{
     width: 100%;
     height: 100%;
-    position: fixed;
-    background: url("../image/background.jpg")no-repeat;
-    background-size: 100% 100%;
-    margin-top:-50px; 
-    z-index: -100;
+    position: absolute;               
+    background: url("../image/background.jpg")no-repeat; 
+    z-index: -99;
 }
 .Resultados{    
-    display: inline-block;
+    display: inline-block;    
+     
+    width: 100%;
+    height: 100%;
 }
 #cuadro-Busqueda{
     background: #f2f2f200;
@@ -168,7 +174,8 @@ body{
     height: 250px;
 }
 #cuadro-Contenido{
-    background: #878787;
+   
+    background: rgba(148, 148, 148,0.5);
     margin-left: auto;
     margin-right: auto;
     margin-top: 2%;    
@@ -180,13 +187,13 @@ body{
     width: 100% ;
     height: 100% ;
     margin-top: 0;
-    background: rgb(159, 117, 197);
+    background: rgba(159, 117, 197,0.5);
 
 }
 #cuadro-Contenido:active{
     width: 95% ;
     height: 95% ;
     margin-top: 2%;    
-    background: rgb(109, 70, 143);
+    background: rgba(109, 70, 143,0.7);
     transition: width 1s;   
 }
