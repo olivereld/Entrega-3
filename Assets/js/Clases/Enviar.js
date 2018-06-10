@@ -1,4 +1,3 @@
-
 function enviarDat(enlace,data,causa){ //Con JQuery Forma Registrar Usuario
     $.ajax({ //Envia los datos
             url : enlace, //Url
@@ -9,26 +8,35 @@ function enviarDat(enlace,data,causa){ //Con JQuery Forma Registrar Usuario
 
             success : function (response){ //Si funciona
                    console.log("listo");
+                   ajaxStart();
                    if(causa == 0){
                         registroExitoso();
                     } else if(causa == 1){
                         iniciarSesion(response);
                     }else if (causa == 2){
                         cargarDato('https://ignsw201825-snproject.herokuapp.com/user/get/');
-                    }else if(causa == 3){
-                        window.location="index.html";
                     }
-                    
+                    ajaxStop();
             },
             error: function(error){ //Si falla
+                ajaxStart();
                 if(causa == 0){
                     registroFallido(error);
                 } else if(causa == 1){
                     inicioDeSesionFallida(error);
                 }
+                ajaxStop();
             }
     });
 }
+
+$(document).ready(function () {
+    $(document).ajaxStart(function () {
+        $("loading").show();
+    }).ajaxStop(function () {
+        $("loading").hide();
+    });
+});
 
 function getDat(enlace,id,causa){ //Con JQuery Forma Registrar Usuario
     console.log("Usando el ajax para enviar " +enlace + id);
