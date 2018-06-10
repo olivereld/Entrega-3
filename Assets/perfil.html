@@ -24,198 +24,183 @@
 		<div class="collapse navbar-collapse "; id="navbarNav">
 				<div class="navbar-nav ml-auto" style="font-size: 17px; letter-spacing: 1px; font-family: rale;">
 						<a class="nav-item nav-link pr-4" href="#">Inicio</a>
-						<a class="nav-item nav-link" href="#">Salir</a>
+						<a class="nav-item nav-link" href="#" onclick="salirDeLaPagina('https://ignsw201825-snproject.herokuapp.com/user/logout')">Salir</a>
 				</div>
 		</div>
 	</div>
-	<script>
-			function volverInicio(){
-				var enlace = "https://ignsw201825-snproject.herokuapp.com/user/get/";
-				var id = variablesHeader();						
-				var causa = 1;
-				getDat(enlace,id[0],causa);
-			}
-		</script>
 	
-<!--
-	<div class="ancho">
-		<div class="logo">
-			<p><a href="#" onclick="volverInicio()">WebMedia</a></p>
-		</div>
-		<nav>
-			<ul>
-				<li class="inicioPerfil"><a href="index_User.html">Inicio</a> </li>				
-				<li class="salirPerfil"><a href="#" onclick="salirDeLaPagina('https://ignsw201825-snproject.herokuapp.com/user/logout')">Salir</a> </li> 
-			</ul>
-		</nav>
-	</div>
--->
 </header>
 
 				<!-- Fin Cabecera -->
 
 <div class="cuerpo" >
-	<div class="col-sm-5" id="izquierdo">>
-	<h2 class="head pt-0 rt-0">Perfil</h2>
-	<!-- Widget: user widget style 1 -->
-	 <div class="box box-widget widget-user">
-	 <!-- Add the bg color to the header using any of the bg-* classes -->
-		<div class="widget-user-header bg-aqua-active">
-	  <h3 class="widget-user-username" id="name"></h3>
-	 </div>
-	 <script> //Nombre del usuario cargado en la pagina
-		var nombre = ""+sessionStorage.getItem("nombre") +" "+sessionStorage.getItem("apellido");		
-		document.getElementById("name").innerHTML = nombre;                                    
-		</script>
-		<div class="widget-user-image">
-	  		<img class="img-circle" src="image/user8-128x128.jpg" alt="User Avatar"> <!--Poner aqui el src de la imagen-->
+	<div class="col-sm-3" id="izquierdo">>
+
+		<h2 class="head pt-0 rt-0">Perfil</h2>
+
+		<!-- Widget: user widget style 1 -->
+		<div class="card box-widget widget-user">
+			<!-- Add the bg color to the header using any of the bg-* classes -->
+			<div class="widget-user-header bg-aqua-active">
+				<h3 class="widget-user-username" id="name"></h3>
+			</div>
+			
+			<script> //Nombre del usuario cargado en la pagina
+				var nombre = "" + sessionStorage.getItem("nombre") + " " + sessionStorage.getItem("apellido");
+				document.getElementById("name").innerHTML = nombre;                                    
+			</script>
+			<div class="widget-user-image">
+				<img class="img-circle" src="image/user8-128x128.jpg" alt="User Avatar">
+				<!--Poner aqui el src de la imagen-->
+			</div>
+			<div class="card-body box-profile">
+				<ul class="list-group list-group-unbordered mb-3">
+					<li class="list-group-item">
+						<b>Followers</b>
+						<a class="float-right">1,322</a>
+					</li>
+					<li class="list-group-item">
+						<b>Following</b>
+						<a class="float-right">543</a>
+					</li>
+					<li class="list-group-item">
+						<b>Friends</b>
+						<a class="float-right">13,287</a>
+					</li>
+				</ul>
+			</div>
 		</div>
-		<div class="box-footer">
-		  <div class="row">
-	    <div class="col-sm-4 border-right">
-	      <div class="description-block">
-	        <h5 class="description-header">3,200</h5>
-	        <span class="description-text">Albumes</span>
-	      </div>
-	      <!-- /.description-block -->
-	    </div>
-	    <!-- /.col -->
-	    <div class="col-sm-4 border-right">
-	      <div class="description-block">
-	        <h5 class="description-header">13,000</h5>
-	        <span class="description-text">Amigos</span>
-	      </div>
-	      <!-- /.description-block -->
-	    </div>
-	    <!-- /.col -->
-	    <div class="col-sm-4">
-	      <div class="description-block">
-	        <h5 class="description-header">35</h5>
-	        <span class="description-text">Me Gusta</span>
-	      </div>
-	      <!-- /.description-block -->
-	    </div>
-	    <!-- /.col -->
-	  </div>
-	  <!-- /.row -->
-	</div>
-	</div>
 	<!-- /.widget-user -->
 	<!-- widget: contactos -->
 	<h2 class="head2">Amigos</h2>
 	<div class="col-sm-12 box box-widget friendBox">
-		<div class="row"> 
-		 <div class="clearfix"></div>  
-      <div class="col-sm-12">
-        <div class="col-sm-3"id="friends">
-          <img src="image/avatar5.png" class="img-circle" width="60px">
-        </div>
-        <div class="col-sm-7"id="friends">
-          <h4><a href="#">Ram Ranga Swami</a></h4>
-          <p><a href="#">4 mutual friends</a></p>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-      <hr />
-      <div class="col-sm-12">
-        <div class="col-sm-3" id="friends">
-          <img src="image/avatar5.png" class="img-circle" width="60px">
-        </div>
-        <div class="col-sm-7" id="friends">
-          <h4><a href="#">Ram Ranga Swami</a></h4>
-          <p><a href="#">4 mutual friends</a></p>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-      <hr />
-      <div class="col-sm-12">
-        <div class="col-sm-3" id="friends">
-          <img src="image/avatar5.png" class="img-circle" width="60px">
-        </div>
-        <div class="col-sm-7" id="friends">
-          <h4><a href="#">Ram Ranga Swami</a></h4>
-          <p><a href="#">4 mutual friends</a></p>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-  </div>
-	</div>
-	</div>
-	<div class="col-sm-7 container" id="derecho">
-	<br>
-		<div class="nav-tabs-custom bg-white">
-  
-			  <!-- Nav tabs -->
-			<ul class="nav nav-pills" role="tablist">
-			    <li class="nav-item">
-			    	<a class="nav-link active" data-toggle="tab" href="#home">Albumes</a>
-			    </li>
-			    <li class="nav-item">
-			      	<a class="nav-link" data-toggle="tab" href="#menu1">Editar Cuenta</a>
-			    </li>
-			</ul>
-
-			  <!-- Tab panes -->
-			<div class="tab-content">
-			    <div id="home" class="container tab-pane active" ><br>
-			      	<div class="card-columns" id="galeria">
-			              
-			            <div class="card">
-			            	<img src="image/1.jpg" class="card-img-top"  alt="">
-									</div>
-									<div class="card">
-			            	<img src="image/2.jpg" class="card-img-top"  alt="">
-									</div>
-									<div class="card">
-			            	<img src="image/3.jpg" class="card-img-top"  alt="">
-									</div>
-									<div class="card">
-										<img src="image/4.jpg" class="card-img-top"  alt="">
-									</div>
-									<div class="card">
-										<img src="image/5.jpg" class="card-img-top"  alt="">
-									</div>
-									<div class="card">
-										<img src="image/6.jpg" class="card-img-top"  alt="">
-									</div>
-									<div class="card">
-										<img src="image/7.jpg" class="card-img-top"  alt="">
-									</div>
-									<div class="card">
-										<img src="image/8.jpg" class="card-img-top"  alt="">
-									</div>             
-								</div>
+		<div class="row">
+			<div class="clearfix"></div>
+			<div class="col-sm-12">
+				<div class="col-sm-3" id="friends">
+					<img src="image/avatar5.png" class="img-circle" width="60px">
+				</div>
+				<div class="col-sm-7" id="friends">
+					<h4>
+						<a href="#">Ram Ranga Swami</a>
+					</h4>
+					<p>
+						<a href="#">4 mutual friends</a>
+					</p>
+				</div>
 			</div>
-		    <div id="menu1" class="container tab-pane fade"><br>
-		      	<form>
+			<div class="clearfix"></div>
+			<hr />
+			<div class="col-sm-12">
+				<div class="col-sm-3" id="friends">
+					<img src="image/avatar5.png" class="img-circle" width="60px">
+				</div>
+				<div class="col-sm-7" id="friends">
+					<h4>
+						<a href="#">Ram Ranga Swami</a>
+					</h4>
+					<p>
+						<a href="#">4 mutual friends</a>
+					</p>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+			<hr />
+			<div class="col-sm-12">
+				<div class="col-sm-3" id="friends">
+					<img src="image/avatar5.png" class="img-circle" width="60px">
+				</div>
+				<div class="col-sm-7" id="friends">
+					<h4>
+						<a href="#">Ram Ranga Swami</a>
+					</h4>
+					<p>
+						<a href="#">4 mutual friends</a>
+					</p>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+<div class="col-sm-9 container" id="derecho">
+	<br>
+	<div class="nav-tabs-custom bg-white">
+
+		<!-- Nav tabs -->
+		<ul class="nav nav-pills" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active" data-toggle="tab" href="#home">Albumes</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" data-toggle="tab" href="#menu1">Editar Cuenta</a>
+			</li>
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content">
+			<div id="home" class="container tab-pane active">
+				<br>
+				<div class="card-columns" id="galeria">
+
+					<div class="card">
+						<img src="image/1.jpg" class="card-img-top" alt="">
+					</div>
+					<div class="card">
+						<img src="image/2.jpg" class="card-img-top" alt="">
+					</div>
+					<div class="card">
+						<img src="image/3.jpg" class="card-img-top" alt="">
+					</div>
+					<div class="card">
+						<img src="image/4.jpg" class="card-img-top" alt="">
+					</div>
+					<div class="card">
+						<img src="image/5.jpg" class="card-img-top" alt="">
+					</div>
+					<div class="card">
+						<img src="image/6.jpg" class="card-img-top" alt="">
+					</div>
+					<div class="card">
+						<img src="image/7.jpg" class="card-img-top" alt="">
+					</div>
+					<div class="card">
+						<img src="image/8.jpg" class="card-img-top" alt="">
+					</div>
+				</div>
+			</div>
+			<div id="menu1" class="container tab-pane fade">
+				<br>
+				<form>
 					<div class="row">
-					    <div class="form-group col-md-6">
-					      	<label for="">Nombre</label>
-					      	<input type="text" class="form-control" id="inputNombre" placeholder="Nombre">
-					    </div>
-					    <div class="form-group col-md-6">
-					      	<label for="">Apellido</label>
-					      	<input type="text" class="form-control" id="inputApellido" placeholder="Apellido">
-					    </div>
+						<div class="form-group col-md-6">
+							<label for="">Nombre</label>
+							<input type="text" class="form-control" id="inputNombre" placeholder="Nombre">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="">Apellido</label>
+							<input type="text" class="form-control" id="inputApellido" placeholder="Apellido">
+						</div>
 					</div>
 					<div class="form-row">
-					    <div class="form-group col-md-6">
-					      	<label for="inputEmail4">Email</label>
-					      	<input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-					    </div>
-					    <div class="form-group col-md-6">
-					      	<label for="inputPassword4">Contrase&ntilde;a</label>
-					      	<input type="password" class="form-control" id="inputPassword4" placeholder="Contrase&ntilde;a">
-					    </div>
-						</div>						
-					  <span class="btn btn-primary" onclick="modificarDatosDelUsuario()">Guardar</span>
+						<div class="form-group col-md-6">
+							<label for="inputEmail4">Email</label>
+							<input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+						</div>
+						<div class="form-group col-md-6">
+							<label for="inputPassword4">Contrase&ntilde;a</label>
+							<input type="password" class="form-control" id="inputPassword4" placeholder="Contrase&ntilde;a">
+						</div>
+					</div>
+					<span class="btn btn-primary" onclick="modificarDatosDelUsuario()">Guardar</span>
 				</form>
-		    </div>
-  </div>
+			</div>
+		</div>
 	</div>
 </div>
 </div>
 <br>
 
 </body>
+
 </html>
