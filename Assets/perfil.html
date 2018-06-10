@@ -2,24 +2,16 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Document</title>	
 	
-
-	<script src="js/Clases/Variable.js"></script>
-	<script src="js/Clases/Enviar.js"></script>
-
-	<script src="js/Clases/Usuario.js">  </script> <!--Este Script es el encargado de enviar la peticion para los datos del perfil-->
-	<link rel="stylesheet" href="Css3/css/bootstrap.min.css">
+	<script src="js/Clases/ConsumirServicios.js"></script>
+	<link   rel="stylesheet" href="Css3/css/bootstrap.min.css">
 	<script src="js/jquery.js"></script>  
 	<script src="js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="Css3/css/AdminLTE.min.css"> 	
-	<link rel="stylesheet" href="Css3/perfil.css">
+	<link   rel="stylesheet" href="Css3/css/AdminLTE.min.css"> 	
+	<link   rel="stylesheet" href="Css3/perfil.css">
 </head>
 <body>
-	<script>
-		cargarDato('https://ignsw201825-snproject.herokuapp.com/user/get/');	
-	</script>
-
 <!-- Comienza la cabecera -->
 <header class="fixed-top">
 
@@ -29,16 +21,8 @@
 		</div>
 		<nav>
 			<ul>
-				<li class="inicioPerfil"><a href="#" onclick="volverInicio()">Inicio</a> </li>
-				<script>
-					function volverInicio(){
-						var enlace = "https://ignsw201825-snproject.herokuapp.com/user/get/";
-						var id = variablesHeader();						
-						var causa = 1;
-						getDat(enlace,id[0],causa);
-					}
-				</script>
-				<li class="salirPerfil"><a href="index.html">Salir</a> </li>
+				<li class="inicioPerfil"><a href="index_User.html">Inicio</a> </li>				
+				<li class="salirPerfil"><a href="#" onclick="salirDeLaPagina('https://ignsw201825-snproject.herokuapp.com/user/logout')">Salir</a> </li> 
 			</ul>
 		</nav>
 	</div>
@@ -51,11 +35,15 @@
 	<div class="col-sm-5" id="izquierdo">>
 	<h2 class="head">Perfil</h2>
 	<!-- Widget: user widget style 1 -->
-	<div class="box box-widget widget-user">
-	<!-- Add the bg color to the header using any of the bg-* classes -->
+	 <div class="box box-widget widget-user">
+	 <!-- Add the bg color to the header using any of the bg-* classes -->
 		<div class="widget-user-header bg-aqua-active">
 	  <h3 class="widget-user-username" id="name"></h3>
-		</div>
+	 </div>
+	 <script> //Nombre del usuario cargado en la pagina
+		var nombre = ""+sessionStorage.getItem("nombre") +" "+sessionStorage.getItem("apellido");		
+		document.getElementById("name").innerHTML = nombre;                                    
+		</script>
 		<div class="widget-user-image">
 	  		<img class="img-circle" src="image/user8-128x128.jpg" alt="User Avatar"> <!--Poner aqui el src de la imagen-->
 		</div>
@@ -197,7 +185,7 @@
 					      	<input type="password" class="form-control" id="inputPassword4" placeholder="Contrase&ntilde;a">
 					    </div>
 						</div>						
-					  <span class="btn btn-primary" onclick="actualizar('https://ignsw201825-snproject.herokuapp.com/user/get/')">Guardar</span>
+					  <span class="btn btn-primary" onclick="modificarDatosDelUsuario()">Guardar</span>
 				</form>
 		    </div>
   </div>

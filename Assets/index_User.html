@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="Css3/modalLogin.css"/>
     <link rel="stylesheet" href="fonts/iconStyle.css"/>
 
-    <script src="js/Clases/Enviar.js"></script>    
-    <script src="js/Clases/Login.js"></script>
+    <script src="js/Clases/ConsumirServicios.js"></script>  
     <script src="js/Clases/Busqueda.js"></script>
+    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"> 
     <script type="text/javaScript">
         var ventanaBarraVisible = false;
@@ -78,13 +78,13 @@
                      <!--Menu de opciones normal-->
                      <ul class="opciones">                        
                         <li>
-                            <a href="#"  onclick="salir()" > 
+                            <a href="#"  onclick="salirDeLaPagina('https://ignsw201825-snproject.herokuapp.com/user/logout')" > 
                                  <span class="icon-exit"></span>
                                  <span > Salir </span>                                 
                            </a>         
                         </li>
                         <li>
-                             <a href="#"  onclick="perfil()" > 
+                             <a href="perfil.html"> 
                                  <img src="image/user8-128x128.jpg" class="image-responsive perfil_Mini"/>
                                  <span data-target="perfil.html"  id="userBoton" ></span>                                
                              </a>                     
@@ -107,7 +107,7 @@
                      <div class="menuInferior">
                             <ul class="opcionesInferior"> <!-- Registrarse-->
                                 <li>
-                                     <a href="#"  onclick="salir()" > 
+                                     <a href="#"  onclick="salirDeLaPagina('https://ignsw201825-snproject.herokuapp.com/user/logout')" > 
                                          <span class="icon-exit"></span>
                                          <span > Salir </span>                                 
                                      </a>         
@@ -128,30 +128,7 @@
                     <script> //Script para mostrar nombre de usuario
                             var nombre = ""+sessionStorage.getItem("nombre");
                             document.getElementById("userBoton").innerHTML = nombre;                                    
-                    </script>
-                    <script> //Script para boton accion
-                           function perfil(){
-                            var paramstr = window.location.search.substr(1);                           
-                            var paramarr = paramstr.split ("&");                           
-                            var auxiliar = [];
-
-                            for(var i = 0; i < paramarr.length; i++ ){
-                                 auxiliar[i]= (paramarr[i].split("="))[1];
-                                console.log(auxiliar);
-                            }
-                            window.location="perfil.html?var_="+auxiliar[2];
-                        }                                 
-                    </script>
-               
-
-               <!-- Salir-->                   
-                    <script>
-                        function salir(){
-                            logOut("https://ignsw201825-snproject.herokuapp.com/user/logout");
-                            //window.location="index.html";
-                        }
-                    </script>             
-               
+                    </script>               
                 <!--Opciones de la cabecera-->
                 
                          
