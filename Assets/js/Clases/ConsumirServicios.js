@@ -1,8 +1,7 @@
 /* Registro del usuario */
 function enviarSolicitudDeRegistro(enlaceUrlHeroku,jsonConLosDatos){ 
-    /*Barra de carga*/
+     
      $.ajax({
-
          url : enlaceUrlHeroku, 
          data : JSON.stringify(jsonConLosDatos), 
          method :'POST', 
@@ -17,10 +16,11 @@ function enviarSolicitudDeRegistro(enlaceUrlHeroku,jsonConLosDatos){
              registroFallido(error);               
          }
      });
+     
 }
 
 function registroExitoso(){
-    /*Barra de carga fin */
+    ocultarCarga();    
      $(nombreRegistro).val("");
      $(apellidoRegistro).val("");
      $(emailRegistro).val("");
@@ -34,12 +34,14 @@ function registroExitoso(){
 }
 
 function registroFallido(error){
+    ocultarCarga(); 
     alert("Error al registrarse:" + error);
 }
 
 
 /* Inicio de session */
  function enviarSolicitudDeLogin(enlaceUrlHeroku){ //Con JQuery Forma Registrar Usuario
+    mostrarCarga();
      var jsonConLosDatos = { //Creando JSON Con el formato
          "email"       : $(correoLog).val(),
          "password"    : btoa($(claveLog).val()),    
@@ -74,9 +76,11 @@ function registroFallido(error){
     sessionStorage.setItem("nombre",nombre);
     sessionStorage.setItem("apellido",apellido);
     sessionStorage.setItem("fechaDeNAcimiento",fechaDeNAcimiento);  
+    ocultarCarga();
     window.location="index_User.html?var_="+response.firstName+"&var_="+response.lastName+"&var_="+response.id+"&var_="+response.authToken;
 }
 function inicioDeSesionFallida(error){
+    ocultarCarga();
     respuesta = JSON.stringify(error.responseJSON.message);
     console.log(respuesta);
     if(respuesta == '"' + "invalid_pass" + '"'){

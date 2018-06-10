@@ -66,6 +66,7 @@ function correoValido(){//Verifica si un correo es valido
 
 //Comunicacion con el servidor -------------------------------------------------------------------------------
 function formalizar(urlServidor){
+    mostrarCarga();
     var date      = ""+$(fechaRegistro).val();
     var password  = ""+btoa($(pass1).val());
     var password2 = ""+btoa($(pass2).val());   
@@ -82,8 +83,10 @@ function formalizar(urlServidor){
             "dateOfBirth"           : date     
         }        
         enviarSolicitudDeRegistro(urlServidor,jsonConRegistroDeUsuario); //Ejecuta la funcion enviar que esta de ultima              
-     } else
+     } else{
+        ocultarCarga();
         console.error("No se puede crear JSON"); //Si no se cumplen los requisitos
+    }
 }
 
 

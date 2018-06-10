@@ -21,6 +21,9 @@
     <script type="text/javaScript">
     var ventanaBarraVisible = false;
     var ventanaMenuVisible  = false;
+    var seleccionCorreoPorPrimeraVez          = false;
+    var seleccionPasswordPorPrimeraVez        = false;
+    var seleccionRepetirPasswordPorPrimeraVez = false;
     function mostrarBarraInferiorDeBuesqueda(){        
         if(!ventanaBarraVisible){
             if(ventanaMenuVisible){
@@ -51,10 +54,7 @@
     <title>Title</title>   
 
 </head>
-<body>  
-
-
-    
+<body>     
     <header class="container-fluid fixed-top "><!--Cabecera-->
         <section class="row" id="cabeceraTitulo">           
                 <div class="titulo "> <!-- Logo-->
@@ -143,12 +143,14 @@
          </div>  
                       
     </header><!--Cabecera--> 
-                
+    
     <div  id="particles-js">
         <p>
             Crea un album multimedia a tu gusto
         </p>            
-    </div>  
+    </div>      
+     
+
      <div id="fondo-Imagen"></div>   
     <div>        
         <div id="titulo-Seccion"> <p>Resultado de busqueda</p> </div>
@@ -161,8 +163,7 @@
                     
             </div>            
     </section>
-
-    
+    <script src="js/Clases/PantallaCarga.js"></script>
     <script src="js/Clases/Busqueda.js"></script>
     <script src="js/Particles/particles.js"></script>
     <script src="js/Particles/app.js"></script>    
@@ -171,13 +172,18 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/Clases/ConsumirServicios.js"></script> 
     <script src="js/Clases/Registro.js"></script>  
+    
   
 </body>
 
 <!-- -------------------------------------------------LOGIN MODAL------------------------------------------------- -->
 <div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog" role ="document">        
-            <div class="modal-content">
+    <div class="modal-dialog" role ="document">  
+              
+            <div class="modal-content">                   
+                    <div class="modalCarga">
+                            <div id="loadingGift"></div>
+                     </div> 
 
                     <div class="container modal-header1">
                             <p class="text-center">WebMedia</p>
@@ -195,11 +201,11 @@
                 <div class="modal-footer">             
                     <button type="button" class="cancelbtnModal modal-button btn btn-default" data-dismiss="modal">  Cancelar </button> 
                     
-                    <button class="modal-button" type="submit" onclick="enviarSolicitudDeLogin('https://ignsw201825-snproject.herokuapp.com/user/login')">Entrar</button>  
+                    <button class="modal-button" type="submit"  onclick="enviarSolicitudDeLogin('https://ignsw201825-snproject.herokuapp.com/user/login');">Entrar</button>   <!--   -->
 
                 </div>
             </div>        
-    </div>
+    </div>    
 </div> 
 <!-- -------------------------------------------------LOGIN MODAL------------------------------------------------- -->
 
@@ -207,14 +213,17 @@
 
 <div id="myModal2" class="modal fade" role="dialog">    
 
-        <div class="modal-dialog" role ="document">        
+        <div class="modal-dialog" role ="document"> 
+                       
                 <div class="modal-content">
     
-                    <div class="container modal-header1">
+                     <div class="container modal-header1">
                         <p class="text-center">WebMedia</p>
-                    </div>
-            
-                    <div class="loading"> </div>
+                     </div>
+                    
+                     <div class="modalCarga">
+                            <div id="loadingGift"></div>
+                     </div> 
                     
                     <div class="modal-form">
                         <!--label class="modal-letters" for="uname"><b>Nombre de Usuario:</b></label-->
@@ -233,7 +242,7 @@
                     <div class="modal-footer" >             
                         <button type="button" class="cancelbtnModal modal-button btn btn-default" data-dismiss="modal">  Cancelar </button> 
                         
-                        <button  id="registrar" class="modal-button" type="submit"  onclick="formalizar('https://ignsw201825-snproject.herokuapp.com/user/register')">Enviar</button>  
+                        <button  id="registrar" class="modal-button" type="submit"  onclick="formalizar('https://ignsw201825-snproject.herokuapp.com/user/register')">Enviar</button>   <!--  -->
     
                     </div>
                 </div>        
@@ -241,34 +250,47 @@
     </div> 
     <!-- ----------Validaciones en tiempo real------------  -->
     <script>
-         $( "#pass1" ).on('keyup',function() {
-             var valor = $(pass1).val().length;             
-            if (valor < 7 ){
-                $(pass1).css("border","solid #ec6464");                            
-            } else
-                $(pass1).css("border","solid #87ee8c");
+        
+        $( "#emailRegistro" ).click(function(){ seleccionCorreoPorPrimeraVez = true;});
+        $( "#pass1" ).click(function(){  seleccionPasswordPorPrimeraVez = true;});
+        $( "#pass2" ).click(function(){ seleccionRepetirPasswordPorPrimeraVez = true;});
 
-             if ($(pass1).val() != $(pass2).val() )
-                $(pass2).css("border","solid #ec6464");
+        
+            $( "#emailRegistro" ).on('keyup',function() {
+                
+                if ($(emailRegistro).val().indexOf("@") > -1 && $(emailRegistro).val().indexOf(".com") > -1 && seleccionCorreoPorPrimeraVez){
+                     $(emailRegistro).css("border","solid #101010");
+                     $(emailRegistro).css("background-color","#101010");                           
+                } else if(seleccionCorreoPorPrimeraVez)             
+                    $(emailRegistro).css("border","solid #ec6464");
 
-        }).keyup();
+            }).keyup();
+       
+        
+            $( "#pass1" ).on('keyup',function() {
+                var valor = $(pass1).val().length;             
+                if (valor < 7 && seleccionPasswordPorPrimeraVez ){
+                    $(pass1).css("border","solid #ec6464");                            
+                } else if(seleccionPasswordPorPrimeraVez)
+                    $(pass1).css("border","solid #87ee8c");
 
-        $( "#pass2" ).on('keyup',function() {           
-            
-            if ($(pass1).val() != $(pass2).val() ){
-                $(pass2).css("border","solid #ec6464");                            
-            }else if($(pass1).val().length > 0)
-                $(pass2).css("border","solid #87ee8c");
+                if ($(pass1).val() != $(pass2).val() && seleccionPasswordPorPrimeraVez )
+                    $(pass2).css("border","solid #ec6464");
 
-        }).keyup();
-        $( "#emailRegistro" ).on('keyup',function() {
-             
-            if ($(emailRegistro).val().indexOf("@") > -1 && $(emailRegistro).val().indexOf(".com") > -1){
-                $(emailRegistro).css("border","solid #87ee8c");                           
-            } else              
-                $(emailRegistro).css("border","solid #ec6464");
+            }).keyup();
 
-        }).keyup();
+         
+         
+            $( "#pass2" ).on('keyup',function() {         
+                
+                if ($(pass1).val() != $(pass2).val() && seleccionRepetirPasswordPorPrimeraVez){
+                    $(pass2).css("border","solid #ec6464");                            
+                }else if($(pass1).val().length > 0 && seleccionRepetirPasswordPorPrimeraVez)
+                    $(pass2).css("border","solid #87ee8c");
+
+            }).keyup();
+              
+        
     </script>
 <!-- -------------------------------------------------Registro MODAL------------------------------------------------- -->  
 </html>

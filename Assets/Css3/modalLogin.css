@@ -4,6 +4,10 @@
 .modal{
     display: none;
 }
+.modalCarga{    
+     display:none;    
+}
+
 .modal-content{
     max-width: 400px;
     height: auto;
@@ -16,17 +20,22 @@
     border-radius: 15px;
 }
 
-.loading {
-    display: hidden;
-	max-width: 400px;
-    height: auto;
-    margin: auto;
-    top:25px;
-    padding: 10px;
-    width: auto;
-	z-index: top;
-	background: url('../image/loading-gif-transparent-background-download-12.gif') 100% 50% no-repeat;}
-
+.modalCarga{   
+    position: absolute;
+    height: 30%;
+    margin-top: 25%;
+       
+    padding: 10%;
+    width: 100%;
+	z-index: 100;
+}
+#loadingGift{    
+    background: url("../image/loading.gif")no-repeat;
+    position: absolute; 
+    margin-left: 25%;       
+    width: 100%;
+    height: 100%;
+}
 
 .modal:target{
     position: fixed;
