@@ -16,7 +16,7 @@ function enviarSolicitudDeRegistro(enlaceUrlHeroku,jsonConLosDatos){
              registroFallido(error);               
          }
      });
-     
+
 }
 
 function registroExitoso(){
@@ -154,9 +154,9 @@ function modificarDatosDelUsuario(){
     var urlHeroku = "https://ignsw201825-snproject.herokuapp.com/user/update/" + sessionStorage.getItem('id');
     console.log(datosJson);
     $.ajax({ 
-            url :urlHeroku, //Url    
+            url :urlHeroku,   
             data : JSON.stringify(datosJson),        
-            method :'PUT', //en este caso
+            method :'PUT', 
             contentType: 'application/json; charset=utf-8', 
             dataType :'json',           
 
