@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>	
+	<title>WebMedia: Perfil</title>
 	
 	<script src="js/Clases/ConsumirServicios.js"></script>
 	<link   rel="stylesheet" href="Css3/css/bootstrap.min.css">
@@ -13,8 +13,31 @@
 </head>
 <body>
 <!-- Comienza la cabecera -->
-<header class="fixed-top">
+<header class="navbar fixed-top navbar-dark bg-dark  pt-1 navbar-expand-sm" style="box-sizing: border-box;">
 
+	<div class="container px-0 py-0 my-0">
+		<a class="navbar-brand pt-0 pt-1 pb-0" style="font-size: 40px; font-family: rale; letter-spacing: 1px;" href="#" onclick="volverInicio()">WebMedia</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse "; id="navbarNav">
+				<div class="navbar-nav ml-auto" style="font-size: 17px; letter-spacing: 1px; font-family: rale;">
+						<a class="nav-item nav-link pr-4" href="#">Inicio</a>
+						<a class="nav-item nav-link" href="#">Salir</a>
+				</div>
+		</div>
+	</div>
+	<script>
+			function volverInicio(){
+				var enlace = "https://ignsw201825-snproject.herokuapp.com/user/get/";
+				var id = variablesHeader();						
+				var causa = 1;
+				getDat(enlace,id[0],causa);
+			}
+		</script>
+	
+<!--
 	<div class="ancho">
 		<div class="logo">
 			<p><a href="#" onclick="volverInicio()">WebMedia</a></p>
@@ -26,14 +49,14 @@
 			</ul>
 		</nav>
 	</div>
-
+-->
 </header>
 
 				<!-- Fin Cabecera -->
 
 <div class="cuerpo" >
 	<div class="col-sm-5" id="izquierdo">>
-	<h2 class="head">Perfil</h2>
+	<h2 class="head pt-0 rt-0">Perfil</h2>
 	<!-- Widget: user widget style 1 -->
 	 <div class="box box-widget widget-user">
 	 <!-- Add the bg color to the header using any of the bg-* classes -->
@@ -192,7 +215,7 @@
 	</div>
 </div>
 </div>
-
+<br>
 
 </body>
 </html>
