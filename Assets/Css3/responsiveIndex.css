@@ -1,6 +1,8 @@
 /*Media Index --------------------------------------------------------------------------------*/
 @media (max-width: 48em) { 
-    
+    .opciones_Perfil{
+        display: none;
+    }
     .opciones{ /*Contenedor de opciones*/       
        display: none; 
      }      
@@ -19,7 +21,8 @@
        height: auto;      
     }
     /*Menu Responsive*/
-    .responsiveMenu{
+    .responsiveMenu{       
+        
         display:inline-flex;
         width: 50%;        
         margin-right: 0;

@@ -5,163 +5,158 @@
     <meta name="viewport" content="width=device‐width, initial‐scale=1.0">
     <link rel="stylesheet" href="Css3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="Css3/index.css"/>
-    <script src="js/Clases/Login.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"> 
-    <title>Web</title>
+    <link rel="stylesheet" href="Css3/responsiveIndex.css"/>
+    <link rel="stylesheet" href="Css3/modalLogin.css"/>
+    <link rel="stylesheet" href="fonts/iconStyle.css"/>
 
+    <script src="js/Clases/ConsumirServicios.js"></script>  
+    <script src="js/Clases/Busqueda.js"></script>
     
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"> 
+    <script type="text/javaScript">
+        var ventanaBarraVisible = false;
+        var ventanaMenuVisible  = false;
+        function mostrarBarraInferiorDeBuesqueda(){        
+            if(!ventanaBarraVisible){
+                if(ventanaMenuVisible){
+                    $(".opcionesInferior").slideUp("fast");
+                    ventanaMenuVisible = false;
+                }
+                $(".buscadorInferior").slideDown("fast");
+                ventanaBarraVisible = true;
+            }else{
+                $(".buscadorInferior").slideUp("fast");
+                ventanaBarraVisible = false;
+            }        
+        }
+        function mostrarBarraInferiorDeOpciones(){ 
+            if(!ventanaMenuVisible){            
+                if(ventanaBarraVisible){
+                    $(".buscadorInferior").slideUp("fast");
+                    ventanaBarraVisible = false;
+                }
+                $(".opcionesInferior").slideDown("fast");
+                ventanaMenuVisible = true;
+            }else{
+                $(".opcionesInferior").slideUp("fast");
+                ventanaMenuVisible = false;
+            }       
+        }    
+        </script>
+    <title>WebMedia</title>
 </head>
-<body>       
-           
+<body>           
     <header class="container-fluid fixed-top "><!--Cabecera-->
-
-
-            <section class="row">
-
-                    <div class="titulo"> <!-- Logo-->
+            <section class="row" id="cabeceraTitulo">
+                     <div class="titulo"> <!-- Logo-->
                         <p>WebMedia</p>                                                            
-                    </div>  
-                    
+                     </div>  
                      <!--Barra de busqueda-->
                      <div class="buscador">
                         <form class="navbar-form navbar-left" role="search">
                             <div id="searchform"  class="form-group">
                                 <input id="barra-Navegacion" type="text" class="form-control" placeholder="Buscar">
-                                <button id="botonBusqueda" type="submit" > <span class="icon-search"></span> </button> 
+                                <button id="botonBusqueda" type="submit" onclick="mostrarResultados()" > <span class="icon-search"></span> </button> 
                             </div>                                                                          
                         </form>
-                     </div>   
+                     </div>
+                     <!--Barra de busqueda fin--> 
+
+                      <!--Opciones de la cabecera desplegables-->
+                     <div class="container-fluid responsiveMenu">
+                            <div class="navegacion1">
+                                 <span class="icon-search" onclick="mostrarBarraInferiorDeBuesqueda()">                                 
+                                 </span>                                                        
+                            </div>
+                            <div class="navegacion2" onclick="mostrarBarraInferiorDeOpciones()">
+                                 <span class="icon-menu">                                 
+                                 </span>
+                            </div>                        
+                     </div>               
+                     <!--opciones desplegables-->                  
                      
-                     <!--Barra de busqueda-->  
-
-                 <!--Opciones de la cabecera-->           
-                
-                <div class="opciones_Perfil" > <!-- Usuario-->
-                    <img src="image/user8-128x128.jpg" class="image-responsive perfil_Mini"/>
-                    <span onclick="perfil()" data-toggle="modal" data-target="perfil.html"  id="userBoton" >                       
-                                           
-                    </span>
+                     <!--Menu de opciones normal-->
+                     <ul class="opciones">                        
+                        <li>
+                            <a href="#"  onclick="salirDeLaPagina('https://ignsw201825-snproject.herokuapp.com/user/logout')" > 
+                                 <span class="icon-exit"></span>
+                                 <span > Salir </span>                                 
+                           </a>         
+                        </li>
+                        <li>
+                             <a href="perfil.html"> 
+                                 <img src="image/user8-128x128.jpg" class="image-responsive perfil_Mini"/>
+                                 <span data-target="perfil.html"  id="userBoton" ></span>                                
+                             </a>                     
+                        </li>
+                     </ul>
+                    
+                 </section> 
+                 <!--Menu de opciones normal-->
+                    <!--Barra de navegacion inferior desplegable-------------->
+                     <div class="buscadorInferior">
+                            <form class="navbar-form navbar-left" role="search">
+                                    <div id="searchform"  class="form-group">
+                                        <input id="barra-Navegacion" type="text" class="form-control" placeholder="Buscar">
+                                        <button id="botonBusqueda" type="submit" onclick="mostrarResultados()" > <span class="icon-search"></span> </button> 
+                                    </div>                                                                          
+                                </form>
+                     </div>           
+                     
+                     <!--Menu inferior de opciones-->
+                     <div class="menuInferior">
+                            <ul class="opcionesInferior"> <!-- Registrarse-->
+                                <li>
+                                     <a href="#"  onclick="salirDeLaPagina('https://ignsw201825-snproject.herokuapp.com/user/logout')" > 
+                                         <span class="icon-exit"></span>
+                                         <span > Salir </span>                                 
+                                     </a>         
+                                </li>
+                                
+                             <!-- Entrar-->
+                                <li>
+                                     <a href="#"  onclick="perfil()" >    
+                                         <span class="icon-user"></span>                                      
+                                         <span data-target="perfil.html"  id="userBoton" >Perfil</span>                                
+                                     </a>                
+                                 </li>                      
+                            </ul>
+                     </div>  
+                     <!--Menu inferior de opciones--> 
+                     <!--Barra de navegacion inferior desplegable Fin---------->
+                    
                     <script> //Script para mostrar nombre de usuario
-                            var paramstr = window.location.search.substr(1);                           
-                            var paramarr = paramstr.split ("&");                           
-                            var auxiliar = [];
-
-                            for(var i = 0; i < paramarr.length; i++ ){
-                                 auxiliar[i]= (paramarr[i].split("="))[1];
-                                console.log(auxiliar);
-                            }
-                            document.getElementById("userBoton").innerHTML = auxiliar[0];                                    
-                    </script>
-                    <script> //Script para boton accion
-                           function perfil(){
-                            var paramstr = window.location.search.substr(1);                           
-                            var paramarr = paramstr.split ("&");                           
-                            var auxiliar = [];
-
-                            for(var i = 0; i < paramarr.length; i++ ){
-                                 auxiliar[i]= (paramarr[i].split("="))[1];
-                                console.log(auxiliar);
-                            }
-                            window.location="perfil.html?var_="+auxiliar[2];
-                        }                                 
-                    </script>
-                </div> 
-
-                <div class="col-xm-12 col-md-1  opciones_Perfil"> <!-- Salir-->
-                    <span onclick="salir()" data-toggle="modal">                                                 
-                        Salir                                       
-                    </span>
-                    <script>
-                        function salir(){
-                            window.location="index.html";
-                        }
-                    </script>                  
-                </div> 
+                            var nombre = ""+sessionStorage.getItem("nombre");
+                            document.getElementById("userBoton").innerHTML = nombre;                                    
+                    </script>               
                 <!--Opciones de la cabecera-->
                 
-            </section>              
+                         
     </header><!--Cabecera-->  
-    
+    <div  id="particles-js">
+        <p>
+            Crea un album multimedia a tu gusto
+        </p>            
+    </div>  
+     <div id="fondo-Imagen"></div>   
+    <div>        
+        <div id="titulo-Seccion"> <p>Resultado de busqueda</p> </div>
+        <hr size="15px" id="separador-Busqueda">              
+    </div>
 
-
-    <!--contenido principal-->
-    
    
-    <section class="container"><!-- Contenedor del cuerpo-->        
-        <div class="row">
-            <div class="col-sm-12"> <small> <h5></h5> </small> </div>
-
-            <div class="col-sm-8 main">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. {{2*6}}, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias repudiandae, repellat dolor qui natus corporis provident quia. Obcaecati nihil, a distinctio, similique laboriosam, placeat quis dolorem expedita ipsa adipisci praesentium.</p>
-           
-            </div>
-            
-            <div class="col-sm-4 sub">
-                <div class="CajaVideo">
-                        <div class="imagenPrueba">
-                            <img  src="image/Reproducir.png" alt="video">
-                            <span class="tituloImagenPrueba">  El video mas divertido del mundo   </span></br>
-                            <span class="infoImagenPrueba">  informacion nula y fea duracion etc   </span>
-                        <hr>
-                        </div>                       
-                </div>
-                
-                <div class="CajaVideo">
-                        <div class="imagenPrueba">
-                            <img  src="image/Reproducir.png" alt="video">
-                            <span class="tituloImagenPrueba">  El video mas divertido del mundo   </span></br>
-                            <span class="infoImagenPrueba">  informacion nula y fea duracion etc   </span>
-                            <hr>
-                        </div>                       
-                </div>
-
-                <div class="CajaVideo">
-                        <div class="imagenPrueba">
-                            <img  src="image/Reproducir.png" alt="video">
-                            <span class="tituloImagenPrueba">  El video mas divertido del mundo   </span></br>
-                            <span class="infoImagenPrueba">  informacion nula y fea duracion etc   </span>
-                            <hr>
-                        </div>                       
-                </div>
-
-                <div class="CajaVideo">
-                        <div class="imagenPrueba">
-                            <img  src="image/Reproducir.png" alt="video">
-                            <span class="tituloImagenPrueba">  El video mas divertido del mundo   </span></br>
-                            <span class="infoImagenPrueba">  informacion nula y fea duracion etc   </span>
-                            <hr>
-                        </div>                       
-                </div>
-                <div class="CajaVideo">
-                        <div class="imagenPrueba">
-                            <img  src="image/Reproducir.png" alt="video">
-                            <span class="tituloImagenPrueba">  El video mas divertido del mundo   </span></br>
-                            <span class="infoImagenPrueba">  informacion nula y fea duracion etc   </span>
-                            <hr>
-                        </div>                       
-                </div>
-                
+   <section class="Resultados container-fluid">
+            <div class="row BusquedaOrdenada">                    
                     
-            </div>
-
-
-        </div>
-    </section> <!--Fin de contenido principal-->
-    
+            </div>            
+    </section>
    
     
     <script src="libs/angular.min.js"></script>
     <script src="js/Jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-   
-   
-    
+    <script src="js/bootstrap.min.js"></script> 
+    <script src="js/Particles/particles.js"></script>
+    <script src="js/Particles/app.js"></script>    
 </body>
 
 </html>

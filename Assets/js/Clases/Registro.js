@@ -66,27 +66,23 @@ function correoValido(){//Verifica si un correo es valido
 
 //Comunicacion con el servidor -------------------------------------------------------------------------------
 function formalizar(urlServidor){
-    var date =""+$(fechaRegistro).val();
-    var password = ""+btoa($(pass1).val());
-    var password2 = ""+btoa($(pass2).val());    
-    if( campoVacio() && //Comprueba si esta algun campo sin completar
-        longitud()   && //Comprueba si las contraseñas tienen la longitud correcto
-        comparar()   && //comprueba si las contraseñas son iguales
-        correoValido()){//comprueba que el correo tiene @ y termina en .com
-            //Si se cumplen los campos anteriores
+    var date      = ""+$(fechaRegistro).val();
+    var password  = ""+btoa($(pass1).val());
+    var password2 = ""+btoa($(pass2).val());   
+
+    if( campoVacio() && longitud() && comparar() && correoValido()){
+            
         console.log("Creando JSON");  
-        var myJson = { //Creando JSON Con el formato      
+        var jsonConRegistroDeUsuario = {      
             "firstName"             : $(nombreRegistro).val(),
             "lastName"              : $(apellidoRegistro).val(),
             "email"                 : $(emailRegistro).val(),
             "password"              : password,
             "confirmationPassword"  : password2,
             "dateOfBirth"           : date     
-        }
-        causa = 0;
-        enviarDat(urlServidor,myJson,causa); //Ejecuta la funcion enviar que esta de ultima
-              
-    } else
+        }        
+        enviarSolicitudDeRegistro(urlServidor,jsonConRegistroDeUsuario); //Ejecuta la funcion enviar que esta de ultima              
+     } else
         console.error("No se puede crear JSON"); //Si no se cumplen los requisitos
 }
 

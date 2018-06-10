@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="Css3/index.css"/>
     <link rel="stylesheet" href="Css3/responsiveIndex.css"/>
     <link rel="stylesheet" href="Css3/modalLogin.css"/>
-    <link rel="stylesheet" href="fonts/iconStyle.css"/>
+    <link rel="stylesheet" href="fonts/iconStyle.css"/>    
+    
     <script type="text/javaScript">
     var ventanaBarraVisible = false;
     var ventanaMenuVisible  = false;
@@ -51,12 +52,14 @@
 
 </head>
 <body>  
+
+
+    
     <header class="container-fluid fixed-top "><!--Cabecera-->
         <section class="row" id="cabeceraTitulo">           
                 <div class="titulo "> <!-- Logo-->
                     <p>WebMedia</p>                                             
-                </div>  
-
+                </div> 
                 <!--Barra de busqueda-->
                 <div class="buscador">
                     <form class="navbar-form navbar-left" role="search">
@@ -80,12 +83,10 @@
                              </span>
                         </div>                        
                  </div>
-
-                                 
+              
                   <!--Menu de opciones normal-->
                 <ul class="opciones"> <!-- Registrarse-->
-                    <li>
-                           
+                    <li>                           
                         <a href="#" data-toggle="modal" data-target="#myModal2" > 
                              <span class="icon-user-plus">
                              </span>                   
@@ -115,7 +116,7 @@
             <form class="navbar-form navbar-left" role="search">
                 <div id="searchform"  class="form-group">
                     <input id="barra-Navegacion" type="text" class="form-control" placeholder="Buscar">
-                    <button id="botonBusqueda" type="submit"  > <span class="icon-search"></span> </button> 
+                    <button id="botonBusqueda" type="submit" onclick="mostrarResultados()" > <span class="icon-search"></span> </button> 
                 </div>                                                                          
             </form>
          </div>     
@@ -141,34 +142,36 @@
                 </ul>
          </div>  
                       
-    </header><!--Cabecera-->              
+    </header><!--Cabecera--> 
+                
     <div  id="particles-js">
         <p>
             Crea un album multimedia a tu gusto
-        </p>
-            
-    </div>
+        </p>            
+    </div>  
+     <div id="fondo-Imagen"></div>   
     <div>        
         <div id="titulo-Seccion"> <p>Resultado de busqueda</p> </div>
-        <hr size="15px">    
-        <section class="Resultados container-fluid">
+        <hr size="15px" id="separador-Busqueda">              
+    </div>
+
+   
+   <section class="Resultados container-fluid">
             <div class="row BusquedaOrdenada">                    
                     
             </div>            
-        </section>       
-    </div>
-   
+    </section>
 
+    
     <script src="js/Clases/Busqueda.js"></script>
     <script src="js/Particles/particles.js"></script>
     <script src="js/Particles/app.js"></script>    
     <script src="libs/angular.min.js"></script>
     <script src="js/Jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/Clases/Enviar.js"></script> 
-    <script src="js/Clases/Registro.js"></script> 
-    <script src="js/Clases/Login.js"></script>   
-    
+    <script src="js/Clases/ConsumirServicios.js"></script> 
+    <script src="js/Clases/Registro.js"></script>  
+  
 </body>
 
 <!-- -------------------------------------------------LOGIN MODAL------------------------------------------------- -->
@@ -192,7 +195,7 @@
                 <div class="modal-footer">             
                     <button type="button" class="cancelbtnModal modal-button btn btn-default" data-dismiss="modal">  Cancelar </button> 
                     
-                    <button class="modal-button" type="submit" onclick="enviarLog('https://ignsw201825-snproject.herokuapp.com/user/login')">Entrar</button>  
+                    <button class="modal-button" type="submit" onclick="enviarSolicitudDeLogin('https://ignsw201825-snproject.herokuapp.com/user/login')">Entrar</button>  
 
                 </div>
             </div>        
@@ -211,6 +214,8 @@
                         <p class="text-center">WebMedia</p>
                     </div>
             
+                    <div class="loading"> </div>
+                    
                     <div class="modal-form">
                         <!--label class="modal-letters" for="uname"><b>Nombre de Usuario:</b></label-->
                         <input class="modal-input-registro"   type="text" placeholder="Nombre"     id="nombreRegistro"   name="firstName" required>

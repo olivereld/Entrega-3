@@ -11,6 +11,7 @@ header{
     width: 100%;
     height: 50px;    
     color:fff;    
+    z-index: 100;
 }         
 
     .responsiveMenu,
@@ -19,8 +20,7 @@ header{
     .buscadorInferior #barra-Navegacion,
     .buscadorInferior #botonBusqueda,
     .opcionesInferior,
-    .opcionesInferior li 
-    
+    .opcionesInferior li     
     {
         display:none;
     }
@@ -42,25 +42,12 @@ header{
         font-size: 25px;
         text-decoration: none;
         font-family: rale;        
-    } 
-
-    .logo,.perfil_Mini{
-        position: relative;
-        left: 10%;       
-        max-width: 50px;
-        margin-right: 50px;
-        height: auto;
-
-    }
-    .perfil_Mini{    
-    border-radius:150px;
-    border:1px solid #666;    
-    }    
-
+    }  
     .opciones{ /*Contenedor de opciones*/
+        
        overflow: hidden;
        list-style: none;        
-       width: 30%;    
+       width: 40%;    
        height: 50px;              
     }
     .opciones li{
@@ -69,44 +56,38 @@ header{
     }
     .opciones li a{
         color: #f2f2f2; /*COLOR DE LAS OPCIONES*/ 
-       text-decoration: none;
-       
-    }    
-    
-    .opciones_Perfil{
-        margin-right: 30px;
-    }
-    .opciones_Perfil span{             
-        text-decoration: none;
-        margin-right: 25px;
-        margin-left: 25px;
-        color: rgb(204, 203, 203);  
-        font-family: rale;  
-        font-size: 15px;
-        font-weight: bold;
-        text-transform: uppercase;    
-        display: inline-block;
-        padding: 22px 0px;
-        text-align: center;
-        max-width:  220px;
-        width: auto;
-        height: auto;        
-        box-shadow: 0px 3px 0px  #85271c00;
-        
-    }
-    .opciones_Perfil span:hover{
-        color: #ffffff;
-    }    
+       text-decoration: none;       
+    }   
     .opciones li a:hover{
         color: rgb(187, 187, 187);        
     }
     .opciones li a:active{
         color: white;       
     }
+
+    /*--------------------------------Inicio de sesion--------------------------------------------*/  
+    .logo,.perfil_Mini{ 
+        
+        position: relative;
+        left: 10%; 
+        width: 15%;      
+        max-width: 50px;
+        margin-right: 20px;
+        height: auto;       
+    }
+    .perfil_Mini{   
+         
+        border-radius:150px;
+        border:1px solid #666;     
+    }       
+    .menuDesplegable{
+        width: 150px;
+        background: #271d2e;
+    }
     
 /*Barra*/
-.buscador{
-    width: 50%;
+.buscador{    
+    width: 40%;
     height: 50px;          
 }
 #searchform{    
@@ -115,18 +96,20 @@ header{
     height: 50px;
 }
 #barra-Navegacion{
-    margin-top: 4px;
-    height: 80%;    
-    width: 85%;
+    background: #eeeeee;
+    color: #242424;
+    margin-top: 10px;
+    height: 60%;    
+    width: 80%;
 }
 #botonBusqueda{
     position: fixed;
-    color: #939393;      /*COLOR DEL BOTON DE BUSCAR*/  
+    color: #d3d3d3;      /*COLOR DEL BOTON DE BUSCAR*/  
     outline:none;
     background: #ff4d4d00;
     border:none;        
     font-size: 25px; 
-    margin-left: 38%;
+    margin-left: 27%;
     margin-top: 10px;  
     width: 5%; 
     height: auto;
@@ -143,12 +126,20 @@ header{
     padding-top: 70px;
 }
 
-body{    
-    background: #dadada;  /*cOLOR DE FONDO DE LA PAGINA*/ 
+body{
+   background: rgba(0,0,0,0); 
+   position: cover;
+   z-index: -100;
 }
 #titulo-Seccion{
+    display: none;
+    color: white;
     font-size:   20px;
     font-weight: bold; 
+}
+#separador-Busqueda{
+    display: none;
+    background: #d3d3d3;
 }
 #particles-js{
     position: relative;
@@ -156,7 +147,7 @@ body{
     color: white;
     background: #271d2e;
     width: 100%;
-    height: 150px;
+    height: 130px;
 }
 #particles-js p{
     position: absolute;
@@ -164,16 +155,27 @@ body{
     color: #dadada;
     margin-top: 10px; 
 }
-.Resultados{
-    display: inline-block;
+#fondo-Imagen{
+    width: 100%;
+    height: 100%;
+    position: absolute;               
+    background: url("../image/background.jpg")no-repeat; 
+    z-index: -99;
+}
+.Resultados{    
+    display: inline-block;    
+     
+    width: 100%;
+    height: 100%;
 }
 #cuadro-Busqueda{
-    background: #f2f2f2;
+    background: #f2f2f200;
     width: 25%;
     height: 250px;
 }
 #cuadro-Contenido{
-    background: #878787;
+   
+    background: rgba(148, 148, 148,0.5);
     margin-left: auto;
     margin-right: auto;
     margin-top: 2%;    
@@ -185,14 +187,13 @@ body{
     width: 100% ;
     height: 100% ;
     margin-top: 0;
-    background: rgb(159, 117, 197);
+    background: rgba(159, 117, 197,0.5);
 
 }
 #cuadro-Contenido:active{
     width: 95% ;
     height: 95% ;
     margin-top: 2%;    
-    background: rgb(109, 70, 143);
-    transition: width 1s;    
-
+    background: rgba(109, 70, 143,0.7);
+    transition: width 1s;   
 }

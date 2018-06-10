@@ -15,6 +15,19 @@
     font-family: rale;
     border-radius: 15px;
 }
+
+.loading {
+    display: hidden;
+	max-width: 400px;
+    height: auto;
+    margin: auto;
+    top:25px;
+    padding: 10px;
+    width: auto;
+	z-index: top;
+	background: url('../image/loading-gif-transparent-background-download-12.gif') 100% 50% no-repeat;}
+
+
 .modal:target{
     position: fixed;
     background: #00000049;    
