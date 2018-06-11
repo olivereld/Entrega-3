@@ -67,7 +67,7 @@ function correoValido(){//Verifica si un correo es valido
 //Comunicacion con el servidor -------------------------------------------------------------------------------
 function formalizar(urlServidor){
     mostrarCarga();
-    var date      = ""+$(fechaRegistro).val();
+    var date      = ""+$(anoRegistro).val()+"/"+$(mesRegistro).val()+"/"+$(diaRegistro).val()+"";
     var password  = ""+btoa($(pass1).val());
     var password2 = ""+btoa($(pass2).val());   
 
