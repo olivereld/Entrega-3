@@ -20,6 +20,33 @@
     border-radius: 15px;
 }
 
+.modal-input-fecha{
+    background-color: #101010;
+    color: white;
+    width: 20%;
+    padding: 5px 10px;
+    margin: 20px 6px;
+    display: inline-block;
+    border: 2px solid #101010;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
+.combobox{
+    background-color: #101010;
+    color: white;
+    width: 50%;
+    padding: 5px 10px;
+    margin: 20px 0;
+    display: inline-block;
+    border: 2px solid #101010;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
+
 .modalCarga{   
     position: absolute;
     height: 30%;
