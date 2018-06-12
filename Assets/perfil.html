@@ -16,7 +16,7 @@
 </head>
 <body>
 <!-- Comienza la cabecera -->
-<header class="navbar fixed-top navbar-dark bg-dark  pt-1 navbar-expand-md" style="box-sizing: border-box;">
+<header class="navbar fixed-top navbar-dark pt-1 navbar-expand-md c-black" >
 
 	<div class="container px-0 py-0 my-0">
 		<a class="navbar-brand pt-0 pt-1 pb-0" style="font-size: 40px; font-family: rale; letter-spacing: 1px;" href="#" onclick="volverInicio()">WebMedia</a>
@@ -91,19 +91,14 @@
 	<br>
 	<div class="nav-tabs-custom c-white">
 
-		<!-- Nav tabs -->
-		<ul class="nav nav-pills nav-fill" role="tablist">
-			<li class="nav-item">
-				<a class="nav-link active" data-toggle="tab" href="#home">Albumes</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" data-toggle="tab" href="#menu2">Amigos</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" data-toggle="tab" href="#menu1">Editar Cuenta</a>
-			</li>
-			
-		</ul>
+		<!-- Nav tabs: REVISAR!!! -->
+		<div class="nav bd-example nav-fill">
+			<nav class="nav nav-pills flex-column flex-sm-row nav-fill" role="tablist">
+					<a class="flex-sm-fill text-sm-center nav-link active" data-toggle="tab" href="#home">Albumes</a>
+					<a class="flex-sm-fill text-sm-center nav-link" data-toggle="tab" href="#menu2">Amigos</a>
+					<a class="flex-sm-fill text-sm-center nav-link" data-toggle="tab" href="#menu1">Editar Cuenta</a>
+			</nav>
+		</div>
 
 		<!-- Tab panes -->
 		<div class="tab-content">
@@ -145,7 +140,6 @@
 						</div>
 				<div id="users2" class="card-columns">
 				
-
 				</div>
 				
 			</div>
@@ -155,7 +149,7 @@
 								
 					function getUser(){	
 						$.ajax({
-							url: 'https://randomuser.me/api/?results=10&inc=name,picture&noinfo',
+							url: 'https://randomuser.me/api/?results=100&inc=name,picture&noinfo',
 							dataType: 'json',
 							success: function(data) {
 							console.log(data);
@@ -172,7 +166,7 @@
 						var users= document.getElementById('users');
 						var users2= document.getElementById('users2');
 						var j=0;
-						while (j<10){
+						while (j<100){
 							if (j<6){
 							users.innerHTML+= `
 								<div class="card">

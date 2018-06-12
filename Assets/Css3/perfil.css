@@ -7,8 +7,13 @@
 	background-color: #fff;
 }
 
+.c-black{
+	background-color: black;
+}
+
 body{
 	background: #242424;
+	line-height: 1.2;
 }
 
 .header{
