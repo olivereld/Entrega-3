@@ -3,6 +3,10 @@
 	margin: 0;
 }
 
+.c-white{
+	background-color: #fff;
+}
+
 body{
 	background: #242424;
 }
@@ -152,7 +156,7 @@ nav ul li a:hover{
 }
 
 .cuerpo{
-	width: 95%;
+	width: 75%;
 	margin: auto;
 	padding-top: 70px;
 }
@@ -202,25 +206,25 @@ nav ul li a:hover{
 
 @media (min-width: 20em) {
     .card-columns {
-        -webkit-column-count: 2;
-        -moz-column-count: 2;
-        column-count: 2;
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
     }
 }
 
 @media (min-width: 34em) {
     .card-columns {
-        -webkit-column-count: 2;
-        -moz-column-count: 2;
-        column-count: 2;
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
     }
 }
 
-@media (min-width: 48em) {
+@media (min-width: 40em) {
     .card-columns {
-        -webkit-column-count: 4;
-        -moz-column-count: 4;
-        column-count: 4;
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
     }
 }
 
@@ -237,6 +241,47 @@ nav ul li a:hover{
         -webkit-column-count: 4;
         -moz-column-count: 4;
         column-count: 4;
+    }
+}
+ 
+/*Media de los amigos*/
+@media (min-width: 20em) {
+    #users {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
+    }
+}
+
+@media (min-width: 34em) {
+    #users {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
+    }
+}
+
+@media (min-width: 40em) {
+    #users {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
+    }
+}
+
+@media (min-width: 62em) {
+    #users {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
+    }
+}
+
+@media (min-width: 75em) {
+    #users {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
     }
 }
 

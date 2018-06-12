@@ -6,14 +6,17 @@
 	
 	<script src="js/Clases/ConsumirServicios.js"></script>
 	<link   rel="stylesheet" href="Css3/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- Para Heroku-->
 	<script src="js/jquery.js"></script>  
 	<script src="js/bootstrap.min.js"></script>
 	<link   rel="stylesheet" href="Css3/css/AdminLTE.min.css"> 	
 	<link   rel="stylesheet" href="Css3/perfil.css">
+	<link 	rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
 </head>
 <body>
 <!-- Comienza la cabecera -->
-<header class="navbar fixed-top navbar-dark bg-dark  pt-1 navbar-expand-sm" style="box-sizing: border-box;">
+<header class="navbar fixed-top navbar-dark bg-dark  pt-1 navbar-expand-md" style="box-sizing: border-box;">
 
 	<div class="container px-0 py-0 my-0">
 		<a class="navbar-brand pt-0 pt-1 pb-0" style="font-size: 40px; font-family: rale; letter-spacing: 1px;" href="#" onclick="volverInicio()">WebMedia</a>
@@ -33,7 +36,7 @@
 				<!-- Fin Cabecera -->
 
 <div class="cuerpo" >
-	<div class="col-sm-3" id="izquierdo">>
+	<div class="col-md-4" id="izquierdo">>
 
 		<h2 class="head pt-0 rt-0">Perfil</h2>
 
@@ -41,7 +44,7 @@
 		<div class="card box-widget widget-user">
 			<!-- Add the bg color to the header using any of the bg-* classes -->
 			<div class="widget-user-header bg-aqua-active">
-				<h3 class="widget-user-username" id="name"></h3>
+				<h3 class="widget-user-username" style="font-size: 22px; font-family: rale;" id="name"></h3>
 			</div>
 			
 			<script> //Nombre del usuario cargado en la pagina
@@ -52,7 +55,7 @@
 				<img class="img-circle" src="image/user8-128x128.jpg" alt="User Avatar">
 				<!--Poner aqui el src de la imagen-->
 			</div>
-			<div class="card-body box-profile">
+			<div class="card-body box-profile pt-5">
 				<ul class="list-group list-group-unbordered mb-3">
 					<li class="list-group-item">
 						<b>Followers</b>
@@ -72,68 +75,34 @@
 	<!-- /.widget-user -->
 	<!-- widget: contactos -->
 	<h2 class="head2">Amigos</h2>
-	<div class="col-sm-12 box box-widget friendBox">
-		<div class="row">
-			<div class="clearfix"></div>
-			<div class="col-sm-12">
-				<div class="col-sm-3" id="friends">
-					<img src="image/avatar5.png" class="img-circle" width="60px">
-				</div>
-				<div class="col-sm-7" id="friends">
-					<h4>
-						<a href="#">Ram Ranga Swami</a>
-					</h4>
-					<p>
-						<a href="#">4 mutual friends</a>
-					</p>
-				</div>
+	<div class="card text-black c-white mb-3">
+
+			<div class="card-header">
+				<a  data-toggle="tab" href="#menu2">Amigos</a>
 			</div>
-			<div class="clearfix"></div>
-			<hr />
-			<div class="col-sm-12">
-				<div class="col-sm-3" id="friends">
-					<img src="image/avatar5.png" class="img-circle" width="60px">
-				</div>
-				<div class="col-sm-7" id="friends">
-					<h4>
-						<a href="#">Ram Ranga Swami</a>
-					</h4>
-					<p>
-						<a href="#">4 mutual friends</a>
-					</p>
-				</div>
+
+			<div class="card-body card-columns" id=users>	
+
 			</div>
-			<div class="clearfix"></div>
-			<hr />
-			<div class="col-sm-12">
-				<div class="col-sm-3" id="friends">
-					<img src="image/avatar5.png" class="img-circle" width="60px">
-				</div>
-				<div class="col-sm-7" id="friends">
-					<h4>
-						<a href="#">Ram Ranga Swami</a>
-					</h4>
-					<p>
-						<a href="#">4 mutual friends</a>
-					</p>
-				</div>
-			</div>
-			<div class="clearfix"></div>
-		</div>
+
 	</div>
 </div>
-<div class="col-sm-9 container" id="derecho">
+<div class="col-md-8 container" id="derecho">
 	<br>
-	<div class="nav-tabs-custom bg-white">
+	<div class="nav-tabs-custom c-white">
 
 		<!-- Nav tabs -->
-		<ul class="nav nav-pills" role="tablist">
+		<ul class="nav nav-pills nav-fill" role="tablist">
 			<li class="nav-item">
 				<a class="nav-link active" data-toggle="tab" href="#home">Albumes</a>
 			</li>
 			<li class="nav-item">
+				<a class="nav-link" data-toggle="tab" href="#menu2">Amigos</a>
+			</li>
+			<li class="nav-item">
 				<a class="nav-link" data-toggle="tab" href="#menu1">Editar Cuenta</a>
 			</li>
+			
 		</ul>
 
 		<!-- Tab panes -->
@@ -158,7 +127,7 @@
 						<img src="image/5.jpg" class="card-img-top" alt="">
 					</div>
 					<div class="card">
-						<img src="image/6.jpg" class="card-img-top" alt="">
+						<img src="image/6.jpg"  class="card-img-top" alt="">
 					</div>
 					<div class="card">
 						<img src="image/7.jpg" class="card-img-top" alt="">
@@ -168,6 +137,59 @@
 					</div>
 				</div>
 			</div>
+			<div id="menu2" class="container tab-pane fade">
+					<div class="text-right mb-3">
+							<span class="btn btn-primary btn-sm" onclick="modificarDatosDelUsuario()">
+								<i class="fas fa-user-plus"></i>
+								Buscar Amigos</span>
+						</div>
+				<div id="users2" class="card-columns">
+				
+
+				</div>
+				
+			</div>
+			<script>
+				var imagen ="";
+				getUser();
+								
+					function getUser(){	
+						$.ajax({
+							url: 'https://randomuser.me/api/?results=10&inc=name,picture&noinfo',
+							dataType: 'json',
+							success: function(data) {
+							console.log(data);
+							getImagen(data);
+							//guardarDatos(data);
+							}
+						});
+						
+					}
+
+					function getImagen(data){
+						var dato = JSON.stringify(data.results[0].picture.large)
+						console.log(dato);
+						var users= document.getElementById('users');
+						var users2= document.getElementById('users2');
+						var j=0;
+						while (j<10){
+							if (j<6){
+							users.innerHTML+= `
+								<div class="card">
+									<img src="${data.results[j].picture.large}"   class="card-img-top" alt="">
+								</div>
+								`
+							}
+							users2.innerHTML+= `
+								<div class="card">
+									<img src="${data.results[j].picture.large}"   class="card-img-top" alt="">
+								</div>
+								`
+						j++;
+						}
+					}
+						
+				</script>
 			<div id="menu1" class="container tab-pane fade">
 				<br>
 				<form>
@@ -194,6 +216,7 @@
 					<span class="btn btn-primary" onclick="modificarDatosDelUsuario()">Guardar</span>
 				</form>
 			</div>
+
 		</div>
 	</div>
 </div>
