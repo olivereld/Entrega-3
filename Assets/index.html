@@ -16,9 +16,11 @@
     <link rel="stylesheet" href="Css3/index.css"/>
     <link rel="stylesheet" href="Css3/responsiveIndex.css"/>
     <link rel="stylesheet" href="Css3/modalLogin.css"/>
-    <link rel="stylesheet" href="fonts/iconStyle.css"/>    
+    <link rel="stylesheet" href="fonts/iconStyle.css"/>   
+    <link rel="stylesheet" href="Css3/busqueda.css"/>  
+    <script src="js/Jquery.js"></script>    
     
-    <script type="text/javaScript">
+    <script type="text/javaScript">    
     var ventanaBarraVisible = false;
     var ventanaMenuVisible  = false;
     var seleccionCorreoPorPrimeraVez          = false;
@@ -65,7 +67,7 @@
                     <form class="navbar-form navbar-left" role="search">
                         <div id="searchform"  class="form-group">
                             <input id="barra-Navegacion" type="text" class="form-control" placeholder="Buscar">
-                            <button id="botonBusqueda" type="submit" onclick="mostrarResultados()"> <span class="icon-search"></span> </button> 
+                            <button id="botonBusqueda" type="submit" onclick="buscarPalabra()"> <span class="icon-search"></span> </button> 
                         </div>                                                                          
                     </form>
                 </div>   
@@ -116,7 +118,7 @@
             <form class="navbar-form navbar-left" role="search">
                 <div id="searchform"  class="form-group">
                     <input id="barra-Navegacion" type="text" class="form-control" placeholder="Buscar">
-                    <button id="botonBusqueda" type="submit" onclick="mostrarResultados()" > <span class="icon-search"></span> </button> 
+                    <button id="botonBusqueda" type="submit" onclick="buscarPalabra()" > <span class="icon-search"></span> </button> 
                 </div>                                                                          
             </form>
          </div>     
@@ -148,27 +150,59 @@
         <p>
             Crea un album multimedia a tu gusto
         </p>            
-    </div>      
-     
+    </div>    
 
-     <div id="fondo-Imagen"></div>   
+     <div id="fondo-Imagen"></div>  
+
     <div>        
         <div id="titulo-Seccion"> <p>Resultado de busqueda</p> </div>
         <hr size="15px" id="separador-Busqueda">              
     </div>
+    <script>
+    
+    function posicionDelScroll(){
+        var scrollVertical   = $(document).scrollTop();
+        var scrollHorizontal = $(document).scrollLeft();
+        var tamanPagina = $(document).height();
+        
+        console.log("Scroll vertical: "+
+        scrollVertical + 
+        " Scroll horizontal: " + 
+        scrollHorizontal + 
+        " Tamaño del body: " + 
+        tamanPagina );
+        if(scrollVertical >= (tamanPagina) - (tamanPagina/6)){
+            console.log("Esta mas abajo de la mitad");
+        }
+        if(scrollVertical == (tamanPagina/2)){
+            console.log("Esta en la mitad");
+        }
 
-   
+
+    }
+    </script>
+   <!--
+       <div id="cargando-Busquedas">
+                        
+                </div> 
+   -->
    <section class="Resultados container-fluid">
-            <div class="row BusquedaOrdenada">                    
-                    
-            </div>            
+        <div class="row BusquedaOrdenada">    
+                                    
+                 
+        </div>  
+             
+                                        
     </section>
+              
+    
+
     <script src="js/Clases/PantallaCarga.js"></script>
     <script src="js/Clases/Busqueda.js"></script>
     <script src="js/Particles/particles.js"></script>
     <script src="js/Particles/app.js"></script>    
     <script src="libs/angular.min.js"></script>
-    <script src="js/Jquery.js"></script>
+   
     <script src="js/bootstrap.min.js"></script>
     <script src="js/Clases/ConsumirServicios.js"></script> 
     <script src="js/Clases/Registro.js"></script>  

@@ -1,5 +1,7 @@
 /*Media Index --------------------------------------------------------------------------------*/
+
 @media (max-width: 48em) { 
+
     .opciones_Perfil{
         display: none;
     }

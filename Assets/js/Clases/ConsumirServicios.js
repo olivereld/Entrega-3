@@ -1,4 +1,5 @@
 /* Registro del usuario */
+
 function enviarSolicitudDeRegistro(enlaceUrlHeroku,jsonConLosDatos){ 
      
      $.ajax({
@@ -171,5 +172,75 @@ function modificarDatosDelUsuario(){
                  console.log(error);                
             }
     });    
+}
+
+function mostrarResultados(listaDeUrl){
+    
+        
+         $("#particles-js").css("display", "none"); 
+         $("#titulo-Seccion").css("display","block");
+         $("#separador-Busqueda").css("display","block");
+         $("#titulo-Seccion").css("margin-top","50px");
+         $("#fondo-Imagen").css("position","fixed");
+
+        var listaDeImagenesCompactada = "" + listaDeUrl.urls;
+        var listaDeImagenes = listaDeImagenesCompactada.split(',');
+         console.log("los resultados son:" + listaDeImagenes[0]);
+        /*
+         var listaDeUrlImagenes = [];
+         var url1 = {
+             'url':"https://scontent-mia3-2.cdninstagram.com/vp/c18967705f9ead054f3f4bea21f2ea3e/5BBBD5C8/t51.2885-15/s640x640/sh0.08/e35/33630436_407710353031900_2584420553741828096_n.jpg"
+         };      
+         var url2 = {
+            'url':"link2"
+        }; 
+         listaDeUrlImagenes.push(url1);
+         listaDeUrlImagenes.push(url2);        
+          
+         
+        */
+        for(var i = 0; i < listaDeImagenes.length; i++){ 
+                  
+        $(".BusquedaOrdenada").append(
+            "<div id ='cuadro-Busqueda' class='col-12 col-sm-6 col-md-4 col-lg-3'>"+
+    
+                "<div id='cuadro-Contenido'class='center-block'>"+
+    
+                     "<div id='titulo-Busqueda'><p> Titulo </p></div>"+              
+    
+                     "<div id='cuadro-Imagen'>"+
+                         "<div id='cuadro-boton'>"+                                     
+                             "<button type='button' class='btn btn-danger' id='boton-agregarImg' onclick ='posicionDelScroll()'>Guardar</button>"+
+                                                       
+                         "</div>"+    
+                         "<img src='"+listaDeImagenes[i]+"'alt='Busqueda'>"+ 
+                     "</div>"+
+                "</div>"+
+            
+            "</div>");   
+            }           
+       
+    }
+
+function enviarPeticionDeBusqueda(enlaceUrlHeroku){ 
+     
+    $.ajax({
+        url : enlaceUrlHeroku,         
+        method :'GET', 
+        contentType: 'application/json; charset=utf-8',
+        dataType : 'json', 
+
+        success : function (response){ 
+            console.log("listo"); 
+            mostrarResultados(response);         
+                          
+            },
+        error: function(error){             
+            console.log(error); 
+                    
+        }
+    });
+   
+
 }
 
