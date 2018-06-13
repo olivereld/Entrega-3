@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="js/Clases/ConsumirServicios.js"></script>
+	<link   rel="stylesheet" href="Css3/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- Para Heroku-->
+	<script src="js/jquery.js"></script>  
+	<script src="js/bootstrap.min.js"></script>
+	<link   rel="stylesheet" href="Css3/css/AdminLTE.min.css"> 	
+    <link   rel="stylesheet" href="Css3/perfil.css">
+    <link   rel="stylesheet" href="Css3/amigos.css">
+	<link 	rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+</head>
+<body>
+    
+        <header class="navbar fixed-top navbar-dark pt-1 navbar-expand-md c-black" >
+
+                <div class="container px-0 py-0 my-0">
+
+                    <a class="navbar-brand pt-0 pt-1 pb-0" style="font-size: 40px; font-family: rale; letter-spacing: 1px;" href="#" onclick="volverInicio()">WebMedia</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+            
+                    <div class="collapse navbar-collapse "; id="navbarNav">
+                            <div class="navbar-nav ml-auto" style="font-size: 17px; letter-spacing: 1px; font-family: rale;">
+                                    <a class="nav-item nav-link pr-4" href="index_User.html">Inicio</a>
+                                    <a class="nav-item nav-link" href="#" onclick="salirDeLaPagina('https://ignsw201825-snproject.herokuapp.com/user/logout')">Salir</a>
+                            </div> 
+                    </div>
+
+                </div>
+
+        </header>
+
+        <div class="cuerpo">
+            <div class="col-md-3 float-left ">
+                <div class="card ">
+                    <div class="container card-header rale">
+                        <i class="fas fa-search"></i> Buscar Amigos
+                    </div>
+
+                    <div class="card-body">
+                    
+                            <form>
+                                    <div class="form-group">
+                                      <label for="formGroupExampleInput">Nombre</label>
+                                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="James Corden">
+                                    </div>
+                                    <button type="button" class="btn btn-primary btn-sm">Buscar</button>
+                            </form>
+    
+                    </div>
+                </div>
+
+                
+
+            </div>
+            <div class="col-md-9 float-left">
+
+                <div class="card">
+                    <div class="container card-header rale">
+
+                        <i class="fas fa-users"></i>   Personas que quizá conozcas.
+                        
+                    </div>
+
+                    <div id="friends" class="card-body pt-3 card-columns">
+                        
+
+                    </div>
+
+                    <script>
+                            getListaUsuarios();
+                            //usuariosRegistrados();
+                    </script>
+                </div>
+            </div>
+        </div>
+</body>
+</html>

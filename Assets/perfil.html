@@ -89,19 +89,26 @@
 </div>
 <div class="col-md-8 container" id="derecho">
 	<br>
-	<div class="nav-tabs-custom c-white">
+	<div class="card c-white">
 
 		<!-- Nav tabs: REVISAR!!! -->
-		<div class="nav bd-example nav-fill">
-			<nav class="nav nav-pills flex-column flex-sm-row nav-fill" role="tablist">
-					<a class="flex-sm-fill text-sm-center nav-link active" data-toggle="tab" href="#home">Albumes</a>
-					<a class="flex-sm-fill text-sm-center nav-link" data-toggle="tab" href="#menu2">Amigos</a>
-					<a class="flex-sm-fill text-sm-center nav-link" data-toggle="tab" href="#menu1">Editar Cuenta</a>
-			</nav>
+		<div class="card-header">
+			<ul class="nav nav-pills card-header-pills nav-fill">
+					<li class="nav-item">
+							<a class="nav-link active" data-toggle="tab" href="#home">Albumes</a>
+						  </li>
+						  <li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#menu2">Amigos</a>
+						  </li>
+						  <li class="nav-item">
+							<a class="nav-link" data-toggle="tab" href="#menu1">Editar Cuenta</a>
+						</li>
+					
+			</ul>
 		</div>
 
 		<!-- Tab panes -->
-		<div class="tab-content">
+		<div class="tab-content card-body">
 			<div id="home" class="container tab-pane active">
 				<br>
 				<div class="card-columns" id="galeria">
@@ -134,56 +141,23 @@
 			</div>
 			<div id="menu2" class="container tab-pane fade">
 					<div class="text-right mb-3">
-							<span class="btn btn-primary btn-sm" onclick="modificarDatosDelUsuario()">
-								<i class="fas fa-user-plus"></i>
-								Buscar Amigos</span>
+							<a href="amigos.html" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true"><i class="fas fa-user-plus"></i>
+								Buscar Amigos</a>
+								
 						</div>
 				<div id="users2" class="card-columns">
 				
 				</div>
 				
 			</div>
-			<script>
-				var imagen ="";
-				getUser();
-								
-					function getUser(){	
-						$.ajax({
-							url: 'https://randomuser.me/api/?results=100&inc=name,picture&noinfo',
-							dataType: 'json',
-							success: function(data) {
-							console.log(data);
-							getImagen(data);
-							//guardarDatos(data);
-							}
-						});
-						
-					}
 
-					function getImagen(data){
-						var dato = JSON.stringify(data.results[0].picture.large)
-						console.log(dato);
-						var users= document.getElementById('users');
-						var users2= document.getElementById('users2');
-						var j=0;
-						while (j<100){
-							if (j<6){
-							users.innerHTML+= `
-								<div class="card">
-									<img src="${data.results[j].picture.large}"   class="card-img-top" alt="">
-								</div>
-								`
-							}
-							users2.innerHTML+= `
-								<div class="card">
-									<img src="${data.results[j].picture.large}"   class="card-img-top" alt="">
-								</div>
-								`
-						j++;
-						}
-					}
-						
-				</script>
+
+			<script>
+				getListaUsuarios(1);
+				//getUser(true);			
+			</script>
+
+
 			<div id="menu1" class="container tab-pane fade">
 				<br>
 				<form>

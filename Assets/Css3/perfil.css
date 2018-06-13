@@ -14,6 +14,7 @@
 body{
 	background: #242424;
 	line-height: 1.2;
+	font-family: rale;
 }
 
 .header{
@@ -252,42 +253,57 @@ nav ul li a:hover{
 /*Media de los amigos*/
 @media (min-width: 20em) {
     #users {
-        -webkit-column-count: 3;
-        -moz-column-count: 3;
-        column-count: 3;
-    }
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+	}
+	#users2 {
+		column-count: 1;
+	}
 }
 
 @media (min-width: 34em) {
     #users {
-        -webkit-column-count: 3;
-        -moz-column-count: 3;
-        column-count: 3;
-    }
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+	}
+	#users2 {
+		column-count: 2;
+	}
 }
 
 @media (min-width: 40em) {
     #users {
-        -webkit-column-count: 3;
-        -moz-column-count: 3;
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
         column-count: 3;
-    }
+	}
+	#users2 {
+		column-count: 2;
+	}
 }
 
 @media (min-width: 62em) {
     #users {
-        -webkit-column-count: 3;
-        -moz-column-count: 3;
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
         column-count: 3;
-    }
+	}
+	#users2 {
+		column-count: 2;
+	}
 }
 
 @media (min-width: 75em) {
     #users {
-        -webkit-column-count: 3;
-        -moz-column-count: 3;
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
         column-count: 3;
-    }
+	}
+	#users2 {
+		column-count: 2;
+	}
 }
 
 #name h3{
