@@ -168,59 +168,164 @@ function modificarDatosDelUsuario(){
                    location.reload();
                    console.log("listo");                   
             },
-            error: function(error){ //Si falla
+            error: function(error){ //Si falla                
                  console.log(error);                
             }
     });    
 }
 
-function mostrarResultados(listaDeUrl){
-    
+function mostrarResultados(listaDeUrl){    
         
          $("#particles-js").css("display", "none"); 
          $("#titulo-Seccion").css("display","block");
          $("#separador-Busqueda").css("display","block");
          $("#titulo-Seccion").css("margin-top","50px");
          $("#fondo-Imagen").css("position","fixed");
+         $("#sinResultados").css("display","none"); 
 
-        var listaDeImagenesCompactada = "" + listaDeUrl.urls;
+        var listaDeImagenesCompactada = "" + listaDeUrl.imageUrl;
         var listaDeImagenes = listaDeImagenesCompactada.split(',');
-         console.log("los resultados son:" + listaDeImagenes[0]);
-        /*
-         var listaDeUrlImagenes = [];
-         var url1 = {
-             'url':"https://scontent-mia3-2.cdninstagram.com/vp/c18967705f9ead054f3f4bea21f2ea3e/5BBBD5C8/t51.2885-15/s640x640/sh0.08/e35/33630436_407710353031900_2584420553741828096_n.jpg"
-         };      
-         var url2 = {
-            'url':"link2"
-        }; 
-         listaDeUrlImagenes.push(url1);
-         listaDeUrlImagenes.push(url2);        
-          
+        localStorage.setItem("listaDeImagenes",JSON.stringify(listaDeImagenes));
+       
+         console.log("total de imagenes" + listaDeImagenes.length);
+         console.log("imagenes que sobran" + listaDeImagenes.length%12);
          
-        */
-        for(var i = 0; i < listaDeImagenes.length; i++){ 
-                  
-        $(".BusquedaOrdenada").append(
-            "<div id ='cuadro-Busqueda' class='col-12 col-sm-6 col-md-4 col-lg-3'>"+
-    
-                "<div id='cuadro-Contenido'class='center-block'>"+
-    
-                     "<div id='titulo-Busqueda'><p> Titulo </p></div>"+              
-    
-                     "<div id='cuadro-Imagen'>"+
-                         "<div id='cuadro-boton'>"+                                     
-                             "<button type='button' class='btn btn-danger' id='boton-agregarImg' onclick ='posicionDelScroll()'>Guardar</button>"+
-                                                       
-                         "</div>"+    
-                         "<img src='"+listaDeImagenes[i]+"'alt='Busqueda'>"+ 
-                     "</div>"+
-                "</div>"+
-            
-            "</div>");   
-            }           
+         var totalDeImagenes = localStorage.getItem("listaDeImagenes").split(',');
+         var nuevaLista = [] ;
+       $("#cargando-Busquedas").css("display","none");
+
+            for(var i = 0; i < 12; i++){                
+
+            $(".BusquedaOrdenada").append(
+
+                "<div id ='cuadro-Busqueda' class='card col-12 col-sm-6 col-md-4 col-lg-3'>"+
+                    "<div id='cuadro-Contenido' class='card-body' data-toggle='modal' data-target='#imagen"+i+"'>"+                           
+                        "<img class='card-img-top' src='"+listaDeImagenes[i]+"'alt='Busqueda'>"+
+                        "<a id='boton-agregarImg2' href='#' class='btn btn-danger'>Guardar</a>"+ 
+                        "<img id='icono-Pagina' src='image/instagramIcon.png' width='50' height='50' >"+
+                    "</div>"+      
+                    
+                    "<div class='modal fade' id='imagen"+i+"' tabindex='-1' role='dialog' aria-hidden='true'>"+                              
+                        "<div class='modal-dialog modal-lg modal-dialog-centered' role='document'>"+
+                        "<img  class='img-fluid-rounded' src='"+listaDeImagenes[i]+"'alt='Busqueda'>"+          
+                        "</div>"+       
+                    "</div>"+      
+                    
+                "</div>" 
+                );  
+
+                }
+                for(var i = listaDeImagenes.length%12; i < listaDeImagenes.length ; i++){
+                    nuevaLista.push(totalDeImagenes[i]);
+                }
+                localStorage.setItem("listaDeImagenes",JSON.stringify(nuevaLista));
+                          
        
     }
+    function mostrarResultadoImagen(UrlDeImagen,UrlPaginaDeProsedencia,numeroDeIndice){
+       
+        $(".BusquedaOrdenada").append(
+            "<script type='text/javascript'>"+
+                " function procedencia"+numeroDeIndice+"(){"+
+                    "var win = window.open('"+UrlPaginaDeProsedencia+"','_blank');"+
+                " if (win) {  "+      
+                    " win.focus();"+
+                    "} else {  "+      
+                    " alert('Please allow popups for this website');"+
+                " }"+
+            " }"+
+            "</script>"+
+
+            "<div id ='cuadro-Busqueda' class='card col-12 col-sm-6 col-md-4 col-lg-3'>"+
+                "<div id='cuadro-Contenido' class='card-body' data-toggle='modal' data-target='#imagen"+numeroDeIndice+"'>"+                           
+                    "<img id='imagen-Principal'class='card-img-top' src='"+UrlDeImagen+"'alt='Busqueda'>"+
+                    "<a id='boton-agregarImg2' href='#' class='btn btn-danger'>Guardar</a>"+ 
+                    "<img id='icono-Pagina' src='image/instagramIcon.png' width='50' height='50' onclick='procedencia"+numeroDeIndice+"()' >"+
+                "</div>"+      
+                
+                "<div class='modal fade' id='imagen"+numeroDeIndice+"' tabindex='-1' role='dialog' aria-hidden='true'>"+                              
+                    "<div class='modal-dialog modal-lg modal-dialog-centered' role='document'>"+
+                    "<img  class='img-fluid-rounded' src='"+UrlDeImagen+"'alt='Busqueda'>"+          
+                    "</div>"+       
+                "</div>"+      
+                
+            "</div>" 
+            );
+    }
+    function mostrarResultadoVideo(UrlDeImagen,UrlDeVideo,UrlPaginaDeProsedencia,numeroDeIndice){
+        $(".BusquedaOrdenada").append( 
+            '<script type="text/javascript">'+
+            '$(document).ready(function(){'+           
+              
+                "$('#video"+numeroDeIndice+"').on('hide.bs.modal', function(){"+                    
+                    '$("#videoResultado'+numeroDeIndice+'").attr("src","");'+
+                '});'+
+                "$('#video"+numeroDeIndice+"').on('show.bs.modal', function(){"+                    
+                    '$("#videoResultado'+numeroDeIndice+'").attr("src","'+UrlDeVideo+'");'+
+                '});'+
+            '});'+
+           " function procedencia"+numeroDeIndice+"(){"+
+                "var win = window.open('"+UrlPaginaDeProsedencia+"','_blank');"+
+               " if (win) {  "+      
+                   " win.focus();"+
+                "} else {  "+      
+                   " alert('Please allow popups for this website');"+
+               " }"+
+           " }"+
+        '</script>'+            
+
+        "<div id ='cuadro-Busqueda' class='card col-12 col-sm-6 col-md-4 col-lg-3'>"+
+            "<div id='cuadro-Contenido' class='card-body' data-toggle='modal' data-target='#video"+numeroDeIndice+"'>"+                           
+                "<img id='imagen-Principal' class='card-img-top' src='"+UrlDeImagen+"'alt='Busqueda'>"+
+                "<a id='boton-agregarImg2' href='#' class='btn btn-danger'>Guardar</a>"+                 
+                "<img id='icono-Pagina' src='image/instagramIcon.png' width='50' height='50' onclick='procedencia"+numeroDeIndice+"()' >"+
+                "<img id='icono-Video' src='image/play.png' width='100' height='100' >"+
+            "</div>"+     
+
+            '<div class="bs-example">'+
+                '<div id="video'+numeroDeIndice+'" class="modal fade">'+
+                    '<div class="modal-dialog">'+
+                        '<div class="modal-content" style="background: rgba(255, 255, 255, 0); border:0px;">'+
+                            
+                            
+                                '<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>'+                        
+                            
+
+                                '<div class="modal-body">'+
+                                '<iframe id="videoResultado'+numeroDeIndice+'" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>'+
+                 '</div>'+     
+            "</div>"
+
+            );
+    }
+    function prepararResultados(listaDeElementos){
+        $("#particles-js").css("display", "none"); 
+        $("#titulo-Seccion").css("display","block");
+        $("#separador-Busqueda").css("display","block");
+        $("#titulo-Seccion").css("margin-top","50px");
+        $("#fondo-Imagen").css("position","fixed");
+        $("#sinResultados").css("display","none"); 
+        $("#cargando-Busquedas").css("display","none");
+        for(var i = 0; i < listaDeElementos.length;i++){
+            if( ("" + listaDeElementos[i].type) == "image"){              
+                mostrarResultadoImagen(listaDeElementos[i].imageUrl,listaDeElementos[i].instagramLink,i);
+            }else if(("" + listaDeElementos[i].type) == "video"){                
+                mostrarResultadoVideo(listaDeElementos[i].imageUrl,listaDeElementos[i].videoUrl,listaDeElementos[i].instagramLink,i);              
+            }
+        }
+    }
+    function sinResultados(){   
+        $("#particles-js").css("display", "none"); 
+        $("#titulo-Seccion").css("display","block");
+        $("#separador-Busqueda").css("display","block");
+        $("#titulo-Seccion").css("margin-top","50px");
+        $("#fondo-Imagen").css("position","fixed"); 
+        $("#sinResultados").css("display","block"); 
+   }
 
 function enviarPeticionDeBusqueda(enlaceUrlHeroku){ 
      
@@ -230,17 +335,28 @@ function enviarPeticionDeBusqueda(enlaceUrlHeroku){
         contentType: 'application/json; charset=utf-8',
         dataType : 'json', 
 
-        success : function (response){ 
-            console.log("listo"); 
-            mostrarResultados(response);         
+        success : function (response){                        
+            console.log(response);
+            prepararResultados(response);         
                           
             },
-        error: function(error){             
-            console.log(error); 
-                    
+        error: function(XMLHttpRequest, textStatus, errorThrown){  
+            $("#cargando-Busquedas").css("display","none");
+            if(localStorage.getItem("datoBusquedaLocal")){
+                localStorage.removeItem("datoBusquedaLocal");
+            }
+           
+            sinResultados();        
         }
     });
    
 
 }
-
+function procedencia(UrlProcedencia){
+    var win = window.open(UrlProcedencia,'_blank');
+    if (win) {        
+        win.focus();
+    } else {        
+        alert('Please allow popups for this website');
+    }
+}

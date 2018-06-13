@@ -13,12 +13,18 @@
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0, width=device-width">
     <!--meta name="viewport" content="width=device‐width, initial‐scale=1.0"-->
     <link rel="stylesheet" href="Css3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="Css3/index.css"/>
     <link rel="stylesheet" href="Css3/responsiveIndex.css"/>
     <link rel="stylesheet" href="Css3/modalLogin.css"/>
     <link rel="stylesheet" href="fonts/iconStyle.css"/>   
     <link rel="stylesheet" href="Css3/busqueda.css"/>  
-    <script src="js/Jquery.js"></script>    
+    <script src="js/Jquery.js"></script>  
+   
+    <script src="js/bootstrap.min.js"></script>
+    <script src="libs/angular.min.js"></script>   
+    <script src="js/Clases/Busqueda.js"></script>
+    <script src="js/Clases/ConsumirServicios.js"></script>   
     
     <script type="text/javaScript">    
     var ventanaBarraVisible = false;
@@ -53,10 +59,29 @@
         }       
     }    
     </script>
+    <script>
+     $( document ).ready(function() {         
+        if(sessionStorage.getItem("busquedaRealizada")){           
+            $("#barra-Navegacion").val(sessionStorage.getItem("busquedaRealizada"));           
+            sessionStorage.removeItem("busquedaRealizada");
+            buscarPalabra();
+        }else if(localStorage.getItem("datoBusquedaLocal")){
+            cambiarValorDeNuevaBusqueda();
+            enviarPeticionDeBusqueda(localStorage.getItem("datoBusquedaLocal"));
+        }else{
+            console.log("Nueva navegacion");
+        }
+             
+     });        
+    </script>
+
     <title>Title</title>   
 
 </head>
-<body>     
+<body>  
+    <div id="cargando-Busquedas">
+                        
+    </div>    
     <header class="container-fluid fixed-top "><!--Cabecera-->
         <section class="row" id="cabeceraTitulo">           
                 <div class="titulo "> <!-- Logo-->
@@ -181,30 +206,29 @@
 
     }
     </script>
-   <!--
-       <div id="cargando-Busquedas">
-                        
-                </div> 
-   -->
-   <section class="Resultados container-fluid">
-        <div class="row BusquedaOrdenada">    
-                                    
-                 
-        </div>  
-             
-                                        
+   
+     
+   
+    <section id='busquedas-Imagenes' class="Resultados container-fluid ">
+        <div class="row BusquedaOrdenada card-columns"> 
+                <div id="sinResultados" class="card" style="width: 18rem; margin-left:auto; margin-right:auto; ">
+                        <img class="card-img-top" src="image/notResult.png" alt="Card image cap">
+                        <div class="card-body">
+                          <h5 class="card-title">No se encontraron resultados</h5>
+                          <p class="card-text">Pruebe realizando otra busqueda con un tag diferente.</p>                          
+                        </div>
+                </div>  
+        </div>                                    
     </section>
               
     
 
-    <script src="js/Clases/PantallaCarga.js"></script>
-    <script src="js/Clases/Busqueda.js"></script>
+    <script src="js/Clases/PantallaCarga.js"></script>    
     <script src="js/Particles/particles.js"></script>
-    <script src="js/Particles/app.js"></script>    
-    <script src="libs/angular.min.js"></script>
+    <script src="js/Particles/app.js"></script>   
    
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/Clases/ConsumirServicios.js"></script> 
+   
+   
     <script src="js/Clases/Registro.js"></script>  
     
   
@@ -214,7 +238,7 @@
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog" role ="document">  
               
-            <div class="modal-content">                   
+            <div class="modal-content modalIndex">                   
                     <div class="modalCarga">
                             <div id="loadingGift"></div>
                      </div> 
@@ -249,7 +273,7 @@
 
         <div class="modal-dialog" role ="document"> 
                        
-                <div class="modal-content">
+                <div class="modal-content modalIndex">
     
                      <div class="container modal-header1">
                         <p class="text-center">WebMedia</p>
@@ -269,9 +293,12 @@
                         <input class="modal-input-registro"   type="password" placeholder="Contrase&ntilde;a"           name="password"             required  id="pass1">
                         <input class="modal-input-registro"   type="password" placeholder="Repita la Contrase&ntilde;a" name="confirmationPassword" required  id="pass2">
                          
-                        <input class="modal-input-fecha"   type="text" placeholder="A&ntilde;o"     id="anoRegistro"   name="Ano" required>
+                        <select class="modal-input-fecha"   type="text" placeholder="A&ntilde;o"     id="anoRegistro"   name="Ano" required>
+                                <option value=""> -- Select Month -- </option>
+                        </select>
 
                         <select class="combobox" name="Mes" id="mesRegistro" name="mes" required>
+                            <option value="00"> -- Select One -- </option>
                             <option value="01">Enero</option>
                             <option value="02">Febrero</option>
                             <option value="03">Marzo</option>
@@ -286,7 +313,9 @@
                             <option value="12">Diciembre</option>
                         </select>
                         
-                        <input class="modal-input-fecha"   type="text" placeholder="Dia"     id="diaRegistro"   name="Dia" required>
+                        <select class="modal-input-fecha"   type="text" placeholder="Dia"     id="diaRegistro"   name="Dia" required>
+                            <option value=""> -- Select Month -- </option>
+                        </select>
                     
                     </div>
 
@@ -301,6 +330,114 @@
     </div> 
     <!-- ----------Validaciones en tiempo real------------  -->
     <script>
+        
+        $(document).ready(function () {
+        $("#mesRegistro").change(function () {
+            var val = $(this).val();
+            var ano = $("#anoRegistro").val();
+            if (val == "00"){
+                $("#diaRegistro").html('<option value=""> -- Select Month -- </option>');
+            } else if (val == "01") {
+                var selectList = "";
+                    for (var x = 1; x <= 31; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "02") {
+                var selectList = "";
+                    for (var x = 1; x <= 28; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }      
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "03") {
+                var selectList = "";
+                    for (var x = 1; x <= 31; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "04") {
+                var selectList = "";
+                    for (var x = 1; x <= 30; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "05") {
+                var selectList = "";
+                    for (var x = 1; x <= 31; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "06") {
+                var selectList = "";
+                    for (var x = 1; x <= 30; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "07") {
+                var selectList = "";
+                    for (var x = 1; x <= 31; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "08") {
+                var selectList = "";
+                    for (var x = 1; x <= 31; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "09") {
+                var selectList = "";
+                    for (var x = 1; x <= 30; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "10") {
+                var selectList = "";
+                    for (var x = 1; x <= 31; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "11") {
+                var selectList = "";
+                    for (var x = 1; x <= 30; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "12") {
+                var selectList = "";
+                    for (var x = 1; x <= 31; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            }
+        });
+    });
+    
+    $(document).ready(function () {
+        $("#mesRegistro").change(function () {
+            var val = $(this).val();
+            if ((val =! "") || (val == "")) {
+                var selectList = "";
+                    for (var x = 1960; x <= 2018; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#anoRegistro").html(selectList);
+            }
+        });
+    });
         
         $( "#emailRegistro" ).click(function(){ seleccionCorreoPorPrimeraVez = true;});
         $( "#pass1" ).click(function(){  seleccionPasswordPorPrimeraVez = true;});

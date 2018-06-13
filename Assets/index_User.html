@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="fonts/iconStyle.css"/>
     <link rel="stylesheet" href="Css3/busqueda.css"/>  
     <script src="js/Jquery.js"></script>
+    <script src="libs/angular.min.js"></script>   
+    <script src="js/bootstrap.min.js"></script> 
     <script src="js/Clases/ConsumirServicios.js"></script>  
-    <script src="js/Clases/Busqueda.js"></script>
+    <script src="js/Clases/Busqueda.js"></script> 
     
-      
     
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"> 
     <script type="text/javaScript">
@@ -45,7 +46,22 @@
                 ventanaMenuVisible = false;
             }       
         }    
-        </script>
+    </script>
+    <script>
+            $( document ).ready(function() {         
+               if(sessionStorage.getItem("busquedaRealizada")){           
+                   $("#barra-Navegacion").val(sessionStorage.getItem("busquedaRealizada"));           
+                   sessionStorage.removeItem("busquedaRealizada");
+                   buscarPalabra();
+               }else if(localStorage.getItem("datoBusquedaLocal")){
+                   cambiarValorDeNuevaBusqueda();
+                   enviarPeticionDeBusqueda(localStorage.getItem("datoBusquedaLocal"));
+               }else{
+                   console.log("Nueva navegacion");
+               }
+                    
+            });        
+    </script>
     <title>WebMedia</title>
 </head>
 <body>           
@@ -146,8 +162,7 @@
         <div id="titulo-Seccion"> <p>Resultado de busqueda</p> </div>
         <hr size="15px" id="separador-Busqueda">              
     </div>
-     <script>
-    
+     <script>    
             function posicionDelScroll(){
                 var scrollVertical   = $(document).scrollTop();
                 var scrollHorizontal = $(document).scrollLeft();
@@ -169,14 +184,13 @@
      </script>
    
    <section class="Resultados container-fluid">
-            <div class="row BusquedaOrdenada">                    
-                    
-            </div>            
+         <div class="row BusquedaOrdenada card-columns">
+                 
+         </div>                
     </section>
    
     
-    <script src="libs/angular.min.js"></script>   
-    <script src="js/bootstrap.min.js"></script> 
+     
     <script src="js/Particles/particles.js"></script>
     <script src="js/Particles/app.js"></script>    
 </body>
