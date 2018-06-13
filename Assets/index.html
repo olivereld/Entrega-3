@@ -269,9 +269,12 @@
                         <input class="modal-input-registro"   type="password" placeholder="Contrase&ntilde;a"           name="password"             required  id="pass1">
                         <input class="modal-input-registro"   type="password" placeholder="Repita la Contrase&ntilde;a" name="confirmationPassword" required  id="pass2">
                          
-                        <input class="modal-input-fecha"   type="text" placeholder="A&ntilde;o"     id="anoRegistro"   name="Ano" required>
+                        <select class="modal-input-fecha"   type="text" placeholder="A&ntilde;o"     id="anoRegistro"   name="Ano" required>
+                                <option value=""> -- Select Month -- </option>
+                        </select>
 
                         <select class="combobox" name="Mes" id="mesRegistro" name="mes" required>
+                            <option value="00"> -- Select One -- </option>
                             <option value="01">Enero</option>
                             <option value="02">Febrero</option>
                             <option value="03">Marzo</option>
@@ -286,7 +289,9 @@
                             <option value="12">Diciembre</option>
                         </select>
                         
-                        <input class="modal-input-fecha"   type="text" placeholder="Dia"     id="diaRegistro"   name="Dia" required>
+                        <select class="modal-input-fecha"   type="text" placeholder="Dia"     id="diaRegistro"   name="Dia" required>
+                            <option value=""> -- Select Month -- </option>
+                        </select>
                     
                     </div>
 
@@ -301,6 +306,114 @@
     </div> 
     <!-- ----------Validaciones en tiempo real------------  -->
     <script>
+        
+        $(document).ready(function () {
+        $("#mesRegistro").change(function () {
+            var val = $(this).val();
+            var ano = $("#anoRegistro").val();
+            if (val == "00"){
+                $("#diaRegistro").html('<option value=""> -- Select Month -- </option>');
+            } else if (val == "01") {
+                var selectList = "";
+                    for (var x = 1; x <= 31; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "02") {
+                var selectList = "";
+                    for (var x = 1; x <= 28; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }      
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "03") {
+                var selectList = "";
+                    for (var x = 1; x <= 31; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "04") {
+                var selectList = "";
+                    for (var x = 1; x <= 30; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "05") {
+                var selectList = "";
+                    for (var x = 1; x <= 31; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "06") {
+                var selectList = "";
+                    for (var x = 1; x <= 30; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "07") {
+                var selectList = "";
+                    for (var x = 1; x <= 31; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "08") {
+                var selectList = "";
+                    for (var x = 1; x <= 31; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "09") {
+                var selectList = "";
+                    for (var x = 1; x <= 30; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "10") {
+                var selectList = "";
+                    for (var x = 1; x <= 31; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "11") {
+                var selectList = "";
+                    for (var x = 1; x <= 30; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "12") {
+                var selectList = "";
+                    for (var x = 1; x <= 31; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            }
+        });
+    });
+    
+    $(document).ready(function () {
+        $("#mesRegistro").change(function () {
+            var val = $(this).val();
+            if ((val =! "") || (val == "")) {
+                var selectList = "";
+                    for (var x = 1960; x <= 2018; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#anoRegistro").html(selectList);
+            }
+        });
+    });
         
         $( "#emailRegistro" ).click(function(){ seleccionCorreoPorPrimeraVez = true;});
         $( "#pass1" ).click(function(){  seleccionPasswordPorPrimeraVez = true;});
