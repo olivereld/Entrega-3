@@ -31,7 +31,7 @@ function registroExitoso(){
      $(pass2).css("border","solid #101010");
      $(emailRegistro).css("border","solid #101010");
      $(emailRegistro).css("background-color","#101010");
-     $(fechaRegistro).val("");
+     
 }
 
 function registroFallido(error){
@@ -57,28 +57,52 @@ function registroFallido(error){
          dataType : 'json', //El tipo de archivo            
 
          success : function (response){ //Si funciona
-             guardarDatosDelUsuario(response);                         
+             obtenerDatosCompletosPorId(""+response.id,""+response.authToken);                         
          },
          error: function(error){ //Si falla                        
              inicioDeSesionFallida(error);            
          }
      });
  }
- function guardarDatosDelUsuario(response){
+ function obtenerDatosCompletosPorId(id,token){
+    var urlPeticionEnHeroku = "https://ignsw201825-snproject.herokuapp.com/user/get/"+id;
+    $.ajax({ //Envia los datos         
+        url : urlPeticionEnHeroku, //Url       
+        method :'GET', //en este caso
+        contentType: 'application/json; charset=utf-8',
+        dataType : 'json', //El tipo de archivo            
 
-    var id                = ""+response.id;
-    var token             = ""+response.authToken;
+        success : function (response){ //Si funciona
+            guardarDatosDelUsuario(response,token);                                  
+        },
+        error: function(error){ //Si falla                        
+            inicioDeSesionFallida(error);            
+        }
+    });
+ }
+ function guardarDatosDelUsuario(response,token){
+    
+    var id                = ""+response.id;    
     var nombre            = ""+response.firstName;
     var apellido          = ""+response.lastName; 
-    var fechaDeNAcimiento = ""+ response.dateOfBirth;
-
+    var fechaDeNAcimiento = ""+response.dateOfBirth;
+    var encriptado        = ""+response.password;
+    var correo            = ""+response.email;
+    var albums            = ""+JSON.stringify(response.albums).substring(1,JSON.stringify(response.albums).length-1);
+    var amigos            = ""+JSON.stringify(response.friends);     
+    
     sessionStorage.setItem("id",id);
     sessionStorage.setItem("token",token);
     sessionStorage.setItem("nombre",nombre);
     sessionStorage.setItem("apellido",apellido);
     sessionStorage.setItem("fechaDeNAcimiento",fechaDeNAcimiento);  
+    sessionStorage.setItem("encriptado",encriptado);
+    sessionStorage.setItem("correo",correo);
+    sessionStorage.setItem("albumes",albums);  
+    sessionStorage.setItem("amigos",amigos); 
+
     ocultarCarga();
-    window.location="index_User.html?var_="+response.firstName+"&var_="+response.lastName+"&var_="+response.id+"&var_="+response.authToken;
+    window.location="index_User.html";
 }
 function inicioDeSesionFallida(error){
     ocultarCarga();
@@ -247,8 +271,7 @@ function mostrarResultados(listaDeUrl){
                     "<div class='modal-dialog modal-lg modal-dialog-centered' role='document'>"+
                     "<img  class='img-fluid-rounded' src='"+UrlDeImagen+"'alt='Busqueda'>"+          
                     "</div>"+       
-                "</div>"+      
-                
+                "</div>"+  
             "</div>" 
             );
     }

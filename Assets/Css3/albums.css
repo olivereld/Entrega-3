@@ -1,0 +1,66 @@
+
+#crear-Album{
+    display: none;
+}
+#modificar-Album{
+    display:none;
+}
+#boton-eliminar-album{
+    display:none;
+}
+#boton-modificar-album{
+    display:none;
+}
+#cuadro-album{
+    position: relative;
+    border: none;
+    background: rgba(247, 247, 247, 0); 
+}
+#cuadro-album-nuevo{
+    position: relative;
+    border: none;
+    background: rgba(0, 0, 0, 0.159); 
+}
+
+#imagen-principal{
+    position: relative;   
+}
+#cuadro-album:hover > #info-album{
+    background: rgba(0, 0, 0, 0.118);  
+}
+#cuadro-album-nuevo:hover > #info-album-nuevo{
+    background: rgba(0, 0, 0, 0.118);  
+}
+
+#info-album-nuevo{
+    color: rgb(0, 0, 0);
+    position: absolute;
+    clear: both;    
+    background: rgba(0, 0, 0, 0);
+    height: 100%;
+    width: 100%;    
+}
+#info-album-nuevo h5{
+    margin-left:20%;
+    margin-top: 25%;
+    padding: 0;
+}
+
+#info-album{
+    color: white;
+    position: absolute;
+    clear: both;
+    margin-top: 40%;
+    background: rgba(0, 0, 0, 0);
+    height: 40%;
+    width: 90%;
+    left: 5%;
+}
+#info-album h5{
+    margin: 0;
+    padding: 0;
+}
+#info-album p{
+    margin: 0;
+    padding: 0;
+}
