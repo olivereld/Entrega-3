@@ -304,11 +304,11 @@
                         <input class="modal-input-registro"   type="password" placeholder="Repita la Contrase&ntilde;a" name="confirmationPassword" required  id="pass2">
                          
                         <select class="modal-input-fecha"   type="text" placeholder="A&ntilde;o"     id="anoRegistro"   name="Ano" required>
-                                <option value=""> -- Select Month -- </option>
+                                <option value=""> -- Selecciona un Mes -- </option>
                         </select>
 
                         <select class="combobox" name="Mes" id="mesRegistro" name="mes" required>
-                            <option value="00"> -- Select One -- </option>
+                            <option value="00"> -- Selecciona Uno -- </option>
                             <option value="01">Enero</option>
                             <option value="02">Febrero</option>
                             <option value="03">Marzo</option>
@@ -324,7 +324,7 @@
                         </select>
                         
                         <select class="modal-input-fecha"   type="text" placeholder="Dia"     id="diaRegistro"   name="Dia" required>
-                            <option value=""> -- Select Month -- </option>
+                            <option value=""> -- Selecciona un Mes -- </option>
                         </select>
                     
                     </div>
@@ -440,7 +440,7 @@
             var val = $(this).val();
             if ((val =! "") || (val == "")) {
                 var selectList = "";
-                    for (var x = 1960; x <= 2018; x++) {
+                    for (var x = 2018; x >= 1960; x--) {
                         selectList += "<option>" + x + "</option>";
                     }           
                     selectList += "</select>";

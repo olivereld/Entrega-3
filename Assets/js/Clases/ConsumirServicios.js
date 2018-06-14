@@ -1,5 +1,4 @@
 /* Registro del usuario */
-
 function enviarSolicitudDeRegistro(enlaceUrlHeroku,jsonConLosDatos){ 
      
      $.ajax({
@@ -20,18 +19,46 @@ function enviarSolicitudDeRegistro(enlaceUrlHeroku,jsonConLosDatos){
 
 }
 
+function iniciarSesionAlRegistrar(enlaceUrlHeroku,datosDelNuevoUsuario){
+    $.ajax({ //Envia los datos        
+        url : enlaceUrlHeroku, //Url
+        data : JSON.stringify(datosDelNuevoUsuario), //El formato Json
+        method :'POST', //en este caso
+        contentType: 'application/json; charset=utf-8',
+        dataType : 'json', //El tipo de archivo            
+ 
+        success : function (response){ //Si funciona
+            obtenerDatosCompletosPorId(""+response.id,""+response.authToken);                        
+        },
+        error: function(error){ //Si falla                        
+            inicioDeSesionFallida(error);            
+        }
+    });
+ }
+
 function registroExitoso(){
-    ocultarCarga();    
-     $(nombreRegistro).val("");
-     $(apellidoRegistro).val("");
-     $(emailRegistro).val("");
-     $(pass1).val("");
-     $(pass2).val("");
-     $(pass1).css("border","solid #101010");
-     $(pass2).css("border","solid #101010");
-     $(emailRegistro).css("border","solid #101010");
-     $(emailRegistro).css("background-color","#101010");
-     
+    localStorage.correoTemporal = $(emailRegistro).val();
+    localStorage.claveTemporal = $(pass1).val();  
+    $(nombreRegistro).val("");
+    $(apellidoRegistro).val("");
+    $(emailRegistro).val("");
+    $(pass1).val("");
+    $(pass2).val("");
+    $(pass1).css("border","solid #101010");
+    $(pass2).css("border","solid #101010");
+    $(emailRegistro).css("border","solid #101010");
+    $(emailRegistro).css("background-color","#101010");
+    $(anoRegistro).val("");
+    $(diaRegistro).val("");
+    $(mesRegistro).val("");  
+    var enlaceUrlHeroku = "https://ignsw201825-snproject.herokuapp.com/user/login"; 
+    var jsonConLosDatos = { //Creando JSON Con el formato
+        "email"       : ""+localStorage.getItem("correoTemporal"),
+        "password"    : ""+btoa(localStorage.getItem("claveTemporal")),    
+        }
+        iniciarSesionAlRegistrar(enlaceUrlHeroku,jsonConLosDatos);
+    localStorage.removeItem("correoTemporal");
+    localStorage.removeItem("claveTemporal");
 }
 function iniciarSesionAlRegistrar(enlaceUrlHeroku,datosDelNuevoUsuario){
     $.ajax({ //Envia los datos         
@@ -53,9 +80,13 @@ function iniciarSesionAlRegistrar(enlaceUrlHeroku,datosDelNuevoUsuario){
  
 function registroFallido(error){
     ocultarCarga(); 
-    alert("Error al registrarse:" + error);
-}
+    if (error == "[object Object]"){
+        alert("El Email ya esta Registrado")
+    } else {
+        alert("Error al registrarse:" + error);
+    }
 
+}
 
 /* Inicio de session */
  function enviarSolicitudDeLogin(enlaceUrlHeroku){ //Con JQuery Forma Registrar Usuario
