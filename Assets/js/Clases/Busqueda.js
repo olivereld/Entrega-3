@@ -1,10 +1,9 @@
 
-
 var nuevaBusqueda = false;
 
 
 function buscarPalabra(){   
-    $("#cargando-Busquedas").css("display","block");
+    
     var url = "https://ignsw201825-snproject.herokuapp.com/search/instagram?q=";
     var palabraABuscar = $('#barra-Navegacion').val();
 
