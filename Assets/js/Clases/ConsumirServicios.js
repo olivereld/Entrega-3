@@ -1,5 +1,4 @@
 /* Registro del usuario */
-
 function enviarSolicitudDeRegistro(enlaceUrlHeroku,jsonConLosDatos){ 
      
      $.ajax({
@@ -20,25 +19,74 @@ function enviarSolicitudDeRegistro(enlaceUrlHeroku,jsonConLosDatos){
 
 }
 
-function registroExitoso(){
-    ocultarCarga();    
-     $(nombreRegistro).val("");
-     $(apellidoRegistro).val("");
-     $(emailRegistro).val("");
-     $(pass1).val("");
-     $(pass2).val("");
-     $(pass1).css("border","solid #101010");
-     $(pass2).css("border","solid #101010");
-     $(emailRegistro).css("border","solid #101010");
-     $(emailRegistro).css("background-color","#101010");
-     
-}
+function iniciarSesionAlRegistrar(enlaceUrlHeroku,datosDelNuevoUsuario){
+    $.ajax({ //Envia los datos        
+        url : enlaceUrlHeroku, //Url
+        data : JSON.stringify(datosDelNuevoUsuario), //El formato Json
+        method :'POST', //en este caso
+        contentType: 'application/json; charset=utf-8',
+        dataType : 'json', //El tipo de archivo            
+ 
+        success : function (response){ //Si funciona
+            obtenerDatosCompletosPorId(""+response.id,""+response.authToken);                        
+        },
+        error: function(error){ //Si falla                        
+            inicioDeSesionFallida(error);            
+        }
+    });
+ }
 
+function registroExitoso(){
+    localStorage.correoTemporal = $(emailRegistro).val();
+    localStorage.claveTemporal = $(pass1).val();  
+    $(nombreRegistro).val("");
+    $(apellidoRegistro).val("");
+    $(emailRegistro).val("");
+    $(pass1).val("");
+    $(pass2).val("");
+    $(pass1).css("border","solid #101010");
+    $(pass2).css("border","solid #101010");
+    $(emailRegistro).css("border","solid #101010");
+    $(emailRegistro).css("background-color","#101010");
+    $(anoRegistro).val("");
+    $(diaRegistro).val("");
+    $(mesRegistro).val("");  
+    var enlaceUrlHeroku = "https://ignsw201825-snproject.herokuapp.com/user/login"; 
+    var jsonConLosDatos = { //Creando JSON Con el formato
+        "email"       : ""+localStorage.getItem("correoTemporal"),
+        "password"    : ""+btoa(localStorage.getItem("claveTemporal")),    
+        }
+        iniciarSesionAlRegistrar(enlaceUrlHeroku,jsonConLosDatos);
+    localStorage.removeItem("correoTemporal");
+    localStorage.removeItem("claveTemporal");
+}
+function iniciarSesionAlRegistrar(enlaceUrlHeroku,datosDelNuevoUsuario){
+    $.ajax({ //Envia los datos         
+        url : enlaceUrlHeroku, //Url
+        data : JSON.stringify(datosDelNuevoUsuario), //El formato Json
+        method :'POST', //en este caso
+        contentType: 'application/json; charset=utf-8',
+        dataType : 'json', //El tipo de archivo            
+
+        success : function (response){ //Si funciona
+           
+            obtenerDatosCompletosPorId(""+response.id,""+response.authToken);                         
+        },
+        error: function(error){ //Si falla                        
+            inicioDeSesionFallida(error);            
+        }
+    });
+ }
+ 
 function registroFallido(error){
     ocultarCarga(); 
-    alert("Error al registrarse:" + error);
-}
+    if (error == "[object Object]"){
+        alert("El Email ya esta Registrado")
+    } else {
+        alert("Error al registrarse:" + error);
+    }
 
+}
 
 /* Inicio de session */
  function enviarSolicitudDeLogin(enlaceUrlHeroku){ //Con JQuery Forma Registrar Usuario
@@ -64,6 +112,7 @@ function registroFallido(error){
          }
      });
  }
+ 
  function obtenerDatosCompletosPorId(id,token){
     var urlPeticionEnHeroku = "https://ignsw201825-snproject.herokuapp.com/user/get/"+id;
     $.ajax({ //Envia los datos         
@@ -89,7 +138,7 @@ function registroFallido(error){
     var encriptado        = ""+response.password;
     var correo            = ""+response.email;
     var albums            = ""+JSON.stringify(response.albums).substring(1,JSON.stringify(response.albums).length-1);
-    var amigos            = ""+JSON.stringify(response.friends);     
+    var amigos            = ""+JSON.stringify(response.friends).substring(1,JSON.stringify(response.friends).length-1);     
     
     sessionStorage.setItem("id",id);
     sessionStorage.setItem("token",token);
@@ -118,6 +167,7 @@ function inicioDeSesionFallida(error){
 /*Salir*/
 
 function salirDeLaPagina(enlaceUrlHeroku){ 
+    $("#cargando").modal();
     var id =    "" +sessionStorage.getItem("id");
     var token = "" +sessionStorage.getItem("token");
     var jsonConLosDatos  = { //Creando JSON Con el formato
@@ -134,9 +184,11 @@ function salirDeLaPagina(enlaceUrlHeroku){
 
          success : function (response){ 
             sessionStorage.clear();
+            localStorage.clear();
             window.location = "index.html";                
              },
-         error: function(error){             
+         error: function(error){ 
+            $("#cargando").modal(hide);            
             alert("No pudo hacer logOut");                
          }
      });
@@ -208,57 +260,8 @@ function modificarDatosDelUsuario(){
             }
     });    
 }
-
-function mostrarResultados(listaDeUrl){    
-        
-         $("#particles-js").css("display", "none"); 
-         $("#titulo-Seccion").css("display","block");
-         $("#separador-Busqueda").css("display","block");
-         $("#titulo-Seccion").css("margin-top","50px");
-         $("#fondo-Imagen").css("position","fixed");
-         $("#sinResultados").css("display","none"); 
-
-        var listaDeImagenesCompactada = "" + listaDeUrl.imageUrl;
-        var listaDeImagenes = listaDeImagenesCompactada.split(',');
-        localStorage.setItem("listaDeImagenes",JSON.stringify(listaDeImagenes));
-       
-         console.log("total de imagenes" + listaDeImagenes.length);
-         console.log("imagenes que sobran" + listaDeImagenes.length%12);
-         
-         var totalDeImagenes = localStorage.getItem("listaDeImagenes").split(',');
-         var nuevaLista = [] ;
-       $("#cargando-Busquedas").css("display","none");
-
-            for(var i = 0; i < 12; i++){                
-
-            $(".BusquedaOrdenada").append(
-
-                "<div id ='cuadro-Busqueda' class='card col-12 col-sm-6 col-md-4 col-lg-3'>"+
-                    "<div id='cuadro-Contenido' class='card-body' data-toggle='modal' data-target='#imagen"+i+"'>"+                           
-                        "<img class='card-img-top' src='"+listaDeImagenes[i]+"'alt='Busqueda'>"+
-                        "<a id='boton-agregarImg2' href='#' class='btn btn-danger'>Guardar</a>"+ 
-                        "<img id='icono-Pagina' src='image/instagramIcon.png' width='50' height='50' >"+
-                    "</div>"+      
-                    
-                    "<div class='modal fade' id='imagen"+i+"' tabindex='-1' role='dialog' aria-hidden='true'>"+                              
-                        "<div class='modal-dialog modal-lg modal-dialog-centered' role='document'>"+
-                        "<img  class='img-fluid-rounded' src='"+listaDeImagenes[i]+"'alt='Busqueda'>"+          
-                        "</div>"+       
-                    "</div>"+      
-                    
-                "</div>" 
-                );  
-
-                }
-                for(var i = listaDeImagenes.length%12; i < listaDeImagenes.length ; i++){
-                    nuevaLista.push(totalDeImagenes[i]);
-                }
-                localStorage.setItem("listaDeImagenes",JSON.stringify(nuevaLista));
-                          
-       
-    }
     function mostrarResultadoImagen(UrlDeImagen,UrlPaginaDeProsedencia,numeroDeIndice){
-       
+       console.log("Imagenes Impresas");
         $(".BusquedaOrdenada").append(
             "<script type='text/javascript'>"+
                 " function procedencia"+numeroDeIndice+"(){"+
@@ -272,9 +275,9 @@ function mostrarResultados(listaDeUrl){
             "</script>"+
 
             "<div id ='cuadro-Busqueda' class='card col-12 col-sm-6 col-md-4 col-lg-3'>"+
-                "<div id='cuadro-Contenido' class='card-body' data-toggle='modal' data-target='#imagen"+numeroDeIndice+"'>"+                           
-                    "<img id='imagen-Principal'class='card-img-top' src='"+UrlDeImagen+"'alt='Busqueda'>"+
-                    "<a id='boton-agregarImg2' href='#' class='btn btn-danger'>Guardar</a>"+ 
+                "<div id='cuadro-Contenido' class='card-body' >"+                           
+                    "<img id='imagen-Principal'class='card-img-top urlImagenPrincipal"+numeroDeIndice+"' src='"+UrlDeImagen+"'alt='Busqueda' data-toggle='modal' data-target='#imagen"+numeroDeIndice+"'>"+
+                    "<a id='boton-agregarImg2' href='#' class='btn btn-danger' onclick='focusImagen("+'".urlImagenPrincipal'+numeroDeIndice+'"'+","+'"'+UrlPaginaDeProsedencia+'"'+"); verificarInfoAlbums();' >Guardar</a>"+ 
                     "<img id='icono-Pagina' src='image/instagramIcon.png' width='50' height='50' onclick='procedencia"+numeroDeIndice+"()' >"+
                 "</div>"+      
                 
@@ -337,6 +340,7 @@ function mostrarResultados(listaDeUrl){
             );
     }
     function prepararResultados(listaDeElementos){
+        
         $("#particles-js").css("display", "none"); 
         $("#titulo-Seccion").css("display","block");
         $("#separador-Busqueda").css("display","block");
@@ -344,13 +348,20 @@ function mostrarResultados(listaDeUrl){
         $("#fondo-Imagen").css("position","fixed");
         $("#sinResultados").css("display","none"); 
         $("#cargando-Busquedas").css("display","none");
+        console.log(listaDeElementos.length);
+
         for(var i = 0; i < listaDeElementos.length;i++){
-            if( ("" + listaDeElementos[i].type) == "image"){              
+
+            if( ("" + listaDeElementos[i].type) == "image"){
+
                 mostrarResultadoImagen(listaDeElementos[i].imageUrl,listaDeElementos[i].instagramLink,i);
+
             }else if(("" + listaDeElementos[i].type) == "video"){                
                 mostrarResultadoVideo(listaDeElementos[i].imageUrl,listaDeElementos[i].videoUrl,listaDeElementos[i].instagramLink,i);              
             }
         }
+        $("#cargando").modal("hide");
+        
     }
     function sinResultados(){   
         $("#particles-js").css("display", "none"); 
@@ -364,6 +375,7 @@ function mostrarResultados(listaDeUrl){
 function enviarPeticionDeBusqueda(enlaceUrlHeroku){ 
      
     $.ajax({
+
         url : enlaceUrlHeroku,         
         method :'GET', 
         contentType: 'application/json; charset=utf-8',
@@ -375,11 +387,10 @@ function enviarPeticionDeBusqueda(enlaceUrlHeroku){
                           
             },
         error: function(XMLHttpRequest, textStatus, errorThrown){  
-            $("#cargando-Busquedas").css("display","none");
+            $("#cargando").modal("hide");
             if(localStorage.getItem("datoBusquedaLocal")){
                 localStorage.removeItem("datoBusquedaLocal");
-            }
-           
+            }           
             sinResultados();        
         }
     });

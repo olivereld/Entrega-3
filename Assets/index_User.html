@@ -9,11 +9,14 @@
     <link rel="stylesheet" href="Css3/modalLogin.css"/>
     <link rel="stylesheet" href="fonts/iconStyle.css"/>
     <link rel="stylesheet" href="Css3/busqueda.css"/>  
+    <link rel="stylesheet" href="Css3/albums.css"/> 
     <script src="js/Jquery.js"></script>
     <script src="libs/angular.min.js"></script>   
     <script src="js/bootstrap.min.js"></script> 
     <script src="js/Clases/ConsumirServicios.js"></script>  
+    <script src="js/Clases/Albums.js"></script> 
     <script src="js/Clases/Busqueda.js"></script> 
+    <script src="js/Clases/GestionMultimedia.js"></script>
     
     
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"> 
@@ -52,6 +55,7 @@
                if(sessionStorage.getItem("busquedaRealizada")){           
                    $("#barra-Navegacion").val(sessionStorage.getItem("busquedaRealizada"));           
                    sessionStorage.removeItem("busquedaRealizada");
+                   $("#cargando").modal();  
                    buscarPalabra();
                }else if(localStorage.getItem("datoBusquedaLocal")){
                    cambiarValorDeNuevaBusqueda();
@@ -64,7 +68,8 @@
     </script>
     <title>WebMedia</title>
 </head>
-<body>           
+<body>        
+                 
     <header class="container-fluid fixed-top "><!--Cabecera-->
             <section class="row" id="cabeceraTitulo">
                      <div class="titulo"> <!-- Logo-->
@@ -181,18 +186,70 @@
                     console.log("Esta en la mitad");
                 }       
             }
-     </script>
-   
-   <section class="Resultados container-fluid">
-         <div class="row BusquedaOrdenada card-columns">
+     </script>   
+    <section class="Resultados container-fluid">
+        <div class="row BusquedaOrdenada card-columns">
+                <div id="sinResultados" class="card" style="width: 18rem; margin-left:auto; margin-right:auto; ">
+                        <img class="card-img-top" src="image/notResult.png" alt="Card image cap">
+                        <div class="card-body">
+                          <h5 class="card-title">No se encontraron resultados</h5>
+                          <p class="card-text">Pruebe realizando otra busqueda con un tag diferente.</p>                          
+                        </div>
+                </div>           
+                   
                  
          </div>                
-    </section>
-   
+    </section> 
     
      
     <script src="js/Particles/particles.js"></script>
-    <script src="js/Particles/app.js"></script>    
+    <script src="js/Particles/app.js"></script> 
+
+
+    <!-- Modal Agregar multimedia a un album -->
+<div class="container-fluid"> 
+        <!-- Modal -->
+        <div class="modal fade" id="gestionMultimediaModal" role="dialog">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+    
+              <div class="modal-header" style=" height: 55px; background: rgb(26, 26, 26); color:rgb(255, 255, 255); " id="cabecera-modal">
+                <button type="button" class="close" data-dismiss="modal"></button>
+                <h4 class="text-left" style=" left: 0;">Seleccione un album</h4>
+              </div>
+              
+                 <div class="modal-body" style=" height: 250px; width: 100%;overflow-y: auto;" >
+                    
+                     <div class="row card-columns VistaPreviaAlbums" id="galeriaAlbums" > <!------------vista Previa de albums---------->                     
+                                                                                     
+                     </div>                  
+                    
+                 </div>
+
+              <div class="modal-footer" style="background: rgb(26, 26, 26); color:rgb(255, 255, 255);" >                    
+                    <button  type="button" class="btn btn-primary"  onclick="guardarMultimedia()">Guardar</button>                  
+                    <button  type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+                    
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- Modal Agregar multimedia a un album -->
+<div class="container"  > 
+		<!-- Modal -->
+		<div class="modal fade" id="cargando" role="dialog" data-backdrop="static" data-keyboard="false">
+		  <div class="modal-dialog modal-md">
+			<div class="modal-content">					
+					<div id="cargando-gift"></div>							  
+			</div>
+		  </div>
+		</div>
+	</div>
+
+
+
 </body>
 
 </html>
