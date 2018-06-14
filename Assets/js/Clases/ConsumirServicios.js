@@ -144,6 +144,7 @@ function salirDeLaPagina(enlaceUrlHeroku){
 
 /*Enviar modificacion de perfil */
 function modificarDatosDelUsuario(){ 
+    mostrarSpinner("a");
 
     var  campoModificado=["","","","",""];
 
@@ -167,12 +168,18 @@ function modificarDatosDelUsuario(){
    }else
          campoModificado[3] = "";
 
+    if (((atob(sessionStorage.getItem("encriptado"))!=($(inputPassword5).val())))){
+        alert("Clave Actual Incorrecta, intente de nuevo");
+        console.log($(inputPassword5).val());
+        campoModificado[3] ="";
+        ocultarSpinner("a");
+    }
     var datosJson = { //Creando JSON Con el formato      
         "firstName"             : ""+campoModificado[0],
         "lastName"              : ""+campoModificado[1],
         "email"                 : ""+campoModificado[2],
         "password"              : ""+btoa(campoModificado[3]),       
-        "dateOfBirth"           : ""+sessionStorage.getItem('fechaDeNAcimiento'),
+        "dateOfBirth"           : ""+$(date1).val().replace(/-/g,"/"),
         "authToken"             : ""+sessionStorage.getItem('token')
 
     }
@@ -193,7 +200,11 @@ function modificarDatosDelUsuario(){
                    console.log("listo");                   
             },
             error: function(error){ //Si falla                
-                 console.log(error);                
+                 console.log(error);
+                 if ((atob(sessionStorage.getItem("encriptado"))==($(inputPassword5).val()))){
+                 alert("Los datos ingresados son incorectos, intente de nuevo");
+                 }
+                 ocultarSpinner("a");                
             }
     });    
 }

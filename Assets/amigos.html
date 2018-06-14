@@ -11,10 +11,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- Para Heroku-->
 	<script src="js/jquery.js"></script>  
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/Clases/PantallaCarga.js"></script>
     <script src="js/Clases/Amigos.js"></script>
 	<link   rel="stylesheet" href="Css3/css/AdminLTE.min.css"> 	
     <link   rel="stylesheet" href="Css3/perfil.css">
     <link   rel="stylesheet" href="Css3/amigos.css">
+    <link   rel="stylesheet" href="Css3/busqueda.css">
     <link 	rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     
 </head>
@@ -52,9 +54,9 @@
                             <form>
                                     <div class="form-group">
                                       <label for="formGroupExampleInput">Nombre</label>
-                                      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="James Corden">
+                                      <input type="text" class="form-control" id="busquedaUser" placeholder="James Corden">
                                     </div>
-                                    <button type="button" class="btn btn-primary btn-sm">Buscar</button>
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="buscarAmigo()" >Buscar</button>
                             </form>
     
                     </div>

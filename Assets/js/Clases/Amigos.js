@@ -44,60 +44,79 @@ function llenarRegistrados(response,data,number){
     var friends= document.getElementById('friends');
     var users= document.getElementById('users');
     var users2= document.getElementById('users2');
+    var icon='<i class="fas fa-plus mr-1"></i><i class="fas fa-user"></i>';
+    var color ="primary"
+    var funcion ="agregarAmigo"
+    if (number==1){
+        friends=users2;
+        icon='<i class="fas fa-user-times"></i>';
+        color="danger";
+        funcion="eliminarAmigo";
+    }
     while (j<response.length){
-        if (number==0){
+        if ((j<6)&(j<response.length)&(users!=null)){
+            users.innerHTML+= `
+            <div class="card text-white" data-toggle="tooltip" title="" data-original-title="Default tooltip">
+                <img src="${data.results[j].picture.large}"   class="card-img" alt="">
+                
+            </div>
+            `
+        }
             friends.innerHTML+= `
             <div class="card" id=cf-${j} data-copy="${response[j].id}">
-                                
-            <div class="col-md-6 float-left px-0 py-auto text-center">
-                    <img src="${data.results[j].picture.large}" class="card-img-top img-fluid px-0" alt="">
-            </div>
-                
-            <div class="col-md-6 float-left px-2 pt-1 pb-1">
-                <div class="text-center">
-                    <p class="rale text-capitalize">${response[j].firstName+" "+response[j].lastName}</p>
-                    <button type="button" class="btn btn-primary btn-sm" onclick="agregarAmigo(${j})"><i class="fas fa-plus"></i><i class="fas fa-user"></i></button>
+                <a href="#" data-toggle="modal" data-target="#modal-${j}" style="color:black;">                             
+                <div class="col-md-6 float-left px-0 py-auto text-center">
+                        <img src="${data.results[j].picture.large}" class="card-img-top img-fluid px-0" alt="">
                 </div>
-            </div>    
-                
-        </div>
-            ` 
-         }
-         if (number==1){
-            if ((j<6)&(j<response.length)){
-                users.innerHTML+= `
-                <div class="card text-white" data-toggle="tooltip" title="" data-original-title="Default tooltip">
-                    <img src="${data.results[j].picture.large}"   class="card-img" alt="">
+                </a>
                     
-                </div>
-                `
-            }
-
-            if(j<response.length){
-                users2.innerHTML+= `
-                    <div class="card" id=cf-${j} data-copy="${response[j].id}">
-                                        
-                        <div class="col-md-6 float-left px-0 py-auto text-center">
-                                <img src="${data.results[j].picture.large}" class="card-img-top img-fluid px-0" alt="">
-                        </div>
-                            
-                        <div class="col-md-6 float-left px-2 pt-1 pb-1">
-                            <div class="text-center">
-                                <p class="rale text-capitalize">${response[j].firstName+" "+response[j].lastName}</p>
-                                <button type="button" class="btn btn-danger btn-sm" onclick="eliminarAmigo(${j})"><i class="fas fa-times"></i><i class="fas fa-user"></i></button>
-                            </div>
-                        </div>    
-                        
+                <div class="col-md-6 float-left px-2 pt-1 pb-1">
+                    <div class="text-center">
+                    <a href="#" data-toggle="modal" data-target="#modal-${j}" style="color:black;">
+                        <p class="rale text-capitalize">${response[j].firstName+" "+response[j].lastName}</p>
+                        </a>
+                        <button id=bt-${j} type="button" class="btn btn-${color} btn-sm" onclick="${funcion}(${j})">${icon}</button>
                     </div>
-            `
-            }
-             
-
-         }
+                </div> 
+                       
+            </div>
+                        <!-- Modal -->
+            <div class="modal fade" id="modal-${j}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg rounded" role="document">
+                    <div class="modal-content rounded">
+                        <div class="modal-header">
+                            <h4 class="modal-title rale" id="exampleModalLabel">PERFIL</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="col-md-5 float-left">
+                                    <div class="card">
+                                        <img src="${data.results[j].picture.large}" alt="" class="card-img-top">
+                                    </div>
+                                </div>
+                                <div class="col-md-7 float-left">
+                                    <div class="card">
+                                        <div class="card-header rale"><i class="fas fa-user mr-2"></i>${response[j].firstName+" "+response[j].lastName}</div>
+                                        <div class="card-body rale"><i class="fas fa-at mr-1"></i>Email: ${response[j].email+'<br><br> <i class="far fa-calendar-alt mr-1"></i> Fecha de nacimiento: '+response[j].dateOfBirth}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                        
+            ` 
+         
     j++;
     }
     if (number==0){
-    getUser()}
+        comparar(response.length);
+    //getUser()
+    }
 
 }
 
@@ -141,9 +160,24 @@ function usuariosRegistrados(number){
     //console.log(JSON.parse(localStorage.getItem("usuariosBusqueda")+));
 }
 
+function mostrarSpinner(id){
+    var button= document.getElementById("bt-"+id);
+    button.innerHTML= `<i class="fas fa-circle-notch fa-spin"></i> `
+    console.log($("#bt-"+id).dataType)
+}
+
+function ocultarSpinner(id){
+    var button= document.getElementById("bt-"+id);
+    if(id="a"){
+        button.innerHTML= `Guardar` 
+    }else{
+    button.innerHTML= `<i class="fas fa-plus"></i><i class="fas fa-user"></i> `
+    }
+}
 
 
 function  agregarAmigo(cardNumber){
+        mostrarSpinner(cardNumber);
         var dato =  "#cf-"+cardNumber;
         var id =    "" +sessionStorage.getItem("id");
         var token = "" +sessionStorage.getItem("token"); 
@@ -163,9 +197,11 @@ function  agregarAmigo(cardNumber){
              dataType : 'json', 
     
              success : function (response){ 
-                console.log(response)                
+                console.log(response);
+                $(dato).css("display","none")                
                  },
-             error: function(error){             
+             error: function(error){
+                ocultarSpinner(cardNumber);             
                 alert("No pudo agregar amigo");                
              }
 
@@ -174,6 +210,7 @@ function  agregarAmigo(cardNumber){
 }
 
 function getListaUsuarios(number){
+    
     $.ajax({
         url : "https://ignsw201825-snproject.herokuapp.com/user/friend/getList/"+sessionStorage.getItem("id"),         
         method :'GET', 
@@ -182,6 +219,7 @@ function getListaUsuarios(number){
 
         success : function (response){ 
             console.log(response.length);
+            $(amigos).text(response.length)
             console.log(response);
             getImagenMen(response,number)                          
             },
@@ -193,12 +231,15 @@ function getListaUsuarios(number){
     
 }
 
+
+
 function eliminarAmigo(cardNumber){
         var dato =  "#cf-"+cardNumber;  
         var id =    "" +sessionStorage.getItem("id");
         var token = "" +sessionStorage.getItem("token"); 
         var friendId = ""+$(dato).data('copy');
         console.log(friendId);
+        mostrarSpinner(cardNumber) ;
         var jsonConLosDatos  = { //Creando JSON Con el formato
             "userId"           :id,
             "authToken"    : token, 
@@ -213,12 +254,83 @@ function eliminarAmigo(cardNumber){
              dataType : 'json', 
     
              success : function (response){ 
-                console.log(response)                
+                console.log(response);
+                $(dato).css("display","none")
+                            
                 },
              error: function(error){             
-                alert("Error al eliminar");                
+                alert("Error al eliminar");
+                ocultarSpinner(cardNumber);
+
              }
              
          });
 
+}
+
+function buscarAmigo(){
+    palabra= $(busquedaUser).val();
+    palabra=palabra.replace(" ","")
+    var friends= document.getElementById('friends');
+    friends.innerHTML=``
+
+    
+        $.ajax({
+            url : "https://ignsw201825-snproject.herokuapp.com/user/search/"+palabra,         
+            method :'GET', 
+            contentType: 'application/json; charset=utf-8',
+            dataType : 'json', 
+    
+            success : function (response){   
+                console.log(response.length);
+                getImagenMen(response,0);                       
+                },
+            error: function(error){             
+                console.log(error); 
+                document.getElementById("friends").innerHTML=`<h4>No se encontraron datos de acuerdo a su busqueda</h4>`;
+                $(friends).css("text-align","center");
+                        
+            }
+        });
+    
+        //console.log(JSON.parse(localStorage.getItem("usuariosBusqueda")+));
+    
+}
+
+function comparar (listaUsuarios){
+    var i=0;
+    var j=0;
+    $.ajax({
+        url : "https://ignsw201825-snproject.herokuapp.com/user/friend/getList/"+sessionStorage.getItem("id"),         
+        method :'GET', 
+        //contentType: 'application/json; charset=utf-8',
+        dataType : 'json', 
+
+        success : function (response){ 
+            console.log(response.length);
+                while(i<listaUsuarios){
+                    for(j=0;j<response.length; j++){
+                        if($("#cf-"+i).data("copy")==response[j].id){
+                            $("#cf-"+i).css("display","none");
+                            var parent=document.getElementById("friends");
+                            var child=document.getElementById("cf-"+i);
+                            var childModal=document.getElementById("modal-"+i);
+                            parent.removeChild(child);
+                            parent.removeChild(childModal);
+                            console.log(response[j].firstName+" es igual");
+                            i++;
+                            
+                        }
+                        
+                    }
+                    i++;
+                }                         
+            },
+        error: function(error){             
+            console.log(error); 
+                    
+        }
+    });
+    
+    
 }

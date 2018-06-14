@@ -16,6 +16,8 @@
 	<link   rel="stylesheet" href="Css3/perfil.css">
 	<link 	rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
+	
+
 </head>
 <body>
 <!-- Comienza la cabecera -->
@@ -60,10 +62,8 @@
 			</div>
 			<div class="card-body box-profile pt-5">
 				<ul class="list-group list-group-unbordered mb-3">
-					<li class="list-group-item">
-						<b>Followers</b>
-						<a class="float-right">1,322</a>
-					</li>
+					<br>
+					<br>
 					<li class="list-group-item">
 						<b>Albums</b>						
 						<p id="cantidad-Albumes"class="float-right" ></p>
@@ -83,8 +83,8 @@
 						</script>
 					</li>
 					<li class="list-group-item">
-						<b>Friends</b>
-						<a class="float-right">13,287</a>
+						<b>Amigos</b>
+						<a id="amigos" class="float-right">0</a>
 					</li>
 				</ul>
 			</div>
@@ -108,7 +108,6 @@
 	<br>
 	<div class="card c-white">
 
-		<!-- Nav tabs: REVISAR!!! -->
 		<div class="card-header">
 			<ul class="nav nav-pills card-header-pills nav-fill">
 					<li class="nav-item">
@@ -236,19 +235,39 @@
 							<input type="text" class="form-control" id="inputApellido" placeholder="Apellido">
 						</div>
 					</div>
-					<div class="form-row">
+					<div class="row">
 						<div class="form-group col-md-6">
 							<label for="inputEmail4">Email</label>
 							<input type="email" class="form-control" id="inputEmail4" placeholder="Email">
 						</div>
 						<div class="form-group col-md-6">
-							<label for="inputPassword4">Contrase&ntilde;a</label>
-							<input type="password" class="form-control" id="inputPassword4" placeholder="Contrase&ntilde;a">
-						</div>
+								<label for="date">Fecha de Nacimiento</label>
+								<input type="date" class="form-control" id="date1">
+							</div>
 					</div>
-					<span class="btn btn-primary" onclick="modificarDatosDelUsuario()">Guardar</span>
+					<div class="row">
+							<div class="form-group col-md-6">
+									<label for="inputPassword4">Contrase&ntilde;a Nueva</label>
+									<input type="password" class="form-control" id="inputPassword4" placeholder="Contrase&ntilde;a">
+							</div>
+							<div class="form-group col-md-6">
+									<label for="inputPassword5">Contrase&ntilde;a Actual</label>
+									<input type="password" class="form-control" id="inputPassword5" placeholder="Contrase&ntilde;a">
+							</div>
+					</div>
+					<span id="bt-a" class="btn btn-primary" onclick="modificarDatosDelUsuario()">Guardar</span>
 				</form>
 			</div>
+
+			<script>
+					$(inputNombre).val(sessionStorage.getItem("nombre"));
+					$(inputApellido).val(sessionStorage.getItem("apellido"));
+					$(inputEmail4).val(sessionStorage.getItem("correo"));
+					$(inputPassword4).val(atob(sessionStorage.getItem("encriptado")));
+					//$(date1).val(sessionStorage.getItem("fechaDeNAcimiento"));
+					console.log($(date1).val().replace(/-/g,"/"));
+					 
+			</script>
 
 		</div>
 	</div>
