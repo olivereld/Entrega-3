@@ -321,6 +321,14 @@ function comparar (listaUsuarios){
                             i++;
                             
                         }
+
+                        if ($("#cf-"+i).data("copy")==sessionStorage.getItem("id")){
+                            var parent=document.getElementById("friends");
+                            var child=document.getElementById("cf-"+i);
+                            var childModal=document.getElementById("modal-"+i);
+                            parent.removeChild(child);
+                            parent.removeChild(childModal);
+                        }
                         
                     }
                     i++;
