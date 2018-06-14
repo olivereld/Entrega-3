@@ -25,36 +25,36 @@ function campoVacio(){//Comprobara que los campos se llenen
     }
 
     if(validar){
-        console.log("Campos llenos");
+        console.log("Campos Llenos");
     }else
-        alert("Debe llenar todos los");
+        alert("Todos los Campos deben estar Llenos");
     return validar;        
 }
 
 function longitud(){//Las contraseñas deben tener 7 o mas caracteres
 
     if($(pass1).val().length < 7){
-        console.log("La contraseña es muy corta");
+        console.log("La Contraseña es muy Corta");
         return false;
     }else{
-        console.log("clave de tamaño correcto");
+        console.log("Clave de Tamaño Correcto");
         return true;
     }
 }
 
 function comparar(){//comprueba si se repitio correctamente la contraseña
     if($(pass1).val() == $(pass2).val()){
-        console.log(" contraseñas Iguales");
+        console.log(" Contraseñas Iguales");
         return true;
     }else{
-        console.log(" contraseñas Diferentes");
+        console.log(" Contraseñas Diferentes");
         return false;
     }
 }
 
 function correoValido(){//Verifica si un correo es valido
     if($(emailRegistro).val().indexOf("@") > -1 && $(emailRegistro).val().indexOf(".com") > -1){
-        console.log("Email valido");
+        console.log("Email Valido");
         $(emailRegistro).css("border","solid #87ee8c");
         return true;
     }else{
@@ -80,10 +80,11 @@ function formalizar(urlServidor){
             "email"                 : $(emailRegistro).val(),
             "password"              : password,
             "confirmationPassword"  : password2,
-            "dateOfBirth"           : date     
+            "dateOfBirth"           : date,     
         }        
         enviarSolicitudDeRegistro(urlServidor,jsonConRegistroDeUsuario); //Ejecuta la funcion enviar que esta de ultima              
-     } else{
+        
+    } else{
         ocultarCarga();
         console.error("No se puede crear JSON"); //Si no se cumplen los requisitos
     }
