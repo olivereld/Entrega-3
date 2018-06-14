@@ -2,17 +2,12 @@
 #sinResultados{
     display: none;
 }
-
 #cuadro-Busqueda{
     background: #f2f2f200;    
 }
 #cuadro-Contenido:hover{
     background: #ffffffc7;
 }
-
-
-
-
 /*Probando con cards*/
 #cuadro-Contenido{   
     position: relative;
@@ -37,7 +32,6 @@
     -khtml-user-select: none;
     -ms-user-select:none;
 }
-
 #cuadro-Contenido:hover > #imagen-Principal{
     opacity: 1; 
 }
