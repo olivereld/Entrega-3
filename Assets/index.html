@@ -75,43 +75,41 @@
              
      });        
     </script>
-
-    <title>Title</title>   
-
+    <title>WebMedia</title>   
 </head>
 <body>  
       
-    <header class="container-fluid fixed-top "><!--Cabecera-->
-        <section class="row" id="cabeceraTitulo">           
-                <div class="titulo "> <!-- Logo-->
-                    <p>WebMedia</p>                                             
+    <header class="container-fluid fixed-top " style="background-color: black; height: 64px;"><!--Cabecera-->
+        <section class="row mx-auto" id="cabeceraTitulo" style="width: 91%">           
+                <div class="titulo"> <!-- Logo-->
+                    <p style="font-size: 40px; margin-top: -4px; color: white" >WebMedia</p>                                             
                 </div> 
                 <!--Barra de busqueda-->
-                <div class="buscador">
+                <div class="buscador mt-2" style="padding-left: 68px">
                     <form class="navbar-form navbar-left" role="search">
                         <div id="searchform"  class="form-group">
                             <input id="barra-Navegacion" type="text" class="form-control" placeholder="Buscar">
-                            <button id="botonBusqueda" type="submit" onclick="buscarPalabra()"> <span class="icon-search"></span> </button> 
+                            <button id="botonBusqueda" type="submit" onclick="buscarPalabra()" > <span class="icon-search"></span> </button> 
                         </div>                                                                          
                     </form>
                 </div>   
-                 <!--Barra de busqueda-->  
+                 <!--Barra de busqueda fin-->  
 
                  <!--Opciones de la cabecera desplegables-->
-                 <div class="container-fluid responsiveMenu">
+                 <div class="container-fluid responsiveMenu " >
                         <div class="navegacion1">
                              <span class="icon-search" onclick="mostrarBarraInferiorDeBuesqueda()">                                 
                              </span>   
-                                                   
                         </div>
                         <div class="navegacion2" onclick="mostrarBarraInferiorDeOpciones()">
                              <span class="icon-menu">                                 
                              </span>
                         </div>                        
                  </div>
+                 <!--opciones desplegables-->
               
                   <!--Menu de opciones normal-->
-                <ul class="opciones"> <!-- Registrarse-->
+                <ul class="opciones ml-auto mt-1 " style="width: auto; color: white"> <!-- Registrarse-->
                     <li>                           
                         <a href="#" data-toggle="modal" data-target="#myModal2" > 
                              <span class="icon-user-plus">
@@ -138,7 +136,7 @@
         </section>
          
         <!--Barra de navegacion inferior-->
-         <div class="buscadorInferior">
+         <div class="buscadorInferior" style="background-color: black">
             <form class="navbar-form navbar-left" role="search">
                 <div id="searchform"  class="form-group">
                     <input id="barra-Navegacion" type="text" class="form-control" placeholder="Buscar">
@@ -147,9 +145,9 @@
             </form>
          </div>     
 
-         <div class="menuInferior">
-                <ul class="opcionesInferior"> <!-- Registrarse-->
-                    <li>
+         <div class="menuInferior" style="background-color: black">
+                <ul class="opcionesInferior" style="background-color: black" > <!-- Registrarse-->
+                    <li style="background-color: black">
                         <a href="#" data-toggle="modal" data-target="#myModal2" >                    
                             <span class="icon-user-plus"> 
                                 Registrarse                           
@@ -158,7 +156,7 @@
                     </li>
                     
                  <!-- Entrar-->
-                    <li>
+                    <li style="background-color: black">
                         <a href="#" data-toggle="modal" data-target="#myModal">                         
                              <span class="icon-enter"> 
                               Entrar                           
@@ -170,16 +168,24 @@
                       
     </header><!--Cabecera--> 
     
-    <div  id="particles-js">
-        <p>
-            Crea un album multimedia a tu gusto
-        </p>            
-    </div>    
+    <div  id="particles-js" style="height: 300px; box-sizing: content-box">
+ 
+            <p class="text-center mt-5" style="margin-left: auto; margin-right: auto; height: auto;" >
+                Crea un album multimedia a tu gusto,
+                <br>
+                tus redes favoritas en un solo lugar.
+                <br>
+                <br>
+                <img class="img-fluid mr-3" src="image/logo-youtube.png" height="60px" width="60px" alt="">
+                <img class="img-fluid mx-3 " src="image/logo-soundcloud.png" height="60px" width="60px"  alt="">
+                <img class="img-fluid ml-3" src="image/instagramLogo.png" height="60px" width="60px"  alt="">
+            </p>           
+    </div>  
 
      <div id="fondo-Imagen"></div>  
 
     <div>        
-        <div id="titulo-Seccion"> <p>Resultado de busqueda</p> </div>
+        <div id="titulo-Seccion" style="padding-top: 12px"> <p class="text-center" >Resultado de busqueda</p> </div>
         <hr size="15px" id="separador-Busqueda">              
     </div>
     <script>
