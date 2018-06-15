@@ -103,16 +103,24 @@ header{
     width: 80%;
 }
 #botonBusqueda{
-    position: fixed;
-    color: #d3d3d3;      /*COLOR DEL BOTON DE BUSCAR*/  
+    position: fixed;   
+    color: #f7f7f7;      /*COLOR DEL BOTON DE BUSCAR*/  
     outline:none;
     background: #ff4d4d00;
     border:none;        
     font-size: 25px; 
-    margin-left: 27%;
-    margin-top: 10px;  
+    margin-left:25%; 
+    margin-top: 6px;   
+     
     width: 5%; 
     height: auto;
+    z-index: 5;
+}
+.buscadorInferior #botonBusqueda{
+    color: #727272;
+}
+#botonBusqueda:hover{
+    color: #373737;
 }
 #botonBusqueda:active{    
     color: #5c5c5c;     /*COLOR AL PRESIONAR EL BOTON DE BUSCAR*/   

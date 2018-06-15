@@ -363,8 +363,9 @@ function modificarDatosDelUsuario(){
         
         $("#particles-js").css("display", "none"); 
         $("#titulo-Seccion").css("display","block");
+        $("#titulo-Seccion").css("margin-top","64px");
         $("#separador-Busqueda").css("display","block");
-        $("#titulo-Seccion").css("margin-top","50px");
+        
         $("#fondo-Imagen").css("position","fixed");
         $("#sinResultados").css("display","none"); 
         $("#cargando-Busquedas").css("display","none");
@@ -387,7 +388,7 @@ function modificarDatosDelUsuario(){
         $("#particles-js").css("display", "none"); 
         $("#titulo-Seccion").css("display","block");
         $("#separador-Busqueda").css("display","block");
-        $("#titulo-Seccion").css("margin-top","50px");
+        $("#titulo-Seccion").css("margin-top","64px");
         $("#fondo-Imagen").css("position","fixed"); 
         $("#sinResultados").css("display","block"); 
    }
