@@ -3,8 +3,16 @@
     <script > //Carga de seguridad
         if(!sessionStorage.getItem("token")){
             alert("No se puede acceder a esta pagina");
+           
             window.location="index.html";
         }
+        if(localStorage.getItem("datoBusquedaLocal")){
+            var busqueda = localStorage.getItem("datoBusquedaLocal");
+            localStorage.clear();
+            localStorage.setItem("datoBusquedaLocal",busqueda);             
+        }else        
+            localStorage.clear();
+
     </script>
 <head>    
     <meta charset="UTF-8">
@@ -16,9 +24,11 @@
     <link rel="stylesheet" href="fonts/iconStyle.css"/>
     <link rel="stylesheet" href="Css3/busqueda.css"/>  
     <link rel="stylesheet" href="Css3/albums.css"/> 
+    <link rel="stylesheet" href="Css3/modalLogin.css"/>
     <script src="js/Jquery.js"></script>
     <script src="libs/angular.min.js"></script>   
     <script src="js/bootstrap.min.js"></script> 
+    <script src="js/Clases/Validacion.js"></script>
     <script src="js/Clases/ConsumirServicios.js"></script>  
     <script src="js/Clases/Albums.js"></script> 
     <script src="js/Clases/Busqueda.js"></script> 
@@ -228,7 +238,7 @@
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
     
-              <div class="modal-header" style=" height: 55px; background: rgb(26, 26, 26); color:rgb(255, 255, 255); " id="cabecera-modal">
+              <div class="modal-header" style=" height: 55px; background: rgb(26, 26, 26); color:rgb(209, 209, 209); " id="cabecera-modal">
                 <button type="button" class="close" data-dismiss="modal"></button>
                 <h4 class="text-left" style=" left: 0;">Seleccione un album</h4>
               </div>
@@ -266,6 +276,33 @@
 
 
 </body>
+
+<div id="errorModal" class="modal fade" role="dialog">
+		<div class="modal-dialog" role ="document" >  
+				  
+				<div class="modal-content modalIndex errores" style ="background: rgb(17, 17, 17);">                   
+						<div class="modalCarga">
+								<div id="loadingGift"></div>
+						 </div> 
+	
+						<div class="container modal-header1">
+								<p class="text-center">WebMedia</p>
+							</div>
+	   
+					<div class="modal-form">
+	
+						<div id= "album-no-select">
+								<h4 class="text-danger">No se pudo guardar</h4>
+								<p>Seleccione primero un album al que quiera agregar el elemento</p>
+						</div>					
+					</div>
+						<div class="modal-footer" >           
+							<button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">continuar</button>    
+						</div>
+			
+				</div>        
+		</div>    
+	</div>
 
 </html>
 

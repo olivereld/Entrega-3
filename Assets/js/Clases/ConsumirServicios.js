@@ -12,8 +12,9 @@ function enviarSolicitudDeRegistro(enlaceUrlHeroku,jsonConLosDatos){
              console.log("listo");            
              registroExitoso();                 
              },
-         error: function(error){             
-            tratarFallos(error);               
+         error: function(jqXHR, textStatus, errorThrown){   
+            ocultarCarga();          
+            tratarFallos(jqXHR, textStatus, errorThrown);               
          }
      });
 
@@ -30,8 +31,9 @@ function iniciarSesionAlRegistrar(enlaceUrlHeroku,datosDelNuevoUsuario){
         success : function (response){ //Si funciona
             obtenerDatosCompletosPorId(""+response.id,""+response.authToken);                        
         },
-        error: function(error){ //Si falla                        
-            tratarFallos(error);            
+        error: function(jqXHR, textStatus, errorThrown){ //Si falla 
+            ocultarCarga();                        
+            tratarFallos(jqXHR, textStatus, errorThrown);            
         }
     });
  }
@@ -74,7 +76,8 @@ function iniciarSesionAlRegistrar(enlaceUrlHeroku,datosDelNuevoUsuario){
            
             obtenerDatosCompletosPorId(""+response.id,""+response.authToken);                         
         },
-        error: function( jqXHR, textStatus, errorThrown){ //Si falla                        
+        error: function( jqXHR, textStatus, errorThrown){ //Si falla 
+            ocultarCarga();                        
             tratarFallos( jqXHR, textStatus, errorThrown);            
         }
     });
@@ -104,8 +107,9 @@ function iniciarSesionAlRegistrar(enlaceUrlHeroku,datosDelNuevoUsuario){
          success : function (response){ //Si funciona
              obtenerDatosCompletosPorId(""+response.id,""+response.authToken);                         
          },
-         error: function(error){ //Si falla                        
-             tratarFallos(error);            
+         error: function(jqXHR, textStatus, errorThrown){ //Si falla   
+             ocultarCarga();                     
+             tratarFallos(jqXHR, textStatus, errorThrown);            
          }
      });
     }else{        
