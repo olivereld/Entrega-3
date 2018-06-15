@@ -159,17 +159,7 @@ function iniciarSesionAlRegistrar(enlaceUrlHeroku,datosDelNuevoUsuario){
     window.location="index_User.html";
 }
 
-function inicioDeSesionFallida(error){
-    ocultarCarga();
-    respuesta = JSON.stringify(error.responseJSON.message);
-    console.log(respuesta);
-    if(respuesta == '"' + "invalid_pass" + '"'){
-        alert("Contraseña erronea");
-    }
-    if(respuesta == '"'+"invalid_mail"+'"'){
-        alert("Correo Invalido");
-    }
-}
+
 /*Salir*/
 
 function salirDeLaPagina(enlaceUrlHeroku){ 

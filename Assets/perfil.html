@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html ng-app lang="es">
+		<script > //Carga de seguridad
+				if(!sessionStorage.getItem("token")){
+					alert("No se puede acceder a esta pagina");
+					window.location="index.html";
+				}
+		</script>
 <head>
 	<meta charset="UTF-8">
 	<title>WebMedia: Perfil</title>
