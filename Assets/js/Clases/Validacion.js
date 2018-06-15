@@ -126,7 +126,7 @@ function mostrarError(errorParametro){
 }
 function tratarFallos( jqXHR, textStatus, errorThrown){
 
-    ocultarCarga();
+   
     if (jqXHR.status == 0) {
 
         console.log('Not connect: Verify Network.');
@@ -163,7 +163,10 @@ function tratarFallos( jqXHR, textStatus, errorThrown){
         mostrarError(8);
     }else if (jqXHR.responseText.indexOf("invalid_pass") > -1){
         mostrarError(9);
+    }else if (jqXHR.responseText.indexOf("album_name_already_used") > -1){
+        $("#errorModal").modal();
     }
+    //album_name_already_used
 }
 function camposDelLoginllenos(){
     var camposLlenos = true;

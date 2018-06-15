@@ -80,7 +80,7 @@ function  mostrarListaDeAlbumes(numeroDeAlbum,contenedor){
     }else{
  
         $(contenedor).append(
-        " <div id ='cuadro-album'  class='card col-12 col-sm-6 col-md-5 col-lg-5' onclick='focusAlbum("+numeroDeAlbum+")' >"+					                       
+        " <div id ='cuadro-album'  class='card col-12 col-sm-6 col-md-5 col-lg-5' onclick='focusAlbum("+numeroDeAlbum+")' tabindex='1' >"+					                       
                 "<img id='imagen-principal'class='card-img-top' src='image/needImage.png' alt='Busqueda'>"+
                 '<div id="info-album" class="card-img-overlay">'+
                         '<h5  class="card-title">'+titulo+'</h5>'+
@@ -230,7 +230,7 @@ function verificarInfoAlbums(){
 }
 function guardarMultimedia(){
     //https://ignsw201825-snproject.herokuapp.com/media/add  0 para instagram, 1 para youtube, 2 para soundcloud
-    
+    if(localStorage.getItem("idDeAlbumTarget")){
     var mediaDeAlbum = {
         "userId": "" + sessionStorage.getItem("id"),
         "albumId": ""+localStorage.getItem("idDeAlbumTarget"),
@@ -252,9 +252,11 @@ function guardarMultimedia(){
             actualizarStorageAlbumes(); 
                         
             },
-        error: function(error){             
-            console.log(error);               
+        error: function(jqXHR, textStatus, errorThrown){             
+            tratarFallos(jqXHR, textStatus, errorThrown);               
         }
     });
-
+    }else{
+        $("#errorModal").modal();
+    }
 }

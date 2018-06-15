@@ -198,7 +198,7 @@ function guardarNuevoAlbum(){
     var token = "" + sessionStorage.getItem("token");
     var nombreDelAlbum = "" + $("#inputTitulo").val();
     var descripcion = "" + $("#inputDescripcion").val();
-
+   
     var albumACrear = {
         "userId": id,
         "authToken":token,
@@ -217,8 +217,8 @@ function guardarNuevoAlbum(){
             console.log("album agregado"); 
             actualizarStorageAlbumes();               
             },
-        error: function(error){             
-            console.log(error);               
+        error: function(jqXHR, textStatus, errorThrown){             
+            tratarFallos(jqXHR, textStatus, errorThrown);              
         }
     });
 

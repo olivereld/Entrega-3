@@ -16,10 +16,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- Para Heroku-->
 	<script src="js/jquery.js"></script>  
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/Clases/Validacion.js"></script>
 	<script src="js/Clases/Amigos.js"></script>
 	<script src="js/Clases/Albums.js"></script>
 	<link   rel="stylesheet" href="Css3/css/AdminLTE.min.css"> 	
 	<link   rel="stylesheet" href="Css3/perfil.css">
+	<link   rel="stylesheet" href="Css3/modalLogin.css">
 	<link 	rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 	
@@ -332,4 +334,30 @@
 
 </body>
 
+<div id="errorModal" class="modal fade" role="dialog">
+		<div class="modal-dialog" role ="document" >  
+				  
+				<div class="modal-content modalIndex errores" style ="background: rgb(17, 17, 17);">                   
+						<div class="modalCarga">
+								<div id="loadingGift"></div>
+						 </div> 
+	
+						<div class="container modal-header1">
+								<p class="text-center">WebMedia</p>
+							</div>
+	   
+					<div class="modal-form">
+	
+						<div id= "nombre-albumRepetido-repetido">
+								<h4 class="text-danger">El album ya esta creado</h4>
+								<p>Profavor elija otro nombre para el album</p>
+						</div>					
+					</div>
+						<div class="modal-footer" >           
+							<button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">continuar</button>    
+						</div>
+			
+				</div>        
+		</div>    
+	</div>
 </html>

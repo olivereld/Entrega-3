@@ -42,10 +42,18 @@
 #cuadro-album:focus{    
     background: rgba(247, 247, 247, 0.583); 
 }
+#cuadro-album-nuevo:focus{       
+    background: rgba(0, 0, 0, 0.446); 
+}
+
 #cuadro-album-nuevo{
     position: relative;
     border: none;
     background: rgba(0, 0, 0, 0.159); 
+}
+#cuadro-album-nuevo:hover{
+       
+    background: rgba(0, 0, 0, 0.446); 
 }
 #agregar-imagen-multimedia{
     opacity: 0.4;
@@ -79,9 +87,14 @@
 #cuadro-album:focus > #info-album{
     background: rgba(0, 0, 0, 0.179);  
 }
+#cuadro-album-nuevo:focus > #info-album h5{
+    background: rgba(0, 0, 0, 0.179);  
+}
 #cuadro-album-nuevo:hover > #info-album-nuevo{
     background: rgba(0, 0, 0, 0.118);  
 }
+
+
 
 #info-album-nuevo{
     color: rgb(0, 0, 0);
