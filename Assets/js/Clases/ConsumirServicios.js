@@ -13,7 +13,7 @@ function enviarSolicitudDeRegistro(enlaceUrlHeroku,jsonConLosDatos){
              registroExitoso();                 
              },
          error: function(error){             
-             registroFallido(error);               
+            tratarFallos(error);               
          }
      });
 
@@ -31,12 +31,13 @@ function iniciarSesionAlRegistrar(enlaceUrlHeroku,datosDelNuevoUsuario){
             obtenerDatosCompletosPorId(""+response.id,""+response.authToken);                        
         },
         error: function(error){ //Si falla                        
-            inicioDeSesionFallida(error);            
+            tratarFallos(error);            
         }
     });
  }
 
 function registroExitoso(){
+
     localStorage.correoTemporal = $(emailRegistro).val();
     localStorage.claveTemporal = $(pass1).val();  
     $(nombreRegistro).val("");
@@ -60,6 +61,7 @@ function registroExitoso(){
     localStorage.removeItem("correoTemporal");
     localStorage.removeItem("claveTemporal");
 }
+
 function iniciarSesionAlRegistrar(enlaceUrlHeroku,datosDelNuevoUsuario){
     $.ajax({ //Envia los datos         
         url : enlaceUrlHeroku, //Url
@@ -72,25 +74,20 @@ function iniciarSesionAlRegistrar(enlaceUrlHeroku,datosDelNuevoUsuario){
            
             obtenerDatosCompletosPorId(""+response.id,""+response.authToken);                         
         },
-        error: function(error){ //Si falla                        
-            inicioDeSesionFallida(error);            
+        error: function( jqXHR, textStatus, errorThrown){ //Si falla                        
+            tratarFallos( jqXHR, textStatus, errorThrown);            
         }
     });
  }
- 
-function registroFallido(error){
-    ocultarCarga(); 
-    if (error == "[object Object]"){
-        alert("El Email ya esta Registrado")
-    } else {
-        alert("Error al registrarse:" + error);
-    }
-
-}
 
 /* Inicio de session */
  function enviarSolicitudDeLogin(enlaceUrlHeroku){ //Con JQuery Forma Registrar Usuario
     mostrarCarga();
+    var resultadoDeCamposFull   = camposDelLoginllenos();
+    var resultadoDeCorreoValido = correoValido("#correoLog",0);
+    var resultadoDeClaveValida  = longitudClave("#claveLog");
+    
+    if(resultadoDeCamposFull && resultadoDeCorreoValido && resultadoDeClaveValida ){
      var jsonConLosDatos = { //Creando JSON Con el formato
          "email"       : $(correoLog).val(),
          "password"    : btoa($(claveLog).val()),    
@@ -108,10 +105,17 @@ function registroFallido(error){
              obtenerDatosCompletosPorId(""+response.id,""+response.authToken);                         
          },
          error: function(error){ //Si falla                        
-             inicioDeSesionFallida(error);            
+             tratarFallos(error);            
          }
      });
+    }else{        
+        ocultarCarga();
+        if(!resultadoDeCamposFull){mostrarError(7);}
+        else if(!resultadoDeCorreoValido){mostrarError(1);}
+        else if(!resultadoDeClaveValida){mostrarError(2);}
+    }
  }
+ 
  
  function obtenerDatosCompletosPorId(id,token){
     var urlPeticionEnHeroku = "https://ignsw201825-snproject.herokuapp.com/user/get/"+id;
@@ -125,10 +129,11 @@ function registroFallido(error){
             guardarDatosDelUsuario(response,token);                                  
         },
         error: function(error){ //Si falla                        
-            inicioDeSesionFallida(error);            
+            console.log("no se pudieron obtener los datos del id de usuario");            
         }
     });
  }
+
  function guardarDatosDelUsuario(response,token){
     
     var id                = ""+response.id;    
@@ -153,6 +158,7 @@ function registroFallido(error){
     ocultarCarga();
     window.location="index_User.html";
 }
+
 function inicioDeSesionFallida(error){
     ocultarCarga();
     respuesta = JSON.stringify(error.responseJSON.message);
@@ -161,7 +167,7 @@ function inicioDeSesionFallida(error){
         alert("Contraseña erronea");
     }
     if(respuesta == '"'+"invalid_mail"+'"'){
-        alert("El correo no esta registrado");
+        alert("Correo Invalido");
     }
 }
 /*Salir*/
@@ -261,7 +267,14 @@ function modificarDatosDelUsuario(){
     });    
 }
     function mostrarResultadoImagen(UrlDeImagen,UrlPaginaDeProsedencia,numeroDeIndice){
-       console.log("Imagenes Impresas");
+        var botonGuardar ;      
+
+        if(document.location.href.indexOf("index_User.html") > -1){
+            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger' onclick='focusImagen("+'".urlImagenPrincipal'+numeroDeIndice+'"'+","+'"'+UrlPaginaDeProsedencia+'"'+"); verificarInfoAlbums();' >Guardar</a>"; 
+        }else{
+            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger' data-toggle='modal' data-target='#myModal' >Guardar</a>";
+        }
+
         $(".BusquedaOrdenada").append(
             "<script type='text/javascript'>"+
                 " function procedencia"+numeroDeIndice+"(){"+
@@ -277,7 +290,7 @@ function modificarDatosDelUsuario(){
             "<div id ='cuadro-Busqueda' class='card col-12 col-sm-6 col-md-4 col-lg-3'>"+
                 "<div id='cuadro-Contenido' class='card-body' >"+                           
                     "<img id='imagen-Principal'class='card-img-top urlImagenPrincipal"+numeroDeIndice+"' src='"+UrlDeImagen+"'alt='Busqueda' data-toggle='modal' data-target='#imagen"+numeroDeIndice+"'>"+
-                    "<a id='boton-agregarImg2' href='#' class='btn btn-danger' onclick='focusImagen("+'".urlImagenPrincipal'+numeroDeIndice+'"'+","+'"'+UrlPaginaDeProsedencia+'"'+"); verificarInfoAlbums();' >Guardar</a>"+ 
+                    botonGuardar+ 
                     "<img id='icono-Pagina' src='image/instagramLogo.png' width='50' height='50' onclick='procedencia"+numeroDeIndice+"()' >"+
                 "</div>"+      
                 
@@ -288,8 +301,15 @@ function modificarDatosDelUsuario(){
                 "</div>"+  
             "</div>" 
             );
+        
     }
     function mostrarResultadoVideo(UrlDeImagen,UrlDeVideo,UrlPaginaDeProsedencia,numeroDeIndice){
+        var botonGuardar ;
+        if(document.location.href.indexOf("index_User.html") > -1){
+            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger' onclick='focusImagen("+'".urlImagenPrincipal'+numeroDeIndice+'"'+","+'"'+UrlPaginaDeProsedencia+'"'+"); verificarInfoAlbums();' >Guardar</a>"; 
+        }else{
+            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger' data-toggle='modal' data-target='#myModal' >Guardar</a>";
+        }
         $(".BusquedaOrdenada").append( 
             '<script type="text/javascript">'+
             '$(document).ready(function(){'+           
@@ -314,7 +334,7 @@ function modificarDatosDelUsuario(){
         "<div id ='cuadro-Busqueda' class='card col-12 col-sm-6 col-md-4 col-lg-3'>"+
             "<div id='cuadro-Contenido' class='card-body' data-toggle='modal' data-target='#video"+numeroDeIndice+"'>"+                           
                 "<img id='imagen-Principal' class='card-img-top' src='"+UrlDeImagen+"'alt='Busqueda'>"+
-                "<a id='boton-agregarImg2' href='#' class='btn btn-danger'>Guardar</a>"+                 
+                 botonGuardar+                 
                 "<img id='icono-Pagina' src='image/instagramIcon.png' width='50' height='50' onclick='procedencia"+numeroDeIndice+"()' >"+
                 "<img id='icono-Video' src='image/play.png' width='100' height='100' >"+
             "</div>"+     

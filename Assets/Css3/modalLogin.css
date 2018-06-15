@@ -19,6 +19,10 @@
     font-family: rale;
     border-radius: 15px;
 }
+.errores{
+    width: auto;   
+    top:125px;    
+}
 
 .modal-input-fecha{
     background-color: #101010;

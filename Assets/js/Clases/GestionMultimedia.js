@@ -37,15 +37,13 @@ function  mostrarListaDeAlbumes(numeroDeAlbum,contenedor){
                     posicionNuevoInicio = posicionSiguiente;
                 }
                 var palabraFinalSinMedia = sessionStorage.getItem("AlbumNro_"+numeroDeAlbum).slice(posicionInicial,sessionStorage.getItem("AlbumNro_"+numeroDeAlbum).length);
-                todoSinMultiMedia = palabraInicialSinMedia+palabraFinalSinMedia;
-                               
+                todoSinMultiMedia = palabraInicialSinMedia+palabraFinalSinMedia;                             
                  
                                                        
                 break;
             }       
        
     }
-
     for(var i = 0; i < 4; i++){
         var arregloDeElementos = todoSinMultiMedia.split(","); 
 
@@ -58,7 +56,7 @@ function  mostrarListaDeAlbumes(numeroDeAlbum,contenedor){
         }else if(i == 1){            
             portada = datoRelevante;
         }else if(i == 2){            
-            titulo = "hola";//datoRelevante;
+            titulo = datoRelevante;
         }else if(i == 3){            
             descripcion = datoRelevante;
         }
