@@ -299,8 +299,9 @@ function modificarDatosDelUsuario(){
     }
     function mostrarResultadoVideo(UrlDeImagen,UrlDeVideo,UrlPaginaDeProsedencia,numeroDeIndice){
         var botonGuardar ;
+        var mensaje = "No esta implementado el guardado de videos aun! proximamente";
         if(document.location.href.indexOf("index_User.html") > -1){
-            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger' onclick='focusImagen("+'".urlImagenPrincipal'+numeroDeIndice+'"'+","+'"'+UrlPaginaDeProsedencia+'"'+"); verificarInfoAlbums();' >Guardar</a>"; 
+            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger' onclick='alert("+'"'+"No esta implementado el guardado de videos aun! proximamente"+'"'+")' >Guardar</a>"; 
         }else{
             botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger' data-toggle='modal' data-target='#myModal' >Guardar</a>";
         }
