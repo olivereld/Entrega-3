@@ -282,7 +282,7 @@ function modificarDatosDelUsuario(){
             "</script>"+
 
             "<div id ='cuadro-Busqueda' class='card col-12 col-sm-6 col-md-4 col-lg-3'>"+
-                "<div id='cuadro-Contenido' class='card-body' >"+                           
+                "<div id='cuadro-Contenido' class='card-body' style='padding: .28rem' >"+                           
                     "<img id='imagen-Principal'class='card-img-top urlImagenPrincipal"+numeroDeIndice+"' src='"+UrlDeImagen+"'alt='Busqueda' data-toggle='modal' data-target='#imagen"+numeroDeIndice+"'>"+
                     botonGuardar+ 
                     "<img id='icono-Pagina' src='image/instagramLogo.png' width='50' height='50' onclick='procedencia"+numeroDeIndice+"()' >"+
@@ -326,7 +326,7 @@ function modificarDatosDelUsuario(){
         '</script>'+            
 
         "<div id ='cuadro-Busqueda' class='card col-12 col-sm-6 col-md-4 col-lg-3'>"+
-            "<div id='cuadro-Contenido' class='card-body' data-toggle='modal' data-target='#video"+numeroDeIndice+"'>"+                           
+            "<div id='cuadro-Contenido' style='padding: .28rem' class='card-body' data-toggle='modal' data-target='#video"+numeroDeIndice+"'>"+                           
                 "<img id='imagen-Principal' class='card-img-top' src='"+UrlDeImagen+"'alt='Busqueda'>"+
                  botonGuardar+                 
                 "<img id='icono-Pagina' src='image/instagramIcon.png' width='50' height='50' onclick='procedencia"+numeroDeIndice+"()' >"+
