@@ -279,6 +279,9 @@
 					$(inputPassword4).val(atob(sessionStorage.getItem("encriptado")));
 					//$(date1).val(sessionStorage.getItem("fechaDeNAcimiento"));
 					console.log($(date1).val().replace(/-/g,"/"));
+					var fecha =sessionStorage.getItem("fechaDeNAcimiento").replace("/","-");
+					$(date1).val(fecha.replace("/","-"))
+					console.log();
 					 
 			</script>
 
