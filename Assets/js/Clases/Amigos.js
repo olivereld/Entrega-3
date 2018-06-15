@@ -137,6 +137,9 @@ function llenarRegistrados(response,data,number){
         
     //getUser()
     }
+    else{
+        $('.card-columns .card').css("display","");
+    }
 
 }
 
