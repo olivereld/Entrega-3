@@ -40,7 +40,7 @@
     background: rgba(247, 247, 247, 0); 
 }
 #cuadro-album:focus{    
-    background: rgba(247, 247, 247, 0.583); 
+    background: rgba(206, 206, 206, 0.316); 
 }
 #cuadro-album-nuevo:focus{       
     background: rgba(0, 0, 0, 0.446); 
@@ -85,11 +85,10 @@
     background: rgba(0, 0, 0, 0.118);  
 }
 #cuadro-album:focus > #info-album{
-    background: rgba(0, 0, 0, 0.179);  
+    background: rgba(0, 0, 0, 0.385);  
+   
 }
-#cuadro-album-nuevo:focus > #info-album h5{
-    background: rgba(0, 0, 0, 0.179);  
-}
+
 #cuadro-album-nuevo:hover > #info-album-nuevo{
     background: rgba(0, 0, 0, 0.118);  
 }
