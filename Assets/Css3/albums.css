@@ -157,11 +157,10 @@
     display: block;
 }
 #cargando-gift{   
-    background: url('../image/loading.gif') no-repeat;
-    
+    background: url('../image/loading.gif') no-repeat;    
     position: absolute;
     padding: 50%;
-    margin-top: 50%;
+    margin-top: 60%;
     margin-left: 40%;          
      
 	z-index: 100;

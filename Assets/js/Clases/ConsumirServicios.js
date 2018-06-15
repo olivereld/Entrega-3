@@ -388,7 +388,7 @@ function modificarDatosDelUsuario(){
    }
 
 function enviarPeticionDeBusqueda(enlaceUrlHeroku){ 
-     
+    
     $.ajax({
 
         url : enlaceUrlHeroku,         
@@ -397,7 +397,7 @@ function enviarPeticionDeBusqueda(enlaceUrlHeroku){
         dataType : 'json', 
 
         success : function (response){                        
-            console.log(response);
+            
             prepararResultados(response);         
                           
             },
