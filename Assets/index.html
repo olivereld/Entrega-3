@@ -22,7 +22,8 @@
     <script src="js/Jquery.js"></script>  
    
     <script src="js/bootstrap.min.js"></script>
-    <script src="libs/angular.min.js"></script>   
+    <script src="libs/angular.min.js"></script> 
+    <script src="js/Clases/Validacion.js"></script>  
     <script src="js/Clases/Busqueda.js"></script>
     <script src="js/Clases/ConsumirServicios.js"></script>   
     
@@ -303,12 +304,13 @@
                         <input class="modal-input-registro"   type="password" placeholder="Contrase&ntilde;a"           name="password"             required  id="pass1">
                         <input class="modal-input-registro"   type="password" placeholder="Repita la Contrase&ntilde;a" name="confirmationPassword" required  id="pass2">
                          
-                        <select class="modal-input-fecha"   type="text" placeholder="A&ntilde;o"     id="anoRegistro"   name="Ano" required>
-                                <option value=""> -- Selecciona un Mes -- </option>
+                        <select class="modal-input-fecha"   type="text" placeholder="Dia"     id="diaRegistro"   name="Dia" required>
+                                <option value=""> Dia </option>
+                                <option value="00" disabled>Seleccione un Mes </option>
                         </select>
 
                         <select class="combobox" name="Mes" id="mesRegistro" name="mes" required>
-                            <option value="00"> -- Selecciona Uno -- </option>
+                            <option value="00"> Mes </option>
                             <option value="01">Enero</option>
                             <option value="02">Febrero</option>
                             <option value="03">Marzo</option>
@@ -322,10 +324,10 @@
                             <option value="11">Noviembre</option>
                             <option value="12">Diciembre</option>
                         </select>
-                        
-                        <select class="modal-input-fecha"   type="text" placeholder="Dia"     id="diaRegistro"   name="Dia" required>
-                            <option value=""> -- Selecciona un Mes -- </option>
+                        <select class="modal-input-fecha"   type="text" placeholder="A&ntilde;o"     id="anoRegistro"   name="Ano" required>
+                                <option value=""> Año </option>
                         </select>
+                        
                     
                     </div>
 
@@ -342,14 +344,33 @@
     <script>
         
         $(document).ready(function () {
-        $("#mesRegistro").change(function () {
+        
+       
             var val = $(this).val();
-            var ano = $("#anoRegistro").val();
+            if ((val =! "") || (val == "")) {
+                var selectList = "<option>Año</option>";
+                    for (var x = 2018; x >= 1960; x--) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#anoRegistro").html(selectList);
+            }        
+
+        $("#mesRegistro").change(function () {
+            var val = $(this).val();            
             if (val == "00"){
-                $("#diaRegistro").html('<option value=""> -- Select Month -- </option>');
-            } else if (val == "01") {
+                $("#diaRegistro").html('<option value=""> Dia </option> <option value="00"disabled>Seleccione un Mes </option>');
+                
+            } else if (val == "01" || val == "03" || val == "05" || val == "07" || val == "08" || val == "10" || val == "12") {
                 var selectList = "";
                     for (var x = 1; x <= 31; x++) {
+                        selectList += "<option>" + x + "</option>";
+                    }           
+                    selectList += "</select>";
+                $("#diaRegistro").html(selectList);
+            } else if (val == "04" || val == "06" || val == "09" || val == "11") {
+                var selectList = "";
+                    for (var x = 1; x <= 30; x++) {
                         selectList += "<option>" + x + "</option>";
                     }           
                     selectList += "</select>";
@@ -361,92 +382,13 @@
                     }      
                     selectList += "</select>";
                 $("#diaRegistro").html(selectList);
-            } else if (val == "03") {
-                var selectList = "";
-                    for (var x = 1; x <= 31; x++) {
-                        selectList += "<option>" + x + "</option>";
-                    }           
-                    selectList += "</select>";
-                $("#diaRegistro").html(selectList);
-            } else if (val == "04") {
-                var selectList = "";
-                    for (var x = 1; x <= 30; x++) {
-                        selectList += "<option>" + x + "</option>";
-                    }           
-                    selectList += "</select>";
-                $("#diaRegistro").html(selectList);
-            } else if (val == "05") {
-                var selectList = "";
-                    for (var x = 1; x <= 31; x++) {
-                        selectList += "<option>" + x + "</option>";
-                    }           
-                    selectList += "</select>";
-                $("#diaRegistro").html(selectList);
-            } else if (val == "06") {
-                var selectList = "";
-                    for (var x = 1; x <= 30; x++) {
-                        selectList += "<option>" + x + "</option>";
-                    }           
-                    selectList += "</select>";
-                $("#diaRegistro").html(selectList);
-            } else if (val == "07") {
-                var selectList = "";
-                    for (var x = 1; x <= 31; x++) {
-                        selectList += "<option>" + x + "</option>";
-                    }           
-                    selectList += "</select>";
-                $("#diaRegistro").html(selectList);
-            } else if (val == "08") {
-                var selectList = "";
-                    for (var x = 1; x <= 31; x++) {
-                        selectList += "<option>" + x + "</option>";
-                    }           
-                    selectList += "</select>";
-                $("#diaRegistro").html(selectList);
-            } else if (val == "09") {
-                var selectList = "";
-                    for (var x = 1; x <= 30; x++) {
-                        selectList += "<option>" + x + "</option>";
-                    }           
-                    selectList += "</select>";
-                $("#diaRegistro").html(selectList);
-            } else if (val == "10") {
-                var selectList = "";
-                    for (var x = 1; x <= 31; x++) {
-                        selectList += "<option>" + x + "</option>";
-                    }           
-                    selectList += "</select>";
-                $("#diaRegistro").html(selectList);
-            } else if (val == "11") {
-                var selectList = "";
-                    for (var x = 1; x <= 30; x++) {
-                        selectList += "<option>" + x + "</option>";
-                    }           
-                    selectList += "</select>";
-                $("#diaRegistro").html(selectList);
-            } else if (val == "12") {
-                var selectList = "";
-                    for (var x = 1; x <= 31; x++) {
-                        selectList += "<option>" + x + "</option>";
-                    }           
-                    selectList += "</select>";
-                $("#diaRegistro").html(selectList);
-            }
+            } 
+           
         });
     });
     
     $(document).ready(function () {
-        $("#mesRegistro").change(function () {
-            var val = $(this).val();
-            if ((val =! "") || (val == "")) {
-                var selectList = "";
-                    for (var x = 2018; x >= 1960; x--) {
-                        selectList += "<option>" + x + "</option>";
-                    }           
-                    selectList += "</select>";
-                $("#anoRegistro").html(selectList);
-            }
-        });
+       
     });
         
         $( "#emailRegistro" ).click(function(){ seleccionCorreoPorPrimeraVez = true;});
@@ -467,7 +409,7 @@
         
             $( "#pass1" ).on('keyup',function() {
                 var valor = $(pass1).val().length;             
-                if (valor < 7 && seleccionPasswordPorPrimeraVez ){
+                if (valor < 6 && seleccionPasswordPorPrimeraVez ){
                     $(pass1).css("border","solid #ec6464");                            
                 } else if(seleccionPasswordPorPrimeraVez)
                     $(pass1).css("border","solid #87ee8c");
@@ -490,6 +432,79 @@
               
         
     </script>
-<!-- -------------------------------------------------Registro MODAL------------------------------------------------- -->  
+<!-- -------------------------------------------------Registro MODAL------------------------------------------------- -->
+<!-- Mensajes de Error -->
+<div id="errorModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" role ="document" >  
+              
+            <div class="modal-content modalIndex errores" style ="background: rgb(17, 17, 17);">                   
+                    <div class="modalCarga">
+                            <div id="loadingGift"></div>
+                     </div> 
+
+                    <div class="container modal-header1">
+                            <p class="text-center">WebMedia</p>
+                        </div>
+   
+                <div class="modal-form">
+
+                    <div id= "formato-correo">
+                            <h4 class="text-danger">Formato de correo invalido</h4>
+                            <p>Porfavor coloque una direccion de correo valida</p>
+                    </div>
+                    <div id="correo-existente">
+                        <h4  class="text-danger">Correo en uso</h4>
+                        <p>El correo que usted coloco ya se encuentra registrado en el sistema, pruebe con uno diferente</p>
+                    </div>
+
+                    <div id="campos-vacios">
+                        <h4  class="text-danger">Campos en blanco</h4>
+                        <p>Usted debe llenar todos los campos para ser registrado en el sistema</p>        
+                    </div>
+
+                    <div id= "longitud-contraseña">
+                           <h4  class="text-danger">Error en la contraseña</h4>
+                            <p>La contraseña debe cumplir con minimo: <p class="text-danger"> 6 caracteres</p> </p>
+                    </div>  
+
+                    <div id= "repeticion-contraseña">
+                            <h4  class="text-danger">Error al repetir la contraseña</h4>
+                             <p>Repita su contraseña de manera cuidadosa</p>
+                     </div>     
+                     
+                     <div id= "campo-nacimiento">
+                            <h4  class="text-danger">Error en la fecha de nacimiento</h4>
+                             <p>Debe indicar su fecha de nacimiento cuidadosamente</p>
+                     </div>  
+
+                     <div id= "fecha-invalida">
+                             <h4  class="text-danger">Fecha invalida</h4>
+                             <p>Usted introdujo una fecha de nacimiento que no es valida</p>
+                     </div> 
+
+                     <div id= "campos-vacios-login">
+                            <h4  class="text-danger">Campos en blanco</h4>
+                            <p>Debe llenar los campos para iniciar sesion</p>
+                    </div> 
+
+                    <div id= "correo-no-registrado">
+                            <h4  class="text-danger">El correo no esta registrado</h4>
+                            <p>El correo que usted introdujo no se encuentra registrado en el sistema</p>
+                    </div> 
+
+                    <div id= "clave-erronea">
+                            <h4  class="text-danger">Erro en la contraseña</h4>
+                            <p>La contraseña es erronea</p>
+                    </div> 
+
+                </div>
+                    <div class="modal-footer" >           
+                        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">continuar</button>    
+                    </div>
+        
+            </div>        
+    </div>    
+</div>
+<!-- Mensajes de Error --> 
 </html>
 

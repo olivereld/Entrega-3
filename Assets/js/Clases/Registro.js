@@ -1,77 +1,23 @@
-  
 
-function campoVacio(){//Comprobara que los campos se llenen
-    var validar = true;
-
-    if ($(pass1).val() == ''){
-        $(pass1).css("border","solid #ec6464");
-        validar = false;
-    } 
-    if ($(pass2).val() == ''){
-        $(pass2).css("border","solid #ec6464");
-        validar = false;
-    } 
-    if($(nombreRegistro).val() == '' ){
-        $(nombreRegistro).css("border","solid #ec6464");
-        validar = false;
-    } 
-    if($(apellidoRegistro).val() == ''){
-        $(apellidoRegistro).css("border","solid #ec6464");
-        validar = false;
-    } 
-    if($(emailRegistro).val() == ''){
-        $(emailRegistro).css("border","solid #ec6464");
-        validar = false;   
-    }
-
-    if(validar){
-        console.log("Campos Llenos");
-    }else
-        alert("Todos los Campos deben estar Llenos");
-    return validar;        
-}
-
-function longitud(){//Las contraseñas deben tener 7 o mas caracteres
-
-    if($(pass1).val().length < 7){
-        console.log("La Contraseña es muy Corta");
-        return false;
-    }else{
-        console.log("Clave de Tamaño Correcto");
-        return true;
-    }
-}
-
-function comparar(){//comprueba si se repitio correctamente la contraseña
-    if($(pass1).val() == $(pass2).val()){
-        console.log(" Contraseñas Iguales");
-        return true;
-    }else{
-        console.log(" Contraseñas Diferentes");
-        return false;
-    }
-}
-
-function correoValido(){//Verifica si un correo es valido
-    if($(emailRegistro).val().indexOf("@") > -1 && $(emailRegistro).val().indexOf(".com") > -1){
-        console.log("Email Valido");
-        $(emailRegistro).css("border","solid #87ee8c");
-        return true;
-    }else{
-        console.log("Email Invalido");
-        $(emailRegistro).css("border","solid #ec6464");
-        return false;
-    }
-}
 
 //Comunicacion con el servidor -------------------------------------------------------------------------------
 function formalizar(urlServidor){
     mostrarCarga();
     var date      = ""+$(anoRegistro).val()+"/"+$(mesRegistro).val()+"/"+$(diaRegistro).val()+"";
     var password  = ""+btoa($(pass1).val());
-    var password2 = ""+btoa($(pass2).val());   
+    var password2 = ""+btoa($(pass2).val());
 
-    if( campoVacio() && longitud() && comparar() && correoValido()){
+    var resultadoDeValidacionCamposVacios  = campoVacio();
+    var resultadoDeValidacionLongitudClave = longitudClave("#pass1");
+    var resultadoDeValidacionClavesIguales = comparar();
+    var resultadoDeValidacionCorreoValido  = correoValido("#emailRegistro",1);
+    var resultadoDeValidacionFecha         = campoFechaValida();
+
+    if( resultadoDeValidacionCamposVacios  &&
+        resultadoDeValidacionLongitudClave &&
+        resultadoDeValidacionClavesIguales &&
+        resultadoDeValidacionCorreoValido  &&
+        resultadoDeValidacionFecha ){
             
         console.log("Creando JSON");  
         var jsonConRegistroDeUsuario = {      
@@ -86,6 +32,11 @@ function formalizar(urlServidor){
         
     } else{
         ocultarCarga();
+        if (!resultadoDeValidacionCamposVacios){     mostrarError(0);}
+        else if (!resultadoDeValidacionCorreoValido){  mostrarError(1);}
+        else if (!resultadoDeValidacionLongitudClave){ mostrarError(2);}
+        else if (!resultadoDeValidacionClavesIguales){  mostrarError(3);} 
+        else if (!resultadoDeValidacionFecha){mostrarError(4);}       
         console.error("No se puede crear JSON"); //Si no se cumplen los requisitos
     }
 }
