@@ -294,6 +294,8 @@ function eliminarAmigo(cardNumber){
              success : function (response){ 
                 console.log(response);
                 $(dato).css("display","none")
+                var numeroAmigos=parseInt(document.getElementById("amigos").innerHTML)-1;
+                document.getElementById("amigos").innerHTML= numeroAmigos;
                             
                 },
              error: function(error){             
