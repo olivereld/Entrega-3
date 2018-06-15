@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Agregar Amigos</title>
 
     <script src="js/Clases/ConsumirServicios.js"></script>
 	<link   rel="stylesheet" href="Css3/css/bootstrap.min.css">
@@ -26,7 +26,7 @@
 
                 <div class="container px-0 py-0 my-0">
 
-                    <a class="navbar-brand pt-0 pt-1 pb-0" style="font-size: 40px; font-family: rale; letter-spacing: 1px;" href="#" onclick="volverInicio()">WebMedia</a>
+                    <a class="navbar-brand pt-0 pt-1 pb-0" style="font-size: 40px; font-family: rale; letter-spacing: 1px;" href="index_User.html" onclick="volverInicio()">WebMedia</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -68,19 +68,28 @@
             <div class="col-md-9 float-left">
 
                 <div class="card">
-                    <div class="container card-header rale">
+                    <div class="container card-header mb-2 rale">
 
                         <i class="fas fa-users"></i>   Personas que quizá conozcas.
+
+                        
                         
                     </div>
 
-                    <div id="friends" class="card-body pt-3 card-columns">
-                        
+                    <div class="card-body pt-0">
+                        <div class="text-center" id="textoVariable">
+                              
+                                    
+                        </div>
 
+                        <div id="friends" class="pt-2 card-columns">
+                            
+
+                        </div>
                     </div>
-
                     <script>
                             usuariosRegistrados(0);
+                            
                             //usuariosRegistrados();
                     </script>
                 </div>

@@ -1,5 +1,4 @@
 
-
 function getUser(boolean){	
     $.ajax({
         url: 'https://randomuser.me/api/?results=100&inc=name,picture&noinfo',
@@ -58,12 +57,15 @@ function llenarRegistrados(response,data,number){
             users.innerHTML+= `
             <div class="card text-white" data-toggle="tooltip" title="" data-original-title="Default tooltip">
                 <img src="${data.results[j].picture.large}"   class="card-img" alt="">
+                <div class="card-img-overlay pl-2 pt-4">
+                    <p class="text-centered pt-5" style="font-size:12px">${response[j].firstName}</p>
+                </div>
                 
             </div>
             `
         }
             friends.innerHTML+= `
-            <div class="card" id=cf-${j} data-copy="${response[j].id}">
+            <div class="card" id=cf-${j} data-copy="${response[j].id}" style="display: none">
                 <a href="#" data-toggle="modal" data-target="#modal-${j}" style="color:black;">                             
                 <div class="col-md-6 float-left px-0 py-auto text-center">
                         <img src="${data.results[j].picture.large}" class="card-img-top img-fluid px-0" alt="">
@@ -115,6 +117,24 @@ function llenarRegistrados(response,data,number){
     }
     if (number==0){
         comparar(response.length);
+        setTimeout(function(){
+            ocultarSpinnerGeneral("textoVariable");
+            console.log(document.getElementById("friends").childElementCount)
+            if(document.getElementById("friends").childElementCount==0){
+                console.log("Entro")
+                document.getElementById("textoVariable").innerHTML=`<h5>No se encontraron datos de acuerdo a su busqueda</h5>`;
+            } 
+            else{
+                console.log(primeraLlamada)
+                if (!primeraLlamada){
+                    document.getElementById("textoVariable").innerHTML=`<h5>Resultados de la busqueda:</h5>`;
+                }
+                
+            } 
+            $('.card-columns .card').css("display","");
+        }, 1000);
+        //primeraLlamada=false;
+        
     //getUser()
     }
 
@@ -140,6 +160,9 @@ function limpiarString(data){
 }
 
 function usuariosRegistrados(number){
+    mostrarSpinnerGeneral("textoVariable");
+    primeraLlamada=true;
+    //console.log(response.length + primeraLlamada);
     $.ajax({
         url : "https://ignsw201825-snproject.herokuapp.com/user/search/a",         
         method :'GET', 
@@ -147,9 +170,10 @@ function usuariosRegistrados(number){
         dataType : 'json', 
 
         success : function (response){   
-            console.log(response.length);
+            console.log(response.length + primeraLlamada);
             //localStorage.setItem("usuariosBusqueda",limpiarString(JSON.stringify(response)));
-            getImagenMen(response,number);                       
+            getImagenMen(response,number);
+
             },
         error: function(error){             
             console.log(error); 
@@ -166,6 +190,11 @@ function mostrarSpinner(id){
     console.log($("#bt-"+id).dataType)
 }
 
+function mostrarSpinnerGeneral(id){
+    var element= document.getElementById(id);
+    element.innerHTML= `<i class="fas fa-circle-notch fa-3x fa-spin"></i> `
+}
+
 function ocultarSpinner(id){
     var button= document.getElementById("bt-"+id);
     if(id="a"){
@@ -173,6 +202,12 @@ function ocultarSpinner(id){
     }else{
     button.innerHTML= `<i class="fas fa-plus"></i><i class="fas fa-user"></i> `
     }
+}
+
+function ocultarSpinnerGeneral(id){
+    var element= document.getElementById(id);
+    element.innerHTML= ``;
+    
 }
 
 
@@ -269,6 +304,8 @@ function eliminarAmigo(cardNumber){
 }
 
 function buscarAmigo(){
+    primeraLlamada=false;
+    mostrarSpinnerGeneral("textoVariable");
     palabra= $(busquedaUser).val();
     palabra=palabra.replace(" ","")
     var friends= document.getElementById('friends');
@@ -287,8 +324,8 @@ function buscarAmigo(){
                 },
             error: function(error){             
                 console.log(error); 
-                document.getElementById("friends").innerHTML=`<h4>No se encontraron datos de acuerdo a su busqueda</h4>`;
-                $(friends).css("text-align","center");
+                ocultarSpinnerGeneral("textoVariable");
+                document.getElementById("textoVariable").innerHTML=`<h5>No se encontraron datos de acuerdo a su busqueda</h5>`;
                         
             }
         });
@@ -311,7 +348,7 @@ function comparar (listaUsuarios){
                 while(i<listaUsuarios){
                     for(j=0;j<response.length; j++){
                         if($("#cf-"+i).data("copy")==response[j].id){
-                            $("#cf-"+i).css("display","none");
+                            
                             var parent=document.getElementById("friends");
                             var child=document.getElementById("cf-"+i);
                             var childModal=document.getElementById("modal-"+i);
@@ -332,13 +369,16 @@ function comparar (listaUsuarios){
                         
                     }
                     i++;
-                }                         
+                } 
+                                      
             },
         error: function(error){             
             console.log(error); 
                     
         }
     });
+   
     
+
     
 }

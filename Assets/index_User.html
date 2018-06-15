@@ -70,24 +70,24 @@
 </head>
 <body>        
                  
-    <header class="container-fluid fixed-top "><!--Cabecera-->
-            <section class="row" id="cabeceraTitulo">
+    <header class="container-fluid fixed-top " style="background-color: black; height: 64px;"><!--Cabecera-->
+            <section class="row mx-auto" id="cabeceraTitulo" style="width: 91%">
                      <div class="titulo"> <!-- Logo-->
-                        <p>WebMedia</p>                                                            
+                        <p class="" style="font-size: 40px; margin-top: -4px; color: white" >WebMedia</p>                                                            
                      </div>  
                      <!--Barra de busqueda-->
-                     <div class="buscador">
+                     <div class="buscador mt-2" style="padding-left: 68px">
                         <form class="navbar-form navbar-left" role="search">
                             <div id="searchform"  class="form-group">
                                 <input id="barra-Navegacion" type="text" class="form-control" placeholder="Buscar">
-                                <button id="botonBusqueda" type="submit" onclick="buscarPalabra()" > <span class="icon-search"></span> </button> 
+                                <button style="margin-left:23%; margin-top: 6px; color: white" id="botonBusqueda" type="submit" onclick="buscarPalabra()" > <span class="icon-search"></span> </button> 
                             </div>                                                                          
                         </form>
                      </div>
                      <!--Barra de busqueda fin--> 
 
                       <!--Opciones de la cabecera desplegables-->
-                     <div class="container-fluid responsiveMenu">
+                     <div class="container-fluid responsiveMenu " >
                             <div class="navegacion1">
                                  <span class="icon-search" onclick="mostrarBarraInferiorDeBuesqueda()">                                 
                                  </span>                                                        
@@ -100,16 +100,16 @@
                      <!--opciones desplegables-->                  
                      
                      <!--Menu de opciones normal-->
-                     <ul class="opciones">                        
-                        <li>
-                            <a href="#"  onclick="salirDeLaPagina('https://ignsw201825-snproject.herokuapp.com/user/logout')" > 
+                     <ul class="opciones ml-auto " style="width: auto; color: white">                        
+                        <li style="margin-top: 18px">
+                            <a class="pl-0" href="#"  onclick="salirDeLaPagina('https://ignsw201825-snproject.herokuapp.com/user/logout')" > 
                                  <span class="icon-exit"></span>
                                  <span > Salir </span>                                 
                            </a>         
                         </li>
                         <li>
                              <a href="perfil.html"> 
-                                 <img src="image/user8-128x128.jpg" class="image-responsive perfil_Mini"/>
+                                 <img src="image/user8-128x128.jpg" class="image-responsive perfil_Mini" style="width: 40px; margin-top: -6px;"/>
                                  <span data-target="perfil.html"  id="userBoton" ></span>                                
                              </a>                     
                         </li>
@@ -118,7 +118,7 @@
                  </section> 
                  <!--Menu de opciones normal-->
                     <!--Barra de navegacion inferior desplegable-------------->
-                     <div class="buscadorInferior">
+                     <div class="buscadorInferior" style="background-color: black">
                             <form class="navbar-form navbar-left" role="search">
                                     <div id="searchform"  class="form-group">
                                         <input id="barra-Navegacion" type="text" class="form-control" placeholder="Buscar">
@@ -128,9 +128,9 @@
                      </div>           
                      
                      <!--Menu inferior de opciones-->
-                     <div class="menuInferior">
-                            <ul class="opcionesInferior"> <!-- Registrarse-->
-                                <li>
+                     <div class="menuInferior" style="background-color: black">
+                            <ul class="opcionesInferior" style="background-color: black" > <!-- Registrarse-->
+                                <li style="background-color: black">
                                      <a href="#"  onclick="salirDeLaPagina('https://ignsw201825-snproject.herokuapp.com/user/logout')" > 
                                          <span class="icon-exit"></span>
                                          <span > Salir </span>                                 
@@ -138,7 +138,7 @@
                                 </li>
                                 
                              <!-- Entrar-->
-                                <li>
+                                <li style="background-color: black">
                                      <a href="#"  onclick="perfil()" >    
                                          <span class="icon-user"></span>                                      
                                          <span data-target="perfil.html"  id="userBoton" >Perfil</span>                                
@@ -157,10 +157,18 @@
                 
                          
     </header><!--Cabecera-->  
-    <div  id="particles-js">
-        <p>
-            Crea un album multimedia a tu gusto
-        </p>            
+    <div  id="particles-js" style="height: 300px; box-sizing: content-box">
+ 
+            <p class="text-center mt-5" style="margin-left: auto; margin-right: auto; height: auto;" >
+                Crea un album multimedia a tu gusto,
+                <br>
+                tus redes favoritas en un solo lugar.
+                <br>
+                <br>
+                <img class="img-fluid mr-3" src="image/logo-youtube.png" height="60px" width="60px" alt="">
+                <img class="img-fluid mx-3 " src="image/logo-soundcloud.png" height="60px" width="60px"  alt="">
+                <img class="img-fluid ml-3" src="image/instagramLogo.png" height="60px" width="60px"  alt="">
+            </p>           
     </div>  
      <div id="fondo-Imagen"></div>   
     <div>        

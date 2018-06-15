@@ -154,6 +154,12 @@ body{
     font-size: 30px;
     color: #dadada;
     margin-top: 10px; 
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+
+
 }
 #fondo-Imagen{
     width: 100%;

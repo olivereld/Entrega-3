@@ -278,12 +278,12 @@ function modificarDatosDelUsuario(){
                 "<div id='cuadro-Contenido' class='card-body' >"+                           
                     "<img id='imagen-Principal'class='card-img-top urlImagenPrincipal"+numeroDeIndice+"' src='"+UrlDeImagen+"'alt='Busqueda' data-toggle='modal' data-target='#imagen"+numeroDeIndice+"'>"+
                     "<a id='boton-agregarImg2' href='#' class='btn btn-danger' onclick='focusImagen("+'".urlImagenPrincipal'+numeroDeIndice+'"'+","+'"'+UrlPaginaDeProsedencia+'"'+"); verificarInfoAlbums();' >Guardar</a>"+ 
-                    "<img id='icono-Pagina' src='image/instagramIcon.png' width='50' height='50' onclick='procedencia"+numeroDeIndice+"()' >"+
+                    "<img id='icono-Pagina' src='image/instagramLogo.png' width='50' height='50' onclick='procedencia"+numeroDeIndice+"()' >"+
                 "</div>"+      
                 
                 "<div class='modal fade' id='imagen"+numeroDeIndice+"' tabindex='-1' role='dialog' aria-hidden='true'>"+                              
                     "<div class='modal-dialog modal-lg modal-dialog-centered' role='document'>"+
-                    "<img  class='img-fluid-rounded' src='"+UrlDeImagen+"'alt='Busqueda'>"+          
+                    "<img  class='img-fluid rounded mx-auto' src='"+UrlDeImagen+"'alt='Busqueda'>"+          
                     "</div>"+       
                 "</div>"+  
             "</div>" 

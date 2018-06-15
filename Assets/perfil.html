@@ -24,7 +24,7 @@
 <header class="navbar fixed-top navbar-dark pt-1 navbar-expand-md c-black" >
 
 	<div class="container px-0 py-0 my-0">
-		<a class="navbar-brand pt-0 pt-1 pb-0" style="font-size: 40px; font-family: rale; letter-spacing: 1px;" href="#" onclick="volverInicio()">WebMedia</a>
+		<a class="navbar-brand pt-0 pt-1 pb-0" style="font-size: 40px; font-family: rale; letter-spacing: 1px;" href="index_User.html" onclick="volverInicio()">WebMedia</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -108,14 +108,20 @@
 		</div>
 	<!-- /.widget-user -->
 	<!-- widget: contactos -->
-	<h2 class="head2">Amigos</h2>
-	<div class="card text-black c-white mb-3">
+	
+	<div class="card text-black c-white mt-4 mb-3">
 
-			<div class="card-header">
-				<a  data-toggle="tab" href="#menu2">Amigos</a>
-			</div>
-
-			<div class="card-body card-columns" id=users>	
+			<a  data-toggle="tab" href="#menu2" onclick="openTab('Amigos')" style="color: black;" class="rale">
+				<div class="card-header">
+					Amigos
+				</div>
+			</a>
+			<script>
+				function openTab(tab){
+					$('.nav-pills a[href="#menu2"]').tab('show');
+				}
+			</script>
+			<div class=" card-columns" id=users>	
 
 			</div>
 
@@ -124,7 +130,7 @@
 <div class="col-md-8 container" id="derecho">
 	<br>
 	<div class="card c-white">
-
+		<!-- CARD HEADER -->
 		<div class="card-header">
 			<ul class="nav nav-pills card-header-pills nav-fill">
 					<li class="nav-item">
@@ -142,7 +148,8 @@
 
 		<!-- Tab panes -->
 		<div class="tab-content card-body">
-			<div id="home" class="container tab-pane active"><!-- Albumes-->
+			<!-- Albumes-->
+			<div id="home" class="container tab-pane active">
 
 					<div id="opcion-Album" class="text-right mb-3">	<!--Inicial-->	
 						<input type="text" class="form-control" id="inputTituloModificable" placeholder="">
