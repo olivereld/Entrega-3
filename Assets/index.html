@@ -93,7 +93,7 @@
                     <form class="navbar-form navbar-left" role="search">
                         <div id="searchform"  class="form-group">
                             <input id="barra-Navegacion" type="text" class="form-control" placeholder="Buscar">
-                            <button id="botonBusqueda" type="submit" onclick="buscarPalabra()" > <span class="icon-search"></span> </button> 
+                            <button id="botonBusqueda" type="submit" onclick="buscarPalabra()" > <span class="icon-search"> </span> </button> 
                         </div>                                                                          
                     </form>
                 </div>   
@@ -313,7 +313,15 @@
                         <!--label class="modal-letters" for="psw"><b>Contrase&ntilde;a:  </b></label-->
                         <input class="modal-input-registro"   type="password" placeholder="Contrase&ntilde;a"           name="password"             required  id="pass1">
                         <input class="modal-input-registro"   type="password" placeholder="Repita la Contrase&ntilde;a" name="confirmationPassword" required  id="pass2">
-                         
+                        <div id="genero">
+                                <input type="radio" name="option" id="radio1" checked />
+                                <label  style="padding:5px;" for="radio1">Hombre</label>
+
+                                <input style="margin-left: 25px;" type="radio" name="option" id="radio2" />
+                                <label style="padding:5px; "  for="radio2">Mujer</label><br />
+                        </div>
+                        
+
                         <select class="modal-input-fecha"   type="text" placeholder="Dia"     id="diaRegistro"   name="Dia" required>
                                 <option value=""> Dia </option>
                                 <option value="00" disabled>Seleccione un Mes </option>
@@ -442,7 +450,7 @@
               
         
     </script>
-<!-- -------------------------------------------------Registro MODAL------------------------------------------------- -->
+<!-- -------------------------------------------------Errores modal------------------------------------------------- -->
 <!-- Mensajes de Error -->
 <div id="errorModal" class="modal fade" role="dialog">
     <div class="modal-dialog" role ="document" >  
@@ -457,7 +465,6 @@
                         </div>
    
                 <div class="modal-form mensajes-de-error">
-
                     
                 </div>
                     <div class="modal-footer" >           

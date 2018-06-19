@@ -19,7 +19,8 @@ function buscarPalabra(){
         enviarPeticionDeBusqueda(url);
         nuevaBusqueda = true;
     }else{
-        alert("Debe introducir algo en la barra de busqueda para realizar la busqueda");
+        $("#errorModal").modal();
+        mostrarError(10);
     }
 }
 function cambiarValorDeNuevaBusqueda(){

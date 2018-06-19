@@ -6,6 +6,7 @@ function formalizar(urlServidor){
     var date      = ""+$(anoRegistro).val()+"/"+$(mesRegistro).val()+"/"+$(diaRegistro).val()+"";
     var password  = ""+btoa($(pass1).val());
     var password2 = ""+btoa($(pass2).val());
+    var genero    = verificarGenero();
 
     var resultadoDeValidacionCamposVacios  = campoVacio();
     var resultadoDeValidacionLongitudClave = longitudClave("#pass1");
@@ -26,7 +27,8 @@ function formalizar(urlServidor){
             "email"                 : $(emailRegistro).val(),
             "password"              : password,
             "confirmationPassword"  : password2,
-            "dateOfBirth"           : date,     
+            "dateOfBirth"           : date, 
+            "gender"                :genero,    
         }        
         enviarSolicitudDeRegistro(urlServidor,jsonConRegistroDeUsuario); //Ejecuta la funcion enviar que esta de ultima              
         
@@ -39,6 +41,19 @@ function formalizar(urlServidor){
         else if (!resultadoDeValidacionFecha){mostrarError(4);}       
         console.error("No se puede crear JSON"); //Si no se cumplen los requisitos
     }
+}
+
+function verificarGenero(){
+    var genero;
+
+    if($("#radio1").prop('checked')){
+        genero = "male";
+    }else
+        genero = "female";
+
+    console.log(genero);
+
+    return genero;
 }
 
 

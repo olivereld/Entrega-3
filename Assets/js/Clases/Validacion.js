@@ -2,7 +2,7 @@ function mostrarError(errorParametro){
         
     if(errorParametro == 0){
         $("#campos-vacios").css("display","block");
-        
+        $("#busqueda-vacia").css("display","none");
         $("#clave-erronea").css("display","none");
         $("#correo-no-registrado").css("display","none");
         $("#campos-vacios-login").css("display","none");
@@ -14,7 +14,7 @@ function mostrarError(errorParametro){
         $("#correo-existente").css("display","none"); 
     }else if(errorParametro == 1){       
         $("#formato-correo").css("display","block");
-        
+        $("#busqueda-vacia").css("display","none");
         $("#clave-erronea").css("display","none");
         $("#correo-no-registrado").css("display","none");
         $("#campos-vacios-login").css("display","none");
@@ -26,7 +26,7 @@ function mostrarError(errorParametro){
         $("#correo-existente").css("display","none");
     }else if(errorParametro == 2){     
         $("#longitud-contraseña").css("display","block"); 
-        
+        $("#busqueda-vacia").css("display","none");
         $("#clave-erronea").css("display","none");
         $("#correo-no-registrado").css("display","none");
         $("#campos-vacios-login").css("display","none");
@@ -38,7 +38,7 @@ function mostrarError(errorParametro){
         $("#correo-existente").css("display","none");
     }else if(errorParametro == 3){ 
         $("#repeticion-contraseña").css("display","block");
-        
+        $("#busqueda-vacia").css("display","none");
         $("#clave-erronea").css("display","none");
         $("#correo-no-registrado").css("display","none");
         $("#campos-vacios-login").css("display","none");
@@ -50,7 +50,7 @@ function mostrarError(errorParametro){
         $("#correo-existente").css("display","none");
     }else if(errorParametro == 4){
         $("#campo-nacimiento").css("display","block");
-
+        $("#busqueda-vacia").css("display","none");
         $("#clave-erronea").css("display","none");
         $("#correo-no-registrado").css("display","none");
         $("#campos-vacios-login").css("display","none");
@@ -62,7 +62,7 @@ function mostrarError(errorParametro){
         $("#correo-existente").css("display","none");
     }else if(errorParametro == 5){        
         $("#fecha-invalida").css("display","block");
-
+        $("#busqueda-vacia").css("display","none");
         $("#clave-erronea").css("display","none");
         $("#correo-no-registrado").css("display","none");
         $("#campos-vacios-login").css("display","none");
@@ -74,7 +74,7 @@ function mostrarError(errorParametro){
         $("#correo-existente").css("display","none");
     }else if(errorParametro == 6){        
         $("#correo-existente").css("display","block");
-
+        $("#busqueda-vacia").css("display","none");
         $("#clave-erronea").css("display","none");
         $("#correo-no-registrado").css("display","none");
         $("#campos-vacios-login").css("display","none");
@@ -86,7 +86,7 @@ function mostrarError(errorParametro){
         $("#campos-vacios").css("display","none");        
     }else if(errorParametro == 7){        
         $("#campos-vacios-login").css("display","block");
-
+        $("#busqueda-vacia").css("display","none");
         $("#clave-erronea").css("display","none");
         $("#correo-no-registrado").css("display","none");
         $("#correo-existente").css("display","none");
@@ -98,7 +98,7 @@ function mostrarError(errorParametro){
         $("#campos-vacios").css("display","none");        
     }else if(errorParametro == 8){   
         $("#correo-no-registrado").css("display","block");
-
+        $("#busqueda-vacia").css("display","none");
         $("#clave-erronea").css("display","none"); 
         $("#campos-vacios-login").css("display","none");       
         $("#correo-existente").css("display","none");
@@ -110,7 +110,7 @@ function mostrarError(errorParametro){
         $("#campos-vacios").css("display","none");        
     } else if(errorParametro == 9){ 
         $("#clave-erronea").css("display","block");  
-
+        $("#busqueda-vacia").css("display","none");
         $("#correo-no-registrado").css("display","none");
         $("#campos-vacios-login").css("display","none");       
         $("#correo-existente").css("display","none");
@@ -120,7 +120,19 @@ function mostrarError(errorParametro){
         $("#longitud-contraseña").css("display","none"); 
         $("#formato-correo").css("display","none");
         $("#campos-vacios").css("display","none");        
-    }                       
+    } else if(errorParametro == 10){ 
+        $("#busqueda-vacia").css("display","block");
+        $("#clave-erronea").css("display","none");
+        $("#correo-no-registrado").css("display","none");
+        $("#campos-vacios-login").css("display","none");       
+        $("#correo-existente").css("display","none");
+        $("#fecha-invalida").css("display","none");
+        $("#campo-nacimiento").css("display","none");
+        $("#repeticion-contraseña").css("display","none");        
+        $("#longitud-contraseña").css("display","none"); 
+        $("#formato-correo").css("display","none");
+        $("#campos-vacios").css("display","none");        
+    }                                             
     
     $("#errorModal").modal();
 }
