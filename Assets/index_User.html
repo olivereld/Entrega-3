@@ -37,6 +37,7 @@
     <script type="text/javaScript">
         var ventanaBarraVisible = false;
         var ventanaMenuVisible  = false;
+        
         obtenerAlbumes(sessionStorage.getItem("id"),voidFunction);
         function voidFunction(){}
         function mostrarBarraInferiorDeBuesqueda(){        
@@ -67,7 +68,12 @@
         }    
     </script>
     <script>
-            $( document ).ready(function() {         
+            $( document ).ready(function() { 
+                var imagenPerfil = sessionStorage.getItem("fotoPerfil");
+                if(imagenPerfil){
+                    $("#perfil-imagen").attr("src",imagenPerfil);
+                }        
+                
                if(sessionStorage.getItem("busquedaRealizada")){           
                    $("#barra-Navegacion").val(sessionStorage.getItem("busquedaRealizada"));           
                    sessionStorage.removeItem("busquedaRealizada");
@@ -125,7 +131,7 @@
                         </li>
                         <li>
                              <a href="perfil.html"> 
-                                 <img src="image/user8-128x128.jpg" class="image-responsive perfil_Mini" style="width: 40px; margin-top: -6px;"/>
+                                 <img id="perfil-imagen" src="image/user8-128x128.jpg" class="image-responsive perfil_Mini" style="width: 40px; margin-top: -6px;"/>
                                  <span data-target="perfil.html"  id="userBoton" ></span>                                
                              </a>                     
                         </li>

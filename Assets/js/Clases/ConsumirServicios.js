@@ -150,7 +150,8 @@ function iniciarSesionAlRegistrar(enlaceUrlHeroku,datosDelNuevoUsuario){
     var encriptado        = ""+response.password;
     var correo            = ""+response.email;
     //var albums            = ""+JSON.stringify(response.albums).substring(1,JSON.stringify(response.albums).length-1);
-    var amigos            = ""+JSON.stringify(response.friends).substring(1,JSON.stringify(response.friends).length-1);     
+    var amigos            = ""+JSON.stringify(response.friends).substring(1,JSON.stringify(response.friends).length-1); 
+    var fotoPerfil        = ""+response.profilePicture;   
     
     sessionStorage.setItem("id",id);
     sessionStorage.setItem("token",token);
@@ -160,6 +161,7 @@ function iniciarSesionAlRegistrar(enlaceUrlHeroku,datosDelNuevoUsuario){
     sessionStorage.setItem("encriptado",encriptado);
     sessionStorage.setItem("correo",correo);    
     sessionStorage.setItem("amigos",amigos); 
+    sessionStorage.setItem("fotoPerfil",fotoPerfil);
     
     ocultarCarga();
     window.location="index_User.html";

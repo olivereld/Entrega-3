@@ -5,6 +5,7 @@
 					alert("No se puede acceder a esta pagina");
 					window.location="index.html";
 				}
+				     
 		</script>
 <head>
 	<meta charset="UTF-8">
@@ -24,7 +25,14 @@
 	<link   rel="stylesheet" href="Css3/modalLogin.css">
 	<link 	rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
-	
+	<script>
+		$( document ).ready(function() { 
+			var imagenPerfil = sessionStorage.getItem("fotoPerfil");
+			if(imagenPerfil){
+				$("#perfil-imagen").attr("src",imagenPerfil);
+			}           
+        });   
+	</script>
 
 </head>
 <body>
@@ -65,7 +73,7 @@
 				document.getElementById("name").innerHTML = nombre;                                    
 			</script>
 			<div class="widget-user-image">
-				<img class="img-circle" src="image/user8-128x128.jpg" alt="User Avatar">
+				<img class="img-circle" src="" alt="User Avatar" id="perfil-imagen">
 				<!--Poner aqui el src de la imagen-->
 			</div>
 			<div class="card-body box-profile pt-5">
