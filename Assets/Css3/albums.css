@@ -150,12 +150,14 @@
 }
 
 #boton-continuar-modal,
-#advertencia-eliminado{
+
+#advertencia-eliminado,#advertencia-eliminado-elemento{
     display: none;
 }
-#advertencia-eliminar{
+#advertencia-eliminar,#advertencia-eliminar-elemento{
     display: block;
 }
+
 #cargando-gift{   
     background: url('../image/loading.gif') no-repeat;    
     position: absolute;
@@ -165,16 +167,29 @@
      
 	z-index: 100;
 }
-#icono-Pagina {
-    display: none;
+#icono-Borrar{ 
+    display: block;
     position: absolute;  
-    left:  2%;
-    bottom: 2%;
-    z-index: 8;
+    left: auto;
+    right:10px;
+    bottom: 1%;
+    z-index: 100;
+    -webkit-user-drag: none;
+    user-drag: none;
+    opacity: 0.5;
+} #icono-Borrar:hover{opacity: 1;}#icono-Borrar:active{opacity: 0.8;}
+#icono-Pagina{
+    display: block;
+    position: absolute;  
+    left: auto;
+    right: auto;
+    bottom: 1%;
+    z-index: 100;
     -webkit-user-drag: none;
     user-drag: none;
     opacity: 0.5;
 }
+
 #icono-Pagina:hover{
     opacity: 1;
 }

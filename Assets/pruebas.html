@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>       
+        
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <script src="js/Jquery.js"></script> 
+    <script src="js/Objetos/Album.js"></script>
+</head>
+<body>
+    <div id ="contenido"> 
+        hola
+    </div>
+    
+    <script>               
+    obtenerListaDeAlbumes("1529156053184"); 
+                                   console.log("Listas obtenidas");
+
+    $( document ).ajaxComplete(function( event, request, settings ) {
+        console.log("tamaño de albumes = "+listaDeAlbumes.length); 
+        console.log("La multimedia del album  es " + listaDeAlbumes[1].multiMedia.length);
+              
+        var respuesta = JSON.parse(request.responseText);
+       
+        $( "#contenido" ).append( "<li>Finalizada la peticion ajax:"+respuesta[0].id+"</li>" ); 
+        
+    });
+   //cargarMultimediaDeALbum(listaDeAlbumes[0]);                                           
+    </script>  
+</body>
+</html> 

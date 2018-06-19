@@ -49,7 +49,7 @@
 				<!-- Fin Cabecera -->
 
 <div class="cuerpo" >
-	<div class="col-md-4" id="izquierdo">>
+	<div class="col-md-4" id="izquierdo">
 
 		<h2 class="head pt-0 rt-0">Perfil</h2>
 
@@ -76,35 +76,19 @@
 						<b>Albums</b>						
 						<p id="cantidad-Albumes"class="float-right" ></p>
 						<script>
-								$(document).ready(function(){
-									
+								$(document).ready(function(){									
 									if(localStorage.getItem("idDeAlbumTarget"))
 										localStorage.removeItem("idDeAlbumTarget");
-
 									if(localStorage.getItem("urlImagenTarget"))
 										localStorage.removeItem("urlImagenTarget");
-
 									if(localStorage.getItem("urlProcedenciaTarget"))
 										localStorage.removeItem("urlProcedenciaTarget");
-
 									if(localStorage.getItem("numeroDeImagenesTarget"))
 										localStorage.removeItem("numeroDeImagenesTarget");
 
-									
-
-
-									var cantidadDeAlbumes;
-									PrepararInfoAlbums();
-								 if( sessionStorage.getItem("albumes").split(",") && sessionStorage.getItem("albumes").length > 0 ){
-									 	 var albumPorId = sessionStorage.getItem("albumes").split(",");
-										 cantidadDeAlbumes = albumPorId.length;
-										 console.log(cantidadDeAlbumes);
-								 }else{
-									   cantidadDeAlbumes = 0;
-									   console.log(cantidadDeAlbumes);
-								 } 
-								 $("#cantidad-Albumes").text(cantidadDeAlbumes);
-								 });
+									var cantidadDeAlbumes;									
+									albumesDelUsuario();
+								});			
 						</script>
 					</li>
 					<li class="list-group-item">
@@ -174,7 +158,11 @@
 						<br><br>
 						<hr>
 						<div class="row card-columns VistaPreviaAlbums" id="galeria-multimedia" > <!------------Vista de multimedia---------->									                       
-								
+							<div id ='cuadro-album'  class='card col-12 col-sm-6 col-md-5 col-lg-5 ima-' tabindex='-1' >					                       
+								<img id='imagen-principal'class='card-img-top' src='image/rm1.jpg' alt='Busqueda'>                            
+								<img id='icono-Pagina' src='image/instagramIcon.png' width='50' height='50'>
+								<img id='icono-Borrar' src='image/delete.png' width='50' height='50' data-toggle="modal" data-target="#eliminarModalMedia">						           							
+						    </div> 
 																												
 																		
 						</div> <!------------Vista de multimedia---------->
@@ -198,7 +186,7 @@
 								<span class="btn btn-primary btn-lg" onclick="volverAPrevizualisarAlbumes()" >Volver</span>		
 							</div>	
 							<div class="text-right form-group col-md-6">
-								<span class="btn btn-danger btn-lg"  onclick="guardarNuevoAlbum()">Crear</span>		
+								<span class="btn btn-danger btn-lg"  onclick="guardarNuevoAlbum2()">Crear</span>		
 							</div>							
 						</div>						
 				 </form>
@@ -303,8 +291,8 @@
 		  </div>
 			<div class="modal-body">
 				<div id="advertencia-eliminar">
-					<p> <h5> ¿Seguro que desea eliminar este álbum? </h5></p>
-				</div>
+					<p> <h5> ¿Seguro que desea eliminar este álbum? </h5></p>					
+				</div>				
 				<div id="advertencia-eliminado">
 					<p> <h5> El album a sido eliminado con exito </h5></p>
 				</div>		
@@ -320,6 +308,37 @@
 	</div>
   </div>
   <!-- ----------------Modal Para Eliminar---------------------- -->
+  <!-- ----------------Modal Para Eliminar MEdia---------------------- -->
+<div class="container"> 
+	<!-- Modal -->
+	<div class="modal fade" id="eliminarModalMedia" role="dialog">
+	  <div class="modal-dialog modal-md">
+		<div class="modal-content">
+
+		  <div class="modal-header" id="cabecera-modal">
+			<button type="button" class="close" data-dismiss="modal"></button>
+			<h4 class="text-left">Eliminar</h4>
+		  </div>
+			<div class="modal-body">
+				<div id="advertencia-eliminar">
+					<p> <h5> ¿Seguro que desea eliminar este elemento? </h5></p>					
+				</div>				
+				<div id="advertencia-eliminado">
+					<p> <h5>  </h5> </p>
+				</div>		
+				
+			</div>
+		  <div class="modal-footer">				
+				<button id="boton-cancelar-modal" type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+				<button id="boton-eliminar-modal" type="button" class="btn btn-danger" onclick="eliminarMedia()">Eliminar</button>
+				<button id="boton-continuar-modal" type="button" class="btn btn-primary" data-dismiss="modal" onclick="actualizarPaginaAlbumes()">Continuar</button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </div>
+  <!-- ----------------Modal Para Eliminar Media---------------------- -->
+
 
     <div class="container"  > 
 		<!-- Modal -->
@@ -335,8 +354,7 @@
 </body>
 
 <div id="errorModal" class="modal fade" role="dialog">
-		<div class="modal-dialog" role ="document" >  
-				  
+		<div class="modal-dialog" role ="document" >
 				<div class="modal-content modalIndex errores" style ="background: rgb(17, 17, 17);">                   
 						<div class="modalCarga">
 								<div id="loadingGift"></div>

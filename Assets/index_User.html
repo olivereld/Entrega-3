@@ -2,17 +2,15 @@
 <html ng-app lang="es">
     <script > //Carga de seguridad
         if(!sessionStorage.getItem("token")){
-            alert("No se puede acceder a esta pagina");
-           
+            alert("No se puede acceder a esta pagina");            
             window.location="index.html";
-        }
+        }      
         if(localStorage.getItem("datoBusquedaLocal")){
             var busqueda = localStorage.getItem("datoBusquedaLocal");
             localStorage.clear();
             localStorage.setItem("datoBusquedaLocal",busqueda);             
         }else        
             localStorage.clear();
-
     </script>
 <head>    
     <meta charset="UTF-8">
@@ -30,7 +28,7 @@
     <script src="js/bootstrap.min.js"></script> 
     <script src="js/Clases/Validacion.js"></script>
     <script src="js/Clases/ConsumirServicios.js"></script>  
-    <script src="js/Clases/Albums.js"></script> 
+    <script src="js/Clases/Albums.js">  </script> 
     <script src="js/Clases/Busqueda.js"></script> 
     <script src="js/Clases/GestionMultimedia.js"></script>
     
@@ -39,6 +37,8 @@
     <script type="text/javaScript">
         var ventanaBarraVisible = false;
         var ventanaMenuVisible  = false;
+        obtenerAlbumes(sessionStorage.getItem("id"),voidFunction);
+        function voidFunction(){}
         function mostrarBarraInferiorDeBuesqueda(){        
             if(!ventanaBarraVisible){
                 if(ventanaMenuVisible){
@@ -243,7 +243,7 @@
                 <h4 class="text-left" style=" color: white;">Seleccione un album</h4>
               </div>
               
-                 <div class="modal-body" style=" height: 250px; width: 100%;overflow-y: auto;" >
+                 <div class="modal-body" style=" height: 400px; width: 100%;overflow-y: auto;" >
                     
                      <div class="row card-columns VistaPreviaAlbums" id="galeriaAlbums" > <!------------vista Previa de albums---------->                     
                                                                                      
@@ -253,7 +253,7 @@
 
               <div class="modal-footer" style="background: rgb(26, 26, 26); color:rgb(255, 255, 255);" >                    
                     <button  type="button" class="btn btn-primary"  onclick="guardarMultimedia()">Guardar</button>                  
-                    <button  type="button" class="btn btn-danger" data-dismiss="modal" >Cancelar</button>
+                    <button  type="button" class="btn btn-danger" data-dismiss="modal" onclick="borrarTargets()" >Cancelar</button>
                     
               </div>
 
@@ -267,7 +267,8 @@
 		<div class="modal fade" id="cargando" role="dialog" data-backdrop="static" data-keyboard="false">
 		  <div class="modal-dialog modal-md">
 			<div class="modal-content">					
-					<div id="cargando-gift"></div>							  
+                    <div id="cargando-gift"></div>
+                    							  
 			</div>
 		  </div>
 		</div>

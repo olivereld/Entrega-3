@@ -102,7 +102,8 @@ function iniciarSesionAlRegistrar(enlaceUrlHeroku,datosDelNuevoUsuario){
          data : JSON.stringify(jsonConLosDatos), //El formato Json
          method :'POST', //en este caso
          contentType: 'application/json; charset=utf-8',
-         dataType : 'json', //El tipo de archivo            
+         dataType : 'json', //El tipo de archivo
+         sync:false,            
 
          success : function (response){ //Si funciona
              obtenerDatosCompletosPorId(""+response.id,""+response.authToken);                         
@@ -127,9 +128,11 @@ function iniciarSesionAlRegistrar(enlaceUrlHeroku,datosDelNuevoUsuario){
         url : urlPeticionEnHeroku, //Url       
         method :'GET', //en este caso
         contentType: 'application/json; charset=utf-8',
-        dataType : 'json', //El tipo de archivo            
+        dataType : 'json', //El tipo de archivo 
+        sync:false,           
 
         success : function (response){ //Si funciona
+            
             guardarDatosDelUsuario(response,token);                                  
         },
         error: function(error){ //Si falla                        
@@ -139,14 +142,14 @@ function iniciarSesionAlRegistrar(enlaceUrlHeroku,datosDelNuevoUsuario){
  }
 
  function guardarDatosDelUsuario(response,token){
-    
+   
     var id                = ""+response.id;    
     var nombre            = ""+response.firstName;
     var apellido          = ""+response.lastName; 
     var fechaDeNAcimiento = ""+response.dateOfBirth;
     var encriptado        = ""+response.password;
     var correo            = ""+response.email;
-    var albums            = ""+JSON.stringify(response.albums).substring(1,JSON.stringify(response.albums).length-1);
+    //var albums            = ""+JSON.stringify(response.albums).substring(1,JSON.stringify(response.albums).length-1);
     var amigos            = ""+JSON.stringify(response.friends).substring(1,JSON.stringify(response.friends).length-1);     
     
     sessionStorage.setItem("id",id);
@@ -155,10 +158,9 @@ function iniciarSesionAlRegistrar(enlaceUrlHeroku,datosDelNuevoUsuario){
     sessionStorage.setItem("apellido",apellido);
     sessionStorage.setItem("fechaDeNAcimiento",fechaDeNAcimiento);  
     sessionStorage.setItem("encriptado",encriptado);
-    sessionStorage.setItem("correo",correo);
-    sessionStorage.setItem("albumes",albums);  
+    sessionStorage.setItem("correo",correo);    
     sessionStorage.setItem("amigos",amigos); 
-
+    
     ocultarCarga();
     window.location="index_User.html";
 }
@@ -301,14 +303,14 @@ function modificarDatosDelUsuario(){
         var botonGuardar ;
         var mensaje = "No esta implementado el guardado de videos aun! proximamente";
         if(document.location.href.indexOf("index_User.html") > -1){
-            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger' onclick='alert("+'"'+"No esta implementado el guardado de videos aun! proximamente"+'"'+")' >Guardar</a>"; 
+            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger' onclick='focusVideo("+'"'+UrlDeImagen+'",'+'"'+UrlPaginaDeProsedencia+'",'+'"'+UrlDeVideo+'"'+");verificarInfoAlbums();'>Guardar</a>"; 
         }else{
             botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger' data-toggle='modal' data-target='#myModal' >Guardar</a>";
         }
         $(".BusquedaOrdenada").append( 
             '<script type="text/javascript">'+
             '$(document).ready(function(){'+           
-              
+
                 "$('#video"+numeroDeIndice+"').on('hide.bs.modal', function(){"+                    
                     '$("#videoResultado'+numeroDeIndice+'").attr("src","");'+
                 '});'+
@@ -324,14 +326,17 @@ function modificarDatosDelUsuario(){
                    " alert('Please allow popups for this website');"+
                " }"+
            " }"+
+           "function mantenerOculto"+numeroDeIndice+"(){ console.log('Hola'); $('videoResultado"+numeroDeIndice+"'"+").modal('hide'); $('#videoResultado"+numeroDeIndice+"').attr("+"'"+"src"+"'"+",'');}"+
         '</script>'+            
 
         "<div id ='cuadro-Busqueda' class='card col-12 col-sm-6 col-md-4 col-lg-3'>"+
-            "<div id='cuadro-Contenido' style='padding: .28rem' class='card-body' data-toggle='modal' data-target='#video"+numeroDeIndice+"'>"+                           
+            "<div id='cuadro-Contenido' style='padding: .28rem' class='card-body' >"+                           
                 "<img id='imagen-Principal' class='card-img-top' src='"+UrlDeImagen+"'alt='Busqueda'>"+
                  botonGuardar+                 
                 "<img id='icono-Pagina' src='image/instagramIcon.png' width='50' height='50' onclick='procedencia"+numeroDeIndice+"()' >"+
-                "<img id='icono-Video' src='image/play.png' width='100' height='100' >"+
+                "<div data-toggle='modal' data-target='#video"+numeroDeIndice+"' style='z-index: 99;'>"+
+                    "<img id='icono-Video' src='image/play.png' width='100' height='100'  style='z-index: 100;' >"+
+                "</div>"+
             "</div>"+     
 
             '<div class="bs-example">'+
@@ -372,7 +377,8 @@ function modificarDatosDelUsuario(){
 
                 mostrarResultadoImagen(listaDeElementos[i].imageUrl,listaDeElementos[i].instagramLink,i);
 
-            }else if(("" + listaDeElementos[i].type) == "video"){                
+            }else if(("" + listaDeElementos[i].type) == "video"){  
+                console.log(listaDeElementos[i]);              
                 mostrarResultadoVideo(listaDeElementos[i].imageUrl,listaDeElementos[i].videoUrl,listaDeElementos[i].instagramLink,i);              
             }
         }
@@ -398,7 +404,7 @@ function enviarPeticionDeBusqueda(enlaceUrlHeroku){
         dataType : 'json', 
 
         success : function (response){                        
-            
+            console.log("Resultados :" + response[0].imageUrl);
             prepararResultados(response);         
                           
             },

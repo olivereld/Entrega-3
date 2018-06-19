@@ -148,7 +148,7 @@ function getImagenMen(response,number){
         url: 'https://randomuser.me/api/?results=100&inc=name,picture&gender=male&noinfo',
         dataType: 'json',
         success: function(data) {
-        console.log(data);
+        //console.log(data);
         llenarRegistrados(response,data,number);
         //guardarDatos(data);
         }
@@ -255,11 +255,9 @@ function getListaUsuarios(number){
         //contentType: 'application/json; charset=utf-8',
         dataType : 'json', 
 
-        success : function (response){ 
-            console.log(response.length);
-            $(amigos).text(response.length)
-            console.log(response);
-            getImagenMen(response,number)                          
+        success : function (response){          
+            $(amigos).text(response.length);            
+            getImagenMen(response,number);                          
             },
         error: function(error){             
             console.log(error); 
