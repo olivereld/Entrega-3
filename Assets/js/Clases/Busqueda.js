@@ -15,7 +15,7 @@ function buscarPalabra(){
         for(var i = 0; i < elementoABuscar.length; i++)
         url = url + elementoABuscar[i];   
         
-        localStorage.setItem("datoBusquedaLocal",url);    
+        sessionStorage.setItem("datoBusquedaLocal",url);    
         enviarPeticionDeBusqueda(url);
         nuevaBusqueda = true;
     }else{
