@@ -169,7 +169,7 @@ function iniciarSesionAlRegistrar(enlaceUrlHeroku,datosDelNuevoUsuario){
 
 
 /*Salir*/
-
+ 
 function salirDeLaPagina(enlaceUrlHeroku){ 
     $("#cargando").modal();
     var id =    "" +sessionStorage.getItem("id");

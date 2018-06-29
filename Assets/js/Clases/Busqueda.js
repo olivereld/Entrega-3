@@ -18,6 +18,7 @@ function buscarPalabra(){
             urlInstragram = instagramParametros(urlInstragram,palabraABuscar); 
             sessionStorage.setItem("datoBusquedaLocalInstragram",urlInstragram);  
 
+<<<<<<< HEAD
             enviarPeticionDeBusqueda(urlInstragram,"instagram");
             enviarPeticionDeBusqueda(urlYouTube,"youtube");
 
@@ -26,6 +27,15 @@ function buscarPalabra(){
             $("#errorModal").modal();
             mostrarError(10);
         }
+=======
+        var elementoABuscar = palabraABuscar.split(" ");     
+        for(var i = 0; i < elementoABuscar.length; i++)
+        url = url + elementoABuscar[i];   
+        
+        sessionStorage.setItem("datoBusquedaLocal",url);    
+        enviarPeticionDeBusqueda(url);
+        nuevaBusqueda = true;
+>>>>>>> 1c8e88eeb2496d0c22072bfb51a3dca5d63f8e6e
     }else{
         this.location.reload();
     }
