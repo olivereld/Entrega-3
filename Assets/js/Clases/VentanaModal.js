@@ -46,7 +46,7 @@ function generarModalParaErrores(){
                     '</div>' +
 
                     '<div id= "clave-erronea">'+
-                            '<h4  class="text-danger">Erro en la contraseña</h4>'+
+                            '<h4  class="text-danger">Error en la contraseña</h4>'+
                             '<p>La contraseña es erronea</p>'+
                     '</div> '+
                     '<div id= "busqueda-vacia">'+

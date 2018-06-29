@@ -1,44 +1,5 @@
 
-function getUser(boolean){	
-    $.ajax({
-        url: 'https://randomuser.me/api/?results=100&inc=name,picture&noinfo',
-        dataType: 'json',
-        success: function(data) {
-        console.log(data);
-        getUserRandom(data);
-        //guardarDatos(data);
-        }
-    });
-    
-}
-
-function getUserRandom(data){
-    var friends= document.getElementById('friends');
-    var j=0;
-    while (j<100){
-       
-            friends.innerHTML+= `
-            <div class="card" id=cf>
-                                
-            <div class="col-md-6 float-left px-0 py-auto text-center">
-                    <img src="${data.results[j].picture.large}" class="card-img-top img-fluid px-0" alt="">
-            </div>
-                
-            <div class="col-md-6 float-left px-2 pt-1 pb-1">
-                <div class="text-center">
-                    <p class="rale text-capitalize">${data.results[j].name.first+" "+data.results[j].name.last}</p>
-                    <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i><i class="fas fa-user"></i></button>
-                </div>
-            </div>    
-                
-        </div>
-            ` 
-          
-    j++;
-    }
-}
-
-function llenarRegistrados(response,data,number){
+function llenarRegistrados(response,number){
     var j=0;
     var friends= document.getElementById('friends');
     var users= document.getElementById('users');
@@ -56,7 +17,7 @@ function llenarRegistrados(response,data,number){
         if ((j<6)&(j<response.length)&(users!=null)){
             users.innerHTML+= `
             <div class="card text-white" data-toggle="tooltip" title="" data-original-title="Default tooltip">
-                <img src="${data.results[j].picture.large}"   class="card-img" alt="">
+                <img src="${response[j].profilePicture}"   class="card-img" alt="">
                 <div class="card-img-overlay pl-2 pt-4">
                     <p class="text-centered pt-5" style="font-size:12px">${response[j].firstName}</p>
                 </div>
@@ -68,7 +29,7 @@ function llenarRegistrados(response,data,number){
             <div class="card" id=cf-${j} data-copy="${response[j].id}" style="display: none">
                 <a href="#" data-toggle="modal" data-target="#modal-${j}" style="color:black;">                             
                 <div class="col-md-6 float-left px-0 py-auto text-center">
-                        <img src="${data.results[j].picture.large}" class="card-img-top img-fluid px-0" alt="">
+                        <img src="${response[j].profilePicture}" class="card-img-top img-fluid px-0" alt="">
                 </div>
                 </a>
                     
@@ -96,7 +57,7 @@ function llenarRegistrados(response,data,number){
                             <div class="container">
                                 <div class="col-md-5 float-left">
                                     <div class="card">
-                                        <img src="${data.results[j].picture.large}" alt="" class="card-img-top">
+                                        <img src="${response[j].profilePicture}" alt="" class="card-img-top">
                                     </div>
                                 </div>
                                 <div class="col-md-7 float-left">
@@ -119,13 +80,13 @@ function llenarRegistrados(response,data,number){
         comparar(response.length);
         setTimeout(function(){
             ocultarSpinnerGeneral("textoVariable");
-            console.log(document.getElementById("friends").childElementCount)
+            console.log(document.getElementById("friends").childElementCount);
             if(document.getElementById("friends").childElementCount==0){
                 console.log("Entro")
                 document.getElementById("textoVariable").innerHTML=`<h5>No se encontraron datos de acuerdo a su busqueda</h5>`;
             } 
             else{
-                console.log(primeraLlamada)
+                console.log(primeraLlamada);
                 if (!primeraLlamada){
                     document.getElementById("textoVariable").innerHTML=`<h5>Resultados de la busqueda:</h5>`;
                 }
@@ -133,9 +94,7 @@ function llenarRegistrados(response,data,number){
             } 
             $('.card-columns .card').css("display","");
         }, 1000);
-        //primeraLlamada=false;
         
-    //getUser()
     }
     else{
         $('.card-columns .card').css("display","");
@@ -143,17 +102,7 @@ function llenarRegistrados(response,data,number){
 
 }
 
-function getImagenMen(response,number){
-    $.ajax({
-        url: 'https://randomuser.me/api/?results=100&inc=name,picture&gender=male&noinfo',
-        dataType: 'json',
-        success: function(data) {
-        //console.log(data);
-        llenarRegistrados(response,data,number);
-        //guardarDatos(data);
-        }
-    });
-}
+
 
 function limpiarString(data){
     data= data.replace("[","'")
@@ -175,7 +124,7 @@ function usuariosRegistrados(number){
         success : function (response){   
             console.log(response.length + primeraLlamada);
             //localStorage.setItem("usuariosBusqueda",limpiarString(JSON.stringify(response)));
-            getImagenMen(response,number);
+            llenarRegistrados(response,number);
 
             },
         error: function(error){             
@@ -323,7 +272,7 @@ function buscarAmigo(){
     
             success : function (response){   
                 console.log(response.length);
-                getImagenMen(response,0);                       
+                llenarRegistrados(response,0);                       
                 },
             error: function(error){             
                 console.log(error); 
@@ -347,7 +296,7 @@ function comparar (listaUsuarios){
         dataType : 'json', 
 
         success : function (response){ 
-            console.log(response.length);
+            console.log("Numero de usuarios:"+response.length);
                 while(i<listaUsuarios){
                     for(j=0;j<response.length; j++){
                         if($("#cf-"+i).data("copy")==response[j].id){
@@ -361,17 +310,19 @@ function comparar (listaUsuarios){
                             i++;
                             
                         }
-
-                        if ($("#cf-"+i).data("copy")==sessionStorage.getItem("id")){
-                            var parent=document.getElementById("friends");
-                            var child=document.getElementById("cf-"+i);
-                            var childModal=document.getElementById("modal-"+i);
-                            parent.removeChild(child);
-                            parent.removeChild(childModal);
-                        }
                         
                     }
                     i++;
+
+                    if ($("#cf-"+i).data("copy")==sessionStorage.getItem("id")){
+                        console.log(sessionStorage.getItem("nombre")+" es el USUARIO");
+                        console.log(sessionStorage.getItem("id")+"=="+$("#cf-"+i).data("copy"));
+                        var parent=document.getElementById("friends");
+                        var child=document.getElementById("cf-"+i);
+                        var childModal=document.getElementById("modal-"+i);
+                        parent.removeChild(child);
+                        parent.removeChild(childModal);
+                    }
                 } 
                                       
             },

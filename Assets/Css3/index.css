@@ -10,14 +10,14 @@ header{
     background: #2e2e2e;
     width: 100%;
     height: 50px;    
-    color:fff;    
+    color:white;    
     z-index: 100;
 }         
 
     .responsiveMenu,
     .buscadorInferior,
     .buscadorInferior #searchform,
-    .buscadorInferior #barra-Navegacion,
+    .buscadorInferior .barra-Navegacion,
     .buscadorInferior #botonBusqueda,
     .opcionesInferior,
     .opcionesInferior li     
@@ -95,7 +95,7 @@ header{
     width: 100%;
     height: 50px;
 }
-#barra-Navegacion{
+.barra-Navegacion{
     background: #eeeeee;
     color: #242424;
     margin-top: 10px;
@@ -149,7 +149,7 @@ body{
     display: none;
     background: #d3d3d3;
 }
-#particles-js{
+.portada{
     position: relative;
     margin-top: 50px;
     color: white;
@@ -157,7 +157,7 @@ body{
     width: 100%;
     height: 130px;
 }
-#particles-js p{
+.portada p{
     position: absolute;
     font-size: 30px;
     color: #dadada;
@@ -182,4 +182,8 @@ body{
     display: inline-block; 
     width: 100%;
     height: 100%;
+}
+
+#color{
+    background: #8eeeed
 }

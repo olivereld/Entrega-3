@@ -34,12 +34,13 @@
                     <div class="collapse navbar-collapse "; id="navbarNav">
                             <div class="navbar-nav ml-auto" style="font-size: 17px; letter-spacing: 1px; font-family: rale;">
                                     <a href="perfil.html" class="nav-item nav-link mr-3 rale" > 
-                                            <img src="image/user8-128x128.jpg" class="img-fluid rounded-circle mr-1" style="width: 40px; margin-top: -6px;"/>
+                                            <img id="imagenPerfil" src="image/user8-128x128.jpg" class="img-fluid rounded-circle mr-1" style="width: 40px; margin-top: -6px;"/>
                                             <span  data-target="perfil.html"  id="userBoton" ></span>                                
                                         </a> 
                                     <a class="nav-item nav-link rale mt-1" href="#" onclick="salirDeLaPagina('https://ignsw201825-snproject.herokuapp.com/user/logout')">Salir</a>
                             </div> 
                             <script>
+                                $("#imagenPerfil").attr("src",sessionStorage.getItem("fotoPerfil"));
                                 document.getElementById("userBoton").innerHTML=""+sessionStorage.getItem("nombre");
                                 
                             </script>

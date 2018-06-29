@@ -17,8 +17,11 @@
     <link rel="stylesheet" href="Css3/index.css"/>
     <link rel="stylesheet" href="Css3/responsiveIndex.css"/>
     <link rel="stylesheet" href="Css3/modalLogin.css"/>
-    <link rel="stylesheet" href="fonts/iconStyle.css"/>   
+    <link rel="stylesheet" href="fonts/iconStyle.css"/>  
+    <link rel="stylesheet" href="fonts/multiMedia/style.css"/>  
     <link rel="stylesheet" href="Css3/busqueda.css"/>  
+   
+    
     <script src="js/Jquery.js"></script>  
    
     <script src="js/bootstrap.min.js"></script>
@@ -64,18 +67,20 @@
     }    
     </script>
     <script>
-     $( document ).ready(function() { 
-        generarModalParaErrores();       
+     $( document ).ready(function() {        
+        generarModalParaErrores(); 
         if(sessionStorage.getItem("busquedaRealizada")){           
-            $("#barra-Navegacion").val(sessionStorage.getItem("busquedaRealizada"));           
-            sessionStorage.removeItem("busquedaRealizada");
-            buscarPalabra();
-        }else if(localStorage.getItem("datoBusquedaLocal")){
-            cambiarValorDeNuevaBusqueda();
-            enviarPeticionDeBusqueda(localStorage.getItem("datoBusquedaLocal"));
-        }else{
-            console.log("Nueva navegacion");
-        }
+                   $(".barra-Navegacion").val(sessionStorage.getItem("busquedaRealizada"));           
+                   sessionStorage.removeItem("busquedaRealizada");
+                   $("#cargando").modal();  
+                   buscarPalabra();
+               }else if(localStorage.getItem("datoBusquedaLocal")){
+                   cambiarValorDeNuevaBusqueda();
+                   enviarPeticionDeBusqueda(localStorage.getItem("datoBusquedaLocal"));
+                   $("#cargando").modal("hide");
+               }else{
+                   console.log("Nueva navegacion");
+               }         
              
      });        
     </script>
@@ -90,12 +95,12 @@
                 </div> 
                 <!--Barra de busqueda-->
                 <div class="buscador mt-2" style="padding-left: 68px">
-                    <form class="navbar-form navbar-left" role="search">
-                        <div id="searchform"  class="form-group">
-                            <input id="barra-Navegacion" type="text" class="form-control" placeholder="Buscar">
+                    <div class="navbar-form navbar-left" role="search">
+                        <div id="searchform"  class="group">
+                            <input  type="text" class="form-control barra-Navegacion" placeholder="Buscar">
                             <button id="botonBusqueda" type="submit" onclick="buscarPalabra()" > <span class="icon-search"> </span> </button> 
                         </div>                                                                          
-                    </form>
+                    </div>
                 </div>   
                  <!--Barra de busqueda fin-->  
 
@@ -141,12 +146,12 @@
          
         <!--Barra de navegacion inferior-->
          <div class="buscadorInferior" style="background-color: black">
-            <form class="navbar-form navbar-left" role="search">
+            <div class="navbar-form navbar-left" role="search">
                 <div id="searchform"  class="form-group">
-                    <input id="barra-Navegacion" type="text" class="form-control" placeholder="Buscar">
+                    <input  type="text" class="form-control barra-Navegacion" placeholder="Buscar" >
                     <button id="botonBusqueda" type="submit" onclick="buscarPalabra()" > <span class="icon-search"></span> </button> 
                 </div>                                                                          
-            </form>
+            </div>
          </div>     
 
          <div class="menuInferior" style="background-color: black">
@@ -172,8 +177,7 @@
                       
     </header><!--Cabecera--> 
     
-    <div  id="particles-js" style="height: 300px; box-sizing: content-box">
- 
+    <div  id="particles-js"  class="portada" style="height: 300px; box-sizing: content-box">         
             <p class="text-center mt-5" style="margin-left: auto; margin-right: auto; height: auto;" >
                 Crea un album multimedia a tu gusto,
                 <br>
@@ -181,7 +185,7 @@
                 <br>
                 <br>
                 <img class="img-fluid mr-3" src="image/logo-youtube.png" height="60px" width="60px" alt="">
-                <img class="img-fluid mx-3 " src="image/logo-soundcloud.png" height="60px" width="60px"  alt="">
+                <img class="img-fluid mx-3 " src="image/spotify-logo.png" height="60px" width="60px"  alt="">
                 <img class="img-fluid ml-3" src="image/instagramLogo.png" height="60px" width="60px"  alt="">
             </p>           
     </div>  
@@ -189,8 +193,15 @@
      <div id="fondo-Imagen"></div>  
 
     <div>        
-        <div id="titulo-Seccion" style="padding-top: 12px; font-size: 25px; font-weight: lighter;"> <p class="text-center" >Resultado de busqueda</p> </div>
-        <hr size="15px" id="separador-Busqueda">              
+        <div id="titulo-Seccion" style="padding-top: 12px; font-size: 25px; font-weight: lighter;">
+             <p class="text-center" >Resultado de busqueda</p> 
+             <ul class="nav nav-tabs secciones" style="margin-top: auto; margin-left: auto; height: auto; list-style: none; display: flex;" >
+                <li> <img data-toggle="tab" href="#menu1"  class="img-fluid mr-3" src="image/logo-youtube.png" height="60px" width="60px"   alt=""   id="seccion_youtube"  onclick="tabs('video')"> </li>
+                <li> <img data-toggle="tab" href="#menu2"  class="img-fluid mx-3" src="image/spotify-logo.png" height="60px" width="60px"   alt=""   id="seccion_spotify"  onclick="tabs('musica')"> </li> 
+                <li> <img data-toggle="tab" href="#menu3"  class="img-fluid ml-3" src="image/instagramLogo.png" height="60px" width="60px"  alt=""   id="seccion_instagram"onclick="tabs('imagen')"> </li> 
+            </ul>  
+        </div>
+                     
     </div>
     <script>
     
@@ -214,12 +225,30 @@
 
 
     }
-    </script>
-   
-     
-   
-    <section id='busquedas-Imagenes' class="Resultados container-fluid ">
-        <div class="row BusquedaOrdenada card-columns"> 
+    </script> 
+   <div id="menu1">
+        <div id="paginacion_Video">      
+        </div>         
+        <footer id="paginasVideo" style="display:none;">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center" >
+                    <li class="page-item" id="prev" onclick="prevPage();">
+                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" >1</a></li>
+                    <li class="page-item" onclick="nextPage();"><a class="page-link">2</a></li>
+                    <li class="page-item  "><a class="page-link" href="#">3</a></li>
+                    <li class="page-item" onclick="nextPage();">
+                        <a class="page-link"  >Next</a>
+                    </li>
+                </ul>
+            </nav>         
+        </footer>        
+    </div>
+    <div class="row BusquedaOrdenadaMusica card-columns tab-pane fade" id="menu2"  >            
+                <div id="cargaResultadosMusica" class="card loadingResult" style="display: none; width: 10rem; margin-top: 5%; margin-left:auto; margin-right:auto; background-color: rgba(0, 0, 0, 0); height: auto; border: none;">
+                        <img class="card-img-top" src="image/loading.gif" alt="Card image cap">                        
+                </div>
                 <div id="sinResultados" class="card" style="width: 18rem; margin-left:auto; margin-right:auto; background-color: rgba(0,0,0,0.2);">
                         <img class="card-img-top" src="image/notResult.png" alt="Card image cap">
                         <div class="card-body" style="color: white">
@@ -227,30 +256,35 @@
                           <p class="card-text">Pruebe realizando otra busqueda con un tag diferente.</p>                          
                         </div>
                 </div>  
-        </div>                                    
-    </section>
-              
-    
-
-    <script src="js/Clases/PantallaCarga.js"></script>    
-    <script src="js/Particles/particles.js"></script>
-    <script src="js/Particles/app.js"></script>   
-   
-   
-   
-    <script src="js/Clases/Registro.js"></script> 
-    <div class="container"  > 
+    </div> 
+    <div class="row BusquedaOrdenadaImagen card-columns tab-pane fade" id="menu3" >             
+                <div id="cargaResultadosImagen" class="card loadingResult" style="display: none; width: 10rem; margin-top: 5%; margin-left:auto; margin-right:auto; background-color: rgba(0, 0, 0, 0); height: auto; border: none;">
+                        <img class="card-img-top" src="image/loading.gif" alt="Card image cap">                        
+                </div>
+                <div id="sinResultados" class="card" style="width: 18rem; margin-left:auto; margin-right:auto; background-color: rgba(0,0,0,0.2);">
+                        <img class="card-img-top" src="image/notResult.png" alt="Card image cap">
+                        <div class="card-body" style="color: white">
+                          <h5 class="card-title">No se encontraron resultados</h5>
+                          <p class="card-text">Pruebe realizando otra busqueda con un tag diferente.</p>                          
+                        </div>
+                </div>  
+    </div>              
+    <div class="container"> 
             <!-- Modal -->
-            <div class="modal fade" id="cargando" role="dialog" data-backdrop="static" data-keyboard="false">
-              <div class="modal-dialog modal-md">
-                <div class="modal-content">					
+        <div class="modal fade" id="cargando" role="dialog" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-md">
+               <div class="modal-content">					
                         <div id="cargando-gift"></div>							  
                 </div>
               </div>
             </div>
-        </div>     
+        </div>    
+    </div>  
     
-  
+  <script src="js/Clases/Registro.js"></script> 
+  <script src="js/Clases/PantallaCarga.js"></script>    
+  <script src="js/Particles/particles.js"></script>
+  <script src="js/Particles/app.js"></script>   
 </body>
 
 
@@ -308,11 +342,11 @@
                         <!--label class="modal-letters" for="uname"><b>Nombre de Usuario:</b></label-->
                         <input class="modal-input-registro"   type="text" placeholder="Nombre"     id="nombreRegistro"   name="firstName" required>
                         <input class="modal-input-registro"   type="text" placeholder="Apellido"   id="apellidoRegistro" name="lastName"  required>                        
-                        <input class="modal-input-registro"   type="email" placeholder="Email"     id="emailRegistro"    name="email"     required> 
+                        <input class="modal-input-registro"   type="email" placeholder="Email"     id="emailRegistro"    name="email"     data-toggle="tooltip" data-placement="left" title="Escriba su direccion de correo" required> 
                        
                         <!--label class="modal-letters" for="psw"><b>Contrase&ntilde;a:  </b></label-->
-                        <input class="modal-input-registro"   type="password" placeholder="Contrase&ntilde;a"           name="password"             required  id="pass1">
-                        <input class="modal-input-registro"   type="password" placeholder="Repita la Contrase&ntilde;a" name="confirmationPassword" required  id="pass2">
+                        <input class="modal-input-registro"   type="password" placeholder="Contrase&ntilde;a"           name="password"             required  id="pass1"  data-toggle="tooltip" data-placement="left" title="Su contraseña debe tener almenos 6 caracteres">
+                        <input class="modal-input-registro"   type="password" placeholder="Repita la Contrase&ntilde;a" name="confirmationPassword" required  id="pass2"  data-toggle="tooltip" data-placement="left" title="repita su contraseña cuidadosamente">
                         <div id="genero">
                                 <input type="radio" name="option" id="radio1" checked />
                                 <label  style="padding:5px;" for="radio1">Hombre</label>
@@ -475,5 +509,62 @@
     </div>    
 </div>
 <!-- Mensajes de Error --> 
+<script>
+        function tabs(valor){
+            if(valor === "video"){
+                $(".BusquedaOrdenadaVideo").css("display","flex");
+                $(".BusquedaOrdenadaVideo").css("opacity","1");
+                $("#paginasVideo").css("display","block");
+
+                $(".BusquedaOrdenadaMusica").css("display","none");
+                $(".BusquedaOrdenadaMusica").css("opacity","0.5");
+
+                $(".BusquedaOrdenadaImagen").css("display","none");
+                $(".BusquedaOrdenadaImagen").css("opacity","0.5");
+
+            }else if(valor === "musica"){
+                $(".BusquedaOrdenadaMusica").css("display","flex");
+                $(".BusquedaOrdenadaMusica").css("opacity","1");
+
+                $(".BusquedaOrdenadaVideo").css("display","none");
+                $(".BusquedaOrdenadaVideo").css("opacity","0.5");
+                $("#paginasVideo").css("display","none");
+
+                $(".BusquedaOrdenadaImagen").css("display","none");
+                $(".BusquedaOrdenadaImagen").css("opacity","0.5");
+            }else if(valor === "imagen"){
+                $(".BusquedaOrdenadaVideo").css("display","none");
+                $(".BusquedaOrdenadaVideo").css("opacity","0.5");
+                $("#paginasVideo").css("display","none");
+
+                $(".BusquedaOrdenadaMusica").css("display","none");
+                $(".BusquedaOrdenadaMusica").css("opacity","0.5");
+
+                $(".BusquedaOrdenadaImagen").css("display","flex");
+                $(".BusquedaOrdenadaImagen").css("opacity","1");
+            }
+        }
+</script>
+ <script>
+        var paginaVideoActual = 1;
+    function nextPage(){
+        if( parseInt(sessionStorage.getItem("numeroDePaginas")) <= paginaVideoActual ){      
+            siguientePagina(""+sessionStorage.getItem("youtubeNext"));
+            $("#pagina_Video_"+paginaVideoActual).css("display","none");
+            paginaVideoActual++;
+        }else{
+            $("#pagina_Video_"+paginaVideoActual).css("display","none");
+            paginaVideoActual++;
+            $("#pagina_Video_"+paginaVideoActual).css("display","block");
+        }        
+    }
+    function prevPage(){ 
+        if(paginaVideoActual > 1){
+            $("#pagina_Video_"+paginaVideoActual).css("display","none");
+            paginaVideoActual--;
+            $("#pagina_Video_"+paginaVideoActual).css("display","block");
+        }            
+    }
+    </script>
 </html>
 

@@ -3,6 +3,8 @@
     display: none;
 }
 #cuadro-Busqueda{
+    width: auto;
+    height: auto;
     background: #f2f2f200;    
 }
 #cuadro-Contenido:hover{
@@ -89,4 +91,13 @@
 }
 #icono-Video:hover{
     opacity: 1;
+}
+.secciones li{
+    
+    position: flex;
+    margin-left:0;
+    padding: 0;
+    margin-right: 0;
+    margin-top:auto;
+
 }

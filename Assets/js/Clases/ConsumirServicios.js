@@ -268,12 +268,12 @@ function modificarDatosDelUsuario(){
         var botonGuardar ;      
 
         if(document.location.href.indexOf("index_User.html") > -1){
-            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger' onclick='focusImagen("+'".urlImagenPrincipal'+numeroDeIndice+'"'+","+'"'+UrlPaginaDeProsedencia+'"'+"); verificarInfoAlbums();' >Guardar</a>"; 
+            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger btn-sm' onclick='focusImagen("+'".urlImagenPrincipal'+numeroDeIndice+'"'+","+'"'+UrlPaginaDeProsedencia+'"'+"); verificarInfoAlbums();' >Guardar</a>"; 
         }else{
-            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger' data-toggle='modal' data-target='#myModal' >Guardar</a>";
+            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#myModal' >Guardar</a>";
         }
 
-        $(".BusquedaOrdenada").append(
+        $(".BusquedaOrdenadaImagen").append(
             "<script type='text/javascript'>"+
                 " function procedencia"+numeroDeIndice+"(){"+
                     "var win = window.open('"+UrlPaginaDeProsedencia+"','_blank');"+
@@ -289,7 +289,7 @@ function modificarDatosDelUsuario(){
                 "<div id='cuadro-Contenido' class='card-body' style='padding: .28rem' >"+                           
                     "<img id='imagen-Principal'class='card-img-top urlImagenPrincipal"+numeroDeIndice+"' src='"+UrlDeImagen+"'alt='Busqueda' data-toggle='modal' data-target='#imagen"+numeroDeIndice+"'>"+
                     botonGuardar+ 
-                    "<img id='icono-Pagina' src='image/instagramLogo.png' width='50' height='50' onclick='procedencia"+numeroDeIndice+"()' >"+
+                    "<img id='icono-Pagina' src='image/instagramLogo.png' width='40' height='40' onclick='procedencia"+numeroDeIndice+"()' >"+
                 "</div>"+      
                 
                 "<div class='modal fade' id='imagen"+numeroDeIndice+"' tabindex='-1' role='dialog' aria-hidden='true'>"+                              
@@ -301,26 +301,37 @@ function modificarDatosDelUsuario(){
             );
         
     }
-    function mostrarResultadoVideo(UrlDeImagen,UrlDeVideo,UrlPaginaDeProsedencia,numeroDeIndice){
+    function mostrarResultadoVideo(UrlDeImagen,UrlDeVideo,UrlPaginaDeProsedencia,numeroDeIndice,paginaImagen,contenedor){
+       
+        var botonProcedencia;
+        var frameVideo = "";
+        if(paginaImagen === "instagram"){
+            botonProcedencia = "instagramIcon.png";
+            frameVideo = '<iframe id="videoResultado'+numeroDeIndice+'_'+contenedor+'" width="640" height="360"  src="" frameborder="0" allowfullscreen></iframe>'
+        }else{
+            botonProcedencia = "logo-youtube.png";
+            frameVideo = '<iframe id="videoResultado'+numeroDeIndice+'_'+contenedor+'" class="youtube-video" frameborder="0" allowfullscreen="1" allow="autoplay; encrypted-media" title="YouTube video player" width="640" height="360" src="'+UrlDeVideo+'"></iframe>'
+        }
+
         var botonGuardar ;
-        var mensaje = "No esta implementado el guardado de videos aun! proximamente";
+       
         if(document.location.href.indexOf("index_User.html") > -1){
             botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger' onclick='focusVideo("+'"'+UrlDeImagen+'",'+'"'+UrlPaginaDeProsedencia+'",'+'"'+UrlDeVideo+'"'+");verificarInfoAlbums();'>Guardar</a>"; 
         }else{
             botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger' data-toggle='modal' data-target='#myModal' >Guardar</a>";
         }
-        $(".BusquedaOrdenada").append( 
+        $(".paginaVideo"+contenedor).append( 
             '<script type="text/javascript">'+
-            '$(document).ready(function(){'+           
+            '$(document).ready(function(){'+         
 
-                "$('#video"+numeroDeIndice+"').on('hide.bs.modal', function(){"+                    
-                    '$("#videoResultado'+numeroDeIndice+'").attr("src","");'+
+                "$('#video"+numeroDeIndice+"_"+contenedor+"').on('hide.bs.modal', function(){"+                    
+                    '$("#videoResultado'+numeroDeIndice+'_'+contenedor+'").attr("src","");'+
                 '});'+
-                "$('#video"+numeroDeIndice+"').on('show.bs.modal', function(){"+                    
-                    '$("#videoResultado'+numeroDeIndice+'").attr("src","'+UrlDeVideo+'");'+
+                "$('#video"+numeroDeIndice+"_"+contenedor+"').on('show.bs.modal', function(){"+                    
+                    '$("#videoResultado'+numeroDeIndice+'_'+contenedor+'").attr("src","'+UrlDeVideo+'");'+
                 '});'+
             '});'+
-           " function procedencia"+numeroDeIndice+"(){"+
+           " function procedencia"+numeroDeIndice+"_"+contenedor+"(){"+
                 "var win = window.open('"+UrlPaginaDeProsedencia+"','_blank');"+
                " if (win) {  "+      
                    " win.focus();"+
@@ -328,30 +339,26 @@ function modificarDatosDelUsuario(){
                    " alert('Please allow popups for this website');"+
                " }"+
            " }"+
-           "function mantenerOculto"+numeroDeIndice+"(){ console.log('Hola'); $('videoResultado"+numeroDeIndice+"'"+").modal('hide'); $('#videoResultado"+numeroDeIndice+"').attr("+"'"+"src"+"'"+",'');}"+
+           "function mantenerOculto"+numeroDeIndice+"_"+contenedor+"(){ $('videoResultado"+numeroDeIndice+"_"+contenedor+"').modal('hide'); $('#videoResultado"+numeroDeIndice+"_"+contenedor+"').attr("+"'"+"src"+"'"+",'');}"+
         '</script>'+            
 
         "<div id ='cuadro-Busqueda' class='card col-12 col-sm-6 col-md-4 col-lg-3'>"+
             "<div id='cuadro-Contenido' style='padding: .28rem' class='card-body' >"+                           
                 "<img id='imagen-Principal' class='card-img-top' src='"+UrlDeImagen+"'alt='Busqueda'>"+
                  botonGuardar+                 
-                "<img id='icono-Pagina' src='image/instagramIcon.png' width='50' height='50' onclick='procedencia"+numeroDeIndice+"()' >"+
-                "<div data-toggle='modal' data-target='#video"+numeroDeIndice+"' style='z-index: 99;'>"+
+                "<img id='icono-Pagina' src='image/"+botonProcedencia+"' width='50' height='50' onclick='procedencia"+numeroDeIndice+"_"+contenedor+"()' >"+
+                "<div data-toggle='modal' data-target='#video"+numeroDeIndice+"_"+contenedor+"' style='z-index: 99;'>"+
                     "<img id='icono-Video' src='image/play.png' width='100' height='100'  style='z-index: 100;' >"+
                 "</div>"+
             "</div>"+     
 
             '<div class="bs-example">'+
-                '<div id="video'+numeroDeIndice+'" class="modal fade">'+
+                '<div id="video'+numeroDeIndice+'_'+contenedor+'" class="modal fade">'+
                     '<div class="modal-dialog">'+
-                        '<div class="modal-content" style="background: rgba(255, 255, 255, 0); border:0px;">'+
-                            
-                            
+                        '<div class="modal-content" style="background: rgba(255, 255, 255, 0); border:0px;">'+                         
                                 '<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>'+                        
-                            
-
                                 '<div class="modal-body">'+
-                                '<iframe id="videoResultado'+numeroDeIndice+'" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>'+
+                                frameVideo+
                                 '</div>'+
                             '</div>'+
                         '</div>'+
@@ -361,8 +368,7 @@ function modificarDatosDelUsuario(){
 
             );
     }
-    function prepararResultados(listaDeElementos){
-        
+    function prepararResultados(listaDeElementos){        
         $("#particles-js").css("display", "none"); 
         $("#titulo-Seccion").css("display","block");
         $("#titulo-Seccion").css("margin-top","64px");
@@ -370,24 +376,84 @@ function modificarDatosDelUsuario(){
         
         $("#fondo-Imagen").css("position","fixed");
         $("#sinResultados").css("display","none"); 
-        $("#cargando-Busquedas").css("display","none");
-        console.log(listaDeElementos.length);
-
+        $("#cargando-Busquedas").css("display","none");       
+        
+        
         for(var i = 0; i < listaDeElementos.length;i++){
-
-            if( ("" + listaDeElementos[i].type) == "image"){
-
+            if( ("" + listaDeElementos[i].type) === "image"){
                 mostrarResultadoImagen(listaDeElementos[i].imageUrl,listaDeElementos[i].instagramLink,i);
-
-            }else if(("" + listaDeElementos[i].type) == "video"){  
-                console.log(listaDeElementos[i]);              
+            }else if(("" + listaDeElementos[i].type) === "video"){  
+                             
                 mostrarResultadoVideo(listaDeElementos[i].imageUrl,listaDeElementos[i].videoUrl,listaDeElementos[i].instagramLink,i);              
             }
         }
-        $("#cargando").modal("hide");
-        
+        $("#cargando").modal("hide");        
     }
+    var listaDeVideos = [];    
+    var totalDeResultadoSinMostrar = 0;    
+    var paginaActual = 0;   
+
+    function prepararResultadosYoutube(listaDeElementos){        
+        totalDeResultadosSinMostrar =  parseInt( sessionStorage.getItem("todosLosResultadosYoutube"))-listaDeElementos.length; 
+        sessionStorage.setItem("todosLosResultadosYoutube",totalDeResultadoSinMostrar);  
+        var cadena = ""+ (paginaActual+1);
+        if(sessionStorage.getItem("videosPagina"+cadena)){            
+            for(var indice = 0;indice < listaDeElementos.length;indice++)
+            listaDeVideos.push(listaDeElementos[indice]);
+            
+            sessionStorage.setItem("videosPagina"+cadena,JSON.stringify(listaDeVideos));
+        }else{            
+            listaDeVideos = listaDeElementos;
+            sessionStorage.setItem("videosPagina"+cadena,JSON.stringify(listaDeVideos));
+        }       
+        $("#particles-js").css("display", "none"); 
+        $("#titulo-Seccion").css("display","block");
+        $("#titulo-Seccion").css("margin-top","64px");
+        $("#separador-Busqueda").css("display","block");        
+        $("#fondo-Imagen").css("position","fixed");
+        $("#sinResultados").css("display","none"); 
+        $("#cargando-Busquedas").css("display","none");    
+        if(listaDeVideos.length <= 10 ){
+            var paginaAnterior = paginaActual+1;
+            crearPaginaVideos(paginaAnterior);
+            paginaActual++;            
+            $("#cargaResultadosVideo").css("display","none");
+            for(var i = 0; i < listaDeVideos.length;i++){
+                url = ("" + listaDeVideos[i].videoUrl).split("=");
+                id = url[1];           
+                embedVideo =  "https://www.youtube.com/embed/"+id+"?controls=2&amp;rel=0&amp;autohide=1&amp;showinfo=0&amp;modestbranding=1&amp;wmode=transparent&amp;html5=1&amp;enablejsapi=1&amp;widgetid=1"
+                mostrarResultadoVideo(listaDeVideos[i].thumbnail,embedVideo,listaDeVideos[i].videoUrl,i,"youtube",paginaAnterior);                 
+            }
+            listaDeVideos = [];
+            $("#cargando").modal("hide");
+        }else if(totalDeResultadosSinMostrar > 0 ){     
+            siguientePagina(sessionStorage.getItem("youtubeNext"));           
+        }        
+    }  
+    
+    function crearPaginaVideos(pagina){
+        sessionStorage.setItem("numeroDePaginas",pagina);
+        
+        $("#paginacion_Video").append(  
+            '<div id ="pagina_Video_'+pagina+'"class="tab-pane">'+
+            '<div class="row BusquedaOrdenadaVideo card-columns paginaVideo'+pagina+'">'+           
+               ' <div id="cargaResultadosVideo" class="card loadingResult" style="display: none; width: 10rem; margin-top: 5%; margin-left:auto; margin-right:auto; background-color: rgba(0, 0, 0, 0); height: auto; border: none;">'+
+                    '<img class="card-img-top" src="image/loading.gif" alt="Card image cap"> '+                       
+               '</div>' +
+                '<div id="sinResultados" class="card" style="width: 18rem; margin-left:auto; margin-right:auto; background-color: rgba(0,0,0,0.2); height: auto;">'+
+                ' <img class="card-img-top" src="image/notResult.png" alt="Card image cap">'+
+                   ' <div class="card-body" style="color: white">'+
+                      '  <h5 class="card-title">No se encontraron resultados</h5>'+
+                       ' <p class="card-text">Pruebe realizando otra busqueda con un tag diferente.</p> '+                      
+                  '  </div>'+
+                '</div>'  +             
+            '</div>' +
+       ' </div> '        
+        );
+    }
+   
     function sinResultados(){   
+        $("#cargando").modal("hide");
         $("#particles-js").css("display", "none"); 
         $("#titulo-Seccion").css("display","block");
         $("#separador-Busqueda").css("display","block");
@@ -396,36 +462,3 @@ function modificarDatosDelUsuario(){
         $("#sinResultados").css("display","block"); 
    }
 
-function enviarPeticionDeBusqueda(enlaceUrlHeroku){ 
-    
-    $.ajax({
-
-        url : enlaceUrlHeroku,         
-        method :'GET', 
-        contentType: 'application/json; charset=utf-8',
-        dataType : 'json', 
-
-        success : function (response){                        
-            console.log("Resultados :" + response[0].imageUrl);
-            prepararResultados(response);         
-                          
-            },
-        error: function(XMLHttpRequest, textStatus, errorThrown){  
-            $("#cargando").modal("hide");
-            if(localStorage.getItem("datoBusquedaLocal")){
-                localStorage.removeItem("datoBusquedaLocal");
-            }           
-            sinResultados();        
-        }
-    });
-   
-
-}
-function procedencia(UrlProcedencia){
-    var win = window.open(UrlProcedencia,'_blank');
-    if (win) {        
-        win.focus();
-    } else {        
-        alert('Please allow popups for this website');
-    }
-}
