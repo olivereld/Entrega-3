@@ -177,6 +177,8 @@ function tratarFallos( jqXHR, textStatus, errorThrown){
         mostrarError(9);
     }else if (jqXHR.responseText.indexOf("album_name_already_used") > -1){
         $("#errorModal").modal();
+    }else if (jqXHR.responseText.indexOf("no_result_found") > -1){
+        alert("No hay resultados");
     }
     
 }

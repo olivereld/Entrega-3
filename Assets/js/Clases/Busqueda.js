@@ -16,26 +16,14 @@ function buscarPalabra(){
                 location.reload();
             }
             urlInstragram = instagramParametros(urlInstragram,palabraABuscar); 
-            sessionStorage.setItem("datoBusquedaLocalInstragram",urlInstragram);  
-
-<<<<<<< HEAD
+            sessionStorage.setItem("datoBusquedaLocalInstragram",urlInstragram); 
             enviarPeticionDeBusqueda(urlInstragram,"instagram");
             enviarPeticionDeBusqueda(urlYouTube,"youtube");
-
             nuevaBusqueda = true;
         }else{
             $("#errorModal").modal();
             mostrarError(10);
         }
-=======
-        var elementoABuscar = palabraABuscar.split(" ");     
-        for(var i = 0; i < elementoABuscar.length; i++)
-        url = url + elementoABuscar[i];   
-        
-        sessionStorage.setItem("datoBusquedaLocal",url);    
-        enviarPeticionDeBusqueda(url);
-        nuevaBusqueda = true;
->>>>>>> 1c8e88eeb2496d0c22072bfb51a3dca5d63f8e6e
     }else{
         this.location.reload();
     }
@@ -57,8 +45,9 @@ function youtubeParametros(busqueda){
 }
 
 //Busquedas
-function enviarPeticionDeBusqueda(enlaceUrlHeroku,pagina){ 
-   
+function enviarPeticionDeBusqueda(enlaceUrlHeroku,pagina){
+    sessionStorage.setItem("finDePagina","10000");  
+   try{
     $.ajax({
         url : enlaceUrlHeroku,         
         method :'GET', 
@@ -68,8 +57,10 @@ function enviarPeticionDeBusqueda(enlaceUrlHeroku,pagina){
         success : function (response){
             busquedasEchas++;                          
             busquedasFinalizadas(true,pagina); 
-            if(pagina === "youtube"){                
-                console.log(response);
+            if(pagina === "youtube"){                        
+                $("#menu1").css("display","block");
+                $("#paginacion_Video").css("display","block");
+                $("#paginasVideo").css("display","block");
                 var listaResultados = response.items;               
                 var paginacionSiguiente = response.nextPageToken;   
                 var paginacionAnterior =  response.prevPageToken;
@@ -77,8 +68,7 @@ function enviarPeticionDeBusqueda(enlaceUrlHeroku,pagina){
                 sessionStorage.setItem("youtubeNext",""+paginacionSiguiente);
                 sessionStorage.setItem("youtubePrev",""+paginacionAnterior);
                 prepararResultadosYoutube(listaResultados); 
-            }else if(pagina === "instagram"){
-                $("#cargaResultadosImagen").css("display","none");
+            }else if(pagina === "instagram"){               
                 prepararResultados(response); 
             }         
                             
@@ -89,10 +79,13 @@ function enviarPeticionDeBusqueda(enlaceUrlHeroku,pagina){
             if(sessionStorage.getItem("datoBusquedaLocal")){
                 sessionStorage.removeItem("datoBusquedaLocal");
             }           
-            busquedasFinalizadas(false,pagina);       
-            alert("Fallo: " + JSON.stringify(XMLHttpRequest));
+            busquedasFinalizadas(false,pagina);            
         }
     });   
+   }catch(error){
+    alert(error);
+   }
+   
 
 }
 function procedencia(UrlProcedencia){
@@ -106,40 +99,52 @@ function procedencia(UrlProcedencia){
 
 function busquedasFinalizadas(resultadosDevueltos,pagina){   
     if(pagina === "instagram"){
-       
+        if(!resultadosDevueltos)
+            $(".not_Found_Imagen").css("display","block");
         instagram_result = resultadosDevueltos;
+        $("#cargaResultadosImagen").css("display","none");
     }else if(pagina === "youtube"){
-        
+        if(!resultadosDevueltos)
+            $(".not_Found_Video").css("display","block");
         youtube_result = resultadosDevueltos;
+        $("#cargaResultadosVideo").css("display","none");
     }else if(pagina === "spotify"){
+        if(!resultadosDevueltos)
+            $(".not_Found_Music").css("display","block");
         spotify_result === resultadosDevueltos;
+        $("#cargaResultadosMusica").css("display","none");
     }
     if(busquedasEchas === 2){
-        if(!instagram_result && !youtube_result ){
-            sinResultados();            
-        }
+       
         busquedasEchas = 0;
     }    
 }
 
-function siguientePagina(token){   
-    $.ajax({
-        url : "https://ignsw201825-snproject.herokuapp.com/search/youtube?q=parametro_de_busqueda&&pageToken="+token,         
-        method :'GET', 
-        contentType: 'application/json; charset=utf-8',
-        dataType : 'json', 
-
-        success : function (response){              
-            var listaResultados = response.items;               
-            var paginacionSiguiente = response.nextPageToken;   
-            var paginacionAnterior =  response.prevPageToken;
-            sessionStorage.setItem("todosLosResultadosYoutube",""+response.totalResults);
-            sessionStorage.setItem("youtubeNext",""+paginacionSiguiente);
-            sessionStorage.setItem("youtubePrev",""+paginacionAnterior);
-            prepararResultadosYoutube(listaResultados);          
-            },
-        error: function(XMLHttpRequest, textStatus, errorThrown){                                  
-            alert("Fallo: " + JSON.stringify(XMLHttpRequest));
-        }
-    });   
+function siguientePagina(token){  
+    try{
+        $.ajax({
+            url : "https://ignsw201825-snproject.herokuapp.com/search/youtube?q=parametro_de_busqueda&&pageToken="+token,         
+            method :'GET', 
+            contentType: 'application/json; charset=utf-8',
+            dataType : 'json', 
+    
+            success : function (response){              
+                var listaResultados = response.items;               
+                var paginacionSiguiente = response.nextPageToken;   
+                var paginacionAnterior =  response.prevPageToken;
+                sessionStorage.setItem("todosLosResultadosYoutube",""+response.totalResults);
+                sessionStorage.setItem("youtubeNext",""+paginacionSiguiente);
+                sessionStorage.setItem("youtubePrev",""+paginacionAnterior);
+                prepararResultadosYoutube(listaResultados);          
+                },
+            error: function(XMLHttpRequest, textStatus, errorThrown){ 
+                if (XMLHttpRequest.responseText.indexOf("no_result_found") > -1){
+                    finalDeBusqueda();
+                }                         
+            }
+        });   
+    } catch(error){
+        alert(error);
+    }
+   
 }

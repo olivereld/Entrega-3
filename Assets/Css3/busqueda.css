@@ -1,4 +1,9 @@
 
+:root{   
+    --checkVideo:0.5;
+    --checkImagen: 0.5;    
+    --checkMusic: 0.5;       
+}
 #sinResultados{
     display: none;
 }
@@ -92,12 +97,48 @@
 #icono-Video:hover{
     opacity: 1;
 }
-.secciones li{
-    
+.secciones{    
     position: flex;
     margin-left:0;
     padding: 0;
     margin-right: 0;
     margin-top:auto;
-
 }
+.checkBusqueda { 
+  width: 60px;
+  height: 50px;  
+  opacity: 0.5;
+}
+.seccion_youtube{
+  background-repeat: no-repeat;
+  background-image: url("../image/logo-youtube.png");   
+  background-position: left center;  
+  background-size: 60px; 
+}
+.seccion_spotify{
+    background-repeat: no-repeat;
+    background-image: url("../image/spotify-logo.png");   
+    background-position: left center;  
+    background-size: 55px; 
+}
+.seccion_instagram{
+    background-repeat: no-repeat;
+    background-image: url("../image/instagramLogo.png");   
+    background-position: left center;  
+    background-size: 55px; 
+}
+
+#checkYoutube:checked + .checkBusqueda {
+    opacity: 1;  
+}
+#checkSpotify:checked + .checkBusqueda {
+    opacity: 1;  
+}
+#checkInstagram:checked + .checkBusqueda {
+    opacity: 1;  
+}
+
+#checkYoutube,#checkSpotify,#checkInstagram {
+   display: none;
+}
+

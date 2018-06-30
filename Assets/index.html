@@ -195,10 +195,19 @@
     <div>        
         <div id="titulo-Seccion" style="padding-top: 12px; font-size: 25px; font-weight: lighter;">
              <p class="text-center" >Resultado de busqueda</p> 
-             <ul class="nav nav-tabs secciones" style="margin-top: auto; margin-left: auto; height: auto; list-style: none; display: flex;" >
-                <li> <img data-toggle="tab" href="#menu1"  class="img-fluid mr-3" src="image/logo-youtube.png" height="60px" width="60px"   alt=""   id="seccion_youtube"  onclick="tabs('video')"> </li>
-                <li> <img data-toggle="tab" href="#menu2"  class="img-fluid mx-3" src="image/spotify-logo.png" height="60px" width="60px"   alt=""   id="seccion_spotify"  onclick="tabs('musica')"> </li> 
-                <li> <img data-toggle="tab" href="#menu3"  class="img-fluid ml-3" src="image/instagramLogo.png" height="60px" width="60px"  alt=""   id="seccion_instagram"onclick="tabs('imagen')"> </li> 
+             <ul class="nav nav-tabs secciones" >
+                <li> 
+                    <input type="checkbox" id="checkYoutube">
+                    <label for="checkYoutube" onclick="tabs('video');" class="img-fluid mr-3 checkBusqueda seccion_youtube"  ></label>
+                </li>
+                <li> 
+                    <input type="checkbox" id="checkSpotify">
+                    <label for="checkSpotify" onclick="tabs('musica');" class="img-fluid mr-3 checkBusqueda seccion_spotify"  ></label>
+                </li>
+                <li> 
+                    <input type="checkbox" id="checkInstagram">
+                    <label for="checkInstagram" onclick="tabs('imagen');" class="img-fluid mr-3 checkBusqueda seccion_instagram"  ></label>
+                </li>               
             </ul>  
         </div>
                      
@@ -222,34 +231,34 @@
         if(scrollVertical == (tamanPagina/2)){
             console.log("Esta en la mitad");
         }
-
-
     }
     </script> 
+
    <div id="menu1">
         <div id="paginacion_Video">      
         </div>         
         <footer id="paginasVideo" style="display:none;">
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center" >
-                    <li class="page-item" id="prev" onclick="prevPage();">
-                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    <li class="page-item disabled" id="prev" onclick="prevPage();" >
+                        <a class="page-link" href="#" tabindex="-1" >Previous</a>
                     </li>
                     <li class="page-item"><a class="page-link" >1</a></li>
                     <li class="page-item" onclick="nextPage();"><a class="page-link">2</a></li>
                     <li class="page-item  "><a class="page-link" href="#">3</a></li>
-                    <li class="page-item" onclick="nextPage();">
+                    <li class="page-item" id="next" onclick="nextPage();">
                         <a class="page-link"  >Next</a>
                     </li>
                 </ul>
             </nav>         
         </footer>        
     </div>
+
     <div class="row BusquedaOrdenadaMusica card-columns tab-pane fade" id="menu2"  >            
-                <div id="cargaResultadosMusica" class="card loadingResult" style="display: none; width: 10rem; margin-top: 5%; margin-left:auto; margin-right:auto; background-color: rgba(0, 0, 0, 0); height: auto; border: none;">
+                <div id="cargaResultadosMusica" class="card loadingResult music_loading" style="display: none; width: 10rem; margin-top: 5%; margin-left:auto; margin-right:auto; background-color: rgba(0, 0, 0, 0); height: auto; border: none;">
                         <img class="card-img-top" src="image/loading.gif" alt="Card image cap">                        
                 </div>
-                <div id="sinResultados" class="card" style="width: 18rem; margin-left:auto; margin-right:auto; background-color: rgba(0,0,0,0.2);">
+                <div id="sinResultados" class="card not_Found_Music" style="width: 18rem; margin-left:auto; margin-right:auto; background-color: rgba(0,0,0,0.2);">
                         <img class="card-img-top" src="image/notResult.png" alt="Card image cap">
                         <div class="card-body" style="color: white">
                           <h5 class="card-title">No se encontraron resultados</h5>
@@ -258,10 +267,10 @@
                 </div>  
     </div> 
     <div class="row BusquedaOrdenadaImagen card-columns tab-pane fade" id="menu3" >             
-                <div id="cargaResultadosImagen" class="card loadingResult" style="display: none; width: 10rem; margin-top: 5%; margin-left:auto; margin-right:auto; background-color: rgba(0, 0, 0, 0); height: auto; border: none;">
+                <div id="cargaResultadosImagen" class="card loadingResult imagen_loading" style="display: none; width: 10rem; margin-top: 5%; margin-left:auto; margin-right:auto; background-color: rgba(0, 0, 0, 0); height: auto; border: none;">
                         <img class="card-img-top" src="image/loading.gif" alt="Card image cap">                        
                 </div>
-                <div id="sinResultados" class="card" style="width: 18rem; margin-left:auto; margin-right:auto; background-color: rgba(0,0,0,0.2);">
+                <div id="sinResultados" class="card not_Found_Imagen" style="width: 18rem; margin-left:auto; margin-right:auto; background-color: rgba(0,0,0,0.2);">
                         <img class="card-img-top" src="image/notResult.png" alt="Card image cap">
                         <div class="card-body" style="color: white">
                           <h5 class="card-title">No se encontraron resultados</h5>
@@ -487,30 +496,65 @@
 <!-- -------------------------------------------------Errores modal------------------------------------------------- -->
 <!-- Mensajes de Error -->
 <div id="errorModal" class="modal fade" role="dialog">
-    <div class="modal-dialog" role ="document" >  
-              
+    <div class="modal-dialog" role ="document" >      
             <div class="modal-content modalIndex errores" style ="background: rgb(17, 17, 17);">                   
                     <div class="modalCarga">
                             <div id="loadingGift"></div>
                      </div> 
-
                     <div class="container modal-header1">
                             <p class="text-center">WebMedia</p>
                         </div>
-   
-                <div class="modal-form mensajes-de-error">
-                    
+                <div class="modal-form mensajes-de-error">    
                 </div>
                     <div class="modal-footer" >           
                         <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">continuar</button>    
                     </div>
-        
             </div>        
     </div>    
 </div>
 <!-- Mensajes de Error --> 
 <script>
-        function tabs(valor){
+
+    $('#checkYoutube').change(
+        function(){
+            if ($(this).is(':checked')) {                
+                $( this ).prop( "disabled", true );
+                $("#checkSpotify").prop( "checked", false );
+                $("#checkSpotify" ).prop( "disabled", false );
+                $("#checkInstagram").prop( "checked", false );
+                $("#checkInstagram" ).prop( "disabled", false );
+            }else{               
+                $( this ).prop( "disabled", false );
+            }
+        });
+    $('#checkSpotify').change(
+        function(){
+            if ($(this).is(':checked')) {               
+                $( this ).prop( "disabled", true );
+                $("#checkYoutube").prop( "checked", false );
+                $("#checkYoutube" ).prop( "disabled", false );
+                $("#checkInstagram").prop( "checked", false );
+                $("#checkInstagram" ).prop( "disabled", false );
+            }else{
+                
+                $( this ).prop( "disabled", false );
+            }
+        });
+    $('#checkInstagram').change(
+        function(){
+            if ($(this).is(':checked')) {                
+                $( this ).prop( "disabled", true );
+                $("#checkSpotify").prop( "checked", false );
+                $("#checkSpotify" ).prop( "disabled", false );
+                $("#checkYoutube").prop( "checked", false );
+                $("#checkYoutube" ).prop( "disabled", false );
+            }else{               
+                $( this ).prop( "disabled", false );
+            }
+        });
+
+        function tabs(valor){      
+
             if(valor === "video"){
                 $(".BusquedaOrdenadaVideo").css("display","flex");
                 $(".BusquedaOrdenadaVideo").css("opacity","1");
@@ -520,7 +564,7 @@
                 $(".BusquedaOrdenadaMusica").css("opacity","0.5");
 
                 $(".BusquedaOrdenadaImagen").css("display","none");
-                $(".BusquedaOrdenadaImagen").css("opacity","0.5");
+                $(".BusquedaOrdenadaImagen").css("opacity","0.5");         
 
             }else if(valor === "musica"){
                 $(".BusquedaOrdenadaMusica").css("display","flex");
@@ -548,21 +592,51 @@
  <script>
         var paginaVideoActual = 1;
     function nextPage(){
-        if( parseInt(sessionStorage.getItem("numeroDePaginas")) <= paginaVideoActual ){      
-            siguientePagina(""+sessionStorage.getItem("youtubeNext"));
-            $("#pagina_Video_"+paginaVideoActual).css("display","none");
-            paginaVideoActual++;
-        }else{
-            $("#pagina_Video_"+paginaVideoActual).css("display","none");
-            paginaVideoActual++;
-            $("#pagina_Video_"+paginaVideoActual).css("display","block");
-        }        
+    try{
+        if(parseInt(sessionStorage.getItem("finDePagina")) >= paginaVideoActual){
+            if( parseInt(sessionStorage.getItem("numeroDePaginas")) <= paginaVideoActual ){      
+                siguientePagina(""+sessionStorage.getItem("youtubeNext"));
+                $("#pagina_Video_"+paginaVideoActual).css("display","none");
+                $("#prev").removeClass();
+                $("#prev").addClass("page-item");                
+                paginaVideoActual++;                 
+            }else{
+                $("#pagina_Video_"+paginaVideoActual).css("display","none");
+                paginaVideoActual++;
+                $("#pagina_Video_"+paginaVideoActual).css("display","block");
+                $("#prev").removeClass();
+                $("#prev").addClass("page-item");
+            }  
+        }      
+    }catch(error){
+        alert(error.getMessage());
     }
+
+             
+    }
+
     function prevPage(){ 
         if(paginaVideoActual > 1){
+            try {
+                $("#sinResultadosFin").css("display","none");
+            } catch (error) {
+                
+            }
             $("#pagina_Video_"+paginaVideoActual).css("display","none");
             paginaVideoActual--;
-            $("#pagina_Video_"+paginaVideoActual).css("display","block");
+            $("#pagina_Video_"+paginaVideoActual).css("display","block");           
+            console.log(paginaVideoActual);
+            if(paginaVideoActual === 1){
+                $("#prev").removeClass();
+                $("#prev").addClass("page-item disabled");
+            }else{
+                $("#prev").removeClass();
+                $("#prev").addClass("page-item");
+            }
+           
+        }else{
+            $("#prev").removeClass();
+            $("#prev").addClass("page-item disabled");
         }            
     }
     </script>

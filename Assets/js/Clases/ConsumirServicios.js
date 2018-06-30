@@ -391,7 +391,8 @@ function modificarDatosDelUsuario(){
     }
     var listaDeVideos = [];    
     var totalDeResultadoSinMostrar = 0;    
-    var paginaActual = 0;   
+    var paginaActual = 0;  
+    var finalDePagina = false; 
 
     function prepararResultadosYoutube(listaDeElementos){        
         totalDeResultadosSinMostrar =  parseInt( sessionStorage.getItem("todosLosResultadosYoutube"))-listaDeElementos.length; 
@@ -412,7 +413,23 @@ function modificarDatosDelUsuario(){
         $("#separador-Busqueda").css("display","block");        
         $("#fondo-Imagen").css("position","fixed");
         $("#sinResultados").css("display","none"); 
-        $("#cargando-Busquedas").css("display","none");    
+        $("#cargando-Busquedas").css("display","none");  
+        $("#checkYoutube").prop( "checked", true );
+        $("#checkYoutube" ).prop( "disabled", true );
+        $("#checkSpotify").prop( "checked", false );
+        $("#checkSpotify" ).prop( "disabled", false );
+        $("#checkInstagram").prop( "checked", false );
+        $("#checkInstagram" ).prop( "disabled", false );
+        $(".BusquedaOrdenadaVideo").css("display","flex");
+        $(".BusquedaOrdenadaVideo").css("opacity","1");
+        $("#paginasVideo").css("display","block");
+        
+        $(".BusquedaOrdenadaMusica").css("display","none");
+        $(".BusquedaOrdenadaMusica").css("opacity","0.5");
+        
+        $(".BusquedaOrdenadaImagen").css("display","none");
+        $(".BusquedaOrdenadaImagen").css("opacity","0.5");    
+        
         if(listaDeVideos.length <= 10 ){
             var paginaAnterior = paginaActual+1;
             crearPaginaVideos(paginaAnterior);
@@ -426,21 +443,47 @@ function modificarDatosDelUsuario(){
             }
             listaDeVideos = [];
             $("#cargando").modal("hide");
+            $(".video_loading"+paginaAnterior).css("display","none");
         }else if(totalDeResultadosSinMostrar > 0 ){     
             siguientePagina(sessionStorage.getItem("youtubeNext"));           
         }        
     }  
-    
-    function crearPaginaVideos(pagina){
-        sessionStorage.setItem("numeroDePaginas",pagina);
+    function finalDeBusqueda(){
+        if(!finalDePagina){            
+            var pagina = paginaActual++;
+            sessionStorage.setItem("finDePagina",pagina);                 
+            $("#paginacion_Video").append(  
+                '<div id ="pagina_Video_'+pagina+'"class="tab-pane">'+
+                '<div class="row BusquedaOrdenadaVideo card-columns paginaVideo'+pagina+'">'+           
+                   ' <div id="cargaResultadosVideo" class="card loadingResult video_loading" style="display: none; width: 10rem; margin-top: 5%; margin-left:auto; margin-right:auto; background-color: rgba(0, 0, 0, 0); height: auto; border: none;">'+
+                        '<img class="card-img-top" src="image/loading.gif" alt="Card image cap"> '+                       
+                    '</div>' +
+                    '<div id="sinResultadosFin" class="card not_Found_Video" style="width: 18rem; margin-left:auto; margin-right:auto; background-color: rgba(0,0,0,0.2); height: auto; ">'+
+                    ' <img class="card-img-top" src="image/notResult.png" alt="Card image cap">'+
+                       ' <div class="card-body" style="color: white">'+
+                          '  <h5 class="card-title">No se encontraron resultados</h5>'+
+                           ' <p class="card-text">Pruebe realizando otra busqueda con un tag diferente.</p> '+                      
+                      '  </div>'+
+                    '</div>'  +             
+                '</div>' +
+            '</div> '        
+            );
+            finalDePagina = true;
+            $("#sinResultadosFin").css("display","block");
+        }else{
+            $("#sinResultadosFin").css("display","block");
+        }
         
+    }
+    function crearPaginaVideos(pagina){
+        sessionStorage.setItem("numeroDePaginas",pagina);       
         $("#paginacion_Video").append(  
             '<div id ="pagina_Video_'+pagina+'"class="tab-pane">'+
             '<div class="row BusquedaOrdenadaVideo card-columns paginaVideo'+pagina+'">'+           
-               ' <div id="cargaResultadosVideo" class="card loadingResult" style="display: none; width: 10rem; margin-top: 5%; margin-left:auto; margin-right:auto; background-color: rgba(0, 0, 0, 0); height: auto; border: none;">'+
+               ' <div id="cargaResultadosVideo" class="card loadingResult video_loading'+pagina+'" style="display: none; width: 10rem; margin-top: 5%; margin-left:auto; margin-right:auto; background-color: rgba(0, 0, 0, 0); height: auto; border: none;">'+
                     '<img class="card-img-top" src="image/loading.gif" alt="Card image cap"> '+                       
                '</div>' +
-                '<div id="sinResultados" class="card" style="width: 18rem; margin-left:auto; margin-right:auto; background-color: rgba(0,0,0,0.2); height: auto;">'+
+                '<div id="sinResultados" class="card not_Found_Video" style="width: 18rem; margin-left:auto; margin-right:auto; background-color: rgba(0,0,0,0.2); height: auto;">'+
                 ' <img class="card-img-top" src="image/notResult.png" alt="Card image cap">'+
                    ' <div class="card-body" style="color: white">'+
                       '  <h5 class="card-title">No se encontraron resultados</h5>'+
@@ -450,6 +493,7 @@ function modificarDatosDelUsuario(){
             '</div>' +
        ' </div> '        
         );
+        $(".video_loading"+pagina).css("display","block");
     }
    
     function sinResultados(){   
