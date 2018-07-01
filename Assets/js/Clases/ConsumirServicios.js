@@ -264,11 +264,44 @@ function modificarDatosDelUsuario(){
             }
     });    
 }
-    function mostrarResultadoImagen(UrlDeImagen,UrlPaginaDeProsedencia,numeroDeIndice){
+    function mostrarResultadoMusica(urlImagen,urlProcedencia,artista,titulo,tituloAlbum,track,numeroDeIndice,contenedor){
+        var botonGuardar ; 
+        console.log(track);  
+        if(document.location.href.indexOf("index_User.html") > -1){
+            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger btn-sm' onclick='focusImagen("+'".urlImagenPrincipal'+numeroDeIndice+'"'+","+'"'+urlProcedencia+'"'+"); verificarInfoAlbums();' >Guardar</a>"; 
+        }else{
+            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#myModal' >Guardar</a>";
+        }
+
+        $(".paginaMusica"+contenedor).append(
+            "<script type='text/javascript'>"+
+               "function procedencia"+numeroDeIndice+"_"+contenedor+"(){"+
+                    "var win = window.open('"+urlProcedencia+"','_blank');"+
+                    "if (win) { " +      
+                         "win.focus();"+
+                    "} else {  "+  
+                         "alert('Please allow popups for this website');"+
+                    "}"+
+                "}"+
+            "</script>"+
+
+            "<div id ='cuadro-Busqueda' class='card col-12 col-sm-6 col-md-4 col-lg-3' >"+
+                "<div id='cuadro-Contenido' class='card-body' style='padding: .30rem;'  > " +
+                     '<span id="titulo1_1" style="position:absolute;color: white;background: rgba(0, 0, 0, 0.405); width: 97%;">'+artista+'</br>'+titulo+'-'+tituloAlbum+'</span>'+
+                     "<img id='imagen-Principal'class='card-img-top urlImagenPrincipal"+numeroDeIndice+"_"+contenedor+"' src='"+urlImagen+"'alt='Busqueda'>"+
+                     botonGuardar+
+                     "<img id='icono-Pagina' src='image/spotify-logo.png' width='40' height='40' onclick='procedencia"+numeroDeIndice+"_"+contenedor+"()'>"+
+                     "<img id='icono-Musica' src='image/play.png' width='100' height='100'  style=' z-index: 100;' onclick='colocarEnReproductor("+'"'+track+'"'+");' onmouseover='$(this).css("+'"opacity"'+","+'"1"'+");' onmouseout='$(this).css("+'"opacity"'+","+'"0.5"'+");'>"+
+                "</div>"+
+            "</div>"
+        );
+
+    }
+    function mostrarResultadoImagen(UrlDeImagen,urlPaginaDeProcedencia,numeroDeIndice){
         var botonGuardar ;      
 
         if(document.location.href.indexOf("index_User.html") > -1){
-            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger btn-sm' onclick='focusImagen("+'".urlImagenPrincipal'+numeroDeIndice+'"'+","+'"'+UrlPaginaDeProsedencia+'"'+"); verificarInfoAlbums();' >Guardar</a>"; 
+            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger btn-sm' onclick='focusImagen("+'".urlImagenPrincipal'+numeroDeIndice+'"'+","+'"'+urlPaginaDeProcedencia+'"'+"); verificarInfoAlbums();' >Guardar</a>"; 
         }else{
             botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#myModal' >Guardar</a>";
         }
@@ -276,7 +309,7 @@ function modificarDatosDelUsuario(){
         $(".BusquedaOrdenadaImagen").append(
             "<script type='text/javascript'>"+
                 " function procedencia"+numeroDeIndice+"(){"+
-                    "var win = window.open('"+UrlPaginaDeProsedencia+"','_blank');"+
+                    "var win = window.open('"+urlPaginaDeProcedencia+"','_blank');"+
                 " if (win) {  "+      
                     " win.focus();"+
                     "} else {  "+      
@@ -301,22 +334,20 @@ function modificarDatosDelUsuario(){
             );
         
     }
-    function mostrarResultadoVideo(UrlDeImagen,UrlDeVideo,UrlPaginaDeProsedencia,numeroDeIndice,paginaImagen,contenedor){
+    function mostrarResultadoVideo(UrlDeImagen,UrlDeVideo,urlPaginaDeProcedencia,numeroDeIndice,paginaImagen,contenedor){
        
         var botonProcedencia;
         var frameVideo = "";
         if(paginaImagen === "instagram"){
             botonProcedencia = "instagramIcon.png";
-            frameVideo = '<iframe id="videoResultado'+numeroDeIndice+'_'+contenedor+'" width="640" height="360"  src="" frameborder="0" allowfullscreen></iframe>'
+            frameVideo = '<iframe id="videoResultado'+numeroDeIndice+'" width="640" height="360"  src="" frameborder="0" allowfullscreen></iframe>'
         }else{
             botonProcedencia = "logo-youtube.png";
             frameVideo = '<iframe id="videoResultado'+numeroDeIndice+'_'+contenedor+'" class="youtube-video" frameborder="0" allowfullscreen="1" allow="autoplay; encrypted-media" title="YouTube video player" width="640" height="360" src="'+UrlDeVideo+'"></iframe>'
         }
-
         var botonGuardar ;
-       
         if(document.location.href.indexOf("index_User.html") > -1){
-            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger' onclick='focusVideo("+'"'+UrlDeImagen+'",'+'"'+UrlPaginaDeProsedencia+'",'+'"'+UrlDeVideo+'"'+");verificarInfoAlbums();'>Guardar</a>"; 
+            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger' onclick='focusVideo("+'"'+UrlDeImagen+'",'+'"'+urlPaginaDeProcedencia+'",'+'"'+UrlDeVideo+'"'+");verificarInfoAlbums();'>Guardar</a>"; 
         }else{
             botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger' data-toggle='modal' data-target='#myModal' >Guardar</a>";
         }
@@ -332,7 +363,7 @@ function modificarDatosDelUsuario(){
                 '});'+
             '});'+
            " function procedencia"+numeroDeIndice+"_"+contenedor+"(){"+
-                "var win = window.open('"+UrlPaginaDeProsedencia+"','_blank');"+
+                "var win = window.open('"+urlPaginaDeProcedencia+"','_blank');"+
                " if (win) {  "+      
                    " win.focus();"+
                 "} else {  "+      
@@ -348,7 +379,7 @@ function modificarDatosDelUsuario(){
                  botonGuardar+                 
                 "<img id='icono-Pagina' src='image/"+botonProcedencia+"' width='50' height='50' onclick='procedencia"+numeroDeIndice+"_"+contenedor+"()' >"+
                 "<div data-toggle='modal' data-target='#video"+numeroDeIndice+"_"+contenedor+"' style='z-index: 99;'>"+
-                    "<img id='icono-Video' src='image/play.png' width='100' height='100'  style='z-index: 100;' >"+
+                    "<img id='icono-Video' src='image/play.png' width='100' height='100'  style='z-index: 100;' onmouseover='$(this).css("+'"opacity"'+","+'"1"'+");' onmouseout='$(this).css("+'"opacity"'+","+'"0.5"'+");'>"+
                 "</div>"+
             "</div>"+     
 
@@ -389,11 +420,11 @@ function modificarDatosDelUsuario(){
         }
         $("#cargando").modal("hide");        
     }
+    
     var listaDeVideos = [];    
     var totalDeResultadoSinMostrar = 0;    
     var paginaActual = 0;  
     var finalDePagina = false; 
-
     function prepararResultadosYoutube(listaDeElementos){        
         totalDeResultadosSinMostrar =  parseInt( sessionStorage.getItem("todosLosResultadosYoutube"))-listaDeElementos.length; 
         sessionStorage.setItem("todosLosResultadosYoutube",totalDeResultadoSinMostrar);  
@@ -447,7 +478,17 @@ function modificarDatosDelUsuario(){
         }else if(totalDeResultadosSinMostrar > 0 ){     
             siguientePagina(sessionStorage.getItem("youtubeNext"));           
         }        
-    }  
+    } 
+    //TODO: terminar
+    function prepararResultadosSpotify(listaDeElementos){
+        crearPaginaMusica(1);
+        for(var index = 0; index < listaDeElementos.length;index++){
+            var id = ((listaDeElementos[index].url).split("track/"))[1];
+            mostrarResultadoMusica(listaDeElementos[index].albumImageUrl,listaDeElementos[index].url,listaDeElementos[index].artists,listaDeElementos[index].name,listaDeElementos[index].album,id,index,1);
+        }
+    }
+
+    
     function finalDeBusqueda(){
         if(!finalDePagina){            
             var pagina = paginaActual++;
@@ -475,10 +516,29 @@ function modificarDatosDelUsuario(){
         }
         
     }
+
+    function crearPaginaMusica(pagina){
+        $("#paginacion_Musica").append(
+       "<div id='pagina_musica_'"+pagina+" class='tab-pane'>"+
+            '<div class="row BusquedaOrdenadaMusica card-columns paginaMusica'+pagina+'">'+           
+                '<div id="cargaResultadosMusica" class="card loadingResult music_loading'+pagina+'" style="display: none; width: 10rem; margin-top: 5%; margin-left:auto; margin-right:auto; background-color: rgba(0, 0, 0, 0); height: auto; border: none;">'+
+                   ' <img class="card-img-top" src="image/loading.gif" alt="Card image cap">'+                    
+                '</div>'+
+                '<div id="sinResultados" class="card not_Found_Music" style="width: 18rem; margin-left:auto; margin-right:auto; background-color: rgba(0,0,0,0.2);">'+
+                    '<img class="card-img-top" src="image/notResult.png" alt="Card image cap">'+
+                    '<div class="card-body" style="color: white">'+
+                        '<h5 class="card-title">No se encontraron resultados</h5>'+
+                        '<p class="card-text">Pruebe realizando otra busqueda con un tag diferente.</p>   ' +                      
+                   ' </div>'+
+             '   </div>  '+
+        '    </div> '+
+        "</div>"
+        );
+    }
     function crearPaginaVideos(pagina){
         sessionStorage.setItem("numeroDePaginas",pagina);       
         $("#paginacion_Video").append(  
-            '<div id ="pagina_Video_'+pagina+'"class="tab-pane">'+
+        '<div id ="pagina_Video_'+pagina+'"class="tab-pane">'+
             '<div class="row BusquedaOrdenadaVideo card-columns paginaVideo'+pagina+'">'+           
                ' <div id="cargaResultadosVideo" class="card loadingResult video_loading'+pagina+'" style="display: none; width: 10rem; margin-top: 5%; margin-left:auto; margin-right:auto; background-color: rgba(0, 0, 0, 0); height: auto; border: none;">'+
                     '<img class="card-img-top" src="image/loading.gif" alt="Card image cap"> '+                       
@@ -506,3 +566,35 @@ function modificarDatosDelUsuario(){
         $("#sinResultados").css("display","block"); 
    }
 
+/*
+<script type='text/javascript'>
+                    function procedencia1(){
+                        var win = window.open('https://open.spotify.com/track/0WZZENH0kt3O2cBE8q5IRq','_blank');
+                        if (win) {        
+                            win.focus();
+                            } else {        
+                            alert('Please allow popups for this website');
+                        }
+                    }
+               </script>
+    
+                <div id ='cuadro-Busqueda' class='card col-12 col-sm-6 col-md-4 col-lg-3' >
+                    <div id='cuadro-Contenido' class='card-body' style='padding: .30rem;'  >  
+                        <span id="titulo1_1" style="position:absolute;color: white;background: rgba(0, 0, 0, 0.405); width: 97%;" >Titulo</span>
+                        <img id='imagen-Principal'class='card-img-top urlImagenPrincipal1' src='/image/rm1.jpg'alt='Busqueda' data-toggle='modal' data-target='#imagen1'>
+                        <a id='boton-agregarImg2' href='#' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#myModal' >Guardar</a> 
+
+                        <img id='icono-Pagina' src='image/spotify-logo.png' width='40' height='40' onclick='procedencia1()' >
+                        
+                              
+                        <img id="icono-Musica" src='image/play.png' width='100' height='100'  style=' z-index: 100;' onclick='colocarEnReproductor("4H3KBBAe2Fcgv9lH6E10Oe");' onmouseover='$(this).css("opacity","1");' onmouseout='$(this).css("opacity","0.5");' >
+                        
+                    </div>      
+                    
+                    <div class='modal fade' id='imagen1' tabindex='-1' role='dialog' aria-hidden='true'>                              
+                        <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>
+                        <img  class='img-fluid rounded mx-auto' src='/image/rm1.jpg'alt='Busqueda'>          
+                        </div>       
+                    </div>  
+                </div> 
+*/

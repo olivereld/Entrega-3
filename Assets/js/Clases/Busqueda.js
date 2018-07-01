@@ -1,12 +1,15 @@
 var busquedasEchas = 0;
 var instagram_result,youtube_result,spotify_result = false;
-
+var busquedaActual = "";
 var nuevaBusqueda = false;
 
 function buscarPalabra(){
-    var urlInstragram = "https://ignsw201825-snproject.herokuapp.com/search/instagram?q=";//instagram    
+    busquedaActual = $('.barra-Navegacion').val(); 
+    //instagram    
     var palabraABuscar = $('.barra-Navegacion').val();  
-    var urlYouTube = "https://ignsw201825-snproject.herokuapp.com/search/youtube?q=chocolate" + youtubeParametros(palabraABuscar);
+    var urlInstragram  = "https://ignsw201825-snproject.herokuapp.com/search/instagram?q=";
+    var urlYouTube     = "https://ignsw201825-snproject.herokuapp.com/search/youtube?q=" + youtubeParametros(palabraABuscar);
+    var urlSpotify     = "https://ignsw201825-snproject.herokuapp.com/search/spotify?q=" + youtubeParametros(palabraABuscar);
     if(!nuevaBusqueda){
         if(palabraABuscar != "" ){   
             $("#cargando").modal();
@@ -15,10 +18,10 @@ function buscarPalabra(){
                 sessionStorage.setItem("busquedaRealizada",palabraABuscar);    
                 location.reload();
             }
-            urlInstragram = instagramParametros(urlInstragram,palabraABuscar); 
-            sessionStorage.setItem("datoBusquedaLocalInstragram",urlInstragram); 
-            enviarPeticionDeBusqueda(urlInstragram,"instagram");
+            urlInstragram = instagramParametros(urlInstragram,palabraABuscar);         
             enviarPeticionDeBusqueda(urlYouTube,"youtube");
+            enviarPeticionDeBusqueda(urlSpotify,"spotify");
+            enviarPeticionDeBusqueda(urlInstragram,"instagram");
             nuevaBusqueda = true;
         }else{
             $("#errorModal").modal();
@@ -57,7 +60,7 @@ function enviarPeticionDeBusqueda(enlaceUrlHeroku,pagina){
         success : function (response){
             busquedasEchas++;                          
             busquedasFinalizadas(true,pagina); 
-            if(pagina === "youtube"){                        
+            if(pagina === "youtube"){  //YOUTUBE                      
                 $("#menu1").css("display","block");
                 $("#paginacion_Video").css("display","block");
                 $("#paginasVideo").css("display","block");
@@ -68,14 +71,15 @@ function enviarPeticionDeBusqueda(enlaceUrlHeroku,pagina){
                 sessionStorage.setItem("youtubeNext",""+paginacionSiguiente);
                 sessionStorage.setItem("youtubePrev",""+paginacionAnterior);
                 prepararResultadosYoutube(listaResultados); 
-            }else if(pagina === "instagram"){               
+            }else if(pagina === "instagram"){ //INSTAGRAM              
                 prepararResultados(response); 
-            }         
+            }else if(pagina === "spotify"){  //SPOTIFY             
+                prepararResultadosSpotify(response.tracks);
+            }                 
                             
             },
         error: function(XMLHttpRequest, textStatus, errorThrown){  
-            busquedasEchas++;  
-            
+            busquedasEchas++;            
             if(sessionStorage.getItem("datoBusquedaLocal")){
                 sessionStorage.removeItem("datoBusquedaLocal");
             }           
@@ -114,16 +118,17 @@ function busquedasFinalizadas(resultadosDevueltos,pagina){
         spotify_result === resultadosDevueltos;
         $("#cargaResultadosMusica").css("display","none");
     }
-    if(busquedasEchas === 2){
+    if(busquedasEchas === 3){
        
         busquedasEchas = 0;
     }    
 }
 
 function siguientePagina(token){  
+    var parametroABuscar = youtubeParametros(busquedaActual);
     try{
         $.ajax({
-            url : "https://ignsw201825-snproject.herokuapp.com/search/youtube?q=parametro_de_busqueda&&pageToken="+token,         
+            url : "https://ignsw201825-snproject.herokuapp.com/search/youtube?q="+parametroABuscar+"&pageToken="+token,         
             method :'GET', 
             contentType: 'application/json; charset=utf-8',
             dataType : 'json', 
