@@ -206,7 +206,7 @@ function getListaUsuarios(number){
 
         success : function (response){          
             $(amigos).text(response.length);            
-            getImagenMen(response,number);                          
+            llenarRegistrados(response,number);                          
             },
         error: function(error){             
             console.log(error); 

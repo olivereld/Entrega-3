@@ -384,7 +384,7 @@ function mostrarResultadoVideo(UrlDeImagen,UrlDeVideo,urlPaginaDeProcedencia,num
             "<div id='cuadro-Contenido' style='padding: .28rem' class='card-body' >"+                           
                 "<img id='imagen-Principal' class='card-img-top' src='"+UrlDeImagen+"'alt='Busqueda'>"+
                  botonGuardar+                 
-                "<img id='icono-Pagina' src='image/"+botonProcedencia+"' width='50' height='50' onclick='procedencia"+numeroDeIndice+"_"+contenedor+"()' >"+
+                "<img class='img-fluid' id='icono-Pagina' src='image/"+botonProcedencia+"' width='50' height='50' onclick='procedencia"+numeroDeIndice+"_"+contenedor+"()' >"+
                 "<div data-toggle='modal' data-target='#video"+numeroDeIndice+"_"+contenedor+"' style='z-index: 99;'>"+
                     "<img id='icono-Video' src='image/play.png' width='100' height='100'  style='z-index: 100;' onmouseover='$(this).css("+'"opacity"'+","+'"1"'+");' onmouseout='$(this).css("+'"opacity"'+","+'"0.5"'+");'>"+
                 "</div>"+
@@ -392,10 +392,10 @@ function mostrarResultadoVideo(UrlDeImagen,UrlDeVideo,urlPaginaDeProcedencia,num
 
             '<div class="bs-example">'+
                 '<div id="video'+numeroDeIndice+'_'+contenedor+'" class="modal fade">'+
-                    '<div class="modal-dialog">'+
+                    '<div class="modal-dialog modal-lg modal-dialog-centered">'+
                         '<div class="modal-content" style="background: rgba(255, 255, 255, 0); border:0px;">'+                         
                                 '<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>'+                        
-                                '<div class="modal-body">'+
+                                '<div class="modal-body text-center">'+
                                 frameVideo+
                                 '</div>'+
                             '</div>'+

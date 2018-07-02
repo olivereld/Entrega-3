@@ -30,7 +30,7 @@
     position: absolute;      
     width: 100%;
     height: 80px; 
-    opacity: 0.8; 
+    /* opacity: 0.8;  */
     border-radius: 4px 4px 4px 4px;
     -moz-border-radius: 4px 4px 4px 4px;
     -webkit-border-radius: 4px 4px 4px 4px;  
@@ -132,17 +132,22 @@
   height: 50px;  
   opacity: 0.5;
 }
+
+.checkBusqueda:hover {
+    cursor: pointer;
+}
+
 .seccion_youtube{
   background-repeat: no-repeat;
   background-image: url("../image/logo-youtube.png");   
   background-position: left center;  
-  background-size: 60px; 
+  background-size: 58px; 
 }
 .seccion_spotify{
     background-repeat: no-repeat;
     background-image: url("../image/spotify-logo.png");   
     background-position: left center;  
-    background-size: 55px; 
+    background-size: 50px; 
 }
 .seccion_instagram{
     background-repeat: no-repeat;
