@@ -273,7 +273,7 @@ function mostrarResultadoMusica(urlImagen,urlProcedencia,artista,titulo,tituloAl
         var botonGuardar ; 
           
         if(document.location.href.indexOf("index_User.html") > -1){
-            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger btn-sm' onclick='focusImagen("+'".urlImagenPrincipal'+numeroDeIndice+'"'+","+'"'+urlProcedencia+'"'+"); verificarInfoAlbums();' >Guardar</a>"; 
+            botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger btn-sm' onclick='focusAudio("+'"'+urlImagen+'","'+urlProcedencia+'","'+track+'"'+"); verificarInfoAlbums();' >Guardar</a>"; 
         }else{
             botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger btn-sm' data-toggle='modal' data-target='#myModal' >Guardar</a>";
         }

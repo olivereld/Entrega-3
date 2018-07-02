@@ -173,7 +173,7 @@ function obtenerAlbumes(idUsuario,callback){ //Obtener todos los albumes
             }
             sessionStorage.setItem("listaAlbumes",JSON.stringify(listaDeAlbumes));
             album = JSON.parse(sessionStorage.getItem("listaAlbumes"));
-           // $("#cantidad-Albumes").text( "" + album.length);
+            $("#cantidad-Albumes").text( "" + album.length);
             if(callback != undefined){
                 for(var i = 0; i < album.length; i++){
                     cargarMultimediaDeALbum(album[i],i,callback);
@@ -200,6 +200,7 @@ function cargarMultimediaDeALbum(album,numeroActual,callback){
             
             success : function (response){ //Si funciona 
                 var listaDeMultiMedia = [];
+               console.log(response);
                 for(var j = 0; j < response.length; j++){
                     var media = {
                         id:response[j].id,
@@ -254,8 +255,15 @@ function  mostrarAlbumesEnElPerfil(albumActual){
         );
     }
 }
-function mostrarMultimediaDeAlbum2(multimedia,numeroDeimagen){       
-   
+function mostrarMultimediaDeAlbum2(multimedia,numeroDeimagen,tipo){       
+        var icono = "";
+        if(tipo === "imagen"){
+            icono =  "image/instagramLogo.png";
+        }else if(tipo === "video"){
+            icono =  "image/logo-youtube.png";
+        }else if(tipo === "audio"){
+            icono =  "image/spotify-logo.png";
+        }
         $("#galeria-multimedia").append(                    
             "<script type='text/javascript' id='script"+numeroDeimagen+"'>"+
                 " function procedencia"+numeroDeimagen+"(){"+
@@ -269,7 +277,7 @@ function mostrarMultimediaDeAlbum2(multimedia,numeroDeimagen){
             "</script>"+
             "<div id ='cuadro-album'  class='card col-12 col-sm-6 col-md-5 col-lg-5 ima-"+numeroDeimagen+"' tabindex='-1' onclick='focusMedia("+'"'+multimedia.id+'"'+")' >"+					                       
                  "<img id='imagen-principal'class='card-img-top' src='"+multimedia.url+"' alt='Busqueda'>"+                            
-                 "<img id='icono-Pagina' src='image/instagramIcon.png' width='50' height='50' onclick='procedencia"+numeroDeimagen+"()' >"+	
+                 "<img id='icono-Pagina' src='"+icono+"' width='50' height='50' onclick='procedencia"+numeroDeimagen+"()' >"+	
                  "<img id='icono-Borrar' src='image/delete.png' width='50' height='50' data-toggle='modal' data-target='#eliminarModalMedia' >"+					           							
             '</div>'                   
         ); 
@@ -319,7 +327,7 @@ function gestionDeALbumDelUsuario(numeroDeAlbum){
 
     if(multimedia.length > 0){
         for(var numeroDeMultimedia = 0; numeroDeMultimedia < multimedia.length; numeroDeMultimedia++){
-            mostrarMultimediaDeAlbum2(multimedia[numeroDeMultimedia],numeroDeMultimedia);                  
+            mostrarMultimediaDeAlbum2(multimedia[numeroDeMultimedia],numeroDeMultimedia,multimedia[numeroDeMultimedia].type);                  
         }
     }  
      

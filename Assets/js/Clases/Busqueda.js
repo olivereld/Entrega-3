@@ -41,14 +41,15 @@ function buscarPalabra(){
             }
             urlInstragram = instagramParametros(urlInstragram,palabraABuscar);         
             enviarPeticionDeBusqueda(urlYouTube,"youtube");
-            //enviarPeticionDeBusqueda(urlSpotify,"spotify");
-            //enviarPeticionDeBusqueda(urlInstragram,"instagram");
+            enviarPeticionDeBusqueda(urlSpotify,"spotify");
+            enviarPeticionDeBusqueda(urlInstragram,"instagram");
             nuevaBusqueda = true;
         }else{
             $("#errorModal").modal();
             mostrarError(10);
         }
     }else{
+        sessionStorage();
         this.location.reload();
     }
 }
@@ -106,9 +107,9 @@ function enviarPeticionDeBusqueda(enlaceUrlHeroku,pagina){
                 prepararResultadosYoutube(listaResultados); 
                 */
             }else if(pagina === "instagram"){ //INSTAGRAM              
-                //prepararResultados(response); 
+                prepararResultados(response); 
             }else if(pagina === "spotify"){  //SPOTIFY             
-                //prepararResultadosSpotify(response.tracks);
+                prepararResultadosSpotify(response.tracks);
             }                 
                             
             },

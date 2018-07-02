@@ -16,7 +16,7 @@ function  mostrarListaDeAlbumes(album,contenedor,numeroDeAlbum){
     }else{ 
         $(contenedor).append(
         "<div id ='cuadro-album'  class='card col-12 col-sm-6 col-md-5 col-lg-5' onclick='focusAlbum("+numeroDeAlbum+")' tabindex='1' >"+					                       
-            "<img id='imagen-principal'class='card-img-top' src='image/needImage.png' alt='Busqueda'>"+
+            "<img id='imagen-principal'class='card-img-top' src='image/defImagen.png' alt='Busqueda'>"+
             '<div id="info-album" class="card-img-overlay">'+
                 '<h5  class="card-title">'+album.nombre+'</h5>'+           						
             '</div>'+							
@@ -26,9 +26,9 @@ function  mostrarListaDeAlbumes(album,contenedor,numeroDeAlbum){
      
 }
 
-function focusImagen(classImagen,urlProcedencia){
+function focusImagen(classImagen,urlProcedecia){
     localStorage.setItem("urlImagenTarget",$(classImagen).attr('src'));
-    localStorage.setItem("urlProcedenciaTarget",urlProcedencia);
+    localStorage.setItem("urlProcedenciaTarget",urlProcedecia);
     localStorage.setItem("typeTarget","imagen");
 }
 function focusVideo(imagenVideo,urlProcendencia,urlVideo){
@@ -36,6 +36,12 @@ function focusVideo(imagenVideo,urlProcendencia,urlVideo){
     localStorage.setItem("urlProcedenciaTarget",urlProcendencia);
     localStorage.setItem("urlVideoarget",urlVideo);
     localStorage.setItem("typeTarget","video");
+}
+function focusAudio(urlImagen,urlProcedencia,urlAudio){
+    localStorage.setItem("urlImagenTarget",urlImagen);
+    localStorage.setItem("urlProcedenciaTarget",urlProcedencia);
+    localStorage.setItem("urlAudioTarget",urlAudio);
+    localStorage.setItem("typeTarget","audio");
 }
 function borrarTargets(){
    if(localStorage.getItem("datoBusquedaLocal")){
@@ -79,7 +85,7 @@ function guardarMultimedia(){
                 "link":""+localStorage.getItem("urlProcedenciaTarget"),
                 "type": "image" 
             };
-        }else{
+        }else if(localStorage.getItem("typeTarget") === "video"){
             mediaDeAlbum = {
                 "userId": "" + sessionStorage.getItem("id"),
                 "albumId": ""+localStorage.getItem("idDeAlbumTarget"),
@@ -88,6 +94,17 @@ function guardarMultimedia(){
                 "link":""+localStorage.getItem("urlProcedenciaTarget"),
                 "videoUrl":localStorage.getItem("urlVideoarget"),
                 "type": "video",                
+            };
+
+        }else{
+            mediaDeAlbum = {
+                "userId": "" + sessionStorage.getItem("id"),
+                "albumId": ""+localStorage.getItem("idDeAlbumTarget"),
+                "authToken": ""+sessionStorage.getItem("token"),
+                "url":""+localStorage.getItem("urlImagenTarget"),
+                "link":""+localStorage.getItem("urlProcedenciaTarget"),
+                "audioUrl":localStorage.getItem("urlAudioTarget"),
+                "type": "audio",                
             };
 
         }
@@ -101,6 +118,7 @@ function guardarMultimedia(){
 
         success : function (response){            
             console.log("media agregado:" + JSON.stringify(response)); 
+            sessionStorage.setItem("remporal", JSON.stringify(response));
            document.location.reload(); 
                         
             },
