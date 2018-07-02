@@ -11,8 +11,29 @@ function buscarPalabra(){
     var urlYouTube     = "https://ignsw201825-snproject.herokuapp.com/search/youtube?q=" + youtubeParametros(palabraABuscar);
     var urlSpotify     = "https://ignsw201825-snproject.herokuapp.com/search/spotify?q=" + youtubeParametros(palabraABuscar);
     if(!nuevaBusqueda){
-        if(palabraABuscar != "" ){   
-            $("#cargando").modal();
+        if(palabraABuscar != "" ){
+            $("#particles-js").css("display", "none"); 
+            $("#titulo-Seccion").css("display","block");
+            $("#titulo-Seccion").css("margin-top","64px");
+            $("#separador-Busqueda").css("display","block");        
+            $("#fondo-Imagen").css("position","fixed");
+            $("#sinResultados").css("display","none"); 
+            $("#cargando-Busquedas").css("display","none");  
+            $("#checkYoutube").prop( "checked", true );
+            $("#checkYoutube" ).prop( "disabled", true );
+            $("#checkSpotify").prop( "checked", false );
+            $("#checkSpotify" ).prop( "disabled", false );
+            $("#checkInstagram").prop( "checked", false );
+            $("#checkInstagram" ).prop( "disabled", false );
+            $(".BusquedaOrdenadaVideo").css("display","flex");
+            $(".BusquedaOrdenadaVideo").css("opacity","1");
+            $("#paginasVideo").css("display","block");            
+            $(".BusquedaOrdenadaMusica").css("display","none");
+            $(".BusquedaOrdenadaMusica").css("opacity","0.5");            
+            $(".BusquedaOrdenadaImagen").css("display","none");
+            $(".BusquedaOrdenadaImagen").css("opacity","0.5");   
+
+           // $("#cargando").modal();
             $(".loadingResult").css("display","flex");
             if(nuevaBusqueda){
                 sessionStorage.setItem("busquedaRealizada",palabraABuscar);    
@@ -20,8 +41,8 @@ function buscarPalabra(){
             }
             urlInstragram = instagramParametros(urlInstragram,palabraABuscar);         
             enviarPeticionDeBusqueda(urlYouTube,"youtube");
-            enviarPeticionDeBusqueda(urlSpotify,"spotify");
-            enviarPeticionDeBusqueda(urlInstragram,"instagram");
+            //enviarPeticionDeBusqueda(urlSpotify,"spotify");
+            //enviarPeticionDeBusqueda(urlInstragram,"instagram");
             nuevaBusqueda = true;
         }else{
             $("#errorModal").modal();
@@ -60,7 +81,19 @@ function enviarPeticionDeBusqueda(enlaceUrlHeroku,pagina){
         success : function (response){
             busquedasEchas++;                          
             busquedasFinalizadas(true,pagina); 
-            if(pagina === "youtube"){  //YOUTUBE                      
+            if(pagina === "youtube"){  //YOUTUBE 
+                var totalResultados = response.totalResults;
+                var totalPaginas = Math.round(response.totalResults/10);
+                var resultadosSobrantes = response.totalResults%10; 
+                
+                if(resultadosSobrantes > 0 && totalResultados <= 10){
+                    totalPaginas++;
+                }   
+                console.log(totalResultados);
+                console.log(totalPaginas);
+                console.log(resultadosSobrantes);
+                prepararVistaResultadosYoutube(totalResultados,totalPaginas, response.nextPageToken, response.items);
+                /*
                 $("#menu1").css("display","block");
                 $("#paginacion_Video").css("display","block");
                 $("#paginasVideo").css("display","block");
@@ -71,10 +104,11 @@ function enviarPeticionDeBusqueda(enlaceUrlHeroku,pagina){
                 sessionStorage.setItem("youtubeNext",""+paginacionSiguiente);
                 sessionStorage.setItem("youtubePrev",""+paginacionAnterior);
                 prepararResultadosYoutube(listaResultados); 
+                */
             }else if(pagina === "instagram"){ //INSTAGRAM              
-                prepararResultados(response); 
+                //prepararResultados(response); 
             }else if(pagina === "spotify"){  //SPOTIFY             
-                prepararResultadosSpotify(response.tracks);
+                //prepararResultadosSpotify(response.tracks);
             }                 
                             
             },
@@ -108,8 +142,23 @@ function busquedasFinalizadas(resultadosDevueltos,pagina){
         instagram_result = resultadosDevueltos;
         $("#cargaResultadosImagen").css("display","none");
     }else if(pagina === "youtube"){
-        if(!resultadosDevueltos)
+        if(!resultadosDevueltos){
+            $("#paginacion_Video").append(  
+                '<div id ="pagina_Video"class="tab-pane">'+
+                    '<div class="row BusquedaOrdenadaVideo card-columns paginaVideo">'+           
+                         '<div id="sinResultados" class="card not_Found_Video" style="width: 18rem; margin-left:auto; margin-right:auto; background-color: rgba(0,0,0,0.2); height: auto;">'+
+                        ' <img class="card-img-top" src="image/notResult.png" alt="Card image cap">'+
+                           ' <div class="card-body" style="color: white">'+
+                              '  <h5 class="card-title">No se encontraron resultados</h5>'+
+                               ' <p class="card-text">Pruebe realizando otra busqueda con un tag diferente.</p> '+                      
+                          '  </div>'+
+                        '</div>'  +             
+                    '</div>' +
+               ' </div> '        
+                );
             $(".not_Found_Video").css("display","block");
+        }
+           
         youtube_result = resultadosDevueltos;
         $("#cargaResultadosVideo").css("display","none");
     }else if(pagina === "spotify"){
@@ -124,7 +173,7 @@ function busquedasFinalizadas(resultadosDevueltos,pagina){
     }    
 }
 
-function siguientePagina(token){  
+function siguientePagina(paginaActual,token,limiteMostrar){  
     var parametroABuscar = youtubeParametros(busquedaActual);
     try{
         $.ajax({
@@ -134,17 +183,14 @@ function siguientePagina(token){
             dataType : 'json', 
     
             success : function (response){              
-                var listaResultados = response.items;               
-                var paginacionSiguiente = response.nextPageToken;   
-                var paginacionAnterior =  response.prevPageToken;
-                sessionStorage.setItem("todosLosResultadosYoutube",""+response.totalResults);
-                sessionStorage.setItem("youtubeNext",""+paginacionSiguiente);
-                sessionStorage.setItem("youtubePrev",""+paginacionAnterior);
-                prepararResultadosYoutube(listaResultados);          
+                var listaDeElementos    = response.items;               
+                var paginacionSiguiente = response.nextPageToken; 
+                console.log("Total nuevo:" +response.totalResults);     
+                llenarPaginaVideo(listaDeElementos,paginaActual,paginacionSiguiente,limiteMostrar);                       
                 },
             error: function(XMLHttpRequest, textStatus, errorThrown){ 
                 if (XMLHttpRequest.responseText.indexOf("no_result_found") > -1){
-                    finalDeBusqueda();
+                   alert("Error de paginacion" + XMLHttpRequest.responseText);
                 }                         
             }
         });   
@@ -153,3 +199,4 @@ function siguientePagina(token){
     }
    
 }
+   

@@ -264,9 +264,14 @@ function modificarDatosDelUsuario(){
             }
     });    
 }
-    function mostrarResultadoMusica(urlImagen,urlProcedencia,artista,titulo,tituloAlbum,track,numeroDeIndice,contenedor){
+/*TODO: --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+var listaDeVideos = [];    
+var totalDeResultadoSinMostrar = 0;    
+var paginaActual = 0;  
+var finalDePagina = false; 
+function mostrarResultadoMusica(urlImagen,urlProcedencia,artista,titulo,tituloAlbum,track,numeroDeIndice,contenedor){
         var botonGuardar ; 
-        console.log(track);  
+          
         if(document.location.href.indexOf("index_User.html") > -1){
             botonGuardar = "<a id='boton-agregarImg2' href='#' class='btn btn-danger btn-sm' onclick='focusImagen("+'".urlImagenPrincipal'+numeroDeIndice+'"'+","+'"'+urlProcedencia+'"'+"); verificarInfoAlbums();' >Guardar</a>"; 
         }else{
@@ -284,7 +289,6 @@ function modificarDatosDelUsuario(){
                     "}"+
                 "}"+
             "</script>"+
-
             "<div id ='cuadro-Busqueda' class='card col-12 col-sm-6 col-md-4 col-lg-3' >"+
                 "<div id='cuadro-Contenido' class='card-body' style='padding: .30rem;'  > " +
                      '<span id="titulo1_1" style="position:absolute;color: white;background: rgba(0, 0, 0, 0.405); width: 97%;">'+artista+'</br>'+titulo+'-'+tituloAlbum+'</span>'+
@@ -296,8 +300,10 @@ function modificarDatosDelUsuario(){
             "</div>"
         );
 
-    }
-    function mostrarResultadoImagen(UrlDeImagen,urlPaginaDeProcedencia,numeroDeIndice){
+    
+}
+    
+function mostrarResultadoImagen(UrlDeImagen,urlPaginaDeProcedencia,numeroDeIndice){
         var botonGuardar ;      
 
         if(document.location.href.indexOf("index_User.html") > -1){
@@ -333,8 +339,9 @@ function modificarDatosDelUsuario(){
             "</div>" 
             );
         
-    }
-    function mostrarResultadoVideo(UrlDeImagen,UrlDeVideo,urlPaginaDeProcedencia,numeroDeIndice,paginaImagen,contenedor){
+}
+    
+function mostrarResultadoVideo(UrlDeImagen,UrlDeVideo,urlPaginaDeProcedencia,numeroDeIndice,paginaImagen,contenedor){
        
         var botonProcedencia;
         var frameVideo = "";
@@ -396,15 +403,75 @@ function modificarDatosDelUsuario(){
                     '</div>'+
                  '</div>'+     
             "</div>"
-
             );
-    }
-    function prepararResultados(listaDeElementos){        
+}
+function crearPaginaVideos(pagina,generacionDeIndex){              
+    $("#paginacion_Video").append(  
+    '<div id ="pagina_Video_'+pagina+'"class="tab-pane">'+
+        '<div class="row BusquedaOrdenadaVideo card-columns paginaVideo'+pagina+'">'+           
+           ' <div id="cargaResultadosVideo" class="card loadingResult video_loading'+pagina+'" style="display: none; width: 10rem; margin-top: 5%; margin-left:auto; margin-right:auto; background-color: rgba(0, 0, 0, 0); height: auto; border: none;">'+
+                '<img class="card-img-top" src="image/loading.gif" alt="Card image cap"> '+                       
+           '</div>' +
+            '<div id="sinResultados" class="card not_Found_Video" style="width: 18rem; margin-left:auto; margin-right:auto; background-color: rgba(0,0,0,0.2); height: auto;">'+
+            ' <img class="card-img-top" src="image/notResult.png" alt="Card image cap">'+
+               ' <div class="card-body" style="color: white">'+
+                  '  <h5 class="card-title">No se encontraron resultados</h5>'+
+                   ' <p class="card-text">Pruebe realizando otra busqueda con un tag diferente.</p> '+                      
+              '  </div>'+
+            '</div>'  +             
+        '</div>' +
+   ' </div> '        
+    );
+   
+    $(".video_loading"+pagina).css("display","block");
+   
+    if(pagina != 1){
+        $("#generacion_"+generacionDeIndex).append(
+            '<li class="page-item" id="index_'+pagina+'"><h6 class="page-link" >'+pagina+'</h6></li>'+
+            "<script>"+
+            '$("#index_'+pagina+'").on("click",function(e){'+           
+                'if(!$(this).hasClass("next")){'+                       
+                    'var paginaVieja = parseInt(localStorage.getItem("paginaActualVideo"));'+                        
+                    '$("#listaIndicesVideo li").removeClass("active");'+
+                    '$(this).addClass("active");'+
+
+                    '$("#pagina_Video_"+paginaVieja).css("display","none");'+
+                    '$("#pagina_Video_"+'+pagina+').css("display","block");'+
+                    'localStorage.setItem("paginaActualVideo",'+pagina+');'+                    
+                '}'+                        
+            '}); '+ 
+            "</script>" 
+         );
+        $("#pagina_Video_"+pagina).css("display","none");            
+    }else{ 
+        $("#generacion_"+generacionDeIndex).append(
+                '<li class="page-item active" id="index_'+pagina+'"><h6 class="page-link" >'+pagina+'</h6></li>'+
+            "<script>"+
+                '$("#index_'+pagina+'").on("click",function(e){'+           
+                 'if(!$(this).hasClass("next")){'+
+            
+                'var paginaVieja = parseInt(localStorage.getItem("paginaActualVideo"));'+
+           
+                '$("#listaIndicesVideo li").removeClass("active");'+
+                '$(this).addClass("active");'+
+
+                '$("#pagina_Video_"+paginaVieja).css("display","none");'+
+                '$("#pagina_Video_"+'+pagina+').css("display","block");'+
+                'localStorage.setItem("paginaActualVideo",'+pagina+');'+                      
+
+                '}'+         
+            '}); '+ 
+            "</script>"                         
+         );
+        localStorage.setItem("paginaActualVideo",pagina);
+    }    
+}
+   
+function prepararResultados(listaDeElementos){        
         $("#particles-js").css("display", "none"); 
         $("#titulo-Seccion").css("display","block");
         $("#titulo-Seccion").css("margin-top","64px");
-        $("#separador-Busqueda").css("display","block");
-        
+        $("#separador-Busqueda").css("display","block");        
         $("#fondo-Imagen").css("position","fixed");
         $("#sinResultados").css("display","none"); 
         $("#cargando-Busquedas").css("display","none");       
@@ -419,74 +486,62 @@ function modificarDatosDelUsuario(){
             }
         }
         $("#cargando").modal("hide");        
+}
+var paginasMostradas = 0;
+var generacionDeIndex = 1;
+function prepararVistaResultadosYoutube(totalDeElementos,totalPaginaResultados,tokenNext,listaDeElementos){
+    var totalPaginas = totalPaginaResultados;
+    var limiteMostrar = 0;
+    if(totalPaginas > 10){
+        limiteMostrar = 10;
+        totalPaginas = totalPaginas-10;
+    }else{
+        limiteMostrar = totalPaginas;
     }
+    $("#numeracionPaginasVideo").append(
+        '<div style="display: flex" id="generacion_'+generacionDeIndex+'"></div>'
+    );
     
-    var listaDeVideos = [];    
-    var totalDeResultadoSinMostrar = 0;    
-    var paginaActual = 0;  
-    var finalDePagina = false; 
-    function prepararResultadosYoutube(listaDeElementos){        
-        totalDeResultadosSinMostrar =  parseInt( sessionStorage.getItem("todosLosResultadosYoutube"))-listaDeElementos.length; 
-        sessionStorage.setItem("todosLosResultadosYoutube",totalDeResultadoSinMostrar);  
-        var cadena = ""+ (paginaActual+1);
-        if(sessionStorage.getItem("videosPagina"+cadena)){            
-            for(var indice = 0;indice < listaDeElementos.length;indice++)
-            listaDeVideos.push(listaDeElementos[indice]);
-            
-            sessionStorage.setItem("videosPagina"+cadena,JSON.stringify(listaDeVideos));
-        }else{            
-            listaDeVideos = listaDeElementos;
-            sessionStorage.setItem("videosPagina"+cadena,JSON.stringify(listaDeVideos));
-        }       
-        $("#particles-js").css("display", "none"); 
-        $("#titulo-Seccion").css("display","block");
-        $("#titulo-Seccion").css("margin-top","64px");
-        $("#separador-Busqueda").css("display","block");        
-        $("#fondo-Imagen").css("position","fixed");
-        $("#sinResultados").css("display","none"); 
-        $("#cargando-Busquedas").css("display","none");  
-        $("#checkYoutube").prop( "checked", true );
-        $("#checkYoutube" ).prop( "disabled", true );
-        $("#checkSpotify").prop( "checked", false );
-        $("#checkSpotify" ).prop( "disabled", false );
-        $("#checkInstagram").prop( "checked", false );
-        $("#checkInstagram" ).prop( "disabled", false );
-        $(".BusquedaOrdenadaVideo").css("display","flex");
-        $(".BusquedaOrdenadaVideo").css("opacity","1");
-        $("#paginasVideo").css("display","block");
-        
-        $(".BusquedaOrdenadaMusica").css("display","none");
-        $(".BusquedaOrdenadaMusica").css("opacity","0.5");
-        
-        $(".BusquedaOrdenadaImagen").css("display","none");
-        $(".BusquedaOrdenadaImagen").css("opacity","0.5");    
-        
-        if(listaDeVideos.length <= 10 ){
-            var paginaAnterior = paginaActual+1;
-            crearPaginaVideos(paginaAnterior);
-            paginaActual++;            
-            $("#cargaResultadosVideo").css("display","none");
+    for(var i = paginasMostradas;i<limiteMostrar;i++){       
+        crearPaginaVideos(i+1,generacionDeIndex);
+    }
+    generacionDeIndex++;
+    paginasMostradas += limiteMostrar;
+    sessionStorage.setItem("numeroDePaginas",paginasMostradas); 
+    sessionStorage.setItem("finDePagina",limiteMostrar);
+    llenarPaginaVideo(listaDeElementos,1,tokenNext,limiteMostrar);
+
+}   
+
+function llenarPaginaVideo(listaDeElementos,paginaActual,tokenNext,limiteMostrar){        
+        var listaDeVideos = listaDeElementos; 
+        console.log("token next" + tokenNext + " Limite : " + limiteMostrar + " pagina actula " + paginaActual + " numero de elementos: " + listaDeElementos.length);      
+        if(listaDeVideos.length <= 10 && paginaActual > 0 ){      
+            $(".video_loading"+paginaActual).css("display","none");          
             for(var i = 0; i < listaDeVideos.length;i++){
                 url = ("" + listaDeVideos[i].videoUrl).split("=");
                 id = url[1];           
                 embedVideo =  "https://www.youtube.com/embed/"+id+"?controls=2&amp;rel=0&amp;autohide=1&amp;showinfo=0&amp;modestbranding=1&amp;wmode=transparent&amp;html5=1&amp;enablejsapi=1&amp;widgetid=1"
-                mostrarResultadoVideo(listaDeVideos[i].thumbnail,embedVideo,listaDeVideos[i].videoUrl,i,"youtube",paginaAnterior);                 
+                mostrarResultadoVideo(listaDeVideos[i].thumbnail,embedVideo,listaDeVideos[i].videoUrl,i,"youtube",paginaActual);                 
             }
             listaDeVideos = [];
             $("#cargando").modal("hide");
-            $(".video_loading"+paginaAnterior).css("display","none");
-        }else if(totalDeResultadosSinMostrar > 0 ){     
-            siguientePagina(sessionStorage.getItem("youtubeNext"));           
-        }        
-    } 
+            $(".video_loading"+paginaActual).css("display","none");
+            paginaActual++;            
+        }
+        if(paginaActual > 1  && paginaActual <= limiteMostrar){                    
+            siguientePagina(paginaActual,tokenNext,limiteMostrar);           
+        }  
+              
+} 
     //TODO: terminar
-    function prepararResultadosSpotify(listaDeElementos){
+function prepararResultadosSpotify(listaDeElementos){
         crearPaginaMusica(1);
         for(var index = 0; index < listaDeElementos.length;index++){
             var id = ((listaDeElementos[index].url).split("track/"))[1];
             mostrarResultadoMusica(listaDeElementos[index].albumImageUrl,listaDeElementos[index].url,listaDeElementos[index].artists,listaDeElementos[index].name,listaDeElementos[index].album,id,index,1);
         }
-    }
+}
 
     
     function finalDeBusqueda(){
@@ -534,26 +589,6 @@ function modificarDatosDelUsuario(){
         '    </div> '+
         "</div>"
         );
-    }
-    function crearPaginaVideos(pagina){
-        sessionStorage.setItem("numeroDePaginas",pagina);       
-        $("#paginacion_Video").append(  
-        '<div id ="pagina_Video_'+pagina+'"class="tab-pane">'+
-            '<div class="row BusquedaOrdenadaVideo card-columns paginaVideo'+pagina+'">'+           
-               ' <div id="cargaResultadosVideo" class="card loadingResult video_loading'+pagina+'" style="display: none; width: 10rem; margin-top: 5%; margin-left:auto; margin-right:auto; background-color: rgba(0, 0, 0, 0); height: auto; border: none;">'+
-                    '<img class="card-img-top" src="image/loading.gif" alt="Card image cap"> '+                       
-               '</div>' +
-                '<div id="sinResultados" class="card not_Found_Video" style="width: 18rem; margin-left:auto; margin-right:auto; background-color: rgba(0,0,0,0.2); height: auto;">'+
-                ' <img class="card-img-top" src="image/notResult.png" alt="Card image cap">'+
-                   ' <div class="card-body" style="color: white">'+
-                      '  <h5 class="card-title">No se encontraron resultados</h5>'+
-                       ' <p class="card-text">Pruebe realizando otra busqueda con un tag diferente.</p> '+                      
-                  '  </div>'+
-                '</div>'  +             
-            '</div>' +
-       ' </div> '        
-        );
-        $(".video_loading"+pagina).css("display","block");
     }
    
     function sinResultados(){   
