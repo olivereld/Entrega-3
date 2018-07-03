@@ -264,6 +264,18 @@ function mostrarMultimediaDeAlbum2(multimedia,numeroDeimagen,tipo){
         }else if(tipo === "audio"){
             icono =  "image/spotify-logo.png";
         }
+        document.getElementById('gallery').innerHTML+=`
+            <img src="${multimedia.url}" alt="" />
+        `
+        document.getElementById('gallery-thumbs').innerHTML+=`
+            <li class="thumb-item">
+                <div class="thumb pager-active">
+                    <a href="">
+                        <img src="${multimedia.url}" alt="" /></a>
+                </div>
+            </li>
+        `
+
         $("#galeria-multimedia").append(                    
             "<script type='text/javascript' id='script"+numeroDeimagen+"'>"+
                 " function procedencia"+numeroDeimagen+"(){"+
@@ -323,6 +335,8 @@ function gestionDeALbumDelUsuario(numeroDeAlbum){
     $("#galeria").css("display","none");
     $(".titulo-album-gestion").text(""+album.nombre);
     $(".descripcion-album-gestion").text(""+album.descripcion);
+    initCarousel();
+
     var multimedia = album.multiMedia;
 
     if(multimedia.length > 0){

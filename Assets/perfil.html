@@ -11,19 +11,27 @@
 	<meta charset="UTF-8">
 	<title>WebMedia: Perfil</title>
 	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- Para Heroku-->
+	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 	<script src="js/Clases/ConsumirServicios.js"></script>
 	<link   rel="stylesheet" href="Css3/css/bootstrap.min.css">
 	<link   rel="stylesheet" href="Css3/albums.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> <!-- Para Heroku-->
-	<script src="js/jquery.js"></script>  
+	<!-- <script src="js/jquery.js"></script>   -->
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/Clases/Validacion.js"></script>
 	<script src="js/Clases/Amigos.js"></script>
+	<script src="js/Clases/Carousel.js"></script>
 	<script src="js/Clases/Albums.js"></script>
 	<link   rel="stylesheet" href="Css3/css/AdminLTE.min.css"> 	
 	<link   rel="stylesheet" href="Css3/perfil.css">
 	<link   rel="stylesheet" href="Css3/modalLogin.css">
 	<link 	rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+	
+	<style type="text/css">
+	.pager-active { border: 2px solid #5280DD; }
+	</style>
+	
 
 	<script>
 		$( document ).ready(function() { 
@@ -157,6 +165,10 @@
 						<textarea id="inputDescripcionModificable" type="text" class="form-control" rows="3"> </textarea>				
 						<h4 class="text-center titulo-album-gestion">Nombre del album</h4>
 						<p class="text-center text-muted descripcion-album-gestion">Descripcion del album</p>
+						
+
+
+
 						<div id="boton-opciones-album" class="row">							
 							<a  id="boton-volver-album"   href='#' class='btn btn-primary' tabindex="-1" aria-disabled="true" onclick="volverAPrevizualisarAlbumes()">Volver</a>
 							<a  id="boton-cancelar-album"   href='#' class='btn btn-primary' tabindex="-1" aria-disabled="true" onclick="cancelarEdicion()">Cancelar</a>	
@@ -166,7 +178,41 @@
 						</div>						
 						<br><br>
 						<hr>
-						<div class="row card-columns VistaPreviaAlbums" id="galeria-multimedia" > <!------------Vista de multimedia---------->									                       
+
+						
+
+						<div class="gallery-container mx-auto">
+								<div id="gallery" class="gallery-images">
+
+									
+								</div>
+								<div class="gallery-thumbs-container">
+									<ul id="gallery-thumbs" class="gallery-thumbs-list">
+										
+									</ul>
+								</div>
+							</div>
+
+						<style>
+						
+						
+						
+						.bx-wrapper .bx-controls-direction a{
+							color: transparent;
+							z-index: 0;
+						}
+						
+						.bx-wrapper{
+							margin-bottom: 5px;
+						}
+
+						.bx-wrapper{
+							margin-left: auto;
+							margin-right: auto;
+						}
+						</style>
+
+						<div class="row card-columns VistaPreviaAlbums" id="galeria-multimedia" style="display: block;" > <!------------Vista de multimedia---------->									                       
 							<div id ='cuadro-album'  class='card col-12 col-sm-6 col-md-5 col-lg-5 ima-' tabindex='-1' >					                       
 								<img id='imagen-principal'class='card-img-top' src='image/rm1.jpg' alt='Busqueda'>                            
 								<img id='icono-Pagina' src='image/instagramLogo.png' width='50' height='50'>
@@ -201,7 +247,7 @@
 				 </form>
 				 
 				 
-					<div class="row card-columns VistaPreviaAlbums" id="galeria"> <!------------vista Previa de albums---------->
+					<div class="row card-columns VistaPreviaAlbums" id="galeria" > <!------------vista Previa de albums---------->
 
 						<div id ='cuadro-album-nuevo' class='card col-12 col-sm-6 col-md-5 col-lg-5' onclick="crearNuevoAlbum()">					                       
 								<img id='agregar-imagen-multimedia'class='card-img-top' src='image/plus.png' alt='Busqueda'>				
