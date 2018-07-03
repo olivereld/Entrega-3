@@ -307,7 +307,9 @@ function mostrarResultadoVideo(UrlDeImagen,UrlDeVideo,urlPaginaDeProcedencia,num
                 "$('#video"+numeroDeIndice+"_"+contenedor+"').on('hide.bs.modal', function(){"+                    
                     '$("#videoResultado'+numeroDeIndice+'_'+contenedor+'").attr("src","");'+
                 '});'+
-                "$('#video"+numeroDeIndice+"_"+contenedor+"').on('show.bs.modal', function(){"+                    
+                "$('#video"+numeroDeIndice+"_"+contenedor+"').on('show.bs.modal', function(){"+ 
+                    '$(".reproductor").css("height","px");'+
+                     '$("#reproductor-embebido").attr("src","");'+                   
                     '$("#videoResultado'+numeroDeIndice+'_'+contenedor+'").attr("src","'+UrlDeVideo+'");'+
                 '});'+
             '});'+
