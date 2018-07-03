@@ -76,14 +76,13 @@ function enviarPeticionDeBusqueda(enlaceUrlHeroku,pagina){
         success : function (response){
             busquedasEchas++;                          
             busquedasFinalizadas(true,pagina); 
-            if(pagina === "youtube"){  //YOUTUBE                             
-                
+            if(pagina === "youtube"){  //YOUTUBE                         
                 imprimirResultadosVideo(response.nextPageToken, response.items);               
             }else if(pagina === "instagram"){ //INSTAGRAM              
                 prepararResultados(response); 
             }else if(pagina === "spotify"){  //SPOTIFY             
                 console.log(response);
-                prepararResultadosSpotify(response.nextPageUrl,response.tracks);
+                prepararResultadosSpotify(response.nextPageOffset,response.tracks);
             }                 
                             
             },
@@ -193,25 +192,26 @@ function siguientePaginaVideo(paginaActual,token){
         localStorage.setItem("finDeBusquedaVideo",paginaActual);
     }
 }
-function siguientePaginaMusica(paginaActual,url){      
-    if(url != "null"){
+function siguientePaginaMusica(paginaActual,offset){   
+    var parametroABuscar = youtubeParametros(busquedaActual);   
+    if(offset != "null"){
         try{
             $.ajax({
-                url : url,         
+                url :' https://ignsw201825-snproject.herokuapp.com/search/spotify?q='+parametroABuscar+'&offset='+offset,         
                 method :'GET', 
                 contentType: 'application/json; charset=utf-8',
                 dataType : 'json', 
         
-                success : function (response){              
+                success : function (response){        
+                    console.log(response);      
                     var listaDeElementos    = response.tracks;               
-                    var paginacionSiguiente = response.nextPageUrl;                  
+                    var paginacionSiguiente = response.nextPageOffset;                  
                     prepararResultadosSpotify(paginacionSiguiente,listaDeElementos);
                     },
-                error: function(XMLHttpRequest, textStatus, errorThrown){ 
-                    if (XMLHttpRequest.responseText.indexOf("no_result_found") > -1){
+                error: function(XMLHttpRequest, textStatus, errorThrown){                    
                         $("#finDeResultadoMusic").css("display","block");
                         localStorage.setItem("finDeBusquedaMusica",paginaActual);
-                    }                         
+                                            
                 }
             });   
         } catch(error){
@@ -390,7 +390,7 @@ function prepararResultadosSpotify(urlNext,listaDeElementos){
 
     for(var index = 0; index < listaDeElementos.length;index++){
         var id = ((listaDeElementos[index].url).split("track/"))[1];
-        mostrarResultadoMusica(listaDeElementos[index].albumImageUrl,listaDeElementos[index].url,listaDeElementos[index].artists,listaDeElementos[index].name,listaDeElementos[index].album,id,index,1);
+        mostrarResultadoMusica(listaDeElementos[index].albumImageUrl,listaDeElementos[index].url,listaDeElementos[index].artists,listaDeElementos[index].name,listaDeElementos[index].album,id,index,paginasEchasMusica);
     }
     localStorage.setItem("spotifyNext",urlNext);
 }
@@ -399,7 +399,7 @@ function prepararResultadosSpotify(urlNext,listaDeElementos){
 
 function crearPaginaMusica(pagina){
     $("#paginacion_Musica").append(
-       "<div id='pagina_musica_'"+pagina+"class='tab-pane'>"+
+       "<div id='pagina_musica_"+pagina+"'class='tab-pane' >"+
             '<div class="row BusquedaOrdenadaMusica card-columns paginaMusica'+pagina+'">'+           
                 '<div id="cargaResultadosMusica" class="card loadingResult music_loading'+pagina+'" style="display: none; width: 10rem; margin-top: 5%; margin-left:auto; margin-right:auto; background-color: rgba(0, 0, 0, 0); height: auto; border: none;">'+
                    ' <img class="card-img-top" src="image/loading.gif" alt="Card image cap">'+                    

@@ -619,9 +619,9 @@
     var paginaActualMusic = 1;
     function nextMusic(){        
         if(parseInt(localStorage.getItem("paginaActualMusica")) >= 1 && paginaActualMusic < parseInt(localStorage.getItem("finDeBusquedaMusica")) ){
-            $("#pagina_musica_"+paginaActualMusic).css("display","none");
-            console.log("Trabajando");
+            $("#pagina_musica_"+paginaActualMusic).css("display","none");           
             paginaActualMusic++;
+            
             if(paginaActualMusic <= parseInt(localStorage.getItem("paginaActualMusica")) ){
                 $("#pagina_musica_"+paginaActualMusic).css("display","block");
             } else {
@@ -629,8 +629,9 @@
             }                 
         }
     }    
-    function prevMusic(){
+    function prevMusic(){        
         if(paginaActualMusic > 1 ){
+            $("#finDeResultadoMusic").css("display","none");
             $("#pagina_musica_"+paginaActualMusic).css("display","none");
             paginaActualMusic--;
             $("#pagina_musica_"+paginaActualMusic).css("display","block");                
