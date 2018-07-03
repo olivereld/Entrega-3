@@ -1,6 +1,5 @@
 function generarModalParaErrores(){
     $(".mensajes-de-error").append(
-
                    ' <div id= "formato-correo">'+
                             '<h4 class="text-danger">Formato de correo invalido</h4>'+
                            ' <p>Porfavor coloque una direccion de correo valida</p>'+
@@ -52,7 +51,12 @@ function generarModalParaErrores(){
                     '<div id= "busqueda-vacia">'+
                             '<h4  class="text-danger">Debe escribir al menos una palabra</h4>'+
                             '<p>Se debe escribir algo en la barra de busqueda para poder realizarla</p>'+
+                    '</div> '+
+
+                    '<div id= "nombre-albumRepetido-repetido">'+
+                            '<h4  class="text-danger">Ya tiene un album con ese nombre</h4>'+
+                            '<p>Porfavor elija otro nombre para su album</p>'+
                     '</div> '
-    
+
     );
 }

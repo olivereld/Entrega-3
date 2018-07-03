@@ -20,13 +20,18 @@
 	<script src="js/Clases/Validacion.js"></script>
 	<script src="js/Clases/Amigos.js"></script>
 	<script src="js/Clases/Albums.js"></script>
+	<script src="js/Clases/VentanaModal.js"></script> 
+	<link rel="stylesheet" href="fonts/iconStyle.css"/>  
+    <link rel="stylesheet" href="fonts/multiMedia/style.css"/>  
 	<link   rel="stylesheet" href="Css3/css/AdminLTE.min.css"> 	
+	<link   rel="stylesheet" href="Css3/index.css"> 	
 	<link   rel="stylesheet" href="Css3/perfil.css">
 	<link   rel="stylesheet" href="Css3/modalLogin.css">
 	<link 	rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 	<script>
 		$( document ).ready(function() { 
+			generarModalParaErrores(); 
 			var imagenPerfil = sessionStorage.getItem("fotoPerfil");
 			if(imagenPerfil){
 				$("#perfil-imagen").attr("src",imagenPerfil);
@@ -45,6 +50,16 @@
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
+		 
+		 <!--Barra de busqueda-->
+		 <div class="buscador mt-2" style="padding-left: 40px">
+				<div class="navbar-form navbar-left" role="search">
+					<div id="searchform"  class="group">
+						<input  type="text" class="form-control barra-Navegacion" placeholder="Buscar">
+						<button id="botonBusqueda" type="submit" onclick="busquedaPerfil();"  href="index_User.html" > <span class="icon-search"> </span> </button> 
+					</div>                                                                          
+				</div>
+			</div>   
 
 		<div class="collapse navbar-collapse "; id="navbarNav">
 				<div class="navbar-nav ml-auto" style="font-size: 17px; letter-spacing: 1px; font-family: rale;">
@@ -54,7 +69,19 @@
 		</div>
 	</div>
 </header>
-
+<script>
+	function busquedaPerfil(){
+		var palabra = $('.barra-Navegacion').val().trim();	
+			if(palabra.length > 0){
+				palabra = $('.barra-Navegacion').val().trim();
+				localStorage.setItem('busquedaNueva',palabra);
+				location.href ="index_User.html";
+			}else{			
+            mostrarError(10);
+		}
+	}	
+		 
+</script>
 				<!-- Fin Cabecera -->
 
 <div class="cuerpo" >
@@ -74,7 +101,7 @@
 				document.getElementById("name").innerHTML = nombre;                                    
 			</script>
 			<div class="widget-user-image">
-				<img class="img-circle" src="" alt="User Avatar" id="perfil-imagen">
+				<img class="img-circle" src="image/sinFoto.png" alt="User Avatar" id="perfil-imagen">
 				<!--Poner aqui el src de la imagen-->
 			</div>
 			<div class="card-body box-profile pt-5">
@@ -363,27 +390,19 @@
 </body>
 
 <div id="errorModal" class="modal fade" role="dialog">
-		<div class="modal-dialog" role ="document" >
+		<div class="modal-dialog" role ="document" >      
 				<div class="modal-content modalIndex errores" style ="background: rgb(17, 17, 17);">                   
 						<div class="modalCarga">
 								<div id="loadingGift"></div>
 						 </div> 
-	
 						<div class="container modal-header1">
 								<p class="text-center">WebMedia</p>
 							</div>
-	   
-					<div class="modal-form">
-	
-						<div id= "nombre-albumRepetido-repetido">
-								<h4 class="text-danger">El album ya esta creado</h4>
-								<p>Profavor elija otro nombre para el album</p>
-						</div>					
+					<div class="modal-form mensajes-de-error">    
 					</div>
 						<div class="modal-footer" >           
 							<button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">continuar</button>    
 						</div>
-			
 				</div>        
 		</div>    
 	</div>

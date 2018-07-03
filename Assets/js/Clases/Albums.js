@@ -256,9 +256,9 @@ function  mostrarAlbumesEnElPerfil(albumActual){
     }
 }
 function mostrarMultimediaDeAlbum2(multimedia,numeroDeimagen,tipo){       
-        var icono = "";
-        if(tipo === "imagen"){
-            icono =  "image/instagramLogo.png";
+        var icono = "";       
+        if(tipo === "image"){
+            icono =  "image/instagramLogo.png";          
         }else if(tipo === "video"){
             icono =  "image/logo-youtube.png";
         }else if(tipo === "audio"){

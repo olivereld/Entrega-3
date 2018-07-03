@@ -39,8 +39,7 @@ function buscarPalabra(palabraABuscar){
             enviarPeticionDeBusqueda(urlSpotify,"spotify");
             enviarPeticionDeBusqueda(urlInstragram,"instagram");
             nuevaBusqueda = true;
-        }else{
-            $("#errorModal").modal();
+        }else{           
             mostrarError(10);
         }
     }else{
