@@ -235,14 +235,14 @@
     
      <div id="menu1">              
         <div id="paginasVideo" style="display:none;">
-            <button class="prev  icon-circle-left paginacion"  onclick="  prevVideo();"></button>
+            <button class="prev  icon-circle-left paginacion"  onclick="  prevVideo();" id="prevPageVideo"></button>
                 <div id="finDeResultadoVideo" class="card no_more_result" style="position:absolute; display: none; width: 19rem; margin-top:-7%; margin-left:37%; margin-right:auto; background-color: rgba(0,0,0,0.2); border-radius: 20%;">
                     <img class="fa fa-circle-o-notch spinner--steps card-img-top" src="image/sadChibi.png" alt="Card image cap">
                     <div class="card-body" style="color: rgb(255, 255, 255)">
                       <h5 class="card-title">Se acabaron los resultados</h5>                                       
                     </div>
                 </div>  
-            <button class="next  icon-circle-right paginacion" onclick="  nextVideo();"></button>      
+            <button class="next  icon-circle-right paginacion" onclick="nextVideo();" id="nextPageVideo"></button>      
         </div>  
         <div id="paginacion_Video">      
         </div>          
@@ -250,14 +250,14 @@
 
     <div id="menu2">               
             <div id="paginasMusica" style="display:none;">                
-                <button class="prev  icon-circle-left paginacion"  onclick=" prevMusic();"></button> 
+                <button class="prev  icon-circle-left paginacion"  onclick=" prevMusic();" id="prevPageMusic"></button> 
                 <div id="finDeResultadoMusic" class="card no_more_result" style="position:absolute; display: none; width: 19rem; margin-top:-7%; margin-left:37%; margin-right:auto; background-color: rgba(0,0,0,0.2); border-radius: 20%;">
                   <img class="fa fa-circle-o-notch spinner--steps card-img-top" src="image/sadChibi.png" alt="Card image cap">
                   <div class="card-body" style="color: rgb(255, 255, 255)">
                     <h5 class="card-title">Se acabaron los resultados</h5>                                       
                   </div>
                  </div>   
-                <button class="next  icon-circle-right paginacion" onclick=" nextMusic();"></button>      
+                <button class="next  icon-circle-right paginacion" onclick=" nextMusic();"  id="nextPageMusic"></button>      
             </div>  
             <div id="paginacion_Musica">              
             </div>         

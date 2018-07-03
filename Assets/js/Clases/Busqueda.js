@@ -164,7 +164,8 @@ function busquedasFinalizadas(resultadosDevueltos,pagina){
 
 function siguientePaginaVideo(paginaActual,token){      
     var parametroABuscar = youtubeParametros(busquedaActual); 
-    if(token != "null"){   
+    if(token != "null"){  
+        $("#nextPageVideo").attr("onclick",""); 
         try{
             $.ajax({
                 url : "https://ignsw201825-snproject.herokuapp.com/search/youtube?q="+parametroABuscar+"&pageToken="+token,         
@@ -172,12 +173,14 @@ function siguientePaginaVideo(paginaActual,token){
                 contentType: 'application/json; charset=utf-8',
                 dataType : 'json', 
         
-                success : function (response){              
+                success : function (response){ 
+                    $("#nextPageVideo").attr("onclick","nextVideo();");              
                     var listaDeElementos    = response.items;               
                     var paginacionSiguiente = response.nextPageToken;                  
                     imprimirResultadosVideo(paginacionSiguiente,listaDeElementos);
                     },
                 error: function(XMLHttpRequest, textStatus, errorThrown){ 
+                    $("#nextPageVideo").attr("onclick","nextVideo();"); 
                     if (XMLHttpRequest.responseText.indexOf("no_result_found") > -1){
                         $("#finDeResultadoVideo").css("display","block");
                     localStorage.setItem("finDeBusquedaVideo",paginaActual);
@@ -192,9 +195,11 @@ function siguientePaginaVideo(paginaActual,token){
         localStorage.setItem("finDeBusquedaVideo",paginaActual);
     }
 }
+
 function siguientePaginaMusica(paginaActual,offset){   
-    var parametroABuscar = youtubeParametros(busquedaActual);   
+    var parametroABuscar = youtubeParametros(busquedaActual);     
     if(offset != "null"){
+        $("#nextPageMusic").attr("onclick","");
         try{
             $.ajax({
                 url :' https://ignsw201825-snproject.herokuapp.com/search/spotify?q='+parametroABuscar+'&offset='+offset,         
@@ -202,16 +207,17 @@ function siguientePaginaMusica(paginaActual,offset){
                 contentType: 'application/json; charset=utf-8',
                 dataType : 'json', 
         
-                success : function (response){        
+                success : function (response){ 
+                    $("#nextPageMusic").attr("onclick","nextMusic();");       
                     console.log(response);      
                     var listaDeElementos    = response.tracks;               
                     var paginacionSiguiente = response.nextPageOffset;                  
                     prepararResultadosSpotify(paginacionSiguiente,listaDeElementos);
                     },
-                error: function(XMLHttpRequest, textStatus, errorThrown){                    
+                error: function(XMLHttpRequest, textStatus, errorThrown){ 
+                    $("#nextPageMusic").attr("onclick","nextMusic();");                    
                         $("#finDeResultadoMusic").css("display","block");
-                        localStorage.setItem("finDeBusquedaMusica",paginaActual);
-                                            
+                        localStorage.setItem("finDeBusquedaMusica",paginaActual);                                            
                 }
             });   
         } catch(error){
