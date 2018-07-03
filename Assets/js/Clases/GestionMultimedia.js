@@ -5,7 +5,7 @@ function  mostrarListaDeAlbumes(album,contenedor,numeroDeAlbum){
    
     if(album.numeroMultimedia > 0){      
         $(contenedor).append(
-            " <div id ='cuadro-album'  class='card col-12 col-sm-6 col-md-5 col-lg-5' onclick='focusAlbum("+numeroDeAlbum+")' tabindex='1' >"+					                       
+            " <div id ='cuadro-album'  class='card col-12 col-sm-6 col-md-3 col-lg-3' onclick='focusAlbum("+numeroDeAlbum+")' tabindex='1' >"+					                       
                  "<img id='imagen-principal'class='card-img-top' src='"+album.portada+"' alt='Busqueda'>"+
                  '<div id="info-album" class="card-img-overlay">'+
                          '<h5  class="card-title">'+album.nombre+'</h5>'+                         						
@@ -15,7 +15,7 @@ function  mostrarListaDeAlbumes(album,contenedor,numeroDeAlbum){
 
     }else{ 
         $(contenedor).append(
-        "<div id ='cuadro-album'  class='card col-12 col-sm-6 col-md-5 col-lg-5' onclick='focusAlbum("+numeroDeAlbum+")' tabindex='1' >"+					                       
+        "<div id ='cuadro-album'  class='card col-12 col-sm-6 col-md-3 col-lg-3' onclick='focusAlbum("+numeroDeAlbum+")' tabindex='1' >"+					                       
             "<img id='imagen-principal'class='card-img-top' src='image/defImagen.png' alt='Busqueda'>"+
             '<div id="info-album" class="card-img-overlay">'+
                 '<h5  class="card-title">'+album.nombre+'</h5>'+           						

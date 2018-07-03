@@ -264,7 +264,7 @@ function mostrarMultimediaDeAlbum2(multimedia,numeroDeimagen,tipo){
         }else if(tipo === "audio"){
             icono =  "image/spotify-logo.png";
         }
-        document.getElementById('gallery').innerHTML+=`
+       /* document.getElementById('gallery').innerHTML+=`
             <img src="${multimedia.url}" alt="" />
         `
         document.getElementById('gallery-thumbs').innerHTML+=`
@@ -275,7 +275,7 @@ function mostrarMultimediaDeAlbum2(multimedia,numeroDeimagen,tipo){
                 </div>
             </li>
         `
-
+*/
         $("#galeria-multimedia").append(                    
             "<script type='text/javascript' id='script"+numeroDeimagen+"'>"+
                 " function procedencia"+numeroDeimagen+"(){"+
@@ -289,7 +289,7 @@ function mostrarMultimediaDeAlbum2(multimedia,numeroDeimagen,tipo){
             "</script>"+
             "<div id ='cuadro-album'  class='card col-12 col-sm-6 col-md-5 col-lg-5 ima-"+numeroDeimagen+"' tabindex='-1' onclick='focusMedia("+'"'+multimedia.id+'"'+")' >"+					                       
                  "<img id='imagen-principal'class='card-img-top' src='"+multimedia.url+"' alt='Busqueda'>"+                            
-                 "<img id='icono-Pagina' src='"+icono+"' width='50' height='50' onclick='procedencia"+numeroDeimagen+"()' >"+	
+                 "<img id='icono-Pagina' class='img-fluid' src='"+icono+"' width='50' height='50' onclick='procedencia"+numeroDeimagen+"()' >"+	
                  "<img id='icono-Borrar' src='image/delete.png' width='50' height='50' data-toggle='modal' data-target='#eliminarModalMedia' >"+					           							
             '</div>'                   
         ); 
@@ -335,7 +335,7 @@ function gestionDeALbumDelUsuario(numeroDeAlbum){
     $("#galeria").css("display","none");
     $(".titulo-album-gestion").text(""+album.nombre);
     $(".descripcion-album-gestion").text(""+album.descripcion);
-    initCarousel();
+    // initCarousel();
 
     var multimedia = album.multiMedia;
 

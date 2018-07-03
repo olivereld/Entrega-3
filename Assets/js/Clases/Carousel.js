@@ -14,7 +14,6 @@ $(function(){
         // Put slider into variable to use public functions
         var gallerySlider = $('#gallery').bxSlider({
             slideWidth: 300,
-            captions: true,
             controls: true,
             pager: false,
             easing: 'easeInOutQuint',
@@ -56,9 +55,10 @@ $(function(){
             easing: 'easeInOutQuint',
             infiniteLoop: false,
             minSlides: 5,
-            maxSlides: 2,
-            slideWidth: 360,
-            slideMargin: 10
+            maxSlides: 5,
+            slideWidth: 100,
+            slideMargin: 10,
+            shrinkItems: true
         });
     
         // Function to calculate which slide to move the thumbs to
