@@ -34,8 +34,7 @@
     <script src="js/Clases/ConsumirServicios.js"></script> 
     <script>
            
-            $(document).ready(function(){
-              
+            $(document).ready(function(){              
                 var existeBusqueda = localStorage['busquedaNueva'] || null; /* for strings */       
         
                 if(existeBusqueda != null){
@@ -231,8 +230,7 @@
    
 
    <div id="menu1">
-        <div id="paginacion_Video">      
-        </div>         
+              
         <div id="paginasVideo" style="display:none;">
             <button class="prev  icon-circle-left paginacion"  onclick="  prevVideo();"></button>
                 <div id="finDeResultadoVideo" class="card no_more_result" style="position:absolute; display: none; width: 19rem; margin-top:-7%; margin-left:37%; margin-right:auto; background-color: rgba(0,0,0,0.2); border-radius: 20%;">
@@ -242,12 +240,13 @@
                     </div>
                 </div>  
             <button class="next  icon-circle-right paginacion" onclick="  nextVideo();"></button>      
-        </div>         
+        </div>  
+        <div id="paginacion_Video">      
+        </div>          
     </div>
 
     <div id="menu2">
-            <div id="paginacion_Musica">              
-            </div>      
+               
             <div id="paginasMusica" style="display:none;">                
                 <button class="prev  icon-circle-left paginacion"  onclick=" prevMusic();"></button> 
                 <div id="finDeResultadoMusic" class="card no_more_result" style="position:absolute; display: none; width: 19rem; margin-top:-7%; margin-left:37%; margin-right:auto; background-color: rgba(0,0,0,0.2); border-radius: 20%;">
@@ -257,7 +256,9 @@
                   </div>
                  </div>   
                 <button class="next  icon-circle-right paginacion" onclick=" nextMusic();"></button>      
-            </div>        
+            </div>  
+            <div id="paginacion_Musica">              
+            </div>         
     </div>
     
 
@@ -307,10 +308,10 @@
                         </div>
         
                 <div class="modal-form">
-                    
-                    <input class="modal-input"   type="text" placeholder="Correo electronico"    name="uname" id="correoLog" required>                      
-                    
-                    <input class="modal-input"   type="password" placeholder="Contrase&ntilde;a" name="psw"   id="claveLog" required>
+                    <label for="correo" class="icon-user" style="position: flex;"></label>
+                    <input class="modal-input"   type="text" placeholder="Correo electronico"    name="correo" id="correoLog" required>                      
+                    <label for="clave" class="icon-key" style="position: flex; height: 25px; padding-top:2px;"></label>
+                    <input class="modal-input"   type="password" placeholder="Contrase&ntilde;a" name="clave"   id="claveLog" required>
                                       
                     
                 </div>
@@ -344,11 +345,15 @@
                     
                     <div class="modal-form">
                         <!--label class="modal-letters" for="uname"><b>Nombre de Usuario:</b></label-->
-                        <input class="modal-input-registro"   type="text" placeholder="Nombre"     id="nombreRegistro"   name="firstName" required>
-                        <input class="modal-input-registro"   type="text" placeholder="Apellido"   id="apellidoRegistro" name="lastName"  required>                        
+                        <label for="firstName" class="icon-user" style="position: flex;"></label>
+                        <input class="modal-input-registro"   type="text" placeholder="Nombre"     id="nombreRegistro"   name="firstName" required>                       
+                        <input class="modal-input-registro"   type="text" placeholder="Apellido"   id="apellidoRegistro" name="lastName"  required>
+
+                        <label for="email" class="icon-mail3" style="position: flex;  text-align: justify; font-size: 15pt; color: rgb(255, 255, 255);"></label>                        
                         <input class="modal-input-registro"   type="email" placeholder="Email"     id="emailRegistro"    name="email"     data-toggle="tooltip" data-placement="left" title="Escriba su direccion de correo" required> 
                        
                         <!--label class="modal-letters" for="psw"><b>Contrase&ntilde;a:  </b></label-->
+                        <label for="password" class="icon-key" style="position: flex;  text-align: justify; font-size: 15pt; color: rgb(255, 255, 255);"></label> 
                         <input class="modal-input-registro"   type="password" placeholder="Contrase&ntilde;a"           name="password"             required  id="pass1"  data-toggle="tooltip" data-placement="left" title="Su contraseña debe tener almenos 6 caracteres">
                         <input class="modal-input-registro"   type="password" placeholder="Repita la Contrase&ntilde;a" name="confirmationPassword" required  id="pass2"  data-toggle="tooltip" data-placement="left" title="repita su contraseña cuidadosamente">
                         <div id="genero">

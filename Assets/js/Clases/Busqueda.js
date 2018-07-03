@@ -263,6 +263,7 @@ function mostrarResultadoImagen(UrlDeImagen,urlPaginaDeProcedencia,numeroDeIndic
             );
         
 }
+ 
 function prepararResultados(listaDeElementos){        
     $("#particles-js").css("display", "none"); 
     $("#titulo-Seccion").css("display","block");
@@ -276,14 +277,14 @@ function prepararResultados(listaDeElementos){
     for(var i = 0; i < listaDeElementos.length;i++){
         if( ("" + listaDeElementos[i].type) === "image"){
             mostrarResultadoImagen(listaDeElementos[i].imageUrl,listaDeElementos[i].instagramLink,i);
-        }else if(("" + listaDeElementos[i].type) === "video"){  
-                         
-            mostrarResultadoVideo(listaDeElementos[i].imageUrl,listaDeElementos[i].videoUrl,listaDeElementos[i].instagramLink,i);              
+        }else if(("" + listaDeElementos[i].type) === "video"){                         
+            //mostrarResultadoInstaVideo(listaDeElementos[i].imageUrl,listaDeElementos[i].videoUrl,listaDeElementos[i].instagramLink,i);              
         }
     }
     $("#cargando").modal("hide");        
 }
-    
+
+
 function mostrarResultadoVideo(UrlDeImagen,UrlDeVideo,urlPaginaDeProcedencia,numeroDeIndice,paginaImagen,contenedor){       
         var botonProcedencia;
         var frameVideo = "";

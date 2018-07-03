@@ -4,14 +4,8 @@
         if(!sessionStorage.getItem("token")){
             alert("No se puede acceder a esta pagina");            
             window.location="index.html";
-        }      
-        var existeBusqueda = localStorage['busquedaNueva'] || null; /* for strings */       
-        
-        if(existeBusqueda != null){
-            buscarPalabra(existeBusqueda);
-        }else{
-           localStorage.clear();
-        }
+        }     
+                
         try {
                 sessionStorage.removeItem("numeroDePaginas");
                 sessionStorage.removeItem("todosLosResultadosYoutube");
@@ -221,7 +215,7 @@
      <div id="fondo-Imagen"></div>   
      <div>        
             <div id="titulo-Seccion" style="padding-top: 12px; font-size: 25px; font-weight: lighter;">
-                 <p class="text-center" >Resultado de busqueda</p> 
+                 <p class="text-center" >Resultado de búsqueda</p> 
                  <ul class="nav nav-tabs secciones" >
                     <li> 
                         <input type="checkbox" id="checkYoutube">
@@ -239,36 +233,36 @@
             </div>                         
     </div>
     
-    <div id="menu1">
-            <div id="paginacion_Video">      
+     <div id="menu1">              
+        <div id="paginasVideo" style="display:none;">
+            <button class="prev  icon-circle-left paginacion"  onclick="  prevVideo();"></button>
+                <div id="finDeResultadoVideo" class="card no_more_result" style="position:absolute; display: none; width: 19rem; margin-top:-7%; margin-left:37%; margin-right:auto; background-color: rgba(0,0,0,0.2); border-radius: 20%;">
+                    <img class="fa fa-circle-o-notch spinner--steps card-img-top" src="image/sadChibi.png" alt="Card image cap">
+                    <div class="card-body" style="color: rgb(255, 255, 255)">
+                      <h5 class="card-title">Se acabaron los resultados</h5>                                       
+                    </div>
+                </div>  
+            <button class="next  icon-circle-right paginacion" onclick="  nextVideo();"></button>      
+        </div>  
+        <div id="paginacion_Video">      
+        </div>          
+    </div>
+
+    <div id="menu2">               
+            <div id="paginasMusica" style="display:none;">                
+                <button class="prev  icon-circle-left paginacion"  onclick=" prevMusic();"></button> 
+                <div id="finDeResultadoMusic" class="card no_more_result" style="position:absolute; display: none; width: 19rem; margin-top:-7%; margin-left:37%; margin-right:auto; background-color: rgba(0,0,0,0.2); border-radius: 20%;">
+                  <img class="fa fa-circle-o-notch spinner--steps card-img-top" src="image/sadChibi.png" alt="Card image cap">
+                  <div class="card-body" style="color: rgb(255, 255, 255)">
+                    <h5 class="card-title">Se acabaron los resultados</h5>                                       
+                  </div>
+                 </div>   
+                <button class="next  icon-circle-right paginacion" onclick=" nextMusic();"></button>      
+            </div>  
+            <div id="paginacion_Musica">              
             </div>         
-            <div id="paginasVideo" style="display:none;">
-                <button class="prev  icon-circle-left paginacion"  onclick="  prevVideo();"></button>
-                    <div id="finDeResultadoVideo" class="card no_more_result" style="position:absolute; display: none; width: 19rem; margin-top:-7%; margin-left:37%; margin-right:auto; background-color: rgba(0,0,0,0.2); border-radius: 20%;">
-                        <img class="fa fa-circle-o-notch spinner--steps card-img-top" src="image/sadChibi.png" alt="Card image cap">
-                        <div class="card-body" style="color: rgb(255, 255, 255)">
-                          <h5 class="card-title">Se acabaron los resultados</h5>                                       
-                        </div>
-                    </div>  
-                <button class="next  icon-circle-right paginacion" onclick="  nextVideo();"></button>      
-            </div>         
-        </div>
+    </div>
     
-        <div id="menu2">
-                <div id="paginacion_Musica">              
-                </div>      
-                <div id="paginasMusica" style="display:none;">                
-                    <button class="prev  icon-circle-left paginacion"  onclick=" prevMusic();"></button> 
-                    <div id="finDeResultadoMusic" class="card no_more_result" style="position:absolute; display: none; width: 19rem; margin-top:-7%; margin-left:37%; margin-right:auto; background-color: rgba(0,0,0,0.2); border-radius: 20%;">
-                      <img class="fa fa-circle-o-notch spinner--steps card-img-top" src="image/sadChibi.png" alt="Card image cap">
-                      <div class="card-body" style="color: rgb(255, 255, 255)">
-                        <h5 class="card-title">Se acabaron los resultados</h5>                                       
-                      </div>
-                     </div>   
-                    <button class="next  icon-circle-right paginacion" onclick=" nextMusic();"></button>      
-                </div>        
-        </div>
-        
     
         <div class="row BusquedaOrdenadaImagen card-columns tab-pane fade" id="menu3" >             
                     <div id="cargaResultadosImagen" class="card loadingResult imagen_loading" style="display: none; width: 10rem; margin-top: 5%; margin-left:auto; margin-right:auto; background-color: rgba(0, 0, 0, 0); height: auto; border: none;">
