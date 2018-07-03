@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html ng-app lang="es">
+<html ng-app lang="es">    
 <head>    
-
+    
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>WebMedia</title>
     
@@ -31,7 +31,20 @@
     <script src="js/Clases/VentanaModal.js"></script>  
     <script src="js/Clases/Busqueda.js"></script>
    
-    <script src="js/Clases/ConsumirServicios.js"></script>   
+    <script src="js/Clases/ConsumirServicios.js"></script> 
+    <script>
+           
+            $(document).ready(function(){
+              
+                var existeBusqueda = localStorage['busquedaNueva'] || null; /* for strings */       
+        
+                if(existeBusqueda != null){
+                    buscarPalabra(existeBusqueda);
+                }else{
+                    localStorage.clear();
+                }
+            });    
+    </script>  
     
     <script type="text/javaScript">    
     var ventanaBarraVisible = false;
@@ -68,23 +81,24 @@
     }    
     </script>
     <script>
-     $( document ).ready(function() {        
-        generarModalParaErrores(); 
-        if(sessionStorage.getItem("busquedaRealizada")){           
-                   $(".barra-Navegacion").val(sessionStorage.getItem("busquedaRealizada"));           
-                   sessionStorage.removeItem("busquedaRealizada");
-                   $("#cargando").modal();  
-                   buscarPalabra();
-               }else if(localStorage.getItem("datoBusquedaLocal")){
-                   cambiarValorDeNuevaBusqueda();
-                   enviarPeticionDeBusqueda(localStorage.getItem("datoBusquedaLocal"));
-                   $("#cargando").modal("hide");
-               }else{
-                   console.log("Nueva navegacion");
-               }         
-             
-     });        
+            $( document ).ready(function() {        
+               generarModalParaErrores(); 
+               if(sessionStorage.getItem("busquedaRealizada")){           
+                          $(".barra-Navegacion").val(sessionStorage.getItem("busquedaRealizada"));           
+                          sessionStorage.removeItem("busquedaRealizada");
+                          $("#cargando").modal();  
+                          buscarPalabra();
+                      }else if(localStorage.getItem("datoBusquedaLocal")){
+                          cambiarValorDeNuevaBusqueda();
+                          enviarPeticionDeBusqueda(localStorage.getItem("datoBusquedaLocal"));
+                          $("#cargando").modal("hide");
+                      }else{
+                          console.log("Nueva navegacion");
+                      }         
+                    
+            });        
     </script>
+  
     <title>WebMedia</title>   
 </head>
 <body>  
@@ -99,7 +113,7 @@
                     <div class="navbar-form navbar-left" role="search">
                         <div id="searchform"  class="group">
                             <input  type="text" class="form-control barra-Navegacion" placeholder="Buscar">
-                            <button id="botonBusqueda" type="submit" onclick="buscarPalabra()" > <span class="icon-search"> </span> </button> 
+                            <button id="botonBusqueda" type="submit" onclick="var palabra = $('.barra-Navegacion').val(); buscarPalabra(palabra);" > <span class="icon-search"> </span> </button> 
                         </div>                                                                          
                     </div>
                 </div>   
@@ -150,7 +164,7 @@
             <div class="navbar-form navbar-left" role="search">
                 <div id="searchform"  class="form-group">
                     <input  type="text" class="form-control barra-Navegacion" placeholder="Buscar" >
-                    <button id="botonBusqueda" type="submit" onclick="buscarPalabra()" > <span class="icon-search"></span> </button> 
+                    <button id="botonBusqueda" type="submit" onclick="var palabra = $('.barra-Navegacion').val(); buscarPalabra(palabra);" > <span class="icon-search"></span> </button> 
                 </div>                                                                          
             </div>
          </div>     
@@ -219,41 +233,31 @@
    <div id="menu1">
         <div id="paginacion_Video">      
         </div>         
-        <footer id="paginasVideo" style="display:none;">
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center" >
-                    <li class="page-item disabled" id="prev"  >
-                        <a class="page-link" href="#" tabindex="-1" >Previous</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" >1</a></li>
-                    <li class="page-item" onclick="nextPage();"><a class="page-link">2</a></li>
-                    <li class="page-item  "><a class="page-link" href="#">3</a></li>
-                    <li class="page-item" id="next">
-                        <a class="page-link"  >Next</a>
-                    </li>
-                </ul>
-            </nav>         
-        </footer>        
+        <div id="paginasVideo" style="display:none;">
+            <button class="prev  icon-circle-left paginacion"  onclick="  prevVideo();"></button>
+                <div id="finDeResultadoVideo" class="card no_more_result" style="position:absolute; display: none; width: 19rem; margin-top:-7%; margin-left:37%; margin-right:auto; background-color: rgba(0,0,0,0.2); border-radius: 20%;">
+                    <img class="fa fa-circle-o-notch spinner--steps card-img-top" src="image/sadChibi.png" alt="Card image cap">
+                    <div class="card-body" style="color: rgb(255, 255, 255)">
+                      <h5 class="card-title">Se acabaron los resultados</h5>                                       
+                    </div>
+                </div>  
+            <button class="next  icon-circle-right paginacion" onclick="  nextVideo();"></button>      
+        </div>         
     </div>
 
     <div id="menu2">
-            <div id="paginacion_Musica">               
-            </div>         
-            <footer id="paginasVideo" style="display:none;">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center" >
-                        <li class="page-item disabled" id="prev" onclick="prevPage();" >
-                            <a class="page-link" href="#" tabindex="-1" >Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" >1</a></li>
-                        <li class="page-item" onclick="nextPage();"><a class="page-link">2</a></li>
-                        <li class="page-item  "><a class="page-link" href="#">3</a></li>
-                        <li class="page-item" id="next" onclick="nextPage();">
-                            <a class="page-link"  >Next</a>
-                        </li>
-                    </ul>
-                </nav>         
-            </footer>        
+            <div id="paginacion_Musica">              
+            </div>      
+            <div id="paginasMusica" style="display:none;">                
+                <button class="prev  icon-circle-left paginacion"  onclick=" prevMusic();"></button> 
+                <div id="finDeResultadoMusic" class="card no_more_result" style="position:absolute; display: none; width: 19rem; margin-top:-7%; margin-left:37%; margin-right:auto; background-color: rgba(0,0,0,0.2); border-radius: 20%;">
+                  <img class="fa fa-circle-o-notch spinner--steps card-img-top" src="image/sadChibi.png" alt="Card image cap">
+                  <div class="card-body" style="color: rgb(255, 255, 255)">
+                    <h5 class="card-title">Se acabaron los resultados</h5>                                       
+                  </div>
+                 </div>   
+                <button class="next  icon-circle-right paginacion" onclick=" nextMusic();"></button>      
+            </div>        
     </div>
     
 
@@ -264,25 +268,21 @@
                 <div id="sinResultados" class="card not_Found_Imagen" style="width: 18rem; margin-left:auto; margin-right:auto; background-color: rgba(0,0,0,0.2);">
                         <img class="card-img-top" src="image/notResult.png" alt="Card image cap">
                         <div class="card-body" style="color: white">
-                          <h5 class="card-title">No se encontraron resultados</h5>
-                          <p class="card-text">Pruebe realizando otra busqueda con un tag diferente.</p>                          
+                          <h5 class="card-title">No se encontraron resultados</h5>                                                  
                         </div>
                 </div>  
     </div> 
     
     <div class="fixed-bottom reproductor ">
-            <iframe id="reproductor-embebido" src="https://open.spotify.com/embed/track/" style=" position: relative;" width="auto" height="380" frameborder="0" allowtransparency="false" allow="encrypted-media"></iframe>   
+            <iframe id="reproductor-embebido" src="" style=" position: relative;" width="auto" height="380" frameborder="0" allowtransparency="false" allow="encrypted-media"></iframe>   
     </div>   
     <div class="container"> 
             <!-- Modal -->
-        <div class="modal fade" id="cargando" role="dialog" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-md">
-               <div class="modal-content">					
-                        <div id="cargando-gift"></div>							  
+            <div class="modal fade" id="cargando" role="dialog" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog modal-md">               				
+                    <i id="esperaLoading" class="fa fa-circle-o-notch spinner--steps icon-spinner"></i>		   
                 </div>
-              </div>
-            </div>
-        </div>    
+            </div> 
     </div>  
     
   <script src="js/Clases/Registro.js"></script> 
@@ -509,7 +509,6 @@
 </div>
 <!-- Mensajes de Error --> 
 <script>
-
     $('#checkYoutube').change(
         function(){
             if ($(this).is(':checked')) {                
@@ -551,33 +550,36 @@
         function tabs(valor){      
 
             if(valor === "video"){
-                $(".BusquedaOrdenadaVideo").css("display","flex");
-                $(".BusquedaOrdenadaVideo").css("opacity","1");
+                $("#menu1").css("display","block");
+                $("#menu1").css("opacity","1");
                 $("#paginasVideo").css("display","block");
 
-                $(".BusquedaOrdenadaMusica").css("display","none");
-                $(".BusquedaOrdenadaMusica").css("opacity","0.5");
+                $("#menu2").css("display","none");//paginasMusica
+                $("#menu2").css("opacity","0.5");
+                $("#paginasMusica").css("display","none");
 
                 $(".BusquedaOrdenadaImagen").css("display","none");
                 $(".BusquedaOrdenadaImagen").css("opacity","0.5");         
 
             }else if(valor === "musica"){
-                $(".BusquedaOrdenadaMusica").css("display","flex");
-                $(".BusquedaOrdenadaMusica").css("opacity","1");
+                $("#menu2").css("display","block");
+                $("#menu2").css("opacity","1");
+                $("#paginasMusica").css("display","block");
 
-                $(".BusquedaOrdenadaVideo").css("display","none");
-                $(".BusquedaOrdenadaVideo").css("opacity","0.5");
+                $("#menu1").css("display","none");
+                $("#menu1").css("opacity","0.5");
                 $("#paginasVideo").css("display","none");
 
                 $(".BusquedaOrdenadaImagen").css("display","none");
                 $(".BusquedaOrdenadaImagen").css("opacity","0.5");
             }else if(valor === "imagen"){
-                $(".BusquedaOrdenadaVideo").css("display","none");
-                $(".BusquedaOrdenadaVideo").css("opacity","0.5");
+                $("#menu1").css("display","none");
+                $("#menu1").css("opacity","0.5");
                 $("#paginasVideo").css("display","none");
 
-                $(".BusquedaOrdenadaMusica").css("display","none");
-                $(".BusquedaOrdenadaMusica").css("opacity","0.5");
+                $("#menu2").css("display","none");
+                $("#menu2").css("opacity","0.5");
+                $("#paginasMusica").css("display","none");
 
                 $(".BusquedaOrdenadaImagen").css("display","flex");
                 $(".BusquedaOrdenadaImagen").css("opacity","1");
@@ -585,60 +587,54 @@
         }
 </script>
  <script>
-        var paginaVideoActual = 1;
+      var paginaActualVideo = 1;      
+    function nextVideo(){        
+        if(parseInt(localStorage.getItem("paginaActualVideo")) >= 1 && paginaActualVideo  < parseInt(localStorage.getItem("finDeBusquedaVideo")) ){
+            $("#pagina_Video_"+paginaActualVideo ).css("display","none");
+            paginaActualVideo ++;
+            console.log("TrabajandoVideos");
+            if(paginaActualVideo  <= parseInt(localStorage.getItem("paginaActualVideo")) ){
+                $("#pagina_Video_"+paginaActualVideo ).css("display","block");
+            } else {
+                siguientePaginaVideo(paginaActualVideo , localStorage.getItem("youtubeNext"));
+            }                 
+        }
+    }
+    function prevVideo(){
+        if(paginaActualVideo  > 1 ){
+            $("#finDeResultadoVideo").css("display","none");
+            $("#pagina_Video_"+paginaActualVideo ).css("display","none");
+                paginaActualVideo --;
+            $("#pagina_Video_"+paginaActualVideo ).css("display","block");                
+        }
+    }
+    
 
+    /* PROBLEMAS CON EL TOKEN QUE ENVIA EL BACKEND*/
+    var paginaActualMusic = 1;
+    function nextMusic(){        
+        if(parseInt(localStorage.getItem("paginaActualMusica")) >= 1 && paginaActualMusic < parseInt(localStorage.getItem("finDeBusquedaMusica")) ){
+            $("#pagina_musica_"+paginaActualMusic).css("display","none");
+            console.log("Trabajando");
+            paginaActualMusic++;
+            if(paginaActualMusic <= parseInt(localStorage.getItem("paginaActualMusica")) ){
+                $("#pagina_musica_"+paginaActualMusic).css("display","block");
+            } else {
+                siguientePaginaMusica(paginaActualMusic, localStorage.getItem("spotifyNext"));
+            }                 
+        }
+    }    
+    function prevMusic(){
+        if(paginaActualMusic > 1 ){
+            $("#pagina_musica_"+paginaActualMusic).css("display","none");
+            paginaActualMusic--;
+            $("#pagina_musica_"+paginaActualMusic).css("display","block");                
+        }
+    }
     function colocarEnReproductor(track){
             $(".reproductor").css("height","81px");
             $("#reproductor-embebido").attr("src","https://open.spotify.com/embed/track/"+track+"?autoplay=1"); 
-    }
-    function nextPage(){
-    try{
-        if(parseInt(sessionStorage.getItem("finDePagina")) >= paginaVideoActual){
-            if( parseInt(sessionStorage.getItem("numeroDePaginas")) <= paginaVideoActual ){      
-                siguientePagina(""+sessionStorage.getItem("youtubeNext"));
-                $("#pagina_Video_"+paginaVideoActual).css("display","none");
-                $("#prev").removeClass();
-                $("#prev").addClass("page-item");                
-                paginaVideoActual++;                 
-            }else{
-                $("#pagina_Video_"+paginaVideoActual).css("display","none");
-                paginaVideoActual++;
-                $("#pagina_Video_"+paginaVideoActual).css("display","block");
-                $("#prev").removeClass();
-                $("#prev").addClass("page-item");
-            }  
-        }      
-    }catch(error){
-        alert(error.getMessage());
-    }
-
-             
-    }
-
-    function prevPage(){ 
-        if(paginaVideoActual > 1){
-            try {
-                $("#sinResultadosFin").css("display","none");
-            } catch (error) {
-                
-            }
-            $("#pagina_Video_"+paginaVideoActual).css("display","none");
-            paginaVideoActual--;
-            $("#pagina_Video_"+paginaVideoActual).css("display","block");           
-            console.log(paginaVideoActual);
-            if(paginaVideoActual === 1){
-                $("#prev").removeClass();
-                $("#prev").addClass("page-item disabled");
-            }else{
-                $("#prev").removeClass();
-                $("#prev").addClass("page-item");
-            }
-           
-        }else{
-            $("#prev").removeClass();
-            $("#prev").addClass("page-item disabled");
-        }            
-    }
+    }            
     </script>
 </html>
 

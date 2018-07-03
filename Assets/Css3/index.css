@@ -187,3 +187,31 @@ body{
 #color{
     background: #8eeeed
 }
+#cargando{
+    width: auto;
+    height: auto;  
+    position: relative; 
+}
+
+
+/*Spinners!*/
+@keyframes anim-rotate{
+	from {	transform: rotate(0);}
+	to {	transform: rotate(360deg);	}
+}
+#esperaLoading{
+    font-size: 80pt;
+    background: rgba(255, 0, 0, 0);
+    width: auto;
+    height: 100px;
+    border: none;
+    color: #6edf84;
+    margin-left: 45%;
+    margin-right: auto;
+    /*animation: anim-rotate 2s infinite ;*/	
+	text-shadow: 0 0 .25em rgba(255,255,255, .3);
+}
+.spinner--steps {
+	animation: anim-rotate 1s infinite steps(8);
+}
+
